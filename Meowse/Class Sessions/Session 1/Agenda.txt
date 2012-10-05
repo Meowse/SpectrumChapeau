@@ -1,0 +1,31 @@
+Today's agenda:
+
+Hour 1:
+1) Class introduction
+
+-- break
+
+Ice-breaker
+What is software
+etc.
+
+
+Hour 2:
+
+a) Ice-breaker
+b) What is software
+c) how to brush your teeth
+
+Hour 3:
+2) Lab
+a) Installing software
+b) Starting on the homework
+c) turning in homework -- 1st 
+class (zip + email)
+d) ReSharper?
+e) NUnit?
+
+TinyURL for class website: http://tinyurl.com/8lyx6s5
+
+
+URL for downloading the software for the USB overhead projector: http://www.averusa.com/education/support/spb350plus.asp
