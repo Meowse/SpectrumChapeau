@@ -6,7 +6,7 @@ namespace HelloWorld
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Change this to tell me how good a grade I should give you on this assignment.");
+            Console.WriteLine("I only deserve a B+ for such a boring assignment -- my students deserve good extra credit work to do, too.");
             Console.ReadKey();
         }
     }
