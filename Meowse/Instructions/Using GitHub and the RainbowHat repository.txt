@@ -1,0 +1,47 @@
+1) Install the GitHub client for Windows, "GitHub for Windows"
+	a) In your browser, go to http://windows.github.com
+	b) Click on the rectangular green "download 1.0" button on the top right
+	c) Wait for the file "GitHubSetup.exe" to download
+	d) Double-click on the file to install GitHub for Windows
+	e) Accept all defaults during installation
+
+2) Restart your browser so that it can see the GitHub client for Windows
+
+3) Create a GitHub account for yourself
+	a) In your browser, go to https://github.com/
+	b) Click on the green "Signup and Pricing" link at the top of the page
+	c) Click on the gray "Create a free account" button on the upper right
+	d) Enter your desired GitHub username, your email address, and a GitHub password (remember to use a different password for your GitHub account than you use for your email account)
+	e) Click the green "Create an account" button
+
+4) Log in to GitHub with your new GitHub account
+
+5) Make a local copy of the class code repository, "RainbowHat"
+	a) In your browser, go to https://github.com/Meowse/RainbowHat
+	b) Click on the blue "Clone in Windows" button near the top left
+		NOTE: If your browser automatically redirects to windows.github.com, you are probably not logged in.  Go back to step (4) and try again.
+	c) If your browser displays a warning like the following, okay it:
+		"Google Chrome needs to launch an external application to handle github-windows: links.  The link requested is github-windows://openRepo/https://github.com/Meowse/RainbowHat.  The following application will be launched if you accept this request:..." and so on
+	d) You should now see "Meowse/RainbowHat" in the list of repositories when you click the "repositories" line under "local" in the GitHub for Windows client
+	e) Click the blue arrow to the right of "Meowse/RainbowHat"
+	f) You are now viewing the repository in GitHub for Windows.
+		i) The history of commits to the repository is on the right
+		ii) Clicking on a commit displays the changes for that commit on the left.
+		iii) To open the repository in Windows Explorer, click on the "* tools" link at the top of the page, and then click "open in explorer"
+
+6) Email me with your GitHub account so that I can give you write access to the repository
+	a) Use your write access responsibly!
+	b) Create a student folder for yourself at the root of the repository.  My student folder, for example, is "Mickey.Phoenix".  Please name your student folder something that will let me, and the other students, easily recognize whose it is.
+		NOTE: if you are a guest, please create a similar folder for yourself, under the existing folder "Guests".
+	c) Use your write access responsibly!  Our social conventions are:
+		i) Do anything you want in your own student folder.
+		ii) Feel free to work on and change the code in the "Collaborative" folder.  Remember that you'll be sharing that folder with everyone else in the class, so be courteous and expect the process to feel somewhat unfamiliar and confusing at first.
+		iii) Don't edit the code in other people's student folders.  It's okay to add comments to their code with questions or suggestions, but be careful that you don't change the behavior of their code, or accidentally break or delete anything.  Remember that you are a guest in their "house", and be respectful and courteous.
+		iv) If someone specifically invites you to modify code in their student folder, it's okay to do so.  That can be a very useful collaboration tool.  But that's only if the specifically ask you to do so, and only for that situation -- don't assume general permission to modify someone's code, if they ask you to help them with a particular line.
+		v) Don't change anything in the "Meowse" folder, as that is the"instructor" folder where everyone will go to find instructions, homework assignments, etc.  However, feel free to treat my "Mickey.Phoenix" folder exactly as you would any other student folder, since that's my "student" folder.
+		
+
+7) Once you have write access to the repository, you will be able to sync your changes to the shared repository
+	a) Make some changes in your computer
+	b) Review those "local" changes in GitHub for Windows, and Commit them.  Be sure to write a "commit message" describing your changes, and include your name at the start of the commit message.
+	c) Click "sync" to synchronize your changes with the shared repository.  All of the changess that you have "committed" locally will be copied to the shared repository, and made accessible to others.
