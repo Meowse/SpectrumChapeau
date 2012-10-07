@@ -8,24 +8,23 @@ namespace HelloWorld
         {
             
             // 10/07/2012 Initial Leonard Tan cftan@uw.edu
-            // First program created by Abigail
 
             //        Declaration of variables
 
             string strName, strTime;
             DateTime CurrTime = DateTime.Now;
-            DateTime AfternoonTime = Convert.ToDateTime("12:00:00 PM");
+            DateTime NoonToday = Convert.ToDateTime("12:00:00 PM");
 
             //        Greetings depending on time of the day
-            if (CurrTime < AfternoonTime)
+            if (DateTime.Now > NoonToday)
             {
             //    Console.WriteLine("Good Morning!");
-                strTime = "Morning";
+                strTime = "Afternoon";
             }
             else
             {
                 //Console.WriteLine("Good Afternoon!");
-                strTime = "Afternoon";
+                strTime = "Morning";
             }
 
 
