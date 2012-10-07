@@ -14,10 +14,10 @@ namespace HelloWorld
 
             string strName, strTime;
             DateTime CurrTime = DateTime.Now;
-            DateTime AfternoonTime = Convert.ToDateTime("12:00:00 AM");
+            DateTime AfternoonTime = Convert.ToDateTime("12:00:00 PM");
 
             //        Greetings depending on time of the day
-            if (CurrTime > AfternoonTime)
+            if (CurrTime < AfternoonTime)
             {
             //    Console.WriteLine("Good Morning!");
                 strTime = "Morning";
