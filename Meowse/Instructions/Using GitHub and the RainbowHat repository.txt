@@ -14,12 +14,12 @@
 	d) Enter your desired GitHub username, your email address, and a GitHub password (remember to use a different password for your GitHub account than you use for your email account)
 	e) Click the green "Create an account" button
 
-4) Log in to GitHub with your new GitHub account
+4) Log in to the GitHub website (https://github.com) with your new GitHub account
 
 5) Make a local copy of the class code repository, "RainbowHat"
 	a) In your browser, go to https://github.com/Meowse/RainbowHat
 	b) Click on the blue "Clone in Windows" button near the top left
-		NOTE: If your browser automatically redirects to windows.github.com, you are probably not logged in.  Go back to step (4) and try again.
+		NOTE: If your browser automatically redirects to windows.github.com, you are probably not logged in to the GitHub website (github.com).  Go back to step (4) and try again.
 	c) If your browser displays a warning like the following, okay it:
 		"Google Chrome needs to launch an external application to handle github-windows: links.  The link requested is github-windows://openRepo/https://github.com/Meowse/RainbowHat.  The following application will be launched if you accept this request:..." and so on
 	d) You should now see "Meowse/RainbowHat" in the list of repositories when you click the "repositories" line under "local" in the GitHub for Windows client
