@@ -6,7 +6,7 @@ namespace HelloWorld
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(" Deepika, Submitting Assigment 1.");
+            Console.WriteLine(" Deepika, Submitting Assigment 1. Please give a Passing grade");
             Console.ReadKey();
         }
     }
