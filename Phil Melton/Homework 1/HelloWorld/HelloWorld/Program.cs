@@ -1,12 +1,15 @@
-﻿using System;
+﻿﻿using System;
 
 namespace HelloWorld
 {
-    class Program
+    class InteractiveWelcome
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Feel free to give me an A. Thank you.");
+            Console.Write("What is your name?:");
+            Console.Write("Hello, {0}!", Console.ReadLine());
+
+           
             Console.ReadKey();
         }
     }
