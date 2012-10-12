@@ -4,43 +4,36 @@ namespace HelloWorld
 {
     class Program
     {
-        static void Main(string[] args)
+        private const string LOWER_CASE_INSTRUCTOR_NAME = "mickey"; 
+
+        static void Main()
         {
            
-            string str;
-            string compare_string;
-            bool result;
+            string InstructorsNameEnteredAtLogin;
+            string instructorsNameDefinedAsConstant;
+            bool InstructorsNameMatches;
 
-            compare_string = "Mickey";
+            instructorsNameDefinedAsConstant = LOWER_CASE_INSTRUCTOR_NAME;
            
-            Console.WriteLine("Please enter your first name");
+            Console.WriteLine("Please enter your first name - upper or lower case or mixed case ok");
            
-            str = Console.ReadLine();
+            InstructorsNameEnteredAtLogin = Console.ReadLine();
 
 
-           //if (str == "Mickey") // Check string this works but literal
+           InstructorsNameMatches = string.Equals(instructorsNameDefinedAsConstant,InstructorsNameEnteredAtLogin,StringComparison.OrdinalIgnoreCase); // this is not case sensisive
 
-            result = string.Equals(compare_string,str,StringComparison.OrdinalIgnoreCase); // this is not case sensisive
-
-            if (result)
-
+            if (InstructorsNameMatches)
             {
-                Console.WriteLine("Hi " + str + ", I will recieve a grade of True if I get a grade at all, otherwise it will be false!");
-                Console.ReadKey();
+                Console.WriteLine("Hi " + InstructorsNameEnteredAtLogin +
+                                  ", I will recieve a grade of True if I get a grade at all, otherwise it will be false!");
             }
             else
             {
-                Console.WriteLine("Hi " + str+", your name must be Mickey if you want to know what grade I think Mickey should give me.");
-                Console.ReadKey();
+                Console.WriteLine("Hi " + InstructorsNameEnteredAtLogin +
+                                  ", your name must be Mickey if you want to know what grade I think Mickey should give me.");
             }
+            Console.ReadKey();
         }
     }
 }
 
-
-//extra credit:
-//prompt the user to enter his or her name.
-//get the user's input (try googling: "c# read console input").
-//greet the user by name (try googling: "format output in c#").
-//extra extra credit:
-//if the user's name is "Mickey", request your desired grade; if not, explain that you cannot discuss your grade with the user because he or she is not the instructor. (try googling: "compare strings in C#")
