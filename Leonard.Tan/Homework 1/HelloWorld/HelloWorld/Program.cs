@@ -12,21 +12,17 @@ namespace HelloWorld
             //        Declaration of variables
 
             string strName, strTime;
-            DateTime CurrTime = DateTime.Now;
             DateTime NoonToday = Convert.ToDateTime("12:00:00 PM");
 
             //        Greetings depending on time of the day
             if (DateTime.Now > NoonToday)
             {
-            //    Console.WriteLine("Good Morning!");
                 strTime = "Afternoon";
             }
             else
             {
-                //Console.WriteLine("Good Afternoon!");
                 strTime = "Morning";
             }
-
 
             Console.WriteLine();
             Console.WriteLine("May I know what is your first name?\n");
