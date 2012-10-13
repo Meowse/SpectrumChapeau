@@ -15,7 +15,7 @@ namespace HelloWorld
 
             instructorsNameDefinedAsConstant = LOWER_CASE_INSTRUCTOR_NAME;
            
-            Console.WriteLine("Please enter your first name - upper or lower case or mixed case ok");
+            Console.WriteLine("Please enter your first name - upper or lower case or mixed case ok.");
            
             InstructorsNameEnteredAtLogin = Console.ReadLine();
 
