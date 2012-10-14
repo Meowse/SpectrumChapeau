@@ -6,19 +6,22 @@ using System.Text;
 namespace ExploringCSharp
 {
     public class CodeSamples
+   
     {
-        public string SaysHello(string name)
-        {
+    public string SaysHello(string name)
+        
+    }
+    
             return "Hello, " + name;
         }
-
-        public string SaysHello2(string name)
+       
+        public string SaysHello2(string2 name)
         {
             // try googling "string formatting in C#"
             return null;
         }
 
-        public string SaysHello2(string name)
+        public string SaysHello3(string3 name)
         {
             // try Resharper
             return null;
