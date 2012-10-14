@@ -28,9 +28,13 @@ namespace HelloWorld
             // extra extra credit
 
             if (A == "Mickey")
+            {
                 Console.WriteLine("Kindly give me my grades");
+            }
             else
+            {
                 Console.WriteLine("Can't discuss grades as the user is not an instructor");
+            }
             Console.ReadLine();
         }
     }
