@@ -41,7 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CodeSamplesTest.cs" />
+    <Compile Include="BooleanLogicCoreTest.cs" />
+    <Compile Include="BooleanLogicExtraCreditTest.cs" />
+    <Compile Include="CombiningStringsCoreTest.cs" />
+    <Compile Include="CombiningStringsExtraCreditTest.cs" />
+    <Compile Include="DoingMathExtraCredit.cs" />
+    <Compile Include="ExploringConditionalsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
