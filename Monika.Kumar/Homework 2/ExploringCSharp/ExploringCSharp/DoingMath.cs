@@ -1,4 +1,6 @@
-﻿namespace ExploringCSharp
+﻿using System;
+
+namespace ExploringCSharp
 {
     public class DoingMath
     {
@@ -15,8 +17,16 @@
 
         public int GetBiggestMagnitude(int number1, int number2)
         {
-            // Try googling "C# absolute value of a number"
-            return 0;
+            
+            if (Math.Abs(number1) > Math.Abs(number2))
+            {
+                return number1;
+            }
+            else
+            {
+                return number2;
+            }
+            
         }
 
         public int MultiplyByTheNextLargerPowerOfTen(int number)
