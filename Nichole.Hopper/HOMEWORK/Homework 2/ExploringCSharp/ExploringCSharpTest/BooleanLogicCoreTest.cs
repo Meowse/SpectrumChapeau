@@ -9,24 +9,26 @@ namespace ExploringCSharpTest
         [Test]
         public void NegatesItsInputReturnsTrueForFalseAndFalseForTrue()
         {
-            Assert.That(new BooleanLogic().NegatesItsInput(false), Is.True);
-            Assert.That(new BooleanLogic().NegatesItsInput(true), Is.False);
+            {
+                Assert.That(actual: new BooleanLogic().NegatesItsInput(input: false), expression: Is.True);
+                
+            }
+            Assert.That(actual: new BooleanLogic().NegatesItsInput(input: true), expression: Is.False);
         }
 
         [Test]
         public void NegatesItsInputSingleLineReturnsTrueForFalseAndFalseForTrue()
         {
-            Assert.That(new BooleanLogic().NegatesItsInputSingleLine(false), Is.True);
-            Assert.That(new BooleanLogic().NegatesItsInputSingleLine(true), Is.False);
+           NegatesItsInputSingleLine = (input: false), True); ? (input: true), False);
         }
 
         [Test]
         public void TrueIfBothInputsAreTrueIsOnlyTrueIfBothInputsAreTrue()
         {
-            Assert.That(new BooleanLogic().TrueIfBothInputsAreTrue(true,true), Is.True);
-            Assert.That(new BooleanLogic().TrueIfBothInputsAreTrue(true, false), Is.False);
-            Assert.That(new BooleanLogic().TrueIfBothInputsAreTrue(false, true), Is.False);
-            Assert.That(new BooleanLogic().TrueIfBothInputsAreTrue(false, false), Is.False);
+            Assert.That(actual: new BooleanLogic().TrueIfBothInputsAreTrue(true, input2: true), expression: Is.True);
+            Assert.That(actual: new BooleanLogic().TrueIfBothInputsAreTrue(true, input2: false), expression: Is.False);
+            Assert.That(actual: new BooleanLogic().TrueIfBothInputsAreTrue(false, input2: true), expression: Is.False);
+            Assert.That(actual: new BooleanLogic().TrueIfBothInputsAreTrue(false, input2: false), expression: Is.False);
         }
 
         [Test]
@@ -55,5 +57,9 @@ namespace ExploringCSharpTest
             Assert.That(new BooleanLogic().TrueIfEitherInputIsTrueSingleLine(false, true), Is.True);
             Assert.That(new BooleanLogic().TrueIfEitherInputIsTrueSingleLine(false, false), Is.False);
         }
+    }
+
+    class BooleanLogicCoreTestImpl : BooleanLogicCoreTest
+    {
     }
 }
