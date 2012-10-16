@@ -90,7 +90,19 @@
             // Implement this one from scratch so that all tests pass.  
             // Age is a whole number.  The intended values and meanings of the string "gender"
             // can be inferred from the tests.
-            return false;
+            if (gender == "F" || (gender == "M" && age >= 25))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+
+            // this staement produces same results, but I find it very confusing??
+ //           return gender != "F" && (gender != "M" || age < 25);
+
+
         }
     }
 }
