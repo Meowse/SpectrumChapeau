@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Math;
 
 namespace ExploringCSharp
 {
@@ -7,19 +6,13 @@ namespace ExploringCSharp
     {
         public int ReturnTheLargerNumber(int number1, int number2)
         {
-            int x = 0;
-            int y = 0;
-            int result = Math.Max(x, y);
-
-            return result;
+           int result = Math.Max(number1, number2);
+           return result;
         }
 
         public int GetBiggestMagnitude(int number1, int number2)
         {
-            int x = 0;
-            int y = 0;
-            int result = Math.Max(Math.Abs(x), Math.Abs(y)); 
-            
+            int result = Math.Max(Math.Abs(number1), Math.Abs(number2)); 
             return result;
         }
 
