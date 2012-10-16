@@ -20,7 +20,9 @@
             // You may want to google "C# the question mark colon operator".
             // My first thought was to google "C# ?:", but it turns out that
             // google doesn't handle pure punctuation that well.
-            return "";
+
+            return value ? "Yes": "No";
+
         }
 
         public string DoubleString(string stringToDouble)
@@ -42,7 +44,8 @@
             // and have something more complicated to do with normal input.  You just check for
             // the invalid input, and return if you find it.  The rest of the method can be as 
             // complicated as you want, and it doesn't need to be "nested" inside an "else" clause.
-            return "";
+
+            return stringToDouble == null ? null : stringToDouble + stringToDouble;
         }
 
         public string ComplexConditionUsingElseIf(int value)
@@ -72,14 +75,38 @@
         public string ComplexConditionUsingReturnsAndIfs(int value)
         {
             // Use Resharper on the above to get rid of all of the "else" clauses
-            return "";
+            switch (value)
+            {
+                case 0:
+                    return "Free!";
+                case 1:
+                    return "Cheap as dirt!";
+                case 2:
+                    return "Twice as expensive as dirt...";
+                case 3:
+                    return "TANSTAAFL: There ain't no such thing as a free lunch.";
+                default:
+                    return "Too rich for my blood!";
+            }
         }
 
         public string ComplexConditionUsingSwitch(int value)
         {
             // use Resharper on the first ComplexCondition to convert the entire thing
             // to a switch statement.
-            return "";
+            switch (value)
+            {
+                case 0:
+                    return "Free!";
+                case 1:
+                    return "Cheap as dirt!";
+                case 2:
+                    return "Twice as expensive as dirt...";
+                case 3:
+                    return "TANSTAAFL: There ain't no such thing as a free lunch.";
+                default:
+                    return "Too rich for my blood!";
+            }
         }
     }
 }
