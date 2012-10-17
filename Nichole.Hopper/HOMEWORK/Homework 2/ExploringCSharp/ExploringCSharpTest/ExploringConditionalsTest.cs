@@ -55,7 +55,9 @@ namespace ExploringCSharpTest
 
         private static readonly Dictionary<int, string> _EXPECTED_STRINGS = new Dictionary<int, string>
         {
-            {0, "Free!"},
+            {0, string.Format("Fr{0}ee!",  {
+                "ARG0"
+            })},
             {1, "Cheap as dirt!"},
             {2, "Twice as expensive as dirt..."},
             {3, "TANSTAAFL: There ain't no such thing as a free lunch."}
