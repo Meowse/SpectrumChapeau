@@ -1,4 +1,16 @@
-﻿namespace ExploringCSharp
+﻿
+// Bryna Shane
+// .Net Development Foundations, Fall 2012
+// Homework Assignment #2
+// October 17, 2012
+//
+// BooleanLogic.cs
+//
+// Tasks:  Make all the tests work.
+// Extra Credit:  Make the extra credit tests work.
+
+
+namespace ExploringCSharp
 {
     public class BooleanLogic
     {
@@ -82,14 +94,20 @@
             // Age is a whole number.  The intended values and meanings of the string "gender"
             // can be inferred from the tests.
 
-            string g = string.Empty;
-            int a = 0;
+            string g  = gender;
+            int a = age;
+            bool result;
 
-            return (a < 25);
-            
-            
-
-            return false;
+            switch (g)
+            {
+	            case ("F"):
+                    return false;
+                case ("M"):
+                   result = (a < 25);
+                   return result;    
+		        default:
+                    return true;
+            }
         }
     }
 }

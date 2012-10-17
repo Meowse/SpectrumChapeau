@@ -1,4 +1,16 @@
-﻿using System;
+﻿
+// Bryna Shane
+// .Net Development Foundations, Fall 2012
+// Homework Assignment #2
+// October 17, 2012
+//
+// DoingMath.cs
+//
+// Tasks:  Make all the tests work.
+// Extra Credit:  Make the extra credit tests work.
+
+
+using System;
 
 namespace ExploringCSharp
 {
@@ -12,18 +24,34 @@ namespace ExploringCSharp
 
         public int GetBiggestMagnitude(int number1, int number2)
         {
-            int result = Math.Max(Math.Abs(number1), Math.Abs(number2)); 
-            return result;
+            int result = Math.Max(Math.Abs(number1), Math.Abs(number2));
+
+            return result == Math.Abs(number1) ? number1 :number2;
         }
 
         public int MultiplyByTheNextLargerPowerOfTen(int number)
         {
-            // Try googling "C# exponents and logarithms".  Or just "exponents and logarithms",
-            // if college math was too long ago for you (I had to look it up the last time I needed
-            // to do this, so don't feel bad if you do, too).
+            const double DTEN = 10.0;
+            double finalValue = 0.0;
+            string x = number.ToString();
+            int isDivisibleByTen = number%10;
 
+            int length = x.Length;
 
-            return 0;
+            if (number == 1 || number == 0)
+                {
+                    finalValue = number * Math.Pow(DTEN, 0);  //Not simpler here because I wanted to use Math.Pow.
+                }
+            else if (isDivisibleByTen == 0)
+                {
+                    finalValue = number * Math.Pow(DTEN, length - 1);
+                }
+                 else
+                 {
+                     finalValue = number * Math.Pow(DTEN, length);
+                 }
+            int result = Convert.ToInt32(finalValue);
+            return result;
         }
     }
 }
