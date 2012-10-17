@@ -39,13 +39,12 @@
             // the invalid input, and return if you find it.  The rest of the method can be as 
             // complicated as you want, and it doesn't need to be "nested" inside an "else" clause.
 
-            switch (stringToDouble)
+            if (stringToDouble == null)
             {
-                case null:
-                    return null;
-                default:
-                    return stringToDouble + stringToDouble;
+                return null;
             }
+            
+            return stringToDouble + stringToDouble;
         }
 
         public string ComplexConditionUsingElseIf(int value)
