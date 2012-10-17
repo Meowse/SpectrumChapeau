@@ -1,4 +1,6 @@
-﻿namespace ExploringCSharp
+﻿using System;
+
+namespace ExploringCSharp
 {
     public class DoingMath
     {
@@ -31,10 +33,25 @@
             // Try googling "C# exponents and logarithms".  Or just "exponents and logarithms",
             // if college math was too long ago for you (I had to look it up the last time I needed
             // to do this, so don't feel bad if you do, too).
-            //return 0;
-            int power = (int) System.Math.Log10(number);
-            power += power;
-            return (int) System.Math.Exp(power);
+         
+            int newNumber = number;
+            double exponent = Math.Log10(number);
+            double newExponent = exponent;
+            
+            int remainder;
+            int quotient = Math.DivRem(number, 10, out remainder);
+            
+            if (remainder == 0)
+            {
+                newExponent = exponent + exponent;
+                newNumber = (int)Math.Pow(10, newExponent);
+            }
+            else
+            {
+                newExponent = Math.Ceiling(exponent);
+                newNumber = number * (int)Math.Pow(10, newExponent);
+            }
+        return newNumber;
         }
     }
 }
