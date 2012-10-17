@@ -2,24 +2,46 @@
 
 namespace HelloWorld
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-           // Homework 1 :  Extra credit which i has missed seeing on the class website in the week of 10/8
+            // Homework 1 :  Extra extra credit which i has missed seeing on the class website in the week of 10/8
+
+            const string instructorFirstNameLower = "mickey";
+
             Console.WriteLine("Hello stranger, whats ur name?");
             string name = Console.ReadLine();
-            if (name == "")
+            
+            name = name.Trim();
+            bool nameLengthNotZero = name.Length != 0;
+            
+            if (nameLengthNotZero)
             {
-                Console.WriteLine("Not a valid name, hit any key to exit.");
-        
+                if(name.Length >= instructorFirstNameLower.Length)
+                {
+                   //Assuming input is more than 6 characters else  it will crash, need to fix it. 
+                   string firstName = name.Substring(0, 6);
+
+                   if (instructorFirstNameLower == firstName.ToLower())
+                    {
+                        Console.WriteLine("Hello master... please grant me a passing grade.");
+                    }
+                   else
+                   {
+                       Console.WriteLine("Sorry " + name + " cant have a grading discussion with you.");
+                   }
+                }
+                else
+                {
+                    Console.WriteLine("Sorry " + name + " cant have a grading discussion with you.");
+                }
             }
             else
             {
-                Console.WriteLine("Hello " + name);   
+                Console.Write("Sorry, invalid input.");
             }
-            
             Console.ReadKey();
+            }
         }
     }
-}
