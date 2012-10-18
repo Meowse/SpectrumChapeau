@@ -12,7 +12,7 @@ namespace ExploringCSharp
             // Notice also that ReSharper is *too* helpful, here, and keeps trying to turn "Math." into 
             // "DoingMath.".  Play with it until you figure out how to type "Math." without ReSharper
             // changing it into "DoingMath." on you.
-          return System.Math.Max(number1, number2);
+            return Math.Max(number1, number2);
         }
 
         public int GetBiggestMagnitude(int number1, int number2)

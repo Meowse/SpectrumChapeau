@@ -94,20 +94,8 @@
             // Implement this one from scratch so that all tests pass.  
             // Age is a whole number.  The intended values and meanings of the string "gender"
             // can be inferred from the tests.
-            //return false;
-            if (gender == "O" || gender == "P")
-            {
 
-                return true;
-            }
-            //if  ((gender == "M" && age >= 25 ) || gender == "F")
-            //    {
-                
-            //    return false;
-            //}
-
-            //return true;
-            return !((gender == "M" && age >= 25) || gender == "F");
+            return gender == "O" || gender == "P" || !((gender == "M" && age >= 25) || gender == "F");
         }
     }
 }
