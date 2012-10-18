@@ -1,5 +1,7 @@
 ﻿using System.Text;
 
+//homework 2 final was checked in as base line
+
 namespace ExploringCSharp
 {
     public class CombiningStrings
