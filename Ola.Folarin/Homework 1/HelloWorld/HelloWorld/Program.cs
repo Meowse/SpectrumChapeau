@@ -6,7 +6,7 @@ namespace HelloWorld
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("For all my troubles I should get an A");
+            Console.WriteLine("For all my troubles I should get an A for sure!");
             Console.ReadKey();
         }
     }
