@@ -1,4 +1,12 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	
+	
+	
+	
+	
+	
+	
+	
 	<s:Boolean x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestSessionPersistentData/=84D08D1C08444E229D889867ADDA519B/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestSessionPersistentData/=84D08D1C08444E229D889867ADDA519B/Name/@EntryValue">SaysHelloShouldReturnHello</s:String>
 	<s:String x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestSessionPersistentData/=84D08D1C08444E229D889867ADDA519B/XmlSerializedElements/@EntryValue">&lt;Session&gt;&lt;Elements&gt;&lt;UnitTestElement Provider="nUnit" Id="ExploringCSharpTest.CodeSamplesTest" type="NUnitTestFixtureElement" Project="386E19FD-03C3-48E6-816F-65DADCDD6E9F" /&gt;&lt;UnitTestElement Provider="nUnit" Id="ExploringCSharpTest.CodeSamplesTest.SaysHello2ShouldReturnHello" ParentId="ExploringCSharpTest.CodeSamplesTest" type="NUnitTestElement" TypeName="ExploringCSharpTest.CodeSamplesTest" MethodName="SaysHello2ShouldReturnHello" Project="386E19FD-03C3-48E6-816F-65DADCDD6E9F" /&gt;&lt;UnitTestElement Provider="nUnit" Id="ExploringCSharpTest.CodeSamplesTest.SaysHelloShouldReturnHello" ParentId="ExploringCSharpTest.CodeSamplesTest" type="NUnitTestElement" TypeName="ExploringCSharpTest.CodeSamplesTest" MethodName="SaysHelloShouldReturnHello" Project="386E19FD-03C3-48E6-816F-65DADCDD6E9F" /&gt;&lt;/Elements&gt;&lt;/Session&gt;</s:String></wpf:ResourceDictionary>

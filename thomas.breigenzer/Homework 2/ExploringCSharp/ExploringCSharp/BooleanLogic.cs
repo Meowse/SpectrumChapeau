@@ -55,6 +55,11 @@
         public bool TrueIfEitherInputIsTrue(bool input1, bool input2)
         {
             // Use resharper on this to reduce it to a single line.
+            return TrueIfEitherInputIsTrue(input1, input2);
+        }
+
+        private static bool TrueIfEitherInputIsTrue(bool input1, bool input2)
+        {
             if (input1 == true)
             {
                 if (input2 == true)
