@@ -20,19 +20,17 @@
             // You may want to google "C# the question mark colon operator".
             // My first thought was to google "C# ?:", but it turns out that
             // google doesn't handle pure punctuation that well.
-            return "";
+            return value ? "yes" : "no";
         }
 
         public string DoubleString(string stringToDouble)
         {
-            if (stringToDouble == null)
-            {
-                return null;
-            }
-            else
-            {
-                return stringToDouble + stringToDouble;
-            }            
+            return stringToDouble == null ? null : stringToDouble + stringToDouble;
+            //if (stringToDouble == null)
+            //{
+            //    return null;
+            //}
+            //return stringToDouble + stringToDouble;
         }
 
         public string DoubleStringWithInputValidationPattern(string stringToDouble)
@@ -51,21 +49,16 @@
             {
                 return "Free!";
             }
-            else if (value == 1)
+            switch (value)
             {
-                return "Cheap as dirt!";
-            }
-            else if (value == 2)
-            {
-                return "Twice as expensive as dirt...";
-            }
-            else if (value == 3)
-            {
-                return "TANSTAAFL: There ain't no such thing as a free lunch.";
-            }
-            else
-            {
-                return "Too rich for my blood!";
+                case 1:
+                    return "Cheap as dirt!";
+                case 2:
+                    return "Twice as expensive as dirt...";
+                case 3:
+                    return "TANSTAAFL: There ain't no such thing as a free lunch.";
+                default:
+                    return "Too rich for my blood!";
             }
         }
 
