@@ -17,7 +17,7 @@
         public bool NegatesItsInputSingleLine(bool input)
         {
             // Use resharper on the above to reduce it to a single line.
-            return false;
+            return input != true;
         }
 
         public bool TrueIfBothInputsAreTrue(bool input1, bool input2)
@@ -49,7 +49,14 @@
         public bool TrueIfBothInputsAreTrueSingleLine(bool input1, bool input2)
         {
             // Use resharper on the above to reduce it to a single line.
-            return false;
+            if (input1 == true)
+            {
+                return input2 == true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public bool TrueIfEitherInputIsTrue(bool input1, bool input2)
@@ -82,7 +89,14 @@
         public bool TrueIfEitherInputIsTrueSingleLine(bool input1, bool input2)
         {
             // Use resharper on the above to reduce it to a single line.
-            return false;
+            if (input1 == true)
+            {
+                return true;
+            }
+            else
+            {
+                return input2 == true;
+            }
         }
 
         public bool MustPayExtraSurchargeToRentACar(string gender, int age)
