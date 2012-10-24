@@ -18,8 +18,8 @@ namespace ExploringCSharpTest
             Assert.That(new BooleanLogic().MustPayExtraSurchargeToRentACar("F", 19), Is.False);
             Assert.That(new BooleanLogic().MustPayExtraSurchargeToRentACar("F", 30), Is.False);
             Assert.That(new BooleanLogic().MustPayExtraSurchargeToRentACar("M", 25), Is.False);
-        }
-
+       
+    }
         [Test]
         public void PersonsOfNontraditionalGenderMustPayExtraSurchargeToRentACar()
         {
