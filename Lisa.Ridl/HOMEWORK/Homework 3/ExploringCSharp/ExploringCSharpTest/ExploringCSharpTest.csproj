@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C922EAD6-3166-45C5-9FCF-F2BC2893AD0E}</ProjectGuid>
+    <ProjectGuid>{386E19FD-03C3-48E6-816F-65DADCDD6E9F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ExploringCSharp</RootNamespace>
-    <AssemblyName>ExploringCSharp</AssemblyName>
+    <RootNamespace>ExploringCSharpTest</RootNamespace>
+    <AssemblyName>ExploringCSharpTest</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="nunit.framework, Version=2.6.1.12217, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,8 +41,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CodeSamples.cs" />
+    <Compile Include="BooleanLogicCoreTest.cs" />
+    <Compile Include="BooleanLogicExtraCreditTest.cs" />
+    <Compile Include="CombiningStringsCoreTest.cs" />
+    <Compile Include="CombiningStringsExtraCreditTest.cs" />
+    <Compile Include="DoingMathExtraCredit.cs" />
+    <Compile Include="ExploringConditionalsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ExploringCSharp\ExploringCSharp.csproj">
+      <Project>{C922EAD6-3166-45C5-9FCF-F2BC2893AD0E}</Project>
+      <Name>ExploringCSharp</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
