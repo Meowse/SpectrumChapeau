@@ -4,14 +4,7 @@
     {
         public bool NegatesItsInput(bool input)
         {
-            if (input == true)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            return input != true;
         }
 
         public bool NegatesItsInputSingleLine(bool input)

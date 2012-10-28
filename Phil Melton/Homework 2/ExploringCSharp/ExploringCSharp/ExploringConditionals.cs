@@ -21,7 +21,9 @@
             // My first thought was to google "C# ?:", but it turns out that
             // google doesn't handle pure punctuation that well.
             return "";
-        }
+            
+
+        } 
 
         public string DoubleString(string stringToDouble)
         {
