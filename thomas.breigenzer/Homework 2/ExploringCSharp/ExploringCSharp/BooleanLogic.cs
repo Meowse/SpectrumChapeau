@@ -38,24 +38,21 @@
             return input1 && input2;
         }
 
-         private static bool TrueIfEitherInputIsTrue(bool input1, bool input2)
+        public static bool TrueIfEitherInputIsTrue(bool input1, bool input2)
         {
-            if (input1 == true)
+            if (input1)
             {
-                if (input2 == true)
+                if (input2)
                 {
                     return true;
                 }
                 return true;
             }
-            else
+            if (input2)
             {
-                if (input2 == true)
-                {
-                    return true;
-                }
-                return false;
+                return true;
             }
+            return false;
         }
 
         public bool TrueIfEitherInputIsTrueSingleLine(bool input1, bool input2)
@@ -90,3 +87,5 @@
                     return true;
             }
         }
+    }
+}

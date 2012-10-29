@@ -60,8 +60,8 @@ namespace ExploringCSharpTest
         public void ShouldMultiplyPowersOfTenByThemselves()
         {
             Assert.That(_doingMath.MultiplyByTheNextLargerPowerOfTen(10), Is.EqualTo(100));
-            Assert.That(_doingMath.MultiplyByTheNextLargerPowerOfTen(100), Is.EqualTo(10000));
-            Assert.That(_doingMath.MultiplyByTheNextLargerPowerOfTen(1000), Is.EqualTo(1000000));
+            Assert.That(_doingMath.MultiplyByTheNextLargerPowerOfTen(100), Is.EqualTo(1000));
+            Assert.That(_doingMath.MultiplyByTheNextLargerPowerOfTen(1000), Is.EqualTo(10000));
         }
 
         [Test]
