@@ -1,4 +1,5 @@
-﻿using ExploringCSharp;
+﻿using System;
+using ExploringCSharp;
 using NUnit.Framework;
 
 namespace ExploringCSharpTest
@@ -10,7 +11,7 @@ namespace ExploringCSharpTest
         public void NegatesItsInputReturnsTrueForFalseAndFalseForTrue()
         {
             Assert.That(new BooleanLogic().NegatesItsInput(false), Is.True);
-            Assert.That(new BooleanLogic().NegatesItsInput(true), Is.False);
+            Assert.That(new BooleanLogic().NegatesItsInput(true),  Is.False);
         }
 
         [Test]
@@ -32,10 +33,21 @@ namespace ExploringCSharpTest
         [Test]
         public void TrueIfBothInputsAreTrueSingleLineIsOnlyTrueIfBothInputsAreTrue()
         {
-            Assert.That(new BooleanLogic().TrueIfBothInputsAreTrueSingleLine(true, true), Is.True);
-            Assert.That(new BooleanLogic().TrueIfBothInputsAreTrueSingleLine(true, false), Is.False);
-            Assert.That(new BooleanLogic().TrueIfBothInputsAreTrueSingleLine(false, true), Is.False);
-            Assert.That(new BooleanLogic().TrueIfBothInputsAreTrueSingleLine(false, false), Is.False);
+            Assert.That(new BooleanLogic().TrueIfBothInputsAreTrueSingleLine(input1: true, input2: true), Is.True);
+            Assert.That(actual: new BooleanLogic().TrueIfBothInputsAreTrueSingleLine(true, input2: !false), expression: Is.True);
+            Assert.That(actual: new BooleanLogic().TrueIfBothInputsAreTrueSingleLine(True, input2: true), expression: Is.True);
+            Assert.That(actual: new BooleanLogic().TrueIfBothInputsAreTrueSingleLine(input1: !false, input2: true), expression: Is.True);
+        }
+
+        protected bool True
+        {
+    {
+        get
+        {
+            throw new NotImplementedException();
+        }
+    }
+        set { throw new System.NotImplementedException(); }
         }
 
         [Test]
@@ -56,4 +68,7 @@ namespace ExploringCSharpTest
             Assert.That(new BooleanLogic().TrueIfEitherInputIsTrueSingleLine(false, false), Is.False);
         }
     }
-}
+
+
+
+

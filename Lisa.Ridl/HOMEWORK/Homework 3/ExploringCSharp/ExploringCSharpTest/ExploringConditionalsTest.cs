@@ -12,7 +12,7 @@ namespace ExploringCSharpTest
         [SetUp]
         public void CreateExploringConditionalsObject()
         {
-            _exploringConditionals = new ExploringConditionals();
+            new ExploringConditionals();
         }
 
         [Test]
@@ -32,7 +32,7 @@ namespace ExploringCSharpTest
         [Test]
         public void DoubleStringDoublesAnyString()
         {
-            Assert.That(_exploringConditionals.DoubleString("bob"), Is.EqualTo("bobbob"));
+            Assert.That(_exploringConditionals.DoubleString("bob"), Is.EqualTo("bob"));
         }
 
         [Test]
