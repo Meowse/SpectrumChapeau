@@ -77,6 +77,7 @@ namespace Homework3
             // 
             // btnExit
             // 
+            this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.Location = new System.Drawing.Point(310, 145);
             this.btnExit.Name = "btnExit";
@@ -110,6 +111,7 @@ namespace Homework3
             this.Controls.Add(this.btnHello);
             this.Controls.Add(this.txtUserEntry);
             this.Name = "HelloForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Beginning Text Entry";
             this.ResumeLayout(false);
             this.PerformLayout();
