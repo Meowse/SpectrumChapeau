@@ -24,7 +24,7 @@ namespace Homework3
         private void button1_Click(object sender, EventArgs e)
         {
 
-            MessageBox.Show("Hello, textBox1!");
+            MessageBox.Show("Hello, " + textBox1.Text + "!");
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
