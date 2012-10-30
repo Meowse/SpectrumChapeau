@@ -9,9 +9,11 @@
 //  Create a Visual Studio solution.
 //  Create a Windows Forms application in this solution.
 //  Put a TextBox, a Button (“Hello!”), and a Label on the form.
-//  When the user types their name into the TextBox, and clicks the “Hello!” button, show a MessageBox that says, “Hello, <contents of the TextBox>!”
-
-
+//  
+//  When the user types their name into the TextBox, and clicks the “Hello!” button,
+//  show a MessageBox that says, “Hello, <contents of the TextBox>!”
+//
+//  Program.cs
 
 using System;
 using System.Collections.Generic;
@@ -31,7 +33,7 @@ namespace Homework3
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new HelloForm());
         }
     }
 }
