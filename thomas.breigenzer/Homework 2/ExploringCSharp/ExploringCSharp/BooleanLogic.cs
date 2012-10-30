@@ -38,7 +38,7 @@
             return input1 && input2;
         }
 
-        public static bool TrueIfEitherInputIsTrue(bool input1, bool input2)
+        public bool TrueIfEitherInputIsTrue(bool input1, bool input2)
         {
             if (input1)
             {

@@ -12,7 +12,7 @@ namespace ExploringCSharp
         public string GreetsByCombiningStringsWithFormats(string name)
         {
             // try googling "string formatting in C#"
-            return string.Format("|{0}|",name);
+            return string.Format("Hello, {0}",name);
         }
 
         public string GreetsByCombiningStringsWithStringBuilder(string name)

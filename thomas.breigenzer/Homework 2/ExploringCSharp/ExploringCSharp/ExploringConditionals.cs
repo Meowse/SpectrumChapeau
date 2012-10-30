@@ -20,17 +20,21 @@
             // You may want to google "C# the question mark colon operator".
             // My first thought was to google "C# ?:", but it turns out that
             // google doesn't handle pure punctuation that well.
-            return value ? "yes" : "no";
+            return value ? "Yes" : "No";
         }
 
         public string DoubleString(string stringToDouble)
         {
-            return stringToDouble == null ? null : stringToDouble + stringToDouble;
-            //if (stringToDouble == null)
-            //{
-            //    return null;
-            //}
-            //return stringToDouble + stringToDouble;
+            //return stringToDouble == null ? null : stringToDouble + stringToDouble;
+            if (stringToDouble == null)
+            {
+                return null;
+            }
+            else
+            {
+                return stringToDouble + stringToDouble;
+            }
+            
         }
 
         public string DoubleStringWithInputValidationPattern(string stringToDouble)
@@ -40,7 +44,11 @@
             // and have something more complicated to do with normal input.  You just check for
             // the invalid input, and return if you find it.  The rest of the method can be as 
             // complicated as you want, and it doesn't need to be "nested" inside an "else" clause.
-            return "";
+            if (stringToDouble == null)
+            {
+                return null;
+            }
+            return stringToDouble + stringToDouble;
         }
 
         public string ComplexConditionUsingElseIf(int value)
@@ -49,6 +57,50 @@
             {
                 return "Free!";
             }
+            else if (value == 1)
+            {
+                return "Cheap as dirt!";
+            }
+            else if (value == 2)
+            {
+                return "Twice as expensive as dirt...";
+            }
+            else if (value == 3)
+            {
+                return "TANSTAAFL: There ain't no such thing as a free lunch.";
+            }
+            else
+            {
+                return "Too rich for my blood!";
+            }
+        }
+
+        public string ComplexConditionUsingReturnsAndIfs(int value)
+        {
+            // Use Resharper on the above to get rid of all of the "else" clauses
+            if (value == 0)
+            {
+                return "Free!";
+            }
+            if (value == 1)
+            {
+                return "Cheap as dirt!";
+            }
+            if (value == 2)
+            {
+                return "Twice as expensive as dirt...";
+            }
+            if (value == 3)
+            {
+                return "TANSTAAFL: There ain't no such thing as a free lunch.";
+            }
+            return "Too rich for my blood!";
+        }
+
+        public string ComplexConditionUsingSwitch(int value)
+        {
+            // use Resharper on the first ComplexCondition to convert the entire thing
+            // to a switch statement.
             switch (value)
             {
                 case 1:
@@ -60,19 +112,7 @@
                 default:
                     return "Too rich for my blood!";
             }
-        }
 
-        public string ComplexConditionUsingReturnsAndIfs(int value)
-        {
-            // Use Resharper on the above to get rid of all of the "else" clauses
-            return "";
-        }
-
-        public string ComplexConditionUsingSwitch(int value)
-        {
-            // use Resharper on the first ComplexCondition to convert the entire thing
-            // to a switch statement.
-            return "";
         }
     }
 }
