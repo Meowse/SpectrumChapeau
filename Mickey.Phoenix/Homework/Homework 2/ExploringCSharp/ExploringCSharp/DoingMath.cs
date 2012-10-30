@@ -1,4 +1,6 @@
-﻿namespace ExploringCSharp
+﻿using System;
+
+namespace ExploringCSharp
 {
     public class DoingMath
     {
@@ -11,6 +13,9 @@
             // "DoingMath.".  Play with it until you figure out how to type "Math." without ReSharper
             // changing it into "DoingMath." on you.
             return 0;
+#pragma warning disable 162
+            return Math.;
+#pragma warning restore 162
         }
 
         public int GetBiggestMagnitude(int number1, int number2)
