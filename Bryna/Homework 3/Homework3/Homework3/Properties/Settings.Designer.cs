@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Calculate.Properties
+namespace Homework3.Properties
 {
 
 
