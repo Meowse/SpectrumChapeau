@@ -19,6 +19,8 @@ namespace ExploringCSharp
         {
             var builder = new StringBuilder(100);
             // Try typing "builder." and seeing what auto-complete options ReSharper gives you.
+            builder.Append("Hello, ");
+            builder.Append(name);
             return builder.ToString();
         }
     }

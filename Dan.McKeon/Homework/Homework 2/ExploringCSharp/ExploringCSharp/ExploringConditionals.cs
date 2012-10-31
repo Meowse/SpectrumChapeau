@@ -112,6 +112,5 @@
             }
             return "Too rich for my blood!";
         }
-        }
     }
 }
