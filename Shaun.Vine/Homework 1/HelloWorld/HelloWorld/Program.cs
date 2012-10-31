@@ -6,7 +6,7 @@ namespace HelloWorld
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("I missed the cut off for the homework. I think I need a rianbow hat");
+            Console.WriteLine("I missed the cut off for the homework. I think I need a rainbow hat");
             Console.ReadKey();
         }
     }
