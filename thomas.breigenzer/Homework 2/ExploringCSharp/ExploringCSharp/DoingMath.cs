@@ -4,7 +4,7 @@ namespace ExploringCSharp
 {
     public class DoingMath
     {
-        private int _exponent = 0;
+        private static int Power;
         public int ReturnTheLargerNumber(int number1, int number2)
         {
             // Type "Math.", and look at the various mathematical functions that are defined for you.
@@ -19,15 +19,15 @@ namespace ExploringCSharp
         public int GetBiggestMagnitude(int number1, int number2)
         {
             // Try googling "C# absolute value of a number"
-            return Math.Max(Math.Abs(number1), Math.Abs(number2));
+           return Math.Abs(number1) > Math.Abs(number2) ? number1 : number2;
         }
 
-        public double MultiplyByTheNextLargerPowerOfTen(int number)
+        public int MultiplyByTheNextLargerPowerOfTen(int number)
         {
             // Try googling "C# exponents and logarithms".  Or just "exponents and logarithms",
             // if college math was too long ago for you (I had to look it up the last time I needed
             // to do this, so don't feel bad if you do, too).
-            return number * Math.Pow(10, _exponent++);
+            return (int) (number * Math.Pow(10, Power++));
         }
         
     }
