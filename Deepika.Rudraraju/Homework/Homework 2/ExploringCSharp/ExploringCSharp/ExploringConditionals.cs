@@ -72,42 +72,14 @@
         public string ComplexConditionUsingReturnsAndIfs(int value)
         {
             // Use Resharper on the above to get rid of all of the "else" clauses
-            switch (value)
-            {
-                case 0:
-                    return "Free!";
-                case 1:
-                    return "Cheap as dirt!";
-                case 2:
-                    return "Twice as expensive as dirt...";
-                case 3:
-                    return "TANSTAAFL: There ain't no such thing as a free lunch.";
-                default:
-                    return "Too rich for my blood!";
-            }
+            return "";
         }
 
         public string ComplexConditionUsingSwitch(int value)
         {
             // use Resharper on the first ComplexCondition to convert the entire thing
             // to a switch statement.
-            if (value == 0)
-            {
-                return "Free!";
-            }
-            if (value == 1)
-            {
-                return "Cheap as dirt!";
-            }
-            if (value == 2)
-            {
-                return "Twice as expensive as dirt...";
-            }
-            if (value == 3)
-            {
-                return "TANSTAAFL: There ain't no such thing as a free lunch.";
-            }
-            return "Too rich for my blood!";
+            return "";
         }
     }
 }
