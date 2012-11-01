@@ -16,7 +16,7 @@
 
         public bool NegatesItsInputSingleLine(bool input)
         {
-            // Use resharper on the above to reduce it to a single line.
+            // Use resharper on the above to reduce it to a single line. Trying to log in base line HW2
             return false;
         }
 
