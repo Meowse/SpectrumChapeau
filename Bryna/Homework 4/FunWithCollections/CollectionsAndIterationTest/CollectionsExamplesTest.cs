@@ -39,6 +39,13 @@ namespace CollectionsAndIterationTest
         }
 
         [Test]
+        public void ShouldReturnTheSecondLargestNumber2()
+        {
+            List<int> numbers = new List<int> { 1, 4, 2, 3, 5 };
+            Assert.That(_collectionsExamples.GetSecondLargest2(numbers), Is.EqualTo(4));
+        }
+
+        [Test]
         public void ShouldReturnDoubledNumberInPlace()
         {
             List<int> numbers = new List<int> { 4, 3, 2, 1, 5 };

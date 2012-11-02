@@ -51,6 +51,13 @@ namespace CollectionsAndIteration
             }
             return numbers[1];
         }
+
+        public int GetSecondLargest2(List<int> numbers)
+        {
+            numbers.Sort();
+            numbers.Reverse();
+            return numbers[1];
+        }
         
         public List<int> DoubleInPlace(List<int> numbers)
         {
