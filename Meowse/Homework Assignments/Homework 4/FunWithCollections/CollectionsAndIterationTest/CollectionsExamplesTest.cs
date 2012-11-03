@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Specialized;
 using CollectionsAndIteration;
 using NUnit.Framework;
 
@@ -7,23 +9,32 @@ namespace CollectionsAndIterationTest
     [TestFixture]
     public class CollectionsExamplesTest
     {
-        private readonly CollectionsExamples _collectionsExamples = new CollectionsExamples();
-
         [Test]
         public void ShouldReturnTheLargestNumber()
         {
             List<int> numbers = new List<int> { 1, 2, 4, 3};
-            Assert.That(_collectionsExamples.GetBiggest(numbers), Is.EqualTo(4));
+            Assert.That(new CollectionsExamples().GetBiggest(numbers), Is.EqualTo(4));
         }
 
         [Test]
         public void ShouldReturnTheLargestNegativeNumber()
         {
             List<int> numbers = new List<int> {-3, -5, -1, -2};
-            Assert.That(_collectionsExamples.GetBiggest(numbers), Is.EqualTo(-1));
+            Assert.That(new CollectionsExamples().GetBiggest(numbers), Is.EqualTo(-1));
         }
 
-       // TODO: EXTRA CREDIT: What should we do if the list is empty?
+        [Test]
+        public void ShouldReturnTheLargestMagnitude()
+        {
+            List<int> numbers=new List<int> {4, 5, -3, -5};
+            var largestInList = new List<int>();
+            largestInList.Add(5);
+            largestInList.Add(-5);
+            CollectionAssert.AreEquivalent(largestInList, new CollectionsExamples().GetBiggestMagnitude(numbers));
+                //Assert.That(collectionsExamples.GetBiggestMagnitude(numbers), Is.EqualTo(5));
+        }
+
+        // TODO: EXTRA CREDIT: What should we do if the list is empty?
 
         // For all of the below, don't worry about handling exceptional conditions such as empty lists.  
         // For extra credit, however, feel free to do so if you are so inclined.
