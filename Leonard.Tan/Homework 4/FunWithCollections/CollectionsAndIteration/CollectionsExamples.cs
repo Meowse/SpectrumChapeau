@@ -97,15 +97,15 @@ namespace CollectionsAndIteration
         public List<int> MultipliedByIndex(List<int> numbers)
         {
 
-            List<int> MultipledByIndexResults = new List<int>();
+            List<int> multipledByIndexResults = new List<int>();
             int index = 0;
             foreach (int number in numbers)
             {
-                MultipledByIndexResults.Add(number * index);
+                multipledByIndexResults.Add(number * index);
                 index++;
 
             }
-            return MultipledByIndexResults;
+            return multipledByIndexResults;
 
         }
 
@@ -127,9 +127,9 @@ namespace CollectionsAndIteration
                 numbers[i] = DivideUntilOdd(numbers[i]);
             }
             return numbers;
-
         }
 
+        // Recusion for Division of 2 Until Odd Number or Prime Number
         public int DivideUntilOdd (int number)
         {
             int result = number%2;
@@ -137,10 +137,7 @@ namespace CollectionsAndIteration
             {
                 return number;
             }
-            else
-            {
-                return DivideUntilOdd(number / 2);
-            }
+            return DivideUntilOdd(number / 2);
         }
 
         public bool ContainsNumber(List<int> numbers, int search)
@@ -150,8 +147,10 @@ namespace CollectionsAndIteration
 
         public bool HasNoDuplicates(List<int> numbers)
         {
-
+            //SortedSet removes duplicates.
             SortedSet<int> set = new SortedSet<int>(numbers);
+
+            //If there is no duplicates Count of SortedSet and Numbers would be the same.
             if (set.Count != numbers.Count)
             {
                 return false;
