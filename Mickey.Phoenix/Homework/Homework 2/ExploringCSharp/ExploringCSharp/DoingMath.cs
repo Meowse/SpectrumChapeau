@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ExploringCSharp
+﻿namespace ExploringCSharp
 {
     public class DoingMath
     {
@@ -12,7 +10,7 @@ namespace ExploringCSharp
             // Notice also that ReSharper is *too* helpful, here, and keeps trying to turn "Math." into 
             // "DoingMath.".  Play with it until you figure out how to type "Math." without ReSharper
             // changing it into "DoingMath." on you.
-            return Math.Min(number1, number2);
+            return 0;
         }
 
         public int GetBiggestMagnitude(int number1, int number2)
