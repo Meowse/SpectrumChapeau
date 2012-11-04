@@ -17,7 +17,7 @@ namespace HelloWorld
            
             Console.WriteLine("Please enter your first name - upper or lower case or mixed case ok.");
            
-            InstructorsNameEnteredAtLogin = Console.ReadLine();
+            InstructorsNameEnteredAtLogin = Console.ReadLine()
 
 
            InstructorsNameMatches = string.Equals(instructorsNameDefinedAsConstant,InstructorsNameEnteredAtLogin,StringComparison.OrdinalIgnoreCase); // this is not case sensisive
