@@ -16,9 +16,44 @@
 
         public bool NegatesItsInputSingleLine(bool input)
         {
-            // Use resharper on the above to reduce it to a single line.
-            return false;
-            return input != true;
+            return !input;          // perfectly acceptable
+//            return input != true;   // perfectly acceptable
+
+//            Simplification one:
+//            if (input)
+//            {
+//                return false;
+//            }
+//            else
+//            {
+//                return true;
+//            }
+//
+//
+//            Simplification two:
+//            if (input)
+//            {
+//                return !true;
+//            }
+//            else
+//            {
+//                return !false;
+//            }
+//
+//
+//            Simplification three:
+//            if (input)
+//            {
+//                return !input;
+//            }
+//            else
+//            {
+//                return !input;
+//            }
+//
+//
+//            Simplification four:
+//            return !input;
         }
 
         public bool TrueIfBothInputsAreTrue(bool input1, bool input2)
@@ -49,10 +84,7 @@
 
         public bool TrueIfBothInputsAreTrueSingleLine(bool input1, bool input2)
         {
-            // Use resharper on the above to reduce it to a single line.
-            return false;
-            return input1 == true && input2 == true;
-
+            return input1 && input2;
         }
 
         public bool TrueIfEitherInputIsTrue(bool input1, bool input2)
