@@ -36,6 +36,7 @@ namespace CollectionsAndIterationTest
 
         // TODO: EXTRA CREDIT: What should we do if the list is empty?
 
+       
         // For all of the below, don't worry about handling exceptional conditions such as empty lists.  
         // For extra credit, however, feel free to do so if you are so inclined.
 
@@ -56,57 +57,121 @@ namespace CollectionsAndIterationTest
         //      GetSmallest -- Return the smallest
         //          -- much like the former
         //
+        [Test]
+        public void ShouldReturnTheSmallest()
+        {
+            List<int> numbers = new List<int> {5,4,1,3,2};
+            Assert.That(new CollectionsExamples().GetSmallest(numbers), Is.EqualTo(1));
+
+        }
+
         //      GetMostExtreme -- Return the number or numbers that are farthest from zero
         //          -- This is Extra Credit
         //          -- You can use the function "Math.Abs()" to get the absolute value of a number
         //          -- If the most extreme positive number and the most extreme negative number have the same absolute value, return a list containing both of them.
         //
-        //      GetSecondLargest -- Return the second-largest number
+        [Test]
+        public void ShouldReturnMostExtreme()
+        {
+            List<int> numbers = new List<int> {1,2,-3,5};
+            var mostExtreme = new List<int>();
+            mostExtreme.Add(5);
+            //mostExtreme.Add(-3);
+            CollectionAssert.AreEqual(mostExtreme,new CollectionsExamples().GetMostExtreme(numbers));
+        }
+
+        [Test]
+        public void ShouldReturnMostExtreme2ifequal()
+        {
+            List<int> numbers = new List<int> {-6, 1, 2, -3, 5, 6};
+            var mostExtreme = new List<int>();
+            mostExtreme.Add(6);
+            mostExtreme.Add(-6);
+            CollectionAssert.AreEqual(mostExtreme, new CollectionsExamples().GetMostExtreme(numbers));
+        }
+
+
+        //      GetNthLargest -- Return the second-largest number
         //          -- As you solve this, think about whether your solution generalizes well to solving the next problem
+
+        [Test]
+        public void ShouldReturn2ndLargest()
+        {
+            List<int> numbers = new List<int> {1, 2, 8, 9, 3, 4, 5, 6, 7, 8, 9};
+            int NthNumber = 2;
+            int SecondLargest = 0;
+
+            Assert.That(new CollectionsExamples().GetNthLargest(numbers,NthNumber), Is.EqualTo(8));
+
+        }
+
         //
         //      GetNthLargest -- Given a list and a number "n", return the nth-largest number from the list
         //          -- This is Extra Credit
         //          -- Use zero-based indexing: GetNthLargest([1,2,3], 0) should return 3.
         //          -- It's up to you whether GetNthLargest([11, 12, 13, 13, 14, 15], 3) should return 12 or 13.
         //
+
+        [Test]
+        public void ShouldReturnNthLargest()
+        {
+            List<int> numbers = new List<int> {1, 2, 8, 9, 5, 6, 3, 7, 4, 2, 9, 8, 1}; //123456789
+            int NthNumber = 3;
+            int ReturnValue = 7;
+
+            Assert.That(new CollectionsExamples().GetNthLargest(numbers, NthNumber), Is.EqualTo(7));
+        }
+
         //      Doubled -- Return a new list consisting of each number, doubled
         //          -- To make an empty list, just say "new List<int>()"
+
+        [Test]
+        public void ShouldReturnListDoubled()
+        {
+            List<int> numbers = new List<int> {1,2,3,4,5};
+            List<int> doubledlist = new List<int> {2,4,6,8,10};
+
+            Assert.That(new CollectionsExamples().Doubled(numbers),Is.EqualTo(doubledlist));
+        }
+
+
+
         // 
-        //      DoubleInPlace -- Change the list so that the number at each index is doubled
-        //          -- You can change the value at a given index in the list using the same "[index]" syntax we used in class to get the value.
-        //              myList[1] = 12;   // sets the second element of myList to the value 12.
-        //
-        //      MultipliedByIndex -- Return a new list consisting of each number multiplied by its index in the list (zero-based)
-        //          -- A basic for-loop for iterating over the list "myList" looks like:
-        //              for (int i = 0; i < myList.length; i++) {
-        //                  // do something with i
-        //              }
-        //          -- We'll talk more about the structure of a for-loop in the next class; for now, you can just use the above as boiler-plate
-        //              to count through all of the index values from 0 to the highest index in the list (which is, by the way, myList.length - 1)
-        //
-        //      MultiplyByIndexInPlace -- Change the list so that the number at each index is multiplied by its index (modify the original list)
-        //          -- Just putting the last few together
-        //
-        //      OddBits -- Return a list consisting of the odd numbers "as-is", and the even numbers repeatedly divided by two until they are odd
-        //          -- This is Extra Credit
-        //          -- You can do this with a while loop inside a foreach loop, but it's a LOT more readable if you do it with a method call inside
-        //              the foreach loop
-        // 
-        //      ContainsNumber -- Given a list and a number "n", return true if the number occurs in the list
-        //          -- There's a really easy way to do this one.
-        // 
-        //      HasNoDuplicates -- Given a list, return true if the list contains no duplicated elements
-        //          -- This is Extra Credit
-        //          -- Set<int> can be really helpful for this one
-        //
-        //      IsProperSubset -- Given two lists, return true if the second list is a proper subset of the first list
-        //          (i.e. it consists entirely of elements from the first list, and does not contain all elements of the first list)
-        //          -- This is Extra Credit
-        //
-        //      Sort -- Given a list of numbers, return a new list containing all of the elements from the list in increasing numerical order
-        //          -- This is Extra Credit
-        //          -- There is a built-in "Sort" method.  For this assignment, don't use it -- write your own.
-        //          -- Do feel free to google "sorting algorithms", but try to figure it out on your own first.
-        //          -- Super duper extra credit: implement one of the more efficient sorting algorithms, e.g. Mergesort.
-    }
+            //      DoubleInPlace -- Change the list so that the number at each index is doubled
+            //          -- You can change the value at a given index in the list using the same "[index]" syntax we used in class to get the value.
+            //              myList[1] = 12;   // sets the second element of myList to the value 12.
+            //
+            //      MultipliedByIndex -- Return a new list consisting of each number multiplied by its index in the list (zero-based)
+            //          -- A basic for-loop for iterating over the list "myList" looks like:
+            //              for (int i = 0; i < myList.length; i++) {
+            //                  // do something with i
+            //              }
+            //          -- We'll talk more about the structure of a for-loop in the next class; for now, you can just use the above as boiler-plate
+            //              to count through all of the index values from 0 to the highest index in the list (which is, by the way, myList.length - 1)
+            //
+            //      MultiplyByIndexInPlace -- Change the list so that the number at each index is multiplied by its index (modify the original list)
+            //          -- Just putting the last few together
+            //
+            //      OddBits -- Return a list consisting of the odd numbers "as-is", and the even numbers repeatedly divided by two until they are odd
+            //          -- This is Extra Credit
+            //          -- You can do this with a while loop inside a foreach loop, but it's a LOT more readable if you do it with a method call inside
+            //              the foreach loop
+            // 
+            //      ContainsNumber -- Given a list and a number "n", return true if the number occurs in the list
+            //          -- There's a really easy way to do this one.
+            // 
+            //      HasNoDuplicates -- Given a list, return true if the list contains no duplicated elements
+            //          -- This is Extra Credit
+            //          -- Set<int> can be really helpful for this one
+            //
+            //      IsProperSubset -- Given two lists, return true if the second list is a proper subset of the first list
+            //          (i.e. it consists entirely of elements from the first list, and does not contain all elements of the first list)
+            //          -- This is Extra Credit
+            //
+            //      Sort -- Given a list of numbers, return a new list containing all of the elements from the list in increasing numerical order
+            //          -- This is Extra Credit
+            //          -- There is a built-in "Sort" method.  For this assignment, don't use it -- write your own.
+            //          -- Do feel free to google "sorting algorithms", but try to figure it out on your own first.
+            //          -- Super duper extra credit: implement one of the more efficient sorting algorithms, e.g. Mergesort.
+        }
 }

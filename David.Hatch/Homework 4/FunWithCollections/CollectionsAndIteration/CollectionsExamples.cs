@@ -34,5 +34,82 @@ namespace CollectionsAndIteration
             return largestMagnitude.ToArray();
         }
 
+        public int GetSmallest(List<int> numbers)
+        {
+            int currentSmallest = numbers[0];
+
+            return numbers.Concat(new[] {currentSmallest}).Min();
+
+        }
+
+        public int[] GetMostExtreme(List<int> numbers)
+        {
+            int currentLargest = numbers[0];
+            int previousLargest = numbers[0];
+            var mostExtreme = new List<int>();
+            foreach(int number in numbers)
+            {
+                if (System.Math.Abs(number) >= System.Math.Abs(currentLargest))
+                {
+                    previousLargest = currentLargest;
+                    currentLargest = number;
+                }
+
+            }
+
+            if (System.Math.Abs(currentLargest) == System.Math.Abs(previousLargest))
+            {
+                mostExtreme.Add(currentLargest);
+                mostExtreme.Add(previousLargest);
+            }
+            else
+            {
+                mostExtreme.Add(currentLargest);
+                //mostExtreme.Remove(previousLargest);
+
+            }
+            
+            return mostExtreme.ToArray();
+        }
+
+        public int GetNthLargest(List<int> numbers,int NthNumber)
+        {
+            int SecondLargestNumber = 0;
+            int SortSequence = 0;
+            
+            numbers.Sort();
+            numbers.Reverse();
+            var uninumber = numbers.Distinct();
+            
+            foreach(int number in uninumber)
+            {
+                SortSequence = SortSequence + 1;
+                System.Console.Write(number.ToString());
+                if(SortSequence == NthNumber)
+                {
+                    SecondLargestNumber = number;
+                }
+
+            }
+
+            return SecondLargestNumber;
+
+        }
+
+        public int[] Doubled(List<int> numbers)
+        {
+            var doublelist = new List<int>();
+
+       
+
+            foreach(int number in numbers)
+
+            {
+                doublelist.Add(number+number);
+            }
+
+            return doublelist.ToArray();
+        }
+
     }
 }
