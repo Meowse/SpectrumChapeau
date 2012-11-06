@@ -32,7 +32,27 @@ namespace CollectionsAndIterationTest
             CollectionAssert.AreEquivalent(largestInList, new CollectionsExamples().GetBiggestMagnitude(numbers));
             //Assert.That(collectionsExamples.GetBiggestMagnitude(numbers), Is.EqualTo(5));
         }
-       // TODO: EXTRA CREDIT: What should we do if the list is empty?
+
+        [Test]
+        public void ShouldReturnThe2NdLargest()
+        {
+            List<int> numbers = new List<int> { 4, 8, 6, -11 };
+            Assert.That(new CollectionsExamples().Get2ndLargest(numbers), Is.EqualTo(6));
+        }
+
+        [Test]
+        public void ShouldReturnTheNthLargest()
+        {
+            int arraynumber = 3;
+            int[] numbers = new int[4] { 4, 8, -3, -11 };
+            Assert.That(new CollectionsExamples().GetNthLargest(numbers, arraynumber), Is.EqualTo(4));
+        }
+
+
+       
+        
+        
+        // TODO: EXTRA CREDIT: What should we do if the list is empty?
 
         // For all of the below, don't worry about handling exceptional conditions such as empty lists.  
         // For extra credit, however, feel free to do so if you are so inclined.
@@ -106,5 +126,6 @@ namespace CollectionsAndIterationTest
         //          -- There is a built-in "Sort" method.  For this assignment, don't use it -- write your own.
         //          -- Do feel free to google "sorting algorithms", but try to figure it out on your own first.
         //          -- Super duper extra credit: implement one of the more efficient sorting algorithms, e.g. Mergesort.
-    }
+
+        }
 }

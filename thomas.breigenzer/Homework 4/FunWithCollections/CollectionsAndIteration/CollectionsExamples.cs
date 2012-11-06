@@ -21,7 +21,7 @@ namespace CollectionsAndIteration
         }
 
         //TODO: needs add'l comparison- currently finds 1, 2-largest Mags
-        public int[] GetBiggestMagnitude(List<int> numbers)
+        public IEnumerable<int> GetBiggestMagnitude(List<int> numbers)
         {
             int currentLargest = numbers[0];
             int previousLargest = numbers[0];
@@ -42,5 +42,25 @@ namespace CollectionsAndIteration
             return largestMagnitude.ToArray();
         }
 
+        public int Get2ndLargest(List<int> numbers)
+        {    
+            int secondBiggest = numbers[0];
+            int currentBiggest = numbers[0];
+            foreach (int number in numbers)
+                {
+                    if (currentBiggest < number)
+                    {
+                        secondBiggest = currentBiggest;
+                        currentBiggest = number;
+                    }
+                }
+            return secondBiggest;
+        }
+
+        public int GetNthLargest(int[] numbers, int arraynumber)
+        {
+            System.Array.Sort(numbers);
+            return numbers[arraynumber - 1];
+        }
     }
 }
