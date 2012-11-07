@@ -62,6 +62,8 @@ namespace CollectionsAndIteration
         //          -- This is Extra Credit
         //          -- Use zero-based indexing: GetNthLargest([1,2,3], 0) should return 3.
         //          -- It's up to you whether GetNthLargest([11, 12, 13, 13, 14, 15], 3) should return 12 or 13.
+        //
+        //      This solution also solves Get2ndLargest
         public int GetNthLargest(List<int> numbers, int nth)
         {
             int nthLargest = numbers[0];
@@ -90,6 +92,21 @@ namespace CollectionsAndIteration
                 numbersLength--;
             }
             return nthLargest;
+        }
+
+        //      Doubled -- Return a new list consisting of each number, doubled
+        //          -- To make an empty list, just say "new List<int>()"
+        public List<int> Doubled(List<int> numbers)
+        {
+             List<int> localNumbers = new List<int>();
+            int numbersLength = numbers.Count;
+
+            for (int i = 0; i < numbersLength; i++)
+            {
+                localNumbers.Add(2*(numbers[i]));
+            }
+
+            return localNumbers;
         }
     }
 }

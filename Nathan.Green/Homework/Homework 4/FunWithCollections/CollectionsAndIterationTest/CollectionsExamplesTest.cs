@@ -116,6 +116,15 @@ namespace CollectionsAndIterationTest
             Assert.That(new CollectionsExamples().GetNthLargest((numbers), nth), Is.EqualTo(-5));
         }
 
+        [Test]
+        public void ShouldReturnDoubledListOfNumbers()
+        {
+            List<int> numbers = new List<int> { 4, 8, -3, -5, 13, 4, 85 };
+            List<int> doubledNumbers = new List<int> {8, 16, -6, -10, 26, 8, 170};
+
+            Assert.That(new CollectionsExamples().Doubled(numbers), Is.EqualTo(doubledNumbers));
+        }
+
         // TODO: EXTRA CREDIT: What should we do if the list is empty?
 
         // For all of the below, don't worry about handling exceptional conditions such as empty lists.  
