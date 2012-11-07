@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using CollectionsAndIteration;
 using NUnit.Framework;
 
@@ -48,6 +49,14 @@ namespace CollectionsAndIterationTest
             Assert.That(new CollectionsExamples().GetNthLargest(numbers, arraynumber), Is.EqualTo(4));
         }
 
+        [Test]
+        public void ShouldReturnADoubledList()
+        {
+            List<int> firstList = new List<int> { 14, 28, -3, 11, -35 };
+            
+            Assert.IsTrue(new CollectionsExamples().GetDoubled(firstList).SequenceEqual(new List<int>{28, 56, -6, 22, -70}));
+            //Assert.IsTrue(new CollectionsExamples().GetDoubled(numbers).SequenceEqual(28, 56, -6, 22, -70));
+        }
 
        
         

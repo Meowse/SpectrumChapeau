@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 
 namespace CollectionsAndIteration
 {
@@ -43,17 +44,17 @@ namespace CollectionsAndIteration
         }
 
         public int Get2ndLargest(List<int> numbers)
-        {    
+        {
             int secondBiggest = numbers[0];
             int currentBiggest = numbers[0];
             foreach (int number in numbers)
+            {
+                if (currentBiggest < number)
                 {
-                    if (currentBiggest < number)
-                    {
-                        secondBiggest = currentBiggest;
-                        currentBiggest = number;
-                    }
+                    secondBiggest = currentBiggest;
+                    currentBiggest = number;
                 }
+            }
             return secondBiggest;
         }
 
@@ -62,5 +63,19 @@ namespace CollectionsAndIteration
             System.Array.Sort(numbers);
             return numbers[arraynumber - 1];
         }
+
+        public IEnumerable<int> GetDoubled(List<int> numbers)
+        {
+            List <int>  doubledList = new List<int>();
+            foreach (int number in numbers)
+            {
+                doubledList.Add(number*2);
+
+            }
+            return doubledList;
+
+        }
+
+
     }
 }
