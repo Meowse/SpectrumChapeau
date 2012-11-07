@@ -111,5 +111,100 @@ namespace CollectionsAndIteration
             return doublelist.ToArray();
         }
 
+        public int[] DoubledInPlace(List<int> numbers)
+        {
+            // dsh comment - the only diff in this  and the above is it will return the same list instead of a new one
+            // and the test will not know the difference
+            int tempvar = 0;
+
+            for (int i = 0; i < numbers.Count; i++)
+            {
+                tempvar = numbers[i] + numbers[i];
+                numbers[i] = tempvar;
+            }
+
+            //dsh is there a way to print the list at once?
+            //System.Console.Write(numbers.ToArray());
+
+            return numbers.ToArray();
+
+        }
+
+        public int[] MultipliedByIndex(List<int> numbers)
+        {
+            var newlist = new List<int>();
+            int tempvar = 0;
+
+
+            for (int i = 0; i < numbers.Count; i++)
+            {
+                tempvar = i*numbers[i];
+                newlist.Add(tempvar);
+            }
+
+            return newlist.ToArray();
+
+        }
+
+        public int[] MultipliedByIndexInPlace(List<int> numbers)
+        {
+            int tempvar = 0;
+
+            for (int i=0; i < numbers.Count; i++)
+            {
+                tempvar = i*numbers[i];
+                numbers[i] = tempvar;
+            }
+
+            return numbers.ToArray();
+
+        }
+
+        public int[] OddBits(List<int> numbers)
+        {
+            var OddBitList = new List<int>();
+            int tempvar = 0;
+
+            for (int i = 0; i < numbers.Count; i++)
+            {
+                if (numbers[i] % 2 == 1)
+                {
+                    OddBitList.Add(numbers[i]);
+                }
+                else
+                {
+                    //tempvar = numbers[i];
+                    tempvar = getEven(numbers[i]);
+                    OddBitList.Add(tempvar);
+                }
+                    
+            }
+
+            return OddBitList.ToArray();
+        }
+
+        public int getEven(int checknum)
+        {
+            do
+            {
+                checknum = checknum/2;
+
+            } while (checknum%2==0);
+
+            return checknum;
+        }
+
+        public bool ContainsNumber(List<int> numbers, int testNumber)
+        {
+            foreach(int number in numbers)
+            {
+                if (number == testNumber)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 }
