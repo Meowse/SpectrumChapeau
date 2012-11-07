@@ -12,14 +12,14 @@ namespace CollectionsAndIterationTest
         [Test]
         public void ShouldReturnTheLargestNumber()
         {
-            List<int> numbers = new List<int> { 1, 2, 4, 3};
+            List<int> numbers = new List<int> { 1, 2, 4, 3 };
             Assert.That(new CollectionsExamples().GetBiggest(numbers), Is.EqualTo(4));
         }
 
         [Test]
         public void ShouldReturnTheLargestNegativeNumber()
         {
-            List<int> numbers = new List<int> {-3, -5, -1, -2};
+            List<int> numbers = new List<int> { -3, -5, -1, -2 };
             Assert.That(new CollectionsExamples().GetBiggest(numbers), Is.EqualTo(-1));
         }
 
@@ -87,10 +87,6 @@ namespace CollectionsAndIterationTest
         //      MultiplyByIndexInPlace -- Change the list so that the number at each index is multiplied by its index (modify the original list)
         //          -- Just putting the last few together
         //
-        //      OddBits -- Return a list consisting of the odd numbers "as-is", and the even numbers repeatedly divided by two until they are odd
-        //          -- This is Extra Credit
-        //          -- You can do this with a while loop inside a foreach loop, but it's a LOT more readable if you do it with a method call inside
-        //              the foreach loop
         // 
         //      ContainsNumber -- Given a list and a number "n", return true if the number occurs in the list
         //          -- There's a really easy way to do this one.
@@ -108,5 +104,60 @@ namespace CollectionsAndIterationTest
         //          -- There is a built-in "Sort" method.  For this assignment, don't use it -- write your own.
         //          -- Do feel free to google "sorting algorithms", but try to figure it out on your own first.
         //          -- Super duper extra credit: implement one of the more efficient sorting algorithms, e.g. Mergesort.
+
+        [Test]
+        public void ShouldReturnTheSmallest()
+        {
+            List<int> numbers = new List<int> { 5, 4, 1, 3, 2 };
+            Assert.That(new CollectionsExamples().GetSmallest(numbers), Is.EqualTo(1));
+
+        }
+
+        [Test]
+        public void ShouldReturn2ndLargest()
+        {
+            List<int> numbers = new List<int> { 1, 2, 8, 9, 3, 4, 5, 6, 7, 8, 9 };
+            int NthNumber = 2;
+            //int SecondLargest = 0;
+
+            Assert.That(new CollectionsExamples().GetNthLargest(numbers, NthNumber), Is.EqualTo(8));
+
+        }
+
+        [Test]
+        public void ShouldReturnListDoubled()
+        {
+            List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
+            List<int> doubledlist = new List<int> { 2, 4, 6, 8, 10 };
+
+            Assert.That(new CollectionsExamples().Doubled(numbers), Is.EqualTo(doubledlist));
+        }
+
+        //      OddBits -- Return a list consisting of the odd numbers "as-is", and the even numbers repeatedly divided by two until they are odd
+        //          -- This is Extra Credit
+        //          -- You can do this with a while loop inside a foreach loop, but it's a LOT more readable if you do it with a method call inside
+        //              the foreach loop
+
+        [Test]
+        public void ShouldReturnOdd()
+        {
+            List<int> numbers = new List<int> { 1, 10, 3, 20, 5 };
+            List<int> oddlist = new List<int> { 1, 5, 3, 5, 5 };
+
+            Assert.That(new CollectionsExamples().OddBits(numbers), Is.EqualTo(oddlist));
+        }
+
+        //      ContainsNumber -- Given a list and a number "n", return true if the number occurs in the list
+        //          -- There's a really easy way to do this one.
+
+        [Test]
+        public void ShouldContainNumber()
+        {
+            List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
+            int testNumber = 3;
+
+            Assert.That(new CollectionsExamples().ContainsNumber(numbers, testNumber), Is.True);
+
+        }
     }
 }
