@@ -12,10 +12,24 @@ namespace CollectionsAndIterationTest
         [Test]
         public void ShouldReturnTheLargestNumber()
         {
-            List<int> numbers = new List<int> { 1, 2, 4, 3};
+            List<int> numbers = new List<int> {1, 2, 4, 3};
             Assert.That(new CollectionsExamples().GetBiggest(numbers), Is.EqualTo(4));
         }
 
+        [Test]
+        public void ShouldReturnTheSmallestNumber()
+        {
+            List<int> numbers = new List<int> {1, 2, 4, 3};
+            Assert.That(new CollectionsExamples().GetSmallest(numbers), Is.EqualTo(1));
+        }
+        [Test]
+        public void ReturnListOfDoubledNumbers()
+        {
+            List<int> numbers = new List<int> {3, -5, 1, 4};
+            Assert.That(new CollectionsExamples().ReturnListOfDoubledNumbers(numbers), Is.EqualTo(new List<int> { 6, -10, 2, 8 }));
+
+
+        }
         [Test]
         public void ShouldReturnTheLargestNegativeNumber()
         {
@@ -26,16 +40,31 @@ namespace CollectionsAndIterationTest
         [Test]
         public void ShouldReturnTheLargestMagnitude()
         {
-            List<int> numbers=new List<int> {4, 5, -3, -5};
+            List<int> numbers = new List<int> {4, 5, -3, -5};
             var largestInList = new List<int>();
             largestInList.Add(5);
             largestInList.Add(-5);
             CollectionAssert.AreEquivalent(largestInList, new CollectionsExamples().GetBiggestMagnitude(numbers));
-                //Assert.That(collectionsExamples.GetBiggestMagnitude(numbers), Is.EqualTo(5));
+            //Assert.That(collectionsExamples.GetBiggestMagnitude(numbers), Is.EqualTo(5));
+        }
+        [Test]
+        public void GetEachNumberMultipliedByIndex()
+        {
+            List<int> numbers = new List<int> { 4, -3, 7, 2};
+            List<int> newNumbers = new List<int> {0,-6, 14, 6 };
+            Assert.That(new CollectionsExamples().GetEachNumberMultipliedByIndex(numbers), Is.EqualTo(newNumbers));
         }
 
         [Test]
-        public void 
+        public void ShouldReturnFarthestFromZero()
+        {
+            List<int> numbers = new List<int>{6, -2, 7, -10};
+            Assert.That(new CollectionsExamples().ReturnFarthestFromZero(numbers), Is.EqualTo(-10));
+        }
+
+
+
+
 
         // TODO: EXTRA CREDIT: What should we do if the list is empty?
 
@@ -47,7 +76,7 @@ namespace CollectionsAndIterationTest
 
         // This is a big homework assignment.  My advice is to solve these in order, and ask on the class forums for help when you get stuck.
         // It's a lot easier to understand and solve the later ones if you've already understood and solved the earlier ones.
-        
+
         // Keep working at it.  Remember that homework is graded on whether you attempted it, not on whether you got 100% of it working perfectly.
 
         // And above all else, remember that you get better at writing software by...writing software.
