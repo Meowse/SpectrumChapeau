@@ -23,7 +23,37 @@ namespace CollectionsAndIterationTest
             Assert.That(_collectionsExamples.GetBiggest(numbers), Is.EqualTo(-1));
         }
 
-       // TODO: EXTRA CREDIT: What should we do if the list is empty?
+        [Test]
+        public void ShouldReturnTheSmallestNumber()
+        {
+            List<int> numbers = new List<int> { 80, -10, -2, 1, 2, -40, 31 };
+            Assert.That(_collectionsExamples.GetSmallest(numbers), Is.EqualTo(-40));
+        }
+
+        [Test]
+        public void ShouldReturnTheSecondLargestNumber()
+        {
+            List<int> numbers = new List<int> { 80, -10, -2, 1, 2, -40, 31 };
+            Assert.That(_collectionsExamples.GetSecondLargest(numbers), Is.EqualTo(31));
+        }
+
+        [Test]
+        public void ShouldReturnListOfNumbersDoubled()
+        {
+            List<int> numbers = new List<int> { 80, -10, -2, 1, 2, -40, 31 };
+            List<int> doubledNumbers = new List<int> { 160, -20, -4, 2, 4, -80, 62 };
+            Assert.That(_collectionsExamples.Doubled(numbers), Is.EqualTo(doubledNumbers));
+        }
+
+        [Test]
+        public void ShouldReturnListOfNumbersDoubledInPlace()
+        {
+            List<int> numbers = new List<int> { 80, -10, -2, 1, 2, -40, 31 };
+            List<int> doubledNumbers = new List<int> { 160, -20, -4, 2, 4, -80, 62 };
+            Assert.That(_collectionsExamples.DoubleInPlace(numbers), Is.EqualTo(doubledNumbers));
+        }
+
+        // TODO: EXTRA CREDIT: What should we do if the list is empty?
 
         // For all of the below, don't worry about handling exceptional conditions such as empty lists.  
         // For extra credit, however, feel free to do so if you are so inclined.
