@@ -106,15 +106,82 @@ namespace CollectionsAndIteration
 
         public bool ContainsNumber(List<int> numbers, int n)
         {
+            return numbers.Contains(n);
+        }
+
+        public List<int> GetMostExtreme(List<int> numbers)
+        {
+            int currentMostExtreme = System.Math.Abs(numbers[0]);
+            List<int> listOfMostExtreme = new List<int>();
+
             foreach (int number in numbers)
             {
-                if (number == n)
+                if (System.Math.Abs(number) >= currentMostExtreme)
                 {
-                    return true;
+                    currentMostExtreme = System.Math.Abs(number);
                 }
             }
 
-            return false;
+            foreach (int number in numbers)
+            {
+                if (System.Math.Abs(number) == currentMostExtreme)
+                {
+                    listOfMostExtreme.Add(number);
+                }
+            }
+
+            return listOfMostExtreme;
+        }
+
+        public List<int> OddBits(List<int> numbers)
+        {
+            List<int> oddbits = new List<int>();
+
+            foreach (int number in numbers)
+            {
+                if (number % 2 == 1)
+                {
+                    oddbits.Add(number);
+                }
+                else
+                {
+                    oddbits.Add(EvenNumberReducedToOdd(number));
+                }
+            }
+
+            return oddbits;
+        }
+
+        private int EvenNumberReducedToOdd(int number)
+        {
+            while (number % 2 == 0)
+            {
+                number /= 2;
+            }
+
+            return number;
+        }
+
+        public bool HasNoDuplicates(List<int> numbers)
+        {
+            List<int> copyOfNumbers = new List<int>();
+            
+            foreach (int number in numbers)
+            {
+                copyOfNumbers.Add(number);
+            }
+
+            copyOfNumbers.Sort();
+
+            for (int i = 1; i < numbers.Count; i++)
+            {
+                if (copyOfNumbers[i] == copyOfNumbers[i - 1])
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
     }

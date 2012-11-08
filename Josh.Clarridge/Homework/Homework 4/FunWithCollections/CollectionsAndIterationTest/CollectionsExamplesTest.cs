@@ -77,6 +77,31 @@ namespace CollectionsAndIterationTest
             Assert.That(_collectionsExamples.ContainsNumber(numbers, 18), Is.False);
         }
 
+        [Test]
+        public void ShouldReturnMostExtreme()
+        {
+            List<int> numbers = new List<int> { 99, 17, 42, -100, 2, 100 };
+            List<int> expected = new List<int> { -100, 100 };
+            Assert.That(_collectionsExamples.GetMostExtreme(numbers), Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void ShouldReturnOddBits()
+        {
+            List<int> numbers = new List<int> { 33, 34, 35, 36, 37, 38 };
+            List<int> expected = new List<int> { 33, 17, 35, 9, 37, 19 };
+            Assert.That(_collectionsExamples.OddBits(numbers), Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void ShouldReturnWhetherListHasNoDuplicates()
+        {
+            List<int> withDuplicates = new List<int> { 5, 20, 12, 100, 67, 12 };
+            List<int> withoutDuplicates = new List<int> { 82, 23, 7, 45, 234, -5 };
+            Assert.That(_collectionsExamples.HasNoDuplicates(withDuplicates), Is.False);
+            Assert.That(_collectionsExamples.HasNoDuplicates(withoutDuplicates), Is.True);
+        }
+
         // TODO: EXTRA CREDIT: What should we do if the list is empty?
 
         // For all of the below, don't worry about handling exceptional conditions such as empty lists.  
