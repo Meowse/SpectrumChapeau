@@ -37,16 +37,17 @@ namespace CollectionsAndIterationTest
         [Test]
         public void ShouldReturnThe2NdLargest()
         {
-            List<int> numbers = new List<int> { 4, 8, 6, -11 };
-            Assert.That(new CollectionsExamples().Get2ndLargest(numbers), Is.EqualTo(6));
+            const int arrayNumberFor2NdLargest = 2;
+            int[] numbers = new int[5] {3, 4, 9, -12, 23};
+            Assert.That(new CollectionsExamples().GetNthLargest(numbers, arrayNumberFor2NdLargest), Is.EqualTo(9));
         }
 
         [Test]
         public void ShouldReturnTheNthLargest()
         {
-            int arraynumber = 3;
+            const int arraynumber = 3;
             int[] numbers = new int[4] { 4, 8, -3, -11 };
-            Assert.That(new CollectionsExamples().GetNthLargest(numbers, arraynumber), Is.EqualTo(4));
+            Assert.That(new CollectionsExamples().GetNthLargest(numbers, arraynumber), Is.EqualTo(-3));
         }
 
         [Test]
@@ -55,9 +56,15 @@ namespace CollectionsAndIterationTest
             List<int> firstList = new List<int> { 14, 28, -3, 11, -35 };
             
             Assert.IsTrue(new CollectionsExamples().GetDoubled(firstList).SequenceEqual(new List<int>{28, 56, -6, 22, -70}));
-            //Assert.IsTrue(new CollectionsExamples().GetDoubled(numbers).SequenceEqual(28, 56, -6, 22, -70));
         }
+        
+        [Test]
+        public void ShouldReturnADoubledInPlaceList()
+        {
+            var firstList = new List<int> { 14, 28, -3, 11, -35 };
 
+            Assert.IsTrue(new CollectionsExamples().GetDoubledInPlace(firstList).SequenceEqual(new List<int>{ 28, 56, -6, 22, -70 }));
+        }
        
         
         

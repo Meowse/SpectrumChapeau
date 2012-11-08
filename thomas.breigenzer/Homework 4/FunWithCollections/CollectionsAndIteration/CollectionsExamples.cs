@@ -43,24 +43,10 @@ namespace CollectionsAndIteration
             return largestMagnitude.ToArray();
         }
 
-        public int Get2ndLargest(List<int> numbers)
-        {
-            int secondBiggest = numbers[0];
-            int currentBiggest = numbers[0];
-            foreach (int number in numbers)
-            {
-                if (currentBiggest < number)
-                {
-                    secondBiggest = currentBiggest;
-                    currentBiggest = number;
-                }
-            }
-            return secondBiggest;
-        }
-
         public int GetNthLargest(int[] numbers, int arraynumber)
         {
             System.Array.Sort(numbers);
+            System.Array.Reverse(numbers);
             return numbers[arraynumber - 1];
         }
 
@@ -75,6 +61,16 @@ namespace CollectionsAndIteration
             return doubledList;
 
         }
+        
+        public List<int> GetDoubledInPlace(List<int> numbers)
+        {
+            for (int a = 0; a < numbers.Count; a++)
+            {
+                numbers[a] = numbers[a] * 2;
+            }
+            return numbers;
+        }
+
 
 
     }
