@@ -38,7 +38,7 @@ namespace CollectionsAndIterationTest
         }
 
         [Test]
-        public void ShouldReturnListOfNumbersDoubled()
+        public void ShouldReturnNewListOfNumbersDoubled()
         {
             List<int> numbers = new List<int> { 80, -10, -2, 1, 2, -40, 31 };
             List<int> doubledNumbers = new List<int> { 160, -20, -4, 2, 4, -80, 62 };
@@ -51,6 +51,30 @@ namespace CollectionsAndIterationTest
             List<int> numbers = new List<int> { 80, -10, -2, 1, 2, -40, 31 };
             List<int> doubledNumbers = new List<int> { 160, -20, -4, 2, 4, -80, 62 };
             Assert.That(_collectionsExamples.DoubleInPlace(numbers), Is.EqualTo(doubledNumbers));
+        }
+
+        [Test]
+        public void ShouldReturnNewListOfNumbersMultipliedByIndex()
+        {
+            List<int> numbers = new List<int> { -2, 0, 2, 4, 6, 8, 10 };
+            List<int> numbersMultipliedByIndex = new List<int> { 0, 0, 4, 12, 24, 40, 60 };
+            Assert.That(_collectionsExamples.MultipliedByIndex(numbers), Is.EqualTo(numbersMultipliedByIndex));
+        }
+
+        [Test]
+        public void ShouldReturnListOfNumbersMultipliedByIndexInPlace()
+        {
+            List<int> numbers = new List<int> { -2, 0, 2, 4, 6, 8, 10 };
+            List<int> numbersMultipliedByIndex = new List<int> { 0, 0, 4, 12, 24, 40, 60 };
+            Assert.That(_collectionsExamples.MultiplyByIndexInPlace(numbers), Is.EqualTo(numbersMultipliedByIndex));
+        }
+
+        [Test]
+        public void ShouldReturnWhetherListContainsCertainNumber()
+        {
+            List<int> numbers = new List<int> { 99, 17, 42, -100, 2};
+            Assert.That(_collectionsExamples.ContainsNumber(numbers, 42), Is.True);
+            Assert.That(_collectionsExamples.ContainsNumber(numbers, 18), Is.False);
         }
 
         // TODO: EXTRA CREDIT: What should we do if the list is empty?

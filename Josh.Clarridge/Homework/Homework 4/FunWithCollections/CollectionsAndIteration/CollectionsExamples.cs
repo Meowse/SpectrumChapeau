@@ -74,12 +74,48 @@ namespace CollectionsAndIteration
 
         public List<int> DoubleInPlace(List<int> numbers)
         {
-            for (int index = 0; index < numbers.Count; index++)
+            for (int i = 0; i < numbers.Count; i++)
             {
-                numbers[index] *= 2;
+                numbers[i] *= 2;
             }
 
             return numbers;
         }
+
+        public List<int> MultipliedByIndex(List<int> numbers)
+        {
+            List<int> numbersMultipliedByIndex = new List<int>();
+
+            for (int i = 0; i < numbers.Count; i++)
+            {
+                numbersMultipliedByIndex.Add(numbers[i] * i);
+            }
+
+            return numbersMultipliedByIndex;
+        }
+
+        public List<int> MultiplyByIndexInPlace(List<int> numbers)
+        {
+            for (int i = 0; i < numbers.Count; i++)
+            {
+                numbers[i] *= i;
+            }
+
+            return numbers;
+        }
+
+        public bool ContainsNumber(List<int> numbers, int n)
+        {
+            foreach (int number in numbers)
+            {
+                if (number == n)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
     }
 }
