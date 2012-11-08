@@ -67,9 +67,7 @@ namespace CollectionsAndIteration
         public int GetNthLargest(List<int> numbers, int nth)
         {
             int nthLargest = numbers[0];
-            List<int> localNumbers;
-            
-            localNumbers = numbers;
+            List<int> localNumbers = numbers;
             int numbersLength = localNumbers.Count;
 
             //if the nth element number is larger than the size of the list, return with error 0
@@ -98,7 +96,7 @@ namespace CollectionsAndIteration
         //          -- To make an empty list, just say "new List<int>()"
         public List<int> Doubled(List<int> numbers)
         {
-             List<int> localNumbers = new List<int>();
+            var localNumbers = new List<int>();
             int numbersLength = numbers.Count;
 
             for (int i = 0; i < numbersLength; i++)
@@ -107,6 +105,130 @@ namespace CollectionsAndIteration
             }
 
             return localNumbers;
+        }
+
+        //      DoubleInPlace -- Change the list so that the number at each index is doubled
+        //      -- You can change the value at a given index in the list using the same "[index]" syntax we used in class to get the value.
+        //      myList[1] = 12;   // sets the second element of myList to the value 12.
+        public List<int> DoubleInPlace(List<int> numbers, int i)
+        {
+            List<int> localNumbers = numbers;
+
+            localNumbers[i] = 2*numbers[i];
+            
+            return localNumbers;
+        }
+
+        //      MultipliedByIndex -- Return a new list consisting of each number multiplied by its index in the list (zero-based)
+        //          -- A basic for-loop for iterating over the list "myList" looks like:
+        //              for (int i = 0; i < myList.length; i++) {
+        //                  // do something with i
+        public List<int> MultipliedByIndex(List<int> numbers)
+        {
+            List<int> localNumbers = numbers;
+
+            for (int i = 0; i < localNumbers.Count; i++)
+            {
+                localNumbers[i] = i*localNumbers[i];
+            }
+
+            return localNumbers;           
+        }
+
+        //      MultiplyByIndexInPlace -- Change the list so that the number at each index is multiplied by its index (modify the original list)
+        //          -- Just putting the last few together
+        public List<int> MultiplyByIndexInPlace(List<int> numbers)
+        {
+            for (int i = 0; i < numbers.Count; i++)
+            {
+                numbers[i] = i * numbers[i];
+            }
+
+            return numbers;
+        }
+
+        //      OddBits -- Return a list consisting of the odd numbers "as-is", and the even numbers repeatedly divided by two until they are odd
+        //          -- This is Extra Credit
+        //          -- You can do this with a while loop inside a foreach loop, but it's a LOT more readable if you do it with a method call inside
+        //              the foreach loop
+        public List<int> OddBits(List<int> numbers)
+        {
+           List<int> localNumbers = numbers;
+
+           for(int i=0;i<localNumbers.Count;i++)
+            {
+                while (localNumbers[i] % 2 == 0)
+                {
+                    localNumbers[i] = localNumbers[i]/2;
+                }
+            }
+
+            return localNumbers;          
+        }
+
+        //      ContainsNumber -- Given a list and a number "n", return true if the number occurs in the list
+        //          -- There's a really easy way to do this one.
+        public bool ContainsNumber(List<int> numbers, int num)
+        {
+            bool returnValue = false;
+
+            foreach (int number in numbers)
+            {
+                if (number == num)
+                {
+                    returnValue = true;
+                }
+            }
+            return returnValue;
+        }
+
+        //      HasNoDuplicates -- Given a list, return true if the list contains no duplicated elements
+        //          -- This is Extra Credit
+        //          -- Set<int> can be really helpful for this one
+        public bool HasNoDuplicates(List<int> numbers)
+        {
+            bool hasDuplicateValue = false;
+
+            for(int i=0;i<numbers.Count;i++)
+            {
+                for (int j = i+1; j < numbers.Count; j++)
+                {
+                    if (numbers[i] == numbers[j])
+                    {
+                        hasDuplicateValue = true;
+                    }
+                }
+            }
+
+            if (hasDuplicateValue)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        //      IsProperSubset -- Given two lists, return true if the second list is a proper subset of the first list
+        //          (i.e. it consists entirely of elements from the first list, and does not contain all elements of the first list)
+        //          -- This is Extra Credit
+        public bool IsProperSubset(List<int> numbers, List<int> numbers2)
+        {
+            bool isSubset = false;
+
+            if (numbers.Count > numbers2.Count)
+            {
+                var localNumbers = (List<int>) numbers.Intersect(numbers2);
+
+                if (localNumbers == numbers2)
+                {
+                    isSubset = true;
+                }
+
+            }
+
+            return isSubset;
         }
     }
 }

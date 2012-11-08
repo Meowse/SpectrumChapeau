@@ -125,7 +125,88 @@ namespace CollectionsAndIterationTest
             Assert.That(new CollectionsExamples().Doubled(numbers), Is.EqualTo(doubledNumbers));
         }
 
+        [Test]
+        public void ShouldReturnDoubleInPlaceListOfNumbers()
+        {
+            List<int> numbers = new List<int> { 4, 8, -3, -5, 13, 4, 85 };
+            List<int> doubleInPlaceNumbers = new List<int> { 4, 8, -6, -5, 13, 4, 85 };
+            int i = 2;
+
+            Assert.That(new CollectionsExamples().DoubleInPlace(numbers, i), Is.EqualTo(doubleInPlaceNumbers));
+        }
+
+        [Test]
+        public void ShouldReturnListOfNumbersMultipliedByTheirIndex()
+        {
+            List<int> numbers = new List<int> { 4, 8, -3, -5, 13, 4, 85 };
+            List<int> multipliedByIndexNumbers = new List<int> { 0, 8, -6, -15, 52, 20, 510 };
+
+            Assert.That(new CollectionsExamples().MultipliedByIndex(numbers), Is.EqualTo(multipliedByIndexNumbers));
+        }
+
+        [Test]
+        public void ShouldReturnListOfNumbersMultipliedByTheirIndexInPlace()
+        {
+            List<int> numbers = new List<int> {4, 8, -3, -5, 13, 4, 85};
+            List<int> multipliedByIndexNumbers = new List<int> {0, 8, -6, -15, 52, 20, 510};
+
+            Assert.That(new CollectionsExamples().MultiplyByIndexInPlace(numbers), Is.EqualTo(multipliedByIndexNumbers));
+        }
+
+        [Test]
+        public void ShouldReturnListOfNumbersThatAreAllOdd()
+        {
+            List<int> numbers = new List<int> { 4, 8, -3, -5, 13, 4, 85 };
+            List<int> allOddNumbers = new List<int> { 1, 1, -3, -5, 13, 1, 85 };
+
+            Assert.That(new CollectionsExamples().OddBits(numbers), Is.EqualTo(allOddNumbers));
+        }
+
+        [Test]
+        public void ShouldReturnTrueWhenListContainsNumber()
+        {
+            List<int> numbers = new List<int> { 4, 8, -3, -5, 13, 4, 85 };
+            int number = -3;
+
+            Assert.That(new CollectionsExamples().ContainsNumber(numbers, number), Is.EqualTo(true));
+        }
+
+        [Test]
+        public void ShouldReturnFalseWhenListDoesNotContainNumber()
+        {
+            List<int> numbers = new List<int> { 4, 8, -3, -5, 13, 4, 85 };
+            int number = 0;
+
+            Assert.That(new CollectionsExamples().ContainsNumber(numbers, number), Is.EqualTo(false));
+        }
+
+        [Test]
+        public void ShouldReturnTrueWhenListHasNoDuplicates()
+        {
+            List<int> numbers = new List<int> { 4, 8, -3, -5, 13, 85 };
+
+            Assert.That(new CollectionsExamples().HasNoDuplicates(numbers), Is.EqualTo(true));
+        }
+
+        [Test]
+        public void ShouldReturnFalseWhenListHasDuplicates()
+        {
+            List<int> numbers = new List<int> { 4, 8, -3, 4, 13, 85 };
+
+            Assert.That(new CollectionsExamples().HasNoDuplicates(numbers), Is.EqualTo(false));
+        }
+
+        [Test]
+        public void ShouldReturnTrueWhenListIsAProperSubsetOfSecondList()
+        {
+            List<int> numbers = new List<int> { 4, 8, -3, -5, 13, 85 };
+            List<int> numbers2 = new List<int> {4, 8, -5, 13, 85};
+
+            Assert.That(new CollectionsExamples().IsProperSubset(numbers, numbers2), Is.EqualTo(true));
+        }
+
         // TODO: EXTRA CREDIT: What should we do if the list is empty?
+        // We should return Null
 
         // For all of the below, don't worry about handling exceptional conditions such as empty lists.  
         // For extra credit, however, feel free to do so if you are so inclined.
