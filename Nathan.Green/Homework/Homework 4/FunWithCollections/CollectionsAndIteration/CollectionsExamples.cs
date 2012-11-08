@@ -215,20 +215,57 @@ namespace CollectionsAndIteration
         //          -- This is Extra Credit
         public bool IsProperSubset(List<int> numbers, List<int> numbers2)
         {
-            bool isSubset = false;
+            bool inList;
 
-            if (numbers.Count > numbers2.Count)
+            if (numbers.Count < numbers2.Count)
             {
-                var localNumbers = (List<int>) numbers.Intersect(numbers2);
-
-                if (localNumbers == numbers2)
-                {
-                    isSubset = true;
-                }
-
+                return false;
             }
 
-            return isSubset;
+            foreach (int t in numbers2)
+            {
+                inList = numbers.Contains(t);
+                
+                if(inList == false)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        //      Sort -- Given a list of numbers, return a new list containing all of the elements from the list in increasing numerical order
+        //          -- This is Extra Credit
+        //          -- There is a built-in "Sort" method.  For this assignment, don't use it -- write your own.
+        //          -- Do feel free to google "sorting algorithms", but try to figure it out on your own first.
+        //          -- Super duper extra credit: implement one of the more efficient sorting algorithms, e.g. Mergesort.
+        public List<int> Sort(List<int> numbers)
+        {
+            List<int> localNumbers = numbers;
+            List<int> sortedNumbers = new List<int>();
+            int loop = 0;
+            int lowestNumber = localNumbers[0];
+
+            while (loop < localNumbers.Count)
+            {
+                for (int i = loop; i < localNumbers.Count; i++)
+                {
+                    if (lowestNumber > localNumbers[i])
+                    {
+                        lowestNumber = localNumbers[i];
+                    }
+                }
+                loop++;
+                sortedNumbers.Add(lowestNumber);
+                localNumbers.Remove(lowestNumber);
+                lowestNumber = localNumbers[0];
+                if (localNumbers.Count == 1)
+                {
+                    sortedNumbers.Add(lowestNumber);
+                }
+            }
+
+            return sortedNumbers;
         }
     }
 }

@@ -197,12 +197,84 @@ namespace CollectionsAndIterationTest
         }
 
         [Test]
-        public void ShouldReturnTrueWhenListIsAProperSubsetOfSecondList()
+        public void ShouldReturnTrueWhenFiveLengthListIsAProperSubsetOfSecondList()
         {
             List<int> numbers = new List<int> { 4, 8, -3, -5, 13, 85 };
             List<int> numbers2 = new List<int> {4, 8, -5, 13, 85};
 
             Assert.That(new CollectionsExamples().IsProperSubset(numbers, numbers2), Is.EqualTo(true));
+        }
+
+        [Test]
+        public void ShouldReturnTrueWhenFourLengthListIsAProperSubsetOfSecondList()
+        {
+            List<int> numbers = new List<int> { 4, 8, -3, -5, 13, 85 };
+            List<int> numbers2 = new List<int> { 4, 8, 13, 85 };
+
+            Assert.That(new CollectionsExamples().IsProperSubset(numbers, numbers2), Is.EqualTo(true));
+        }
+
+        [Test]
+        public void ShouldReturnTrueWhenThreeeLengthListIsAProperSubsetOfSecondList()
+        {
+            List<int> numbers = new List<int> { 4, 8, -3, -5, 13, 85 };
+            List<int> numbers2 = new List<int> { 8, -5, 85 };
+
+            Assert.That(new CollectionsExamples().IsProperSubset(numbers, numbers2), Is.EqualTo(true));
+        }
+
+        [Test]
+        public void ShouldReturnTrueWhenTwoLengthListIsAProperSubsetOfSecondList()
+        {
+            List<int> numbers = new List<int> { 4, 8, -3, -5, 13, 85 };
+            List<int> numbers2 = new List<int> { -5, -3 };
+
+            Assert.That(new CollectionsExamples().IsProperSubset(numbers, numbers2), Is.EqualTo(true));
+        }
+
+        [Test]
+        public void ShouldReturnTrueWhenOneLengthListIsAProperSubsetOfSecondList()
+        {
+            List<int> numbers = new List<int> { 4, 8, -3, -5, 13, 85 };
+            List<int> numbers2 = new List<int> { 85 };
+
+            Assert.That(new CollectionsExamples().IsProperSubset(numbers, numbers2), Is.EqualTo(true));
+        }
+
+        [Test]
+        public void ShouldReturnFalseWhenListIsNotAProperSubsetOfSecondListLong()
+        {
+            List<int> numbers = new List<int> { 4, 8, -3, -5, 13, 85 };
+            List<int> numbers2 = new List<int> { 4, 8, -5, 13, 85, 100 };
+
+            Assert.That(new CollectionsExamples().IsProperSubset(numbers, numbers2), Is.EqualTo(false));
+        }
+
+        [Test]
+        public void ShouldReturnFalseWhenListIsNotAProperSubsetOfSecondListMatchProblem()
+        {
+            List<int> numbers = new List<int> { 4, 8, -3, -5, 13, 85 };
+            List<int> numbers2 = new List<int> { 4, 8, -5, 13, 84 };
+
+            Assert.That(new CollectionsExamples().IsProperSubset(numbers, numbers2), Is.EqualTo(false));
+        }
+
+        [Test]
+        public void ShouldReturnSortedListTwo()
+        {
+            List<int> numbers = new List<int> {5, 2};
+            List<int> numbers2 = new List<int> {2, 5};
+
+            Assert.That(new CollectionsExamples().Sort(numbers), Is.EqualTo(numbers2));
+        }
+
+        [Test]
+        public void ShouldReturnSortedListThree()
+        {
+            List<int> numbers = new List<int> { 5, 2, 1 };
+            List<int> numbers2 = new List<int> { 1, 2, 5 };
+
+            Assert.That(new CollectionsExamples().Sort(numbers), Is.EqualTo(numbers2));
         }
 
         // TODO: EXTRA CREDIT: What should we do if the list is empty?
