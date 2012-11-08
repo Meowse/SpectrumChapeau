@@ -113,6 +113,22 @@ namespace CollectionsAndIterationTest
             //List<int> SortedNumbers = new List<int> { 4, 3, 2, 1 };
             Assert.That(new CollectionsExamples().HasGivenNumber(numbers, 3), Is.EqualTo(true));
         }
+
+        [Test]
+        public void ShouldReturnTrueIf2NdIsSubsetof1St()
+        {
+            List<int> numbers = new List<int> { 1, 2, 3, 4 };
+            List<int> fewerNumbers = new List<int> { 1, 2, 4 };
+            Assert.That(new CollectionsExamples().IsASubset(numbers, fewerNumbers), Is.EqualTo(true));
+        }
+
+        [Test]
+        public void ShouldReturnOddBits()
+        {
+            List<int> numbers = new List<int> { 1, 2, 3, 4 };
+            List<int> OddNumbers = new List<int> { 1, 1, 3, 1 };
+            Assert.That(new CollectionsExamples().HasOddBits(numbers), Is.EqualTo(OddNumbers));
+        }
         // TODO: EXTRA CREDIT: What should we do if the list is empty?
 
         // For all of the below, don't worry about handling exceptional conditions such as empty lists.  
@@ -140,7 +156,7 @@ namespace CollectionsAndIterationTest
         //          -- You can use the function "Math.Abs()" to get the absolute value of a number
         //          -- If the most extreme positive number and the most extreme negative number have the same absolute value, return a list containing both of them.
         //
-        //      GetSecondLargest -- Return the second-largest number
+        //      *GetSecondLargest -- Return the second-largest number
         //          -- As you solve this, think about whether your solution generalizes well to solving the next problem
         //
         //      *GetNthLargest -- Given a list and a number "n", return the nth-largest number from the list
@@ -178,7 +194,7 @@ namespace CollectionsAndIterationTest
         //          -- This is Extra Credit
         //          -- Set<int> can be really helpful for this one
         //
-        //      IsProperSubset -- Given two lists, return true if the second list is a proper subset of the first list
+        //      *IsProperSubset -- Given two lists, return true if the second list is a proper subset of the first list
         //          (i.e. it consists entirely of elements from the first list, and does not contain all elements of the first list)
         //          -- This is Extra Credit
         //
