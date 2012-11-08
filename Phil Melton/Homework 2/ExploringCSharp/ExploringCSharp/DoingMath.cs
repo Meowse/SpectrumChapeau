@@ -26,7 +26,7 @@ namespace ExploringCSharp
             // Try googling "C# exponents and logarithms".  Or just "exponents and logarithms",
             // if college math was too long ago for you (I had to look it up the last time I needed
             // to do this, so don't feel bad if you do, too).
-            return Math.("Pow({0}, {1}) = {2}\n");
+            return Math.Pow("({0}, {1}) = pow{2}\n");
         }
     }
 }
