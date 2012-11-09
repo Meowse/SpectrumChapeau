@@ -4,7 +4,7 @@ using System.Linq;
 namespace CollectionsAndIteration
 {
     public class CollectionsExamples
-    {sfdhfghfghgfh
+    {
 
         public int GetBiggest(List<int> numbers)
         {
