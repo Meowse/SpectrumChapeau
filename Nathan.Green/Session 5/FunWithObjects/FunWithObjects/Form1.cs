@@ -26,9 +26,16 @@ namespace FunWithObjects
 
         private void MakeNewDoesSomething(object sender, System.EventArgs e)
         {
-            DoesSomething newDoesSomething = new DoesSomething(WhatToDo.Text);
-            newDoesSomething.Show();
-            _allDoesSomethings.Add(newDoesSomething);
+            if (WhatToDo.Text.Equals(""))
+            {
+                MessageBox.Show("Please enter a valid value in the entry field.");
+            }
+            else
+            {
+                DoesSomething newDoesSomething = new DoesSomething(WhatToDo.Text);
+                newDoesSomething.Show();
+                _allDoesSomethings.Add(newDoesSomething);             
+            }
         }
 
         private void DoAllTheThings(object sender, System.EventArgs e)
@@ -55,6 +62,11 @@ namespace FunWithObjects
                     thing.UndoIt();
                 }
             }
+        }
+
+        private void RevertLastAction(object sender, System.EventArgs e)
+        {
+
         }
     }
 }

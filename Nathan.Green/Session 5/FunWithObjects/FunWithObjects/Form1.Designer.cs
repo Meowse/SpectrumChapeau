@@ -32,6 +32,7 @@
             this.WhatToDo = new System.Windows.Forms.TextBox();
             this.DoAllButton = new System.Windows.Forms.Button();
             this.UndoAllButton = new System.Windows.Forms.Button();
+            this.RevertLastActionButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -50,7 +51,6 @@
             this.WhatToDo.Name = "WhatToDo";
             this.WhatToDo.Size = new System.Drawing.Size(100, 20);
             this.WhatToDo.TabIndex = 1;
-            this.WhatToDo.Text = "Default";
             // 
             // DoAllButton
             // 
@@ -72,12 +72,23 @@
             this.UndoAllButton.UseVisualStyleBackColor = true;
             this.UndoAllButton.Click += new System.EventHandler(this.UndoAllTheThings);
             // 
+            // RevertLastActionButton
+            // 
+            this.RevertLastActionButton.Location = new System.Drawing.Point(69, 71);
+            this.RevertLastActionButton.Name = "RevertLastActionButton";
+            this.RevertLastActionButton.Size = new System.Drawing.Size(115, 23);
+            this.RevertLastActionButton.TabIndex = 4;
+            this.RevertLastActionButton.Text = "Revert Last Action";
+            this.RevertLastActionButton.UseVisualStyleBackColor = true;
+            this.RevertLastActionButton.Click += new System.EventHandler(this.RevertLastAction);
+            // 
             // Form1
             // 
             this.AcceptButton = this.button1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(401, 216);
+            this.Controls.Add(this.RevertLastActionButton);
             this.Controls.Add(this.UndoAllButton);
             this.Controls.Add(this.DoAllButton);
             this.Controls.Add(this.WhatToDo);
@@ -96,6 +107,7 @@
         private System.Windows.Forms.TextBox WhatToDo;
         private System.Windows.Forms.Button DoAllButton;
         private System.Windows.Forms.Button UndoAllButton;
+        private System.Windows.Forms.Button RevertLastActionButton;
     }
 }
 

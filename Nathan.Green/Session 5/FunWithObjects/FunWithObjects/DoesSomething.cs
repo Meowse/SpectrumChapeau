@@ -32,13 +32,12 @@ namespace FunWithObjects
         private void DoTheAction(object sender, System.EventArgs e)
         {
             DoIt();
-            recentlyChanged = true;
         }
 
         public void DoIt()
         {
             previousTitle = currentTitle;
-            Text = "Done " + currentTitle;
+            Text = "Done: " + currentTitle;
             Undone = false;
             Done = true;
             UndoButton.Enabled = true;
@@ -53,7 +52,6 @@ namespace FunWithObjects
         private void UndoTheAction(object sender, System.EventArgs e)
         {
             UndoIt();
-            recentlyChanged = true;
         }
 
         public void UndoIt()
