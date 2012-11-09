@@ -4,6 +4,9 @@ namespace FunWithObjects
 {
     public partial class DoesSomething : Form
     {
+        public string currentTitle;
+        public string previousTitle;
+
         public DoesSomething()
         {
             InitializeComponent();
@@ -11,7 +14,8 @@ namespace FunWithObjects
 
         public DoesSomething(string title) : this()
         {
-            Text = Text + " " + title;
+            Text = "Action:" + " " + title;
+            currentTitle = title;
         }
 
         public DoesSomething(int thingOne, int thingTwo) : this((thingOne * thingTwo).ToString())
@@ -25,7 +29,8 @@ namespace FunWithObjects
 
         public void DoIt()
         {
-            Text = "Done!";
+            previousTitle = currentTitle;
+            Text = "Done " + currentTitle;
         }
     }
 }
