@@ -11,7 +11,7 @@ namespace FunWithObjects
 
         public Action(string title) : this()
         {
-            Text = Text + " " + title;
+            Text = "Action: " + title;
         }
 
         public Action(int thingOne, int thingTwo) : this((thingOne * thingTwo).ToString())
