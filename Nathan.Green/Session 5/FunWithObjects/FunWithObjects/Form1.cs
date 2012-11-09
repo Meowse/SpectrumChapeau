@@ -36,7 +36,18 @@ namespace FunWithObjects
             foreach (DoesSomething thing in _allDoesSomethings)
             {
                 thing.DoIt();
+                thing.UndoIt();
             }
+        }
+
+        private void Form1_Load(object sender, System.EventArgs e)
+        {
+            UndoAllButton.Enabled = false;
+        }
+
+        private void UndoAllTheThings(object sender, System.EventArgs e)
+        {
+
         }
     }
 }

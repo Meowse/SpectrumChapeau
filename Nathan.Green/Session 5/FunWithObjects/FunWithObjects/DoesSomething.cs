@@ -6,6 +6,7 @@ namespace FunWithObjects
     {
         public string currentTitle;
         public string previousTitle;
+        private bool recentlyChanged;
 
         public DoesSomething()
         {
@@ -25,12 +26,34 @@ namespace FunWithObjects
         private void DoTheAction(object sender, System.EventArgs e)
         {
             DoIt();
+            recentlyChanged = true;
+            UndoButton.Enabled = true;
+            DoButton.Enabled = false;
         }
 
         public void DoIt()
         {
             previousTitle = currentTitle;
             Text = "Done " + currentTitle;
+        }
+
+        private void DoesSomething_Load(object sender, System.EventArgs e)
+        {
+            UndoButton.Enabled = false;
+        }
+
+        private void UndoTheAction(object sender, System.EventArgs e)
+        {
+            UndoIt();
+            recentlyChanged = true;
+            UndoButton.Enabled = false;
+            DoButton.Enabled = true;
+        }
+
+        public void UndoIt()
+        {
+            currentTitle = previousTitle;
+            Text = "Action:" + " " + currentTitle;
         }
     }
 }
