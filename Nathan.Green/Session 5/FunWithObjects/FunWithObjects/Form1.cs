@@ -58,7 +58,7 @@ namespace FunWithObjects
                     thing.UndoIt();
                     UndoAllButton.Enabled = false;
                     DoAllButton.Enabled = true;
-                    th
+                    
                 }
             }
         }

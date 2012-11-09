@@ -70,7 +70,7 @@
             this.UndoAllButton.TabIndex = 3;
             this.UndoAllButton.Text = "Undo All";
             this.UndoAllButton.UseVisualStyleBackColor = true;
-            this.UndoAllButton.Click += new System.EventHandler(this.UndoAllButton_Click);
+            this.UndoAllButton.Click += new System.EventHandler(this.UndoAllTheThings);
             // 
             // Form1
             // 
@@ -84,7 +84,7 @@
             this.Controls.Add(this.button1);
             this.Name = "Form1";
             this.Text = "Main Window";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.OnLoad);
             this.ResumeLayout(false);
             this.PerformLayout();
 
