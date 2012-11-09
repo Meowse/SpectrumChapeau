@@ -84,7 +84,7 @@
             this.Controls.Add(this.button1);
             this.Name = "Form1";
             this.Text = "Main Window";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.OnLoad);
             this.ResumeLayout(false);
             this.PerformLayout();
 

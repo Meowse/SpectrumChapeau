@@ -6,7 +6,9 @@ namespace FunWithObjects
     {
         public string currentTitle;
         public string previousTitle;
-        private bool recentlyChanged;
+        public bool recentlyChanged;
+        public bool Undone=false;
+        public bool Done=false;
 
         public DoesSomething()
         {
@@ -35,6 +37,8 @@ namespace FunWithObjects
         {
             previousTitle = currentTitle;
             Text = "Done " + currentTitle;
+            Undone = false;
+            Done = true;
         }
 
         private void DoesSomething_Load(object sender, System.EventArgs e)
@@ -54,6 +58,8 @@ namespace FunWithObjects
         {
             currentTitle = previousTitle;
             Text = "Action:" + " " + currentTitle;
+            Undone = true;
+            Done = false;
         }
     }
 }

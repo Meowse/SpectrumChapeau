@@ -35,19 +35,32 @@ namespace FunWithObjects
         {
             foreach (DoesSomething thing in _allDoesSomethings)
             {
-                thing.DoIt();
-                thing.UndoIt();
+                if (thing.Done != true)
+                {
+                    thing.DoIt();
+                    UndoAllButton.Enabled = true;
+                    DoAllButton.Enabled = false;
+                }
             }
         }
 
-        private void Form1_Load(object sender, System.EventArgs e)
+        private void OnLoad(object sender, System.EventArgs e)
         {
             UndoAllButton.Enabled = false;
         }
 
         private void UndoAllTheThings(object sender, System.EventArgs e)
         {
-
+            foreach (DoesSomething thing in _allDoesSomethings)
+            {
+                if (thing.Undone != true)
+                {
+                    thing.UndoIt();
+                    UndoAllButton.Enabled = false;
+                    DoAllButton.Enabled = true;
+                    
+                }
+            }
         }
     }
 }
