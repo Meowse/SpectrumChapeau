@@ -24,12 +24,27 @@ namespace FunWithObjects
 
         private void DoTheAction(object sender, System.EventArgs e)
         {
-            DoIt();
+            if (button1.Text == "Do It!")
+            {
+                DoIt();
+                button1.Text = "Undo";
+            }
+            else
+            {
+                Undo();
+                button1.Text = "Do It!";
+            }
+
         }
 
         public void DoIt()
         {
             Text = "Done (" + _action + ")";
+        }
+
+        public void Undo()
+        {
+            Text = "Action: " + _action;
         }
     }
 }
