@@ -38,5 +38,10 @@ namespace FunWithObjects
                 thing.DoIt();
             }
         }
+
+        private void WhatToDo_TextChanged(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }

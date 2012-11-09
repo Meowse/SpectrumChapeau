@@ -1,6 +1,6 @@
 ﻿namespace FunWithObjects
 {
-    partial class DoesSomething
+    partial class Action
     {
         /// <summary>
         /// Required designer variable.
@@ -41,13 +41,13 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.DoTheAction);
             // 
-            // DoesSomething
+            // Action
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(432, 69);
             this.Controls.Add(this.button1);
-            this.Name = "DoesSomething";
+            this.Name = "Action";
             this.Text = "Does Something";
             this.ResumeLayout(false);
 

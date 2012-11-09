@@ -2,19 +2,19 @@
 
 namespace FunWithObjects
 {
-    public partial class DoesSomething : Form
+    public partial class Action : Form
     {
-        public DoesSomething()
+        public Action()
         {
             InitializeComponent();
         }
 
-        public DoesSomething(string title) : this()
+        public Action(string title) : this()
         {
             Text = Text + " " + title;
         }
 
-        public DoesSomething(int thingOne, int thingTwo) : this((thingOne * thingTwo).ToString())
+        public Action(int thingOne, int thingTwo) : this((thingOne * thingTwo).ToString())
         {
         }
 

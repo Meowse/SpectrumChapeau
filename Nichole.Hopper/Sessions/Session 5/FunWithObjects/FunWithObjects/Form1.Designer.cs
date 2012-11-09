@@ -45,11 +45,12 @@
             // 
             // WhatToDo
             // 
-            this.WhatToDo.Location = new System.Drawing.Point(243, 13);
+            this.WhatToDo.Location = new System.Drawing.Point(254, 12);
             this.WhatToDo.Name = "WhatToDo";
-            this.WhatToDo.Size = new System.Drawing.Size(100, 20);
+            this.WhatToDo.Size = new System.Drawing.Size(135, 20);
             this.WhatToDo.TabIndex = 1;
-            this.WhatToDo.Text = "Default";
+            this.WhatToDo.Text = "What to be done?";
+            this.WhatToDo.TextChanged += new System.EventHandler(this.WhatToDo_TextChanged);
             // 
             // button2
             // 
