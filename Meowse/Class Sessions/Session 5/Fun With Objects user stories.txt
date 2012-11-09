@@ -26,4 +26,4 @@ so that I don't have to find the action on the screen.
 
 
 As a user,
-When the Enter button is clicked, the default action should be to click the "Create a New DoesSomething Window" button.
+When the Enter button is clicked, the default action should be to click the "Create a New DoesSomething Window" button. Google "Setting the AcceptButton on a Form in C#".
