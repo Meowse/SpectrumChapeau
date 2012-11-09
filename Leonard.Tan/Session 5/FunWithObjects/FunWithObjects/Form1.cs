@@ -26,9 +26,13 @@ namespace FunWithObjects
 
         private void MakeNewDoesSomething(object sender, System.EventArgs e)
         {
-            DoesSomething newDoesSomething = new DoesSomething(WhatToDo.Text);
-            newDoesSomething.Show();
-            _allDoesSomethings.Add(newDoesSomething);
+            if (WhatToDo.TextLength != 0)
+            {
+                DoesSomething newDoesSomething = new DoesSomething(WhatToDo.Text);
+                newDoesSomething.Show();
+                _allDoesSomethings.Add(newDoesSomething);              
+            }
+
         }
 
         private void DoAllTheThings(object sender, System.EventArgs e)

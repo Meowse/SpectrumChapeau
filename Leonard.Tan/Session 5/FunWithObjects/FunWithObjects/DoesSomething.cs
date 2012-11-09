@@ -4,7 +4,7 @@ namespace FunWithObjects
 {
     public partial class DoesSomething : Form
     {
-        private string lastAction;
+        private string lastActionText;
 
         public DoesSomething()
         {
@@ -27,18 +27,35 @@ namespace FunWithObjects
 
         public void DoIt()
         {
-            lastAction = Text;
+            lastActionText = Text;
             Text = "Done!";
+            toggle_DoUndo();
+
         }
 
         public void UndoIt()
         {
-            Text = lastAction;
+            Text = lastActionText;
+            toggle_DoUndo();
         }
 
         private void UndoTheAction(object sender, System.EventArgs e)
         {
             UndoIt();
+        }
+
+        private void toggle_DoUndo()
+        {
+            if (button1.Enabled == true)
+            {
+                button2.Enabled = true;
+                button1.Enabled = false;
+            }
+            else if (button2.Enabled == true)
+            {
+                button1.Enabled = true;
+                button2.Enabled = false;
+            }
         }
     }
 }
