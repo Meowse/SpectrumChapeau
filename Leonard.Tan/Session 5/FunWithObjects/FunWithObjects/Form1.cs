@@ -38,5 +38,13 @@ namespace FunWithObjects
                 thing.DoIt();
             }
         }
+
+        private void UndoLastActionClick(object sender, System.EventArgs e)
+        {
+            foreach (DoesSomething thing in _allDoesSomethings)
+            {
+                thing.UndoIt();
+            }
+        }
     }
 }

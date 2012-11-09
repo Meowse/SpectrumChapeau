@@ -4,6 +4,8 @@ namespace FunWithObjects
 {
     public partial class DoesSomething : Form
     {
+        private string lastAction;
+
         public DoesSomething()
         {
             InitializeComponent();
@@ -25,7 +27,18 @@ namespace FunWithObjects
 
         public void DoIt()
         {
+            lastAction = Text;
             Text = "Done!";
+        }
+
+        public void UndoIt()
+        {
+            Text = lastAction;
+        }
+
+        private void UndoTheAction(object sender, System.EventArgs e)
+        {
+            UndoIt();
         }
     }
 }
