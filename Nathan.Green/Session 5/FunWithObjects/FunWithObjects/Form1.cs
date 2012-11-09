@@ -38,15 +38,12 @@ namespace FunWithObjects
                 if (thing.Done != true)
                 {
                     thing.DoIt();
-                    UndoAllButton.Enabled = true;
-                    DoAllButton.Enabled = false;
                 }
             }
         }
 
         private void OnLoad(object sender, System.EventArgs e)
         {
-            UndoAllButton.Enabled = false;
         }
 
         private void UndoAllTheThings(object sender, System.EventArgs e)
@@ -56,9 +53,6 @@ namespace FunWithObjects
                 if (thing.Undone != true)
                 {
                     thing.UndoIt();
-                    UndoAllButton.Enabled = false;
-                    DoAllButton.Enabled = true;
-                    
                 }
             }
         }

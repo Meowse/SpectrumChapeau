@@ -19,18 +19,20 @@ namespace FunWithObjects
         {
             Text = "Action:" + " " + title;
             currentTitle = title;
+            Done = false;
+            Undone = true;
         }
 
         public DoesSomething(int thingOne, int thingTwo) : this((thingOne * thingTwo).ToString())
         {
+            Done = false;
+            Undone = true;
         }
 
         private void DoTheAction(object sender, System.EventArgs e)
         {
             DoIt();
             recentlyChanged = true;
-            UndoButton.Enabled = true;
-            DoButton.Enabled = false;
         }
 
         public void DoIt()
@@ -39,6 +41,8 @@ namespace FunWithObjects
             Text = "Done " + currentTitle;
             Undone = false;
             Done = true;
+            UndoButton.Enabled = true;
+            DoButton.Enabled = false;
         }
 
         private void DoesSomething_Load(object sender, System.EventArgs e)
@@ -50,8 +54,6 @@ namespace FunWithObjects
         {
             UndoIt();
             recentlyChanged = true;
-            UndoButton.Enabled = false;
-            DoButton.Enabled = true;
         }
 
         public void UndoIt()
@@ -60,6 +62,8 @@ namespace FunWithObjects
             Text = "Action:" + " " + currentTitle;
             Undone = true;
             Done = false;
+            UndoButton.Enabled = false;
+            DoButton.Enabled = true;
         }
     }
 }
