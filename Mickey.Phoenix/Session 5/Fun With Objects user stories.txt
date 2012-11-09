@@ -1,4 +1,4 @@
-As a user,
+				As a user,
 I want to be able to undo an action
 So that I can fix errors in my completion records.
 

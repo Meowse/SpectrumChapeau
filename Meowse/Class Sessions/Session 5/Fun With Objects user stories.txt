@@ -1,4 +1,14 @@
 As a user,
+I want the window title to be "Action: <the action goes here>" instead of "Does Something <the action goes here",
+so that I am not confused about what an "action" is.
+
+
+As a user,
+I want completed actions to say "Done (<the action goes here>)" 
+so that I can see what I have completed
+
+
+As a user,
 I want to be able to undo an action
 So that I can fix errors in my completion records.
 
