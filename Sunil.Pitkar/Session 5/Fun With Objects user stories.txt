@@ -1,0 +1,42 @@
+As a user,
+I want the window title to be "Action: <the action goes here>" instead of "Does Something <the action goes here",
+so that I am not confused about what an "action" is.
+
+
+
+As a user,
+I want completed actions to say "Done (<the action goes here>)" 
+so that I can see what I have completed
+
+
+
+As a user,
+I want to be able to undo an action
+So that I can fix errors in my completion records.
+
+
+
+As a user,
+I want to only be able to do an un-done action, and un-do a done action,
+So that I don't accidentally do or un-do an action twice.
+
+
+
+As a user,
+I want to be able to do or un-do the most recent action from the main control panel,
+so that I don't have to find the action on the screen.
+
+
+
+As a user,
+I want pressing "Enter" to create a new action,
+so that I don't have to use the mouse to create new actions. 
+	-- When the Enter key is pressed, the default action should be to click the "Create a New DoesSomething Window" button. 
+	-- Google "Setting the AcceptButton on a Form in C#".
+
+
+As a user,
+I want to be required to enter an action description when I create an action,
+so that I don't accidentally create blank actions.
+	-- note: action description TextBox should no longer default to "Default"
+	
