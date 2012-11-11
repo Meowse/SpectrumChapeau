@@ -39,35 +39,42 @@ namespace FunWithObjects
         {
             foreach (DoesSomething thing in _allDoesSomethings)
             {
-
-                if(thing.Text.Contains("Action"))
+                if (thing.Text.StartsWith("Action"))
                 {
-                    
                     thing.DoIt();
                 }
-                
             }
         }
 
         private void UndoLastActionClick(object sender, System.EventArgs e)
         {
-            button2.Enabled = false;  //have to disable button if calling this
-            foreach (DoesSomething thing in _allDoesSomethings)
+//            button2.Enabled = false;  //have to disable button if calling this
+//            foreach (DoesSomething thing in _allDoesSomethings)
+//            {
+//                counter = counter + 1;
+//                if (counter == _allDoesSomethings.Count)
+//                {
+//
+//                    thing.DoIt();
+//                    _allDoesSomethings.RemoveAt(counter - 1);
+//                    counter = 0;
+//                    break;
+//                }
+//               // else
+//               // {
+//
+//               // }
+//
+//            }
+            int lastIndex = _allDoesSomethings.Count - 1;
+            if (lastIndex >= 0)
             {
-                counter = counter + 1;
-                if (counter == _allDoesSomethings.Count)
-                {
-
-                    thing.DoIt();
-                    _allDoesSomethings.RemoveAt(counter - 1);
-                    counter = 0;
-                    break;
-                }
-               // else
-               // {
-
-               // }
-
+                DoesSomething lastAction = _allDoesSomethings[lastIndex];
+                lastAction.DoIt();
+            }
+            else
+            {
+                MessageBox.Show("No 'last action' to Do or Undo!");
             }
         }
 

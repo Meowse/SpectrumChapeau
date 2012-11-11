@@ -8,7 +8,6 @@ namespace FunWithObjects
         //private bool FirstTime = true;
         private int ExtentOfUse = 0;
 
-
         public DoesSomething()
         {
             InitializeComponent();
@@ -20,9 +19,6 @@ namespace FunWithObjects
 
             Text = Text + "  " + title;
             _action = " " + title;
-
-
-
         }
 
         public DoesSomething(int thingOne, int thingTwo)
