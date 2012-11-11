@@ -206,5 +206,45 @@ namespace CollectionsAndIteration
 
             return false;
         }
+
+        public bool HasNoDuplicates(List<int> numbers)
+        {
+            var checklist = new List<int>();
+            foreach(int number in numbers)
+            {
+                if(!checklist.Contains(number))
+                {
+                    checklist.Add(number);
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public bool IsProperSubset(List<int> numbers, List<int> list2)
+        {
+            foreach (int xnumber in list2)
+            {
+                if(!numbers.Contains(xnumber))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+
+        }
+
+
+    
+    
+    
+    
+    
+    
     }
 }

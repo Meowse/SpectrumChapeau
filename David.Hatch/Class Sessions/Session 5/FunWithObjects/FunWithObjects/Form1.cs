@@ -5,11 +5,15 @@ namespace FunWithObjects
 {
     public partial class Form1 : Form
     {
+        private int counter = 0;
         private readonly List<DoesSomething> _allDoesSomethings = new List<DoesSomething>();
 
         public Form1()
         {
             InitializeComponent();
+            this.AcceptButton = this.button1;
+            
+
 
 // Uncomment this to make one that says "DoesSomething 51"
 //            new DoesSomething(3, 17).Show();
@@ -35,8 +39,49 @@ namespace FunWithObjects
         {
             foreach (DoesSomething thing in _allDoesSomethings)
             {
-                thing.DoIt();
+
+                if(thing.Text.Contains("Action"))
+                {
+                    
+                    thing.DoIt();
+                }
+                
             }
         }
+
+        private void UndoLastActionClick(object sender, System.EventArgs e)
+        {
+            button2.Enabled = false;  //have to disable button if calling this
+            foreach (DoesSomething thing in _allDoesSomethings)
+            {
+                counter = counter + 1;
+                if (counter == _allDoesSomethings.Count)
+                {
+
+                    thing.DoIt();
+                    _allDoesSomethings.RemoveAt(counter - 1);
+                    counter = 0;
+                    break;
+                }
+               // else
+               // {
+
+               // }
+
+            }
+        }
+
+        //private void button4_Click(object sender, System.EventArgs e)
+        //{
+            
+            //foreach(Control control in Controls)
+            //{
+            //    if(!control.GetType().Name.Contains("Button"))
+            //    MessageBox.Show(control.Text);
+            //}
+
+            
+        //}
+
     }
 }

@@ -196,6 +196,7 @@ namespace CollectionsAndIterationTest
             List<int> oddlist = new List<int> {1,5,3,5,5};
 
             Assert.That(new CollectionsExamples().OddBits(numbers),Is.EqualTo(oddlist));
+            
         }
 
         // 
@@ -217,10 +218,32 @@ namespace CollectionsAndIterationTest
             //          -- This is Extra Credit
             //          -- Set<int> can be really helpful for this one
             //
+        [Test]
+        public void ShouldHaveNoDuplicates()
+        {
+           // List<int> numbers = new List<int> { 1, 3, 3, 4, 5 };
+            List<int> numbers = new List<int> { 1, 3, 4, 5 };
+
+            Assert.That(new CollectionsExamples().HasNoDuplicates(numbers), Is.True);
+
+        }
+        
+
             //      IsProperSubset -- Given two lists, return true if the second list is a proper subset of the first list
             //          (i.e. it consists entirely of elements from the first list, and does not contain all elements of the first list)
             //          -- This is Extra Credit
             //
+
+        [Test]
+        public void ShouldContainSubstring()
+        {
+            List<int> numbers = new List<int> { 1, 3, 3, 4, 5 };
+            List<int> list2 = new List<int> { 1, 3 };
+
+            Assert.That(new CollectionsExamples().IsProperSubset(numbers,list2),Is.True);
+
+        }
+
             //      Sort -- Given a list of numbers, return a new list containing all of the elements from the list in increasing numerical order
             //          -- This is Extra Credit
             //          -- There is a built-in "Sort" method.  For this assignment, don't use it -- write your own.

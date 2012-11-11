@@ -5,15 +5,19 @@ namespace FunWithObjects
     public partial class DoesSomething : Form
     {
         private string _action = "";
+        //private bool FirstTime = true;
+        private int ExtentOfUse = 0;
+
 
         public DoesSomething()
         {
             InitializeComponent();
         }
 
-        public DoesSomething(string title) : this()
+        public DoesSomething(string title)
+            : this()
         {
-            
+
             Text = Text + "  " + title;
             _action = " " + title;
 
@@ -21,7 +25,8 @@ namespace FunWithObjects
 
         }
 
-        public DoesSomething(int thingOne, int thingTwo) : this((thingOne * thingTwo).ToString())
+        public DoesSomething(int thingOne, int thingTwo)
+            : this((thingOne*thingTwo).ToString())
         {
         }
 
@@ -32,18 +37,28 @@ namespace FunWithObjects
 
         public void DoIt()
         {
-            if (button1.Text == "Do It!")
+            if (ExtentOfUse == 3)
             {
-                Text = "Done! " + _action;
-                button1.Text = "Undo";
-            }
-            else
-            {
-                Text = "Action: "+ _action;
-                button1.Text = "Do It!";
+                MessageBox.Show("You can only Undo One Time");
             }
 
-     
+            else
+            {
+
+                if (button1.Text == "Do It!")
+                {
+                    Text = "Done! " + _action;
+                    button1.Text = "Undo";
+                    ExtentOfUse = ExtentOfUse + 1;
+                }
+                else
+                {
+                    Text = "Action: " + _action;
+                    button1.Text = "Do It!";
+                    ExtentOfUse = ExtentOfUse + 1;
+                }
+
+            }
         }
     }
 }
