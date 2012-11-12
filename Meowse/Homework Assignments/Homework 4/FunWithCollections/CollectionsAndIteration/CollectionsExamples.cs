@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace CollectionsAndIteration
@@ -12,27 +13,47 @@ namespace CollectionsAndIteration
 
             return numbers.Concat(new[] {currentLargest}).Max();
         }
-        //TODO: needs add'l comparison- currently finds 1, 2-largest Mags
-        public int[] GetBiggestMagnitude(List<int> numbers)
+
+        public int GetSmallest(List<int> numbers)
         {
-            int currentLargest = numbers[0];
-            int previousLargest = numbers[0];
-            var largestMagnitude=new List<int>();
-            foreach (int number in numbers)
-            {
-                if (System.Math.Abs(number) >= currentLargest)
-                {
-                    previousLargest = currentLargest;
-                    currentLargest = number;
-                }
-
-            }
-
-            largestMagnitude.Add(currentLargest);
-            largestMagnitude.Add(previousLargest);
-
-            return largestMagnitude.ToArray();
+//            int currentSmallest = numbers[0];
+//            foreach (int number in numbers)
+//            {
+//                if (number < currentSmallest)
+//                {
+//                    currentSmallest = number;
+//                }
+//            }
+//            return currentSmallest;
+            return numbers.Min();
         }
 
+        public int[] GetBiggestMagnitude(List<int> numbers)
+        {
+            int biggestMagnitude = numbers[0];
+            bool biggestMagnitudeIsTwin = false;
+
+            foreach (int number in numbers)
+            {
+                if (Math.Abs(number) > Math.Abs(biggestMagnitude))
+                {
+                    biggestMagnitude = number;
+                    biggestMagnitudeIsTwin = false;
+                }
+                else if (Math.Abs(number) == Math.Abs(biggestMagnitude))
+                {
+                    bool numberIsPositive = number > 0;
+                    bool biggestMagnitudeIsPositive = biggestMagnitude > 0;
+                    if (numberIsPositive != biggestMagnitudeIsPositive)
+                    {
+                        biggestMagnitudeIsTwin = true;
+                    }
+                }
+            }
+
+            return biggestMagnitudeIsTwin
+                ? new List<int> {Math.Abs(biggestMagnitude), -Math.Abs(biggestMagnitude)}.ToArray()
+                : new List<int> {biggestMagnitude}.ToArray();
+        }
     }
 }

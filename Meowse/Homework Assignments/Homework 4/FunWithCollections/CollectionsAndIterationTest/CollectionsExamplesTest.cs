@@ -24,18 +24,92 @@ namespace CollectionsAndIterationTest
         }
 
         [Test]
-        public void ShouldReturnTheLargestMagnitude()
+        public void CurrentSmallestIsOnlyElementOfSingleElementList()
         {
-            List<int> numbers=new List<int> {4, 5, -3, -5};
-            var largestInList = new List<int>();
-            largestInList.Add(5);
-            largestInList.Add(-5);
-            CollectionAssert.AreEquivalent(largestInList, new CollectionsExamples().GetBiggestMagnitude(numbers));
-                //Assert.That(collectionsExamples.GetBiggestMagnitude(numbers), Is.EqualTo(5));
+            List<int> numbers = new List<int> {3};
+            Assert.That(new CollectionsExamples().GetSmallest(numbers), Is.EqualTo(3));
         }
 
         [Test]
-        public void 
+        public void GetSmallestReturnsSmallestPositiveNumber()
+        {
+            List<int> numbers = new List<int> { 3, 1, 17, 2 };
+            Assert.That(new CollectionsExamples().GetSmallest(numbers), Is.EqualTo(1));
+        }
+
+        [Test]
+        public void GetSmallestReturnsMostNegativeNumber()
+        {
+            List<int> numbers = new List<int> { -1, -17, 3, 1, 17, 2 };
+            Assert.That(new CollectionsExamples().GetSmallest(numbers), Is.EqualTo(-17));
+        }
+
+        [Test]
+        public void ShouldReturnSingleLargestMagnitudeIfSingleElementInList()
+        {
+            List<int> numbers = new List<int> { 17 };
+            var largestInList = new List<int> { 17 };
+            CollectionAssert.AreEquivalent(largestInList, new CollectionsExamples().GetBiggestMagnitude(numbers));
+        }
+
+        [Test]
+        public void ShouldReturnTheLargestMagnitudeAmongPositiveNumbers()
+        {
+            List<int> numbers = new List<int> { 6, 4, 7, 5, 9, 3 };
+            var largestInList = new List<int> { 9 };
+            CollectionAssert.AreEquivalent(largestInList, new CollectionsExamples().GetBiggestMagnitude(numbers));
+        }
+
+        [Test]
+        public void ShouldReturnTheLargestMagnitudeAmongNegativeNumbers()
+        {
+            List<int> numbers = new List<int> { -6, -4, -7, -5, -9, -3 };
+            var largestInList = new List<int> { -9 };
+            CollectionAssert.AreEquivalent(largestInList, new CollectionsExamples().GetBiggestMagnitude(numbers));
+        }
+
+        [Test]
+        public void ShouldReturnTheLargestMagnitudeAmongMixedNumbersWithPositiveLargest()
+        {
+            List<int> numbers = new List<int> { 6, -4, 2, 5, -5 };
+            var largestInList = new List<int> { 6 };
+            CollectionAssert.AreEquivalent(largestInList, new CollectionsExamples().GetBiggestMagnitude(numbers));
+        }
+
+        [Test]
+        public void ShouldReturnTheLargestMagnitudeAmongMixedNumbersWithNegativeLargest()
+        {
+            List<int> numbers = new List<int> { -6, 4, -2, -5, 5 };
+            var largestInList = new List<int> { -6 };
+            CollectionAssert.AreEquivalent(largestInList, new CollectionsExamples().GetBiggestMagnitude(numbers));
+        }
+
+        [Test]
+        public void ShouldReturnSingleLargestMagnitudesIfTwoEqualPositiveMagnitudes()
+        {
+            List<int> numbers = new List<int> { 4, 5, -3, 5 };
+            var largestInList = new List<int> { 5 };
+            CollectionAssert.AreEquivalent(largestInList, new CollectionsExamples().GetBiggestMagnitude(numbers));
+        }
+
+        [Test]
+        public void ShouldReturnSingleLargestMagnitudesIfTwoEqualNegativeMagnitudes()
+        {
+            List<int> numbers = new List<int> { 4, -5, -3, -5 };
+            var largestInList = new List<int> { -5 };
+            CollectionAssert.AreEquivalent(largestInList, new CollectionsExamples().GetBiggestMagnitude(numbers));
+        }
+
+        [Test]
+        public void ShouldReturnTheLargestMagnitudesIfPositiveAndNegativeAreTheSame()
+        {
+            List<int> numbers = new List<int> { 4, 5, -3, -5 };
+            var largestInList = new List<int> { 5, -5 };
+            CollectionAssert.AreEquivalent(largestInList, new CollectionsExamples().GetBiggestMagnitude(numbers));
+        }
+
+
+
 
         // TODO: EXTRA CREDIT: What should we do if the list is empty?
 
@@ -59,7 +133,7 @@ namespace CollectionsAndIterationTest
         //      GetSmallest -- Return the smallest
         //          -- much like the former
         //
-        //      GetMostExtreme -- Return the number or numbers that are farthest from zero
+        //      GetBiggestMagnitude -- Return the number or numbers that are farthest from zero
         //          -- This is Extra Credit
         //          -- You can use the function "Math.Abs()" to get the absolute value of a number
         //          -- If the most extreme positive number and the most extreme negative number have the same absolute value, return a list containing both of them.
