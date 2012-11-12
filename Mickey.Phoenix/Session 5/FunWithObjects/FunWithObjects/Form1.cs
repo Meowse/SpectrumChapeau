@@ -5,7 +5,7 @@ namespace FunWithObjects
 {
     public partial class Form1 : Form
     {
-        private readonly List<DoesSomething> _allDoesSomethings = new List<DoesSomething>();
+        private readonly List<Action> _allActions = new List<Action>();
 
         public Form1()
         {
@@ -26,16 +26,32 @@ namespace FunWithObjects
 
         private void MakeNewDoesSomething(object sender, System.EventArgs e)
         {
-            DoesSomething newDoesSomething = new DoesSomething(WhatToDo.Text);
-            newDoesSomething.Show();
-            _allDoesSomethings.Add(newDoesSomething);
+            Action newAction = new Action(WhatToDo.Text);
+            newAction.Show();
+            _allActions.Add(newAction);
         }
 
         private void DoAllTheThings(object sender, System.EventArgs e)
         {
-            foreach (DoesSomething thing in _allDoesSomethings)
+            foreach (Action action in _allActions)
             {
-                thing.DoIt();
+                action.IsDone = true;
+            }
+        }
+
+        private void ToggleLastActionState(object sender, System.EventArgs e)
+        {
+            if (_allActions.Count > 0)
+            {
+                Action lastAction = _allActions[_allActions.Count - 1];
+                lastAction.IsDone = !lastAction.IsDone;
+            }
+            else
+            {
+                // Note use of the backslash "escape character" to allow me to include
+                // a literal double-quote character inside a string whose ends are marked
+                // with double-quotes (a "double-quote-delimited string")
+                MessageBox.Show("There is no \"Last Action\" to Do or Undo.");
             }
         }
     }

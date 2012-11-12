@@ -1,6 +1,6 @@
 ﻿namespace FunWithObjects
 {
-    partial class DoesSomething
+    partial class Action
     {
         /// <summary>
         /// Required designer variable.
@@ -28,26 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.actionButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button1
+            // actionButton
             // 
-            this.button1.Location = new System.Drawing.Point(13, 13);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Do It!";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.DoTheAction);
+            this.actionButton.Location = new System.Drawing.Point(13, 13);
+            this.actionButton.Name = "actionButton";
+            this.actionButton.Size = new System.Drawing.Size(159, 23);
+            this.actionButton.TabIndex = 0;
+            this.actionButton.Text = "Do It!";
+            this.actionButton.UseVisualStyleBackColor = true;
+            this.actionButton.Click += new System.EventHandler(this.ToggleState);
             // 
-            // DoesSomething
+            // Action
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(432, 69);
-            this.Controls.Add(this.button1);
-            this.Name = "DoesSomething";
+            this.Controls.Add(this.actionButton);
+            this.Name = "Action";
             this.Text = "Does Something";
             this.ResumeLayout(false);
 
@@ -55,6 +55,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button actionButton;
     }
 }
