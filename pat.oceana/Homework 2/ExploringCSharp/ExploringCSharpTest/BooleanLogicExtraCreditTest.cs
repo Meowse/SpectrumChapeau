@@ -1,4 +1,4 @@
-﻿using ExploringCSharp;
+﻿ using ExploringCSharp;
 using NUnit.Framework;
 
 namespace ExploringCSharpTest

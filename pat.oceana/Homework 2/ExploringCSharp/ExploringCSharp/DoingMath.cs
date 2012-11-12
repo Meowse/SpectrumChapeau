@@ -28,15 +28,8 @@ namespace ExploringCSharp
             // Try googling "C# exponents and logarithms".  Or just "exponents and logarithms",
             // if college math was too long ago for you (I had to look it up the last time I needed
             // to do this, so don't feel bad if you do, too).
-            
-            int digits = number.ToString().Length;
-            var pow10 = 1;
-            
-            for (int i = 0; i < digits; i++)
-            {
-                pow10 = pow10*10;
-            }
-            return number*pow10;
+
+            return number * (int)Math.Pow(10, (int)Math.Ceiling(Math.Log10(number)));
         }
     }
 }
