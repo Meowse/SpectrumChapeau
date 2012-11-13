@@ -8,9 +8,7 @@ namespace CollectionsAndIteration
 
         public int GetBiggest(List<int> numbers)
         {
-            int currentLargest = numbers[0];
-
-            return numbers.Concat(new[] {currentLargest}).Max();
+            return numbers.Max(); 
         }
         //TODO: needs add'l comparison- currently finds 1, 2-largest Mags
         public int[] GetBiggestMagnitude(List<int> numbers)

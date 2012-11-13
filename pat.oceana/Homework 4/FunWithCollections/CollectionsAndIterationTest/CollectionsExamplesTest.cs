@@ -35,7 +35,9 @@ namespace CollectionsAndIterationTest
         }
 
         [Test]
-        public void 
+        public void ShouldReturnWhatIfListIsEmpty()
+        {
+        }
 
         // TODO: EXTRA CREDIT: What should we do if the list is empty?
 
