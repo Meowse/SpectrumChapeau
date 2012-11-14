@@ -17,6 +17,21 @@ namespace CollectionsAndIterationTest
         }
 
         [Test]
+        public void ShouldReturnTheSmallestNumber()
+        {
+            List<int> numbers = new List<int> { 6, 7, 8, 5};
+            Assert.That(new CollectionsExamples().GetSmallest(numbers), Is.EqualTo(5));
+        }
+
+        [Test]
+        public void ShouldReturnTheSecondLargestNumber()
+        {
+            List<int> numbers = new List<int> {3, 4, 5, 8};
+            Assert.That(new CollectionsExamples().GetSecondLargest(numbers), Is.EqualTo(5));
+
+        }
+
+        [Test]
         public void ShouldReturnTheLargestNegativeNumber()
         {
             List<int> numbers = new List<int> {-3, -5, -1, -2};
@@ -33,6 +48,9 @@ namespace CollectionsAndIterationTest
             CollectionAssert.AreEquivalent(largestInList, new CollectionsExamples().GetBiggestMagnitude(numbers));
                 //Assert.That(collectionsExamples.GetBiggestMagnitude(numbers), Is.EqualTo(5));
         }
+
+        [Test]
+        public void 
 
         // TODO: EXTRA CREDIT: What should we do if the list is empty?
 
