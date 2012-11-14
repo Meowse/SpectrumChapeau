@@ -42,6 +42,7 @@ namespace FunWithObjects
             Done = true;
             UndoButton.Enabled = true;
             DoButton.Enabled = false;
+            
         }
 
         private void DoesSomething_Load(object sender, System.EventArgs e)
