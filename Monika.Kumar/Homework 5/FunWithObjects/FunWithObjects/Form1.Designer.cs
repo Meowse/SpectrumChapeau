@@ -49,7 +49,6 @@
             this.WhatToDo.Name = "WhatToDo";
             this.WhatToDo.Size = new System.Drawing.Size(100, 20);
             this.WhatToDo.TabIndex = 1;
-            this.WhatToDo.Text = "default";
             this.WhatToDo.TextChanged += new System.EventHandler(this.WhatToDo_TextChanged);
             // 
             // button2
@@ -64,6 +63,7 @@
             // 
             // Form1
             // 
+            this.AcceptButton = this.button1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(401, 216);

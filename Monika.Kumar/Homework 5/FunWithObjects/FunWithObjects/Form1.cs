@@ -26,9 +26,12 @@ namespace FunWithObjects
 
         private void MakeNewDoesSomething(object sender, System.EventArgs e)
         {
-            DoesSomething newDoesSomething = new DoesSomething(WhatToDo.Text);
-            newDoesSomething.Show();
-            _allDoesSomethings.Add(newDoesSomething);
+            if (WhatToDo.Text.Trim() != "")
+            {
+                DoesSomething newDoesSomething = new DoesSomething(WhatToDo.Text);
+                newDoesSomething.Show();
+                _allDoesSomethings.Add(newDoesSomething);
+            }
         }
 
         private void DoAllTheThings(object sender, System.EventArgs e)
@@ -41,7 +44,7 @@ namespace FunWithObjects
 
         private void Form1_Load(object sender, System.EventArgs e)
         {
-
+           
         }
 
         private void WhatToDo_TextChanged(object sender, System.EventArgs e)

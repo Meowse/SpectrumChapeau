@@ -32,6 +32,8 @@ namespace FunWithObjects
             Text = string.Format("Done {0}!", this.message);
             this.button1.Enabled = false;
             this.button2.Enabled = true;
+            this.button2.Focus();
+            this.AcceptButton = this.button2;
         }
         private void UndoTheAction(object sender, System.EventArgs e)
         {
@@ -46,6 +48,8 @@ namespace FunWithObjects
             Undo();
             this.button2.Enabled = false;
             this.button1.Enabled = true;
+            this.button1.Focus();
+            this.AcceptButton = this.button1;
         }
 
         private void DoesSomething_Load(object sender, System.EventArgs e)
