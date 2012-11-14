@@ -10,12 +10,41 @@ namespace CollectionsAndIteration
         {
             int currentLargest = numbers[0];
 
-            return numbers.Concat(new[] {currentLargest}).Max();
+            foreach (int number in numbers)
+                if (number < currentLargest)
+                    return number;
+
+            return currentLargest;
+
         }
+
+                public int GetSecondLargest(List<int> numbers)
+        {
+                    int currentLargest = int.MinValue;
+                    int currentSecondLargest = int.MinValue;
+
+                    foreach (int number in numbers)
+                    {
+                        if (number > currentSecondLargest)
+                        {
+                            if (number > currentLargest)
+                            {
+                                currentSecondLargest = currentLargest;
+                                currentLargest = number;
+                            }
+                            else
+                            {
+                                currentSecondLargest = number;
+                            }
+                        }
+                    }
+
+                    return currentSecondLargest;
+
         //TODO: needs add'l comparison- currently finds 1, 2-largest Mags
         public int[] GetBiggestMagnitude(List<int> numbers)
         {
-            int currentLargest = numbers[0];
+            currentLargest = numbers[0];
             int previousLargest = numbers[0];
             var largestMagnitude=new List<int>();
             foreach (int number in numbers)
