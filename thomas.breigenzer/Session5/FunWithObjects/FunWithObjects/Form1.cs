@@ -36,7 +36,40 @@ namespace FunWithObjects
             foreach (DoesSomething thing in _allDoesSomethings)
             {
                 thing.DoIt();
+                thing.JustUndoIt();
             }
         }
+
+        void UndoTheLastAction(object sender, System.EventArgs e)
+        {
+            UndoIt();
+
+        }
+
+        private void UndoIt()
+        {
+            
+        }
+
+ 
+
+        //private void UndoIt()
+        //{
+        //    throw new System.NotImplementedException();
+        //}
+
+        //private void UndoTheLastAction(object sender, System.EventArgs e)
+        //{
+        //    UndoIt();
+        //}
+
+
+
+        //private void UndoTheLastAction(object sender, System.EventArgs e)
+        //{
+        //    UndoIt();
+        //}
+
+ 
     }
 }

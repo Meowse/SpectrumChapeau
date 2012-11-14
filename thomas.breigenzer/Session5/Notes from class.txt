@@ -1,0 +1,10 @@
+WYSIWYG = "What You See Is What You Get"
+"WIZ-ee-wig"
+
+"Clobbers" = to overwrite an existing value so that it is destroyed
+
+"scoped to" = refers to a specific instance or object or selection
+
+
+
+Google: "Do ALL the things!"

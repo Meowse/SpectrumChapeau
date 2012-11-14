@@ -4,6 +4,7 @@ namespace FunWithObjects
 {
     public partial class DoesSomething : Form
     {
+        public string previousText;
         public DoesSomething()
         {
             InitializeComponent();
@@ -25,7 +26,26 @@ namespace FunWithObjects
 
         public void DoIt()
         {
+            previousText = Text;
+            MessageBox.Show(previousText);
             Text = "Done!";
         }
-    }
+        public void JustUndoIt()
+        {
+            Text = previousText;
+            MessageBox.Show(Text);
+        }
+
+        //private void JustUndoTheAction(object sender, System.EventArgs e)
+        //{
+        //    JustUndoIt();
+        //}
+
+        private void JustUndoTheAction(object sender, System.EventArgs e)
+        {
+            JustUndoIt();
+        }
+
+        
+      }
 }
