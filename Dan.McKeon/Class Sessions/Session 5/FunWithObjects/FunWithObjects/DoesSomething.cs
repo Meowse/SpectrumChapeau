@@ -25,7 +25,7 @@ namespace FunWithObjects
 
         public void DoIt()
         {
-            Text = "Done!";
+            Text = "Done: ";
         }
     }
 }
