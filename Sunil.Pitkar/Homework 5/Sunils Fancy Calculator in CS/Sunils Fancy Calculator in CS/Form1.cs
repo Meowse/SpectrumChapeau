@@ -17,11 +17,12 @@ namespace Sunils_Fancy_Calculator_in_CS
         public double FirstNumber = 0;
         public double SecondNumber = 0;
         public bool OperatorIn = false;
-        public String Action = "";
+        public String Action;
         public double Result;
-        public bool firstNumberEntered = false;
-        public bool secondNumberEntered = false;
         public bool decimalEntered = false;
+        public string PreviousButton = "";
+        public const string ErrorMessage = "ERR-ON/OFF";
+        public bool CalcError = false;
 
         public Form1()
         {
@@ -31,34 +32,49 @@ namespace Sunils_Fancy_Calculator_in_CS
        
         private void OnOffButton_Click(object sender, EventArgs e)
         {
-            if (powerUpState == false)
+          
+
+            if(powerUpState==true)
             {
-                NumberBuffer = "0";
-                WhatToDisplay = NumberBuffer;
-                Display(WhatToDisplay);
-                powerUpState = true;
+                ReadKey(OnOffButton.Text);  
             }
             else
             {
                 Clear();
-                powerUpState = false;
-                WhatToDisplay = "";
-                Display(WhatToDisplay);
+                NumberBuffer = "0";
+                WhatToDisplay = NumberBuffer;
+                powerUpState = true;
+                SwitchDisplay(powerUpState);
+
             }
+
+        }
+
+
+
+        private void reset()
+        {
+            //Add flags to clear
+            Clear();
+            NumberBuffer = "0";
+            WhatToDisplay = NumberBuffer;
+            Display(WhatToDisplay);
         }
 
 
         private void Clear()
         {
-           //powerUpState = false;
-           //WhatToDisplay = "0";
-           NumberBuffer = "";
-           FirstNumber = 0;
-           SecondNumber = 0;
-           OperatorIn = false;
-           //powerUpState = false;
-        
-           //Display(WhatToDisplay);
+
+            NumberBuffer = "";
+            FirstNumber = 0;
+            SecondNumber = 0;
+            Result = 0;
+            OperatorIn = false;
+            decimalEntered = false;
+            Action = "";
+            PreviousButton = "";
+            CalcError = false;
+
         }
 
 
@@ -69,182 +85,252 @@ namespace Sunils_Fancy_Calculator_in_CS
 
         private void Display(string ToDisplay)
         {
+            //MessageBox.Show(ToDisplay);
             DisplayBox.Text = ToDisplay;
         }
 
-        private void DetermineSecondNumber()
-        {
-            SecondNumber = Convert.ToDouble(NumberBuffer);
-            ////need to handle repetetive equals
-            /// if numbers ="" (you wont come to eval second number) numbers =todouble whatsdisplay, second number entered.
-            /// add flas if result is calculated and now of operator is pressed keep first number
-            //if (secondNumberEntered ==false) 
-            //        {
-            //            SecondNumber = Convert.ToDouble(WhatToDisplay);
-            //            secondNumberEntered = true;
-            //        }
-            //else
-            //{
-            //    if (NumberBuffer=="")
-            //    {
-                    
-            //    }
-            //}  
-            //        {
-            //            SecondNumber = Convert.ToDouble(NumberBuffer);
-            //        }
-        }
+        //private void DetermineSecondNumber()
+        //{
+        //    SecondNumber = Convert.ToDouble(NumberBuffer);
+        //    ////need to handle repetetive equals
+        //    /// if numbers ="" (you wont come to eval second number) numbers =todouble whatsdisplay, second number entered.
+        //    /// add flas if result is calculated and now of operator is pressed keep first number
+            
+        //}
 
-        private void DetermineFirstNumber()
+        //private void DetermineFirstNumber()
+        //{
+        //    FirstNumber = Convert.ToDouble(NumberBuffer);
+        
+        //}
+
+        
+        
+        private void determineOperation()
         {
-            FirstNumber = Convert.ToDouble(NumberBuffer);
-            firstNumberEntered = true;
+            
+            switch (PreviousButton)
+            {
+                case "0":
+                case "1":
+                case "2":
+                case "3":
+                case "4":
+                case "5":
+                case "6":
+                case "7":
+                case "8":
+                case "9":
+                    Evaluate();
+                    break;
+                case ".":
+                    AppendNumbers("0");
+                     Evaluate();
+                    break;
+              
+                //case "+":
+                //case "-":
+                //case "/":
+                //case "x":
+                //   break;
+                //case "=":
+                //   break;
+              
+            } 
         }
+        
         private void Evaluate( )
         {
-            //FirstNumber = Convert.ToDouble(NumberBuffer);
-            //NumberBuffer = "";
-            //if (NumberBuffer == "")
-            //{
-            //    FirstNumber = Result;
-            //}
-            //else
-            //{
-            //    FirstNumber = Convert.ToDouble(NumberBuffer);
-            //}
-            DetermineSecondNumber();
-            switch (Action)
+            if(NumberBuffer =="")
             {
-                case "+":
-                    Result = FirstNumber + SecondNumber;
-                    break;
-                case "-":
-                    Result = FirstNumber - SecondNumber;
-                    break;
-                case "x":
-                    Result = FirstNumber * SecondNumber;
-                    break;
-                case "/":
-                    Result = FirstNumber/SecondNumber;
-                    break;
+                //NumberBuffer = WhatToDisplay;
+                NumberBuffer = Convert.ToString(SecondNumber);
             }
-            WhatToDisplay = Convert.ToString(Result);
+
+            if(!OperatorIn)
+            {
+                Result = Convert.ToDouble(NumberBuffer);
+                //SecondNumber = Result;
+                //NumberBuffer = "";
+
+            }
+            else
+            {
+                switch (Action)
+                {
+                    case "+":
+                        //Result = FirstNumber + SecondNumber;
+                        Result = Result + Convert.ToDouble(NumberBuffer);
+                        break;
+                    case "-":
+                        //Result = FirstNumber - SecondNumber;
+                        Result = Result - Convert.ToDouble(NumberBuffer);
+                        break;
+                    case "x":
+                        //Result = FirstNumber * SecondNumber;
+                        Result = Result * Convert.ToDouble(NumberBuffer);
+                        break;
+                    case "/":
+                        //Result = FirstNumber/SecondNumber;
+                        if(NumberBuffer == "0")
+                        {
+                            //Clear();
+                            //WhatToDisplay = ErrorMessage;
+                            //MessageBox.Show(WhatToDisplay);
+                            //Display(WhatToDisplay);
+                            //Application.DoEvents();
+                            //System.Threading.Thread.Sleep(30);
+                            CalcError = true;
+                        }
+                        else
+                        {
+                            Result = Result / Convert.ToDouble(NumberBuffer);    
+                        }
+                        break;
+
+                }  
+            }
+            
+            if(CalcError)
+            {
+                WhatToDisplay = ErrorMessage;
+            }
+            else
+            {
+                WhatToDisplay = Convert.ToString(Result);  
+            }
             Display(WhatToDisplay);
-            FirstNumber = Result;
+            
+            if (NumberBuffer == "0")
+            {
+                SecondNumber = 0;
+            }
+            else
+            {
+                SecondNumber = Convert.ToDouble(NumberBuffer);
+                
+            }
+            NumberBuffer = "";
+
         }
 
         private void ReadKey(String Key)
         {
+            
+            if (powerUpState == true)
+            {
+                switch (Key)
+                    {
+                        case "0":
+                        case "1":
+                        case "2":
+                        case "3":
+                        case "4":
+                        case "5":
+                        case "6":
+                        case "7":
+                        case "8":
+                        case "9":
+                        case ".":
+                            ActionOnNumberButton(Key);
+                            break;
+                        case "+":
+                        case "-":
+                        case "/":
+                        case "x":
+
+                            determineOperation();
+                            OperatorIn = true;
+                            Action = Key;
+                            //NumberBuffer = "";
+                            break;
+                        case "C":
+                            Clear();
+                            SwitchDisplay(powerUpState);
+                            break;
+                        case "=":
+                            Evaluate();
+                            break;
+                        case "On/Off":
+                            Clear();
+                            powerUpState = false;
+                            SwitchDisplay(powerUpState);
+                            break;
+                    }
+                    
+            
+            }
+PreviousButton = Key;
+            }
+
+        private void SwitchDisplay(bool On)
+        {
+            if (On) NumberBuffer = "0";
+            else NumberBuffer = "";
+
+            WhatToDisplay = NumberBuffer;
+            Display(WhatToDisplay);
+        }
+
+        private void ActionOnNumberButton(string Key)
+        {
             switch (Key)
             {
-                   case "0":
-                            if (NumberBuffer != "0") AppendNumbers(Key);
-                                
-                                break;
-                   case "1":
-                   case "2":
-                   case "3":
-                   case "4":
-                   case "5":
-                   case "6":
-                   case "7":
-                   case "8":
-                   case "9":
-                                if (NumberBuffer == "0")
-                                {
-                                    NumberBuffer = "";
-                                    AppendNumbers(Key);
 
-                                }
-                                else
-                                {
-                                   
-                                AppendNumbers(Key); 
-                                }
+                case "0":
+                    if (NumberBuffer != "0")
+                    {
+                        AppendNumbers(Key);
+                    }
                     break;
-                                
-                   case ".":
+                case "1":
+                case "2":
+                case "3":
+                case "4":
+                case "5":
+                case "6":
+                case "7":
+                case "8":
+                case "9":
+                    if (NumberBuffer == "0")
+                    {
+                        NumberBuffer = "";
+                        AppendNumbers(Key);
+                    }
+                    else
+                    {
+                        AppendNumbers(Key);
+                    }
+                    break;
+
+                case ".":
                     if (decimalEntered == false)
                     {
                         AppendNumbers(Key);
                         decimalEntered = true;
                     }
-                     break;  
-                   case "+":
-                   case "-":
-                   case "/":
-                   case "x":
-                    OperatorIn = true;
-                    Action = Key;
-                    DetermineFirstNumber();
-                    //FirstNumber = Convert.ToDouble(NumberBuffer);
-                    NumberBuffer = "";
-                    //NumberBuffer = "";
-                    //MessageBox.Show(FirstNumber.ToString());
-                    //SecondNumber = FirstNumber;
-                    //clear flags and numbers
-                    //Handle initial operator press and number buffer to start with 0
                     break;
-                   case "C":
-                    if (powerUpState == true)
-                    {
-                    Clear();
-                    WhatToDisplay = "0";
-                    Display(WhatToDisplay);
-                    }
-                    break;
-                   case "=":
-                    if (powerUpState == true)
-                    {
-                       Evaluate(); 
-                    }
-                    
-                    //NumberBuffer = "";
-                    break;
-
+                
             }
-            
         }
+        
 
        private void AppendNumbers(string Key)
        {
-           if (powerUpState == true)
-           {
-               NumberBuffer += Key;
-               WhatToDisplay = NumberBuffer;
-               Display(WhatToDisplay); 
-           }
-           else
-           {
-               Clear();
-               WhatToDisplay = "";
-               Display(WhatToDisplay); 
-           }
+           NumberBuffer += Key;
+           WhatToDisplay = NumberBuffer;
+           //MessageBox.Show(NumberBuffer);
+           Display(WhatToDisplay); 
        }
 
         private void OneButton_Click(object sender, EventArgs e)
         {
-           //button vlaue is one
-            // append string display, could be collection of strings
-            //claculate number equivalent, not int, keep state of decimal " isDotpressed", for each item in collection of string increment powers of 10 unitl dot use state is decimanl
-
-            //evaluate will call display
-            ReadKey(OneButton.Text);
-            //Display(OneButton.Text);
-
-        }
+           ReadKey(OneButton.Text);
+         }
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            //add or any operator clicked
-            //disable dopt clecked state
-            //Remember operator
-            //IN evaluate you now should put earlier calculated number in first number and continue collecting number until =
-            //on = copy the evalauted number to number 2
-            // call calculate with 3 args number 1, number 2 and operator
-            //call display with string format of result.
-           // TODO Write initialize method for turn on and clear
-            ReadKey(AddButton.Text);
+           ReadKey(AddButton.Text);
         }
 
         private void TwoButton_Click(object sender, EventArgs e)
@@ -289,12 +375,7 @@ namespace Sunils_Fancy_Calculator_in_CS
 
         private void ZeroButton_Click(object sender, EventArgs e)
         {
-            
-            //if (NumberBuffer != "0")
-            //{
-                ReadKey(ZeroButton.Text);
-            //}
-            
+            ReadKey(ZeroButton.Text);   
         }
 
         private void PointButton_Click(object sender, EventArgs e)
