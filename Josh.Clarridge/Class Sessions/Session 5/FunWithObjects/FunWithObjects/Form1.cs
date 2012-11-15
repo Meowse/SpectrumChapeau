@@ -10,6 +10,7 @@ namespace FunWithObjects
         public Form1()
         {
             InitializeComponent();
+            AcceptButton = button1;
 
 // Uncomment this to make one that says "DoesSomething 51"
 //            new DoesSomething(3, 17).Show();
@@ -26,9 +27,16 @@ namespace FunWithObjects
 
         private void MakeNewDoesSomething(object sender, System.EventArgs e)
         {
-            DoesSomething newDoesSomething = new DoesSomething(WhatToDo.Text);
-            newDoesSomething.Show();
-            _allDoesSomethings.Add(newDoesSomething);
+            if (WhatToDo.Text == "")
+            {
+                MessageBox.Show("You must enter an action in the text box before creating a new DoesSomething window.", "Note");
+            }
+            else
+            {
+                DoesSomething newDoesSomething = new DoesSomething(WhatToDo.Text);
+                newDoesSomething.Show();
+                _allDoesSomethings.Add(newDoesSomething);
+            }
         }
 
         private void DoAllTheThings(object sender, System.EventArgs e)
@@ -37,6 +45,12 @@ namespace FunWithObjects
             {
                 thing.DoIt();
             }
+        }
+
+        private void UndoLastAction(object sender, System.EventArgs e)
+        {
+            DoesSomething lastAction = _allDoesSomethings[_allDoesSomethings.Count - 1];
+            lastAction.DoIt();
         }
     }
 }
