@@ -28,7 +28,7 @@ namespace FunWithObjects
         {
             previousText = Text;
             MessageBox.Show(previousText);
-            Text = "Done!";
+            Text = "Done" + Text;
         }
         public void JustUndoIt()
         {

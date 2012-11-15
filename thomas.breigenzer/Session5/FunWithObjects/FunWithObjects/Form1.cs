@@ -24,7 +24,7 @@ namespace FunWithObjects
 //            new DoesSomething().Show();
         }
 
-        private void MakeNewDoesSomething(object sender, System.EventArgs e)
+        public void MakeNewDoesSomething(object sender, System.EventArgs e)
         {
             DoesSomething newDoesSomething = new DoesSomething(WhatToDo.Text);
             newDoesSomething.Show();
@@ -36,7 +36,7 @@ namespace FunWithObjects
             foreach (DoesSomething thing in _allDoesSomethings)
             {
                 thing.DoIt();
-                thing.JustUndoIt();
+                //thing.JustUndoIt();
             }
         }
 
@@ -52,24 +52,6 @@ namespace FunWithObjects
         }
 
  
-
-        //private void UndoIt()
-        //{
-        //    throw new System.NotImplementedException();
-        //}
-
-        //private void UndoTheLastAction(object sender, System.EventArgs e)
-        //{
-        //    UndoIt();
-        //}
-
-
-
-        //private void UndoTheLastAction(object sender, System.EventArgs e)
-        //{
-        //    UndoIt();
-        //}
-
  
     }
 }

@@ -60,7 +60,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Name = "DoesSomething";
-            this.Text = "Does Something";
+            this.Text = "Action:";
             this.ResumeLayout(false);
 
         }
