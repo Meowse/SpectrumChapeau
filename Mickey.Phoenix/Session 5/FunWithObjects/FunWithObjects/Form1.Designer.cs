@@ -31,7 +31,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.WhatToDo = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.doOrUndoLastCreated = new System.Windows.Forms.Button();
+            this.doOrUndoLastChanged = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -62,22 +63,34 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.DoAllTheThings);
             // 
-            // button3
+            // doOrUndoLastCreated
             // 
-            this.button3.Location = new System.Drawing.Point(13, 72);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(125, 23);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Do or Undo Last";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.ToggleLastActionState);
+            this.doOrUndoLastCreated.Location = new System.Drawing.Point(13, 72);
+            this.doOrUndoLastCreated.Name = "doOrUndoLastCreated";
+            this.doOrUndoLastCreated.Size = new System.Drawing.Size(176, 23);
+            this.doOrUndoLastCreated.TabIndex = 3;
+            this.doOrUndoLastCreated.Text = "Do or Undo Last Created";
+            this.doOrUndoLastCreated.UseVisualStyleBackColor = true;
+            this.doOrUndoLastCreated.Click += new System.EventHandler(this.ToggleLastActionState);
+            // 
+            // doOrUndoLastChanged
+            // 
+            this.doOrUndoLastChanged.Enabled = false;
+            this.doOrUndoLastChanged.Location = new System.Drawing.Point(13, 101);
+            this.doOrUndoLastChanged.Name = "doOrUndoLastChanged";
+            this.doOrUndoLastChanged.Size = new System.Drawing.Size(176, 23);
+            this.doOrUndoLastChanged.TabIndex = 4;
+            this.doOrUndoLastChanged.Text = "Do or Undo Last Changed";
+            this.doOrUndoLastChanged.UseVisualStyleBackColor = true;
+            this.doOrUndoLastChanged.Click += new System.EventHandler(this.DoOrUndoLastChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(401, 216);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.doOrUndoLastChanged);
+            this.Controls.Add(this.doOrUndoLastCreated);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.WhatToDo);
             this.Controls.Add(this.button1);
@@ -93,7 +106,8 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox WhatToDo;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button doOrUndoLastCreated;
+        private System.Windows.Forms.Button doOrUndoLastChanged;
     }
 }
 

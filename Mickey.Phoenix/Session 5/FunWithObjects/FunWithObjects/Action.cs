@@ -26,21 +26,24 @@ namespace FunWithObjects
                     _hasBeenUndone = true;
                 }
                 _isDone = value;
+                _creator.LastActionChanged = this;
                 UpdateUI();
             }
         }
 
         private bool _hasBeenUndone;
         private readonly string _description;
+        private Form1 _creator;
 
         public Action()
         {
             InitializeComponent();
         }
 
-        public Action(string description) : this()
+        public Action(string description, Form1 creator) : this()
         {
             _description = description;
+            _creator = creator;
             UpdateUI();
         }
 

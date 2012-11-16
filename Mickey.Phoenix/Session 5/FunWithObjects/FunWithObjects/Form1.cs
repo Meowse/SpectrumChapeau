@@ -6,6 +6,21 @@ namespace FunWithObjects
     public partial class Form1 : Form
     {
         private readonly List<Action> _allActions = new List<Action>();
+        private Action _lastActionChanged;
+
+        // The "static" keyword here means that "LastActionChanged" belongs
+        // to the class Form1, and not to a particular instance of that class.
+        // You refer to it as "Form1.LastActionChanged", rather than
+        // as "myForm1Instance.LastActionChanged".
+        public Action LastActionChanged
+        {
+            get { return _lastActionChanged; }
+            set
+            {
+                _lastActionChanged = value;
+                doOrUndoLastChanged.Enabled = true;
+            }
+        }
 
         public Form1()
         {
@@ -26,7 +41,7 @@ namespace FunWithObjects
 
         private void MakeNewDoesSomething(object sender, System.EventArgs e)
         {
-            Action newAction = new Action(WhatToDo.Text);
+            Action newAction = new Action(WhatToDo.Text, this);
             newAction.Show();
             _allActions.Add(newAction);
         }
@@ -52,6 +67,18 @@ namespace FunWithObjects
                 // a literal double-quote character inside a string whose ends are marked
                 // with double-quotes (a "double-quote-delimited string")
                 MessageBox.Show("There is no \"Last Action\" to Do or Undo.");
+            }
+        }
+
+        private void DoOrUndoLastChanged(object sender, System.EventArgs e)
+        {
+            if (LastActionChanged != null)
+            {
+                LastActionChanged.IsDone = !LastActionChanged.IsDone;
+            }
+            else
+            {
+                MessageBox.Show("No changed action to do/undo");
             }
         }
     }
