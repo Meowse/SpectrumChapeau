@@ -16,7 +16,7 @@ namespace Calculator
         private int number1 = 0;
         private int number2 = 0;
         private byte sign = 0;
-        private byte startNewNumber = 0;
+        private bool startNewNumber = true;
 
 
         public formCalculator()
@@ -36,7 +36,7 @@ namespace Calculator
             number1 = 0;
             number2 = 0;
             sign = 0;
-            startNewNumber = 0;
+            startNewNumber = true;
 
         }
 
@@ -44,10 +44,10 @@ namespace Calculator
         {
             if (this.labelResult.Text != "0")
             {
-                if (startNewNumber == 0)
+                if (startNewNumber == true)
                     
                         this.labelResult.Text = "";
-                startNewNumber = 1;
+                startNewNumber = false;
 
             }
 
@@ -62,10 +62,10 @@ namespace Calculator
 
             if (this.labelResult.Text != "0")
             {
-                if (startNewNumber == 0)
+                if (startNewNumber == true)
 
                     this.labelResult.Text = "";
-                    startNewNumber = 1;
+                    startNewNumber = false;
 
             }
 
@@ -78,10 +78,10 @@ namespace Calculator
         {
             if (this.labelResult.Text != "0")
             {
-                if (startNewNumber == 0)
+                if (startNewNumber == true)
 
                     this.labelResult.Text = "";
-                startNewNumber = 1;
+                startNewNumber = false;
 
             }
 
@@ -92,27 +92,26 @@ namespace Calculator
 
         private void buttonNumber3_Click(object sender, EventArgs e)
         {
-            if (this.labelResult.Text != "0")
+            if (labelResult.Text != "0")
             {
-                if (startNewNumber == 0)
-
-                    this.labelResult.Text = "";
-                startNewNumber = 1;
-
+                if (startNewNumber)
+                {
+                    labelResult.Text = "";
+                }
+                startNewNumber = false;
             }
 
-
-            this.labelResult.Text += "3";
+            labelResult.Text += "3";
         }
 
         private void buttonNumber4_Click(object sender, EventArgs e)
         {
             if (this.labelResult.Text != "0")
             {
-                if (startNewNumber == 0)
+                if (startNewNumber)
 
                     this.labelResult.Text = "";
-                startNewNumber = 1;
+                startNewNumber = false;
 
             }
 
@@ -124,10 +123,10 @@ namespace Calculator
         {
             if (this.labelResult.Text != "0")
             {
-                if (startNewNumber == 0)
+                if (startNewNumber)
 
                     this.labelResult.Text = "";
-                startNewNumber = 1;
+                startNewNumber = false;
 
             }
 
@@ -139,10 +138,10 @@ namespace Calculator
         {
             if (this.labelResult.Text != "0")
             {
-                if (startNewNumber == 0)
+                if (startNewNumber)
 
                     this.labelResult.Text = "";
-                startNewNumber = 1;
+                startNewNumber = false;
 
             }
 
@@ -154,10 +153,10 @@ namespace Calculator
         {
             if (this.labelResult.Text != "0")
             {
-                if (startNewNumber == 0)
+                if (startNewNumber)
 
                     this.labelResult.Text = "";
-                startNewNumber = 1;
+                startNewNumber = false;
 
             }
 
@@ -169,10 +168,10 @@ namespace Calculator
         {
             if (this.labelResult.Text != "0")
             {
-                if (startNewNumber == 0)
+                if (startNewNumber)
 
                     this.labelResult.Text = "";
-                startNewNumber = 1;
+                startNewNumber = false;
 
             }
 
@@ -184,10 +183,10 @@ namespace Calculator
         {
             if (this.labelResult.Text != "0")
             {
-                if (startNewNumber == 0)
+                if (startNewNumber)
 
                     this.labelResult.Text = "";
-                startNewNumber = 1;
+                startNewNumber = false;
 
             }
 
@@ -199,28 +198,28 @@ namespace Calculator
         {
             sign = 1;
             number1 = int.Parse(this.labelResult.Text);
-            startNewNumber = 0;
+            startNewNumber = true;
         }
 
         private void buttonSubtract_Click(object sender, EventArgs e)
         {
             sign = 2;
             number1 = int.Parse(this.labelResult.Text);
-            startNewNumber = 0;
+            startNewNumber = true;
         }
 
         private void buttonMultiply_Click(object sender, EventArgs e)
         {
             sign = 3;
             number1 = int.Parse(this.labelResult.Text);
-            startNewNumber = 0;
+            startNewNumber = true;
         }
 
         private void buttonDivide_Click(object sender, EventArgs e)
         {
             sign = 4;
             number1 = int.Parse(this.labelResult.Text);
-            startNewNumber = 0;
+            startNewNumber = true;
         }
 
         private void buttonEquals_Click(object sender, EventArgs e)
@@ -240,6 +239,7 @@ namespace Calculator
                 if (number1 != 0)
                     result = number1/number2;
             }
+            labelResult.Text = result.ToString();
         }
     }
 }
