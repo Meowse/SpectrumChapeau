@@ -8,21 +8,21 @@ namespace CollectionsAndIterationTest
     [TestFixture]
     public class CollectionsExamplesTest
     {
- 
+        //      GetBiggest --
         [Test]
         public void ShouldReturnTheLargestNumber()
         {
             List<int> numbers = new List<int> { 1, 2, 4, 3};
             Assert.That(new CollectionsExamples().GetBiggest(numbers), Is.EqualTo(4));
         }
-
+        //      GetSmallest -- 
         [Test]
         public void ShouldReturnTheLargestNegativeNumber()
         {
             List<int> numbers = new List<int> {-3, -5, -1, -2};
             Assert.That(new CollectionsExamples().GetBiggest(numbers), Is.EqualTo(-1));
         }
-        
+        //      GetMostExtreme --        
         [Test]
         public void ShouldReturnTheLargestMagnitude()
         {
@@ -33,7 +33,7 @@ namespace CollectionsAndIterationTest
             CollectionAssert.AreEquivalent(largestInList, new CollectionsExamples().GetBiggestMagnitude(numbers));
             //Assert.That(collectionsExamples.GetBiggestMagnitude(numbers), Is.EqualTo(5));
         }
-
+        //      GetSecondLargest --
         [Test]
         public void ShouldReturnThe2NdLargest()
         {
@@ -41,7 +41,7 @@ namespace CollectionsAndIterationTest
             int[] numbers = new int[5] {3, 4, 9, -12, 23};
             Assert.That(new CollectionsExamples().GetNthLargest(numbers, arrayNumberFor2NdLargest), Is.EqualTo(9));
         }
-
+        //      GetNthLargest --
         [Test]
         public void ShouldReturnTheNthLargest()
         {
@@ -49,7 +49,7 @@ namespace CollectionsAndIterationTest
             int[] numbers = new int[4] { 4, 8, -3, -11 };
             Assert.That(new CollectionsExamples().GetNthLargest(numbers, arraynumber), Is.EqualTo(-3));
         }
-
+        //      Doubled --
         [Test]
         public void ShouldReturnADoubledList()
         {
@@ -57,7 +57,7 @@ namespace CollectionsAndIterationTest
             
             Assert.IsTrue(new CollectionsExamples().GetDoubled(firstList).SequenceEqual(new List<int>{28, 56, -6, 22, -70}));
         }
-        
+        //      DoubleInPlace --        
         [Test]
         public void ShouldReturnADoubledInPlaceList()
         {
@@ -65,9 +65,38 @@ namespace CollectionsAndIterationTest
 
             Assert.IsTrue(new CollectionsExamples().GetDoubledInPlace(firstList).SequenceEqual(new List<int>{ 28, 56, -6, 22, -70 }));
         }
-       
-        
-        
+        //      MultipliedByIndex --
+        [Test]
+        public void ShouldReturnMulipliedByIndexList()
+        {
+            var firstList = new List<int> { 11, 2, 19, -5, 37 };
+
+            Assert.IsTrue(new CollectionsExamples().GetMultipliedByIndex(firstList).SequenceEqual(new List<int> { 0, 2, 38, -15, 148 }));
+        }
+        //      MultiplyByIndexInPlace --
+        [Test]
+        public void ShouldReturnMulipliedByIndexInPlaceList()
+        {
+            var firstList = new List<int> { 11, 2, 19, -5, 37 };
+
+            Assert.IsTrue(new CollectionsExamples().GetMultipliedByIndexInPlace(firstList).SequenceEqual(new List<int> { 0, 2, 38, -15, 148 }));
+        }
+
+        //      ContainsNumber --
+        [Test]
+        public void ShouldReturnTrueIfListContainsNumber()
+        {
+            const int listnumber = -11;
+            List<int> numbers =new List<int> { 4, 8, -3, -11, 27, 32 };
+            Assert.That(new CollectionsExamples().GetContainsNumber(numbers, listnumber), Is.True);
+        }
+        //       IsProperSubset --
+
+
+
+
+
+ 
         // TODO: EXTRA CREDIT: What should we do if the list is empty?
 
         // For all of the below, don't worry about handling exceptional conditions such as empty lists.  
