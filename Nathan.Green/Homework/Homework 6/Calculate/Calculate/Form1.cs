@@ -16,5 +16,27 @@ namespace Calculate
         {
             InitializeComponent();
         }
+
+        private void UpdateDisplay(int value)
+        {
+            if (textDisplay.Text.Length == 0)
+            {
+                textDisplay.Text = value.ToString(); 
+            }
+            else
+            {
+                textDisplay.Text = textDisplay.Text + value.ToString();
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            UpdateDisplay(1);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            UpdateDisplay(2);
+        }
     }
 }
