@@ -1,110 +1,199 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace Calculate
 {
     public partial class FormCalculate : Form
     {
-        private double currentValue = 0;
-        private double lastValue = 0;
+        private double _currentValue;
 
         public FormCalculate()
         {
+            _currentValue = 0;
             InitializeComponent();
         }
 
         private double UpdateNumber(double value)
         {
-            currentValue = ((currentValue*10) + value);
-            return currentValue;
+            _currentValue = ((_currentValue*10) + value);
+            return _currentValue;
         }
 
         private void UpdateDisplay(double value)
         {
-            textDisplay.Text = UpdateNumber(value).ToString();  
+            textDisplay.Text = UpdateNumber(value).ToString(CultureInfo.InvariantCulture);  
         }
 
-        private void buttonClear_Click(object sender, EventArgs e)
+        private void DoClear(object sender, EventArgs e)
         {
             textDisplay.Text = "";
-            lastValue = 0;
-            currentValue = 0;
+            _lastValue = 0;
+            _currentValue = 0;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Do1(object sender, EventArgs e)
         {
             UpdateDisplay(1);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Do2(object sender, EventArgs e)
         {
             UpdateDisplay(2);
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void Do3(object sender, EventArgs e)
         {
             UpdateDisplay(3);
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void Do4(object sender, EventArgs e)
         {
             UpdateDisplay(4);
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void Do5(object sender, EventArgs e)
         {
             UpdateDisplay(5);
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void Do6(object sender, EventArgs e)
         {
             UpdateDisplay(6);
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        private void Do7(object sender, EventArgs e)
         {
             UpdateDisplay(7);
         }
 
-        private void button8_Click(object sender, EventArgs e)
+        private void Do8(object sender, EventArgs e)
         {
             UpdateDisplay(8);
         }
 
-        private void button9_Click(object sender, EventArgs e)
+        private void Do9(object sender, EventArgs e)
         {
             UpdateDisplay(9);
         }
 
-        private void button0_Click(object sender, EventArgs e)
+        private void Do0(object sender, EventArgs e)
         {
             UpdateDisplay(0);
         }
 
-        private void buttonDecimal_Click(object sender, EventArgs e)
+        private void DoDecimal(object sender, EventArgs e)
         {
         }
 
-        private void buttonPlus_Click(object sender, EventArgs e)
+        private void DoPlus(object sender, EventArgs e)
         {
-            if (lastValue == 0)
+            if (_lastValue == 0)
             {
-                lastValue = currentValue;
-                currentValue = 0;
+                _lastValue = _currentValue;
+                _currentValue = 0;
+                _mathematicalAction = "ADD";
             }
             else
             {
-                currentValue = lastValue + currentValue;
-                textDisplay.Text = currentValue.ToString();
-                lastValue = 0;
-                currentValue = 0;
+                _currentValue = _lastValue + _currentValue;
+                textDisplay.Text = _currentValue.ToString(CultureInfo.InvariantCulture);
+                _lastValue = 0;
+                _currentValue = 0;
+                _mathematicalAction = "";
+            }
+        }
+
+        private void DoSubtract(object sender, EventArgs e)
+        {
+            if (_lastValue == 0)
+            {
+                _lastValue = _currentValue;
+                _currentValue = 0;
+                _mathematicalAction = "SUBTRACT";
+            }
+            else
+            {
+                _currentValue = _lastValue - _currentValue;
+                textDisplay.Text = _currentValue.ToString(CultureInfo.InvariantCulture);
+                _lastValue = 0;
+                _currentValue = 0;
+                _mathematicalAction = "";
+            }
+        }
+
+        private void DoMultiply(object sender, EventArgs e)
+        {
+            if (_lastValue == 0)
+            {
+                _lastValue = _currentValue;
+                _currentValue = 0;
+                _mathematicalAction = "MULTIPLY";
+            }
+            else
+            {
+                _currentValue = _lastValue * _currentValue;
+                textDisplay.Text = _currentValue.ToString(CultureInfo.InvariantCulture);
+                _lastValue = 0;
+                _currentValue = 0;
+                _mathematicalAction = "";
+            }
+        }
+
+        private void DoDivision(object sender, EventArgs e)
+        {
+            if (_lastValue == 0)
+            {
+                _lastValue = _currentValue;
+                _currentValue = 0;
+                _mathematicalAction = "DIVISION";
+            }
+            else
+            {
+                _currentValue = _lastValue / _currentValue;
+                textDisplay.Text = _currentValue.ToString(CultureInfo.InvariantCulture);
+                _lastValue = 0;
+                _currentValue = 0;
+                _mathematicalAction = "";
+            }
+        }
+
+        private void DoEquals(object sender, EventArgs e)
+        {
+            if (_lastValue != 0)
+            {
+
+                switch (_mathematicalAction)
+                {
+                    case "ADD":
+                        _currentValue = _lastValue + _currentValue;
+                        textDisplay.Text = _currentValue.ToString(CultureInfo.InvariantCulture);
+                        _lastValue = 0;
+                        _currentValue = 0;
+                        _mathematicalAction = "";
+                        break;
+                    case "SUBTRACT":
+                        _currentValue = _lastValue - _currentValue;
+                        textDisplay.Text = _currentValue.ToString(CultureInfo.InvariantCulture);
+                        _lastValue = 0;
+                        _currentValue = 0;
+                        _mathematicalAction = "";
+                        break;
+                    case "MULTIPLY":
+                        _currentValue = _lastValue * _currentValue;
+                        textDisplay.Text = _currentValue.ToString(CultureInfo.InvariantCulture);
+                        _lastValue = 0;
+                        _currentValue = 0;
+                        _mathematicalAction = "";
+                        break;
+                    case "DIVISION":
+                        _currentValue = _lastValue / _currentValue;
+                        textDisplay.Text = _currentValue.ToString(CultureInfo.InvariantCulture);
+                        _lastValue = 0;
+                        _currentValue = 0;
+                        _mathematicalAction = "";
+                        break;
+                }
             }
         }
     }
