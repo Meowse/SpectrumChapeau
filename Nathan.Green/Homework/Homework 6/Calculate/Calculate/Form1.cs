@@ -7,6 +7,7 @@ namespace Calculate
     public partial class FormCalculate : Form
     {
         private double _currentValue;
+        private bool isDecimal = false;
 
         public FormCalculate()
         {
@@ -14,25 +15,42 @@ namespace Calculate
             InitializeComponent();
         }
 
-        private double UpdateNumber(double value)
-        {
-            _currentValue = ((_currentValue*10) + value);
-            return _currentValue;
-        }
-
-        private void UpdateDisplay(double value)
-        {
-            textDisplay.Text = UpdateNumber(value).ToString(CultureInfo.InvariantCulture);  
-        }
-
         private void DoClear(object sender, EventArgs e)
         {
-            textDisplay.Text = "";
+            textDisplay.Text = "0";
             _lastValue = 0;
             _currentValue = 0;
             _lastComputedValue = 0;
             _lastCurrentValue = 0;
             _lastMathematicalAction = "";
+            isDecimal = false;
+        }
+        
+        private void UpdateDisplay(double value)
+        {
+            if ((_currentValue == 0) && (!isDecimal))
+            {
+                textDisplay.Text = "";
+            }
+
+            if (!isDecimal)
+            {
+                textDisplay.Text = textDisplay.Text + value.ToString();
+                _currentValue = Convert.ToDouble(textDisplay.Text);
+            }
+            else
+            {
+                if (!textDisplay.Text.Contains("."))
+                {
+                    textDisplay.Text = textDisplay.Text + "." + value.ToString();
+                    _currentValue = Convert.ToDouble(textDisplay.Text);
+                }
+                else
+                {
+                    textDisplay.Text = textDisplay.Text + value.ToString();
+                    _currentValue = Convert.ToDouble(textDisplay.Text);                    
+                }
+            }
         }
 
         private void Do1(object sender, EventArgs e)
@@ -87,10 +105,16 @@ namespace Calculate
 
         private void DoDecimal(object sender, EventArgs e)
         {
+            if (!isDecimal)
+            {
+                isDecimal = true;
+            }
         }
 
         private void DoAdd(object sender, EventArgs e)
         {
+            isDecimal = false;
+
             if ((_mathematicalAction != "") && (_mathematicalAction != "ADD"))
             {
                 DoEquals(null, null);
@@ -102,6 +126,8 @@ namespace Calculate
 
         private void DoSubtract(object sender, EventArgs e)
         {
+            isDecimal = false;
+
             if ((_mathematicalAction != "") && (_mathematicalAction != "SUBTRACT"))
             {
                 DoEquals(null, null);
@@ -113,6 +139,8 @@ namespace Calculate
 
         private void DoMultiply(object sender, EventArgs e)
         {
+            isDecimal = false;
+
             if ((_mathematicalAction != "") && (_mathematicalAction != "MULTIPLY"))
             {
                 DoEquals(null, null);
@@ -124,6 +152,8 @@ namespace Calculate
 
         private void DoDivision(object sender, EventArgs e)
         {
+            isDecimal = false;
+
             if ((_mathematicalAction != "") && (_mathematicalAction != "DIVISION"))
             {
                 DoEquals(null, null);
@@ -161,6 +191,10 @@ namespace Calculate
                             textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
                             _lastValue = 0;
                             _currentValue = 0;
+                        }
+                        else
+                        {
+                            _currentValue = _lastComputedValue;
                         }
                     }
                     break;
