@@ -293,15 +293,18 @@ namespace Calculate
             _currentValue = 0;
             _lastMathematicalAction = _mathematicalAction;
             _mathematicalAction = "";
+            _lastComputedValue = 0;
         }
 
         private void DoEquals(object sender, EventArgs e)
         {
-            if((_mathematicalAction == "") && (_lastComputedValue != 0) && (_lastCurrentValue != 0))
-            {
-                _mathematicalAction = _lastMathematicalAction;
-                _currentValue = _lastCurrentValue;
-            }
+            //The following code was used to allow me to press the equal button over and over again and it would
+            //do the last action over and over again
+//            if((_mathematicalAction == "") && (_lastComputedValue != 0) && (_lastCurrentValue != 0))
+//            {
+//                _mathematicalAction = _lastMathematicalAction;
+//                _currentValue = _lastCurrentValue;
+//            }
 
             switch (_mathematicalAction)
             {
