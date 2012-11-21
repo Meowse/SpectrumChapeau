@@ -208,7 +208,7 @@
             this.buttonPlus.TabIndex = 13;
             this.buttonPlus.Text = "+";
             this.buttonPlus.UseVisualStyleBackColor = true;
-            this.buttonPlus.Click += new System.EventHandler(this.DoPlus);
+            this.buttonPlus.Click += new System.EventHandler(this.DoAdd);
             // 
             // buttonMinus
             // 
@@ -257,7 +257,7 @@
             // buttonExponent
             // 
             this.buttonExponent.Enabled = false;
-            this.buttonExponent.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonExponent.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonExponent.Location = new System.Drawing.Point(58, 54);
             this.buttonExponent.Name = "buttonExponent";
             this.buttonExponent.Size = new System.Drawing.Size(40, 40);
@@ -347,7 +347,10 @@
         private System.Windows.Forms.Button buttonInverse;
         private System.Windows.Forms.Button buttonSquareroot;
         private double _lastValue = 0;
+        private double _lastComputedValue = 0;
         private string _mathematicalAction = "";
+        private string _lastMathematicalAction = "";
+        private double _lastCurrentValue = 0;
     }
 }
 

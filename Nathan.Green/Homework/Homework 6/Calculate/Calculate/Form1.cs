@@ -30,6 +30,9 @@ namespace Calculate
             textDisplay.Text = "";
             _lastValue = 0;
             _currentValue = 0;
+            _lastComputedValue = 0;
+            _lastCurrentValue = 0;
+            _lastMathematicalAction = "";
         }
 
         private void Do1(object sender, EventArgs e)
@@ -86,114 +89,238 @@ namespace Calculate
         {
         }
 
-        private void DoPlus(object sender, EventArgs e)
+        private void DoAdd(object sender, EventArgs e)
         {
-            if (_lastValue == 0)
+            if ((_mathematicalAction != "") && (_mathematicalAction != "ADD"))
             {
-                _lastValue = _currentValue;
-                _currentValue = 0;
-                _mathematicalAction = "ADD";
+                DoEquals(null, null);
             }
-            else
-            {
-                _currentValue = _lastValue + _currentValue;
-                textDisplay.Text = _currentValue.ToString(CultureInfo.InvariantCulture);
-                _lastValue = 0;
-                _currentValue = 0;
-                _mathematicalAction = "";
-            }
+
+            _mathematicalAction = "ADD";
+            DoMath(_mathematicalAction);
         }
 
         private void DoSubtract(object sender, EventArgs e)
         {
-            if (_lastValue == 0)
+            if ((_mathematicalAction != "") && (_mathematicalAction != "SUBTRACT"))
             {
-                _lastValue = _currentValue;
-                _currentValue = 0;
-                _mathematicalAction = "SUBTRACT";
+                DoEquals(null, null);
             }
-            else
-            {
-                _currentValue = _lastValue - _currentValue;
-                textDisplay.Text = _currentValue.ToString(CultureInfo.InvariantCulture);
-                _lastValue = 0;
-                _currentValue = 0;
-                _mathematicalAction = "";
-            }
+            
+            _mathematicalAction = "SUBTRACT";
+            DoMath(_mathematicalAction);
         }
 
         private void DoMultiply(object sender, EventArgs e)
         {
-            if (_lastValue == 0)
+            if ((_mathematicalAction != "") && (_mathematicalAction != "MULTIPLY"))
             {
-                _lastValue = _currentValue;
-                _currentValue = 0;
-                _mathematicalAction = "MULTIPLY";
+                DoEquals(null, null);
             }
-            else
-            {
-                _currentValue = _lastValue * _currentValue;
-                textDisplay.Text = _currentValue.ToString(CultureInfo.InvariantCulture);
-                _lastValue = 0;
-                _currentValue = 0;
-                _mathematicalAction = "";
-            }
+
+            _mathematicalAction = "MULTIPLY";
+            DoMath(_mathematicalAction);
         }
 
         private void DoDivision(object sender, EventArgs e)
         {
-            if (_lastValue == 0)
+            if ((_mathematicalAction != "") && (_mathematicalAction != "DIVISION"))
             {
-                _lastValue = _currentValue;
-                _currentValue = 0;
-                _mathematicalAction = "DIVISION";
+                DoEquals(null, null);
             }
-            else
+
+            _mathematicalAction = "DIVISION";
+            DoMath(_mathematicalAction);
+        }
+
+        private void DoMath(string action)
+        {
+            switch (action)
             {
-                _currentValue = _lastValue / _currentValue;
-                textDisplay.Text = _currentValue.ToString(CultureInfo.InvariantCulture);
-                _lastValue = 0;
-                _currentValue = 0;
-                _mathematicalAction = "";
+                case "ADD":
+                    if (_lastComputedValue == 0)
+                    {
+                        if (_lastValue == 0)
+                        {
+                            _lastValue = _currentValue;
+                            _currentValue = 0;
+                        }
+                        else
+                        {
+                            _lastComputedValue = _lastValue + _currentValue;
+                            textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
+                            _lastValue = 0;
+                            _currentValue = 0;
+                        }
+                    }
+                    else
+                    {
+                        if (_currentValue != 0)
+                        {
+                            _lastComputedValue = _lastComputedValue + _currentValue;
+                            textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
+                            _lastValue = 0;
+                            _currentValue = 0;
+                        }
+                    }
+                    break;
+                case "SUBTRACT":
+                    if (_lastComputedValue == 0)
+                    {
+                        if (_lastValue == 0)
+                        {
+                            _lastValue = _currentValue;
+                            _currentValue = 0;
+                        }
+                        else
+                        {
+                            _lastComputedValue = _lastValue - _currentValue;
+                            textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
+                            _lastValue = 0;
+                            _currentValue = 0;
+                        }
+                    }
+                    else
+                    {
+                        if (_currentValue != 0)
+                        {
+                            _lastComputedValue = _lastComputedValue - _currentValue;
+                            textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
+                            _lastValue = 0;
+                            _currentValue = 0;
+                        }
+                    }
+                    break;
+                case "MULTIPLY":
+                    if (_lastComputedValue == 0)
+                    {
+                        if (_lastValue == 0)
+                        {
+                            _lastValue = _currentValue;
+                            _currentValue = 0;
+                        }
+                        else
+                        {
+                            _lastComputedValue = _lastValue * _currentValue;
+                            textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
+                            _lastValue = 0;
+                            _currentValue = 0;
+                        }
+                    }
+                    else
+                    {
+                        if (_currentValue != 0)
+                        {
+                            _lastComputedValue = _lastComputedValue*_currentValue;
+                            textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
+                            _lastValue = 0;
+                            _currentValue = 0;
+                        }
+                    }
+                    break;
+                case "DIVISION":
+                    if (_lastComputedValue == 0)
+                    {
+                        if (_lastValue == 0)
+                        {
+                            _lastValue = _currentValue;
+                            _currentValue = 0;
+                        }
+                        else
+                        {
+                            if (_currentValue != 0)
+                            {
+                                _lastComputedValue = _lastValue/_currentValue;
+                                textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
+                                _lastValue = 0;
+                                _currentValue = 0;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (_currentValue != 0)
+                        {
+                            _lastComputedValue = _lastComputedValue / _currentValue;
+                            textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
+                            _lastValue = 0;
+                            _currentValue = 0;
+                        }
+                    }
+                    break;
             }
+        }
+
+        private void SetValues()
+        {
+            textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
+            _lastValue = 0;
+            _lastCurrentValue = _currentValue;
+            _currentValue = 0;
+            _lastMathematicalAction = _mathematicalAction;
+            _mathematicalAction = "";
         }
 
         private void DoEquals(object sender, EventArgs e)
         {
-            if (_lastValue != 0)
+            if((_mathematicalAction == "") && (_lastComputedValue != 0) && (_lastCurrentValue != 0))
             {
+                _mathematicalAction = _lastMathematicalAction;
+                _currentValue = _lastCurrentValue;
+            }
 
-                switch (_mathematicalAction)
-                {
-                    case "ADD":
-                        _currentValue = _lastValue + _currentValue;
-                        textDisplay.Text = _currentValue.ToString(CultureInfo.InvariantCulture);
-                        _lastValue = 0;
-                        _currentValue = 0;
-                        _mathematicalAction = "";
-                        break;
-                    case "SUBTRACT":
-                        _currentValue = _lastValue - _currentValue;
-                        textDisplay.Text = _currentValue.ToString(CultureInfo.InvariantCulture);
-                        _lastValue = 0;
-                        _currentValue = 0;
-                        _mathematicalAction = "";
-                        break;
-                    case "MULTIPLY":
-                        _currentValue = _lastValue * _currentValue;
-                        textDisplay.Text = _currentValue.ToString(CultureInfo.InvariantCulture);
-                        _lastValue = 0;
-                        _currentValue = 0;
-                        _mathematicalAction = "";
-                        break;
-                    case "DIVISION":
-                        _currentValue = _lastValue / _currentValue;
-                        textDisplay.Text = _currentValue.ToString(CultureInfo.InvariantCulture);
-                        _lastValue = 0;
-                        _currentValue = 0;
-                        _mathematicalAction = "";
-                        break;
-                }
+            switch (_mathematicalAction)
+            {
+                case "ADD":
+                    if (_lastComputedValue == 0)
+                    {
+                        _lastComputedValue = _lastValue + _currentValue;
+                    }
+                    else
+                    {
+                        _lastComputedValue = _lastComputedValue + _currentValue;                           
+                    }
+                    SetValues();
+                    break;
+                case "SUBTRACT":
+                    if (_lastComputedValue == 0)
+                    {
+                        _lastComputedValue = _lastValue - _currentValue;
+                    }
+                    else
+                    {
+                        _lastComputedValue = _lastComputedValue - _currentValue;              
+                    }
+                    SetValues();
+                    break;
+                case "MULTIPLY":
+                    if (_lastComputedValue == 0)
+                    {
+                        _lastComputedValue = _lastValue * _currentValue;
+                    }
+                    else
+                    {
+                        _lastComputedValue = _lastComputedValue * _currentValue;                           
+                    }
+                    SetValues();
+                    break;
+                case "DIVISION":
+                    if (_lastComputedValue == 0)
+                    {
+                        if (_currentValue != 0)
+                        {
+                            _lastComputedValue = _lastValue/_currentValue;
+                        }
+                    }
+                    else
+                    {
+                        if (_currentValue != 0)
+                        {
+                            _lastComputedValue = _lastComputedValue/_currentValue;
+                        }
+                    }
+                    SetValues();
+                    break;
             }
         }
     }
