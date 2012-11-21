@@ -256,7 +256,6 @@
             // 
             // buttonExponent
             // 
-            this.buttonExponent.Enabled = false;
             this.buttonExponent.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonExponent.Location = new System.Drawing.Point(58, 54);
             this.buttonExponent.Name = "buttonExponent";
@@ -264,6 +263,7 @@
             this.buttonExponent.TabIndex = 18;
             this.buttonExponent.Text = "x^y";
             this.buttonExponent.UseVisualStyleBackColor = true;
+            this.buttonExponent.Click += new System.EventHandler(this.DoExponent);
             // 
             // buttonInverse
             // 

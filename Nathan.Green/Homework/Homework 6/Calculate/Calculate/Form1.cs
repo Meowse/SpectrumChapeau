@@ -248,6 +248,36 @@ namespace Calculate
                         }
                     }
                     break;
+                case "EXPONENT":
+                    if (_lastComputedValue == 0)
+                    {
+                        if (_lastValue == 0)
+                        {
+                            _lastValue = _currentValue;
+                            _currentValue = 0;
+                        }
+                        else
+                        {
+                            if (_currentValue != 0)
+                            {
+                                _lastComputedValue = Math.Pow(_lastValue, _currentValue);
+                                textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
+                                _lastValue = 0;
+                                _currentValue = 0;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (_currentValue != 0)
+                        {
+                            _lastComputedValue = Math.Pow(_lastComputedValue, _currentValue);
+                            textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
+                            _lastValue = 0;
+                            _currentValue = 0;
+                        }
+                    }
+                    break;
             }
         }
 
@@ -315,7 +345,35 @@ namespace Calculate
                     }
                     SetValues();
                     break;
+                case "EXPONENT":
+                    if (_lastComputedValue == 0)
+                    {
+                        if (_currentValue != 0)
+                        {
+                            _lastComputedValue = Math.Pow(_lastValue, _currentValue);
+                        }
+                    }
+                    else
+                    {
+                        if (_currentValue != 0)
+                        {
+                            _lastComputedValue = Math.Pow(_lastComputedValue, _currentValue);
+                        }
+                    }
+                    SetValues();
+                    break;
             }
+        }
+
+        private void DoExponent(object sender, EventArgs e)
+        {
+            if ((_mathematicalAction != "") && (_mathematicalAction != "EXPONENT"))
+            {
+                DoEquals(null, null);
+            }
+
+            _mathematicalAction = "EXPONENT";
+            DoMath(_mathematicalAction);
         }
     }
 }
