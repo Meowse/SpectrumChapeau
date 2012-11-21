@@ -7,7 +7,6 @@ namespace Calculate
     public partial class FormCalculate : Form
     {
         private double _currentValue;
-        private bool isDecimal = false;
 
         public FormCalculate()
         {
@@ -23,34 +22,17 @@ namespace Calculate
             _lastComputedValue = 0;
             _lastCurrentValue = 0;
             _lastMathematicalAction = "";
-            isDecimal = false;
         }
-        
+
+        private double UpdateNumber(double value)
+        {
+            _currentValue = ((_currentValue*10) + value);
+            return _currentValue;
+        }
+
         private void UpdateDisplay(double value)
         {
-            if ((_currentValue == 0) && (!isDecimal))
-            {
-                textDisplay.Text = "";
-            }
-
-            if (!isDecimal)
-            {
-                textDisplay.Text = textDisplay.Text + value.ToString();
-                _currentValue = Convert.ToDouble(textDisplay.Text);
-            }
-            else
-            {
-                if (!textDisplay.Text.Contains("."))
-                {
-                    textDisplay.Text = textDisplay.Text + "." + value.ToString();
-                    _currentValue = Convert.ToDouble(textDisplay.Text);
-                }
-                else
-                {
-                    textDisplay.Text = textDisplay.Text + value.ToString();
-                    _currentValue = Convert.ToDouble(textDisplay.Text);                    
-                }
-            }
+            textDisplay.Text = UpdateNumber(value).ToString(CultureInfo.InvariantCulture);
         }
 
         private void Do1(object sender, EventArgs e)
@@ -105,16 +87,10 @@ namespace Calculate
 
         private void DoDecimal(object sender, EventArgs e)
         {
-            if (!isDecimal)
-            {
-                isDecimal = true;
-            }
         }
 
         private void DoAdd(object sender, EventArgs e)
         {
-            isDecimal = false;
-
             if ((_mathematicalAction != "") && (_mathematicalAction != "ADD"))
             {
                 DoEquals(null, null);
@@ -126,8 +102,6 @@ namespace Calculate
 
         private void DoSubtract(object sender, EventArgs e)
         {
-            isDecimal = false;
-
             if ((_mathematicalAction != "") && (_mathematicalAction != "SUBTRACT"))
             {
                 DoEquals(null, null);
@@ -139,8 +113,6 @@ namespace Calculate
 
         private void DoMultiply(object sender, EventArgs e)
         {
-            isDecimal = false;
-
             if ((_mathematicalAction != "") && (_mathematicalAction != "MULTIPLY"))
             {
                 DoEquals(null, null);
@@ -152,8 +124,6 @@ namespace Calculate
 
         private void DoDivision(object sender, EventArgs e)
         {
-            isDecimal = false;
-
             if ((_mathematicalAction != "") && (_mathematicalAction != "DIVISION"))
             {
                 DoEquals(null, null);
@@ -191,10 +161,6 @@ namespace Calculate
                             textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
                             _lastValue = 0;
                             _currentValue = 0;
-                        }
-                        else
-                        {
-                            _currentValue = _lastComputedValue;
                         }
                     }
                     break;
@@ -293,19 +259,10 @@ namespace Calculate
             _currentValue = 0;
             _lastMathematicalAction = _mathematicalAction;
             _mathematicalAction = "";
-            _lastComputedValue = 0;
         }
 
         private void DoEquals(object sender, EventArgs e)
         {
-            //The following code was used to allow me to press the equal button over and over again and it would
-            //do the last action over and over again
-//            if((_mathematicalAction == "") && (_lastComputedValue != 0) && (_lastCurrentValue != 0))
-//            {
-//                _mathematicalAction = _lastMathematicalAction;
-//                _currentValue = _lastCurrentValue;
-//            }
-
             switch (_mathematicalAction)
             {
                 case "ADD":
