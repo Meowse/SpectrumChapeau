@@ -278,6 +278,25 @@ namespace Calculate
                         }
                     }
                     break;
+                case "INVERSE":
+                    if (_lastComputedValue == 0)
+                    {
+                        if (_currentValue != 0)
+                        {
+                            _lastComputedValue = 1 / _currentValue;
+                            textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
+                            _lastValue = 0;
+                            _currentValue = 0;
+                        }
+                    }
+                    else
+                    {
+                        _lastComputedValue = 1 / _lastComputedValue;
+                        textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
+                        _lastValue = 0;
+                        _currentValue = 0;
+                    }
+                    break;            
             }
         }
 
@@ -373,6 +392,17 @@ namespace Calculate
             }
 
             _mathematicalAction = "EXPONENT";
+            DoMath(_mathematicalAction);
+        }
+
+        private void DoInverse(object sender, EventArgs e)
+        {
+            if ((_mathematicalAction != "") && (_mathematicalAction != "INVERSE"))
+            {
+                DoEquals(null, null);
+            }
+
+            _mathematicalAction = "INVERSE";
             DoMath(_mathematicalAction);
         }
     }

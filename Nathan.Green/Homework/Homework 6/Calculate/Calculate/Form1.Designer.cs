@@ -267,7 +267,6 @@
             // 
             // buttonInverse
             // 
-            this.buttonInverse.Enabled = false;
             this.buttonInverse.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonInverse.Location = new System.Drawing.Point(104, 54);
             this.buttonInverse.Name = "buttonInverse";
@@ -275,6 +274,7 @@
             this.buttonInverse.TabIndex = 19;
             this.buttonInverse.Text = "1/x";
             this.buttonInverse.UseVisualStyleBackColor = true;
+            this.buttonInverse.Click += new System.EventHandler(this.DoInverse);
             // 
             // buttonSquareroot
             // 
