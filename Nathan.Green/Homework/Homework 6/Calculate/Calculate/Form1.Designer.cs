@@ -278,7 +278,6 @@
             // 
             // buttonSquareroot
             // 
-            this.buttonSquareroot.Enabled = false;
             this.buttonSquareroot.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSquareroot.Location = new System.Drawing.Point(150, 54);
             this.buttonSquareroot.Name = "buttonSquareroot";
@@ -286,6 +285,7 @@
             this.buttonSquareroot.TabIndex = 20;
             this.buttonSquareroot.Text = "Sqr";
             this.buttonSquareroot.UseVisualStyleBackColor = true;
+            this.buttonSquareroot.Click += new System.EventHandler(this.DoSquareRoot);
             // 
             // FormCalculate
             // 

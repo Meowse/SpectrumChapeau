@@ -296,7 +296,26 @@ namespace Calculate
                         _lastValue = 0;
                         _currentValue = 0;
                     }
-                    break;            
+                    break;
+                case "SQUAREROOT":
+                    if (_lastComputedValue == 0)
+                    {
+                        if (_currentValue != 0)
+                        {
+                            _lastComputedValue = Math.Sqrt(_currentValue);
+                            textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
+                            _lastValue = 0;
+                            _currentValue = 0;
+                        }
+                    }
+                    else
+                    {
+                        _lastComputedValue = Math.Sqrt(_lastComputedValue);
+                        textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
+                        _lastValue = 0;
+                        _currentValue = 0;
+                    }
+                    break;
             }
         }
 
@@ -404,6 +423,18 @@ namespace Calculate
 
             _mathematicalAction = "INVERSE";
             DoMath(_mathematicalAction);
+        }
+
+        private void DoSquareRoot(object sender, EventArgs e)
+        {
+            if ((_mathematicalAction != "") && (_mathematicalAction != "SQUAREROOT"))
+            {
+                DoEquals(null, null);
+            }
+
+            _mathematicalAction = "SQUAREROOT";
+            DoMath(_mathematicalAction);
+
         }
     }
 }
