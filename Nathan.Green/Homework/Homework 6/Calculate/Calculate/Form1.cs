@@ -22,6 +22,7 @@ namespace Calculate
             _lastComputedValue = 0;
             _lastCurrentValue = 0;
             _lastMathematicalAction = "";
+            _decimalValue = "";
         }
 
         private double UpdateNumber(double value)
@@ -32,7 +33,16 @@ namespace Calculate
 
         private void UpdateDisplay(double value)
         {
-            textDisplay.Text = UpdateNumber(value).ToString(CultureInfo.InvariantCulture);
+            if (_decimalValue != "")
+            {
+                _decimalValue = _decimalValue + value.ToString();
+                textDisplay.Text = _decimalValue;
+                _currentValue = Convert.ToDouble(_decimalValue);
+            }
+            else
+            {
+                textDisplay.Text = UpdateNumber(value).ToString(CultureInfo.InvariantCulture);   
+            }
         }
 
         private void Do1(object sender, EventArgs e)
@@ -87,10 +97,15 @@ namespace Calculate
 
         private void DoDecimal(object sender, EventArgs e)
         {
+            if ((!_currentValue.ToString().Contains(".")) && (_decimalValue == ""))
+            {
+                _decimalValue = _currentValue.ToString() + ".";
+            }
         }
 
         private void DoAdd(object sender, EventArgs e)
         {
+            _decimalValue = "";
             if ((_mathematicalAction != "") && (_mathematicalAction != "ADD"))
             {
                 DoEquals(null, null);
@@ -102,6 +117,7 @@ namespace Calculate
 
         private void DoSubtract(object sender, EventArgs e)
         {
+            _decimalValue = "";
             if ((_mathematicalAction != "") && (_mathematicalAction != "SUBTRACT"))
             {
                 DoEquals(null, null);
@@ -113,6 +129,7 @@ namespace Calculate
 
         private void DoMultiply(object sender, EventArgs e)
         {
+            _decimalValue = "";
             if ((_mathematicalAction != "") && (_mathematicalAction != "MULTIPLY"))
             {
                 DoEquals(null, null);
@@ -124,6 +141,7 @@ namespace Calculate
 
         private void DoDivision(object sender, EventArgs e)
         {
+            _decimalValue = "";
             if ((_mathematicalAction != "") && (_mathematicalAction != "DIVISION"))
             {
                 DoEquals(null, null);
@@ -133,188 +151,223 @@ namespace Calculate
             DoMath(_mathematicalAction);
         }
 
+        private void DoAddition()
+        {
+            if (_lastComputedValue == 0)
+            {
+                if (_lastValue == 0)
+                {
+                    _lastValue = _currentValue;
+                    _currentValue = 0;
+                }
+                else
+                {
+                    _lastComputedValue = _lastValue + _currentValue;
+                    textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
+                    _lastValue = 0;
+                    _currentValue = 0;
+                }
+            }
+            else
+            {
+                if (_currentValue != 0)
+                {
+                    _lastComputedValue = _lastComputedValue + _currentValue;
+                    textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
+                    _lastValue = 0;
+                    _currentValue = 0;
+                }
+            }
+        }
+
+        private void DoSubtraction()
+        {
+            if (_lastComputedValue == 0)
+            {
+                if (_lastValue == 0)
+                {
+                    _lastValue = _currentValue;
+                    _currentValue = 0;
+                }
+                else
+                {
+                    _lastComputedValue = _lastValue - _currentValue;
+                    textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
+                    _lastValue = 0;
+                    _currentValue = 0;
+                }
+            }
+            else
+            {
+                if (_currentValue != 0)
+                {
+                    _lastComputedValue = _lastComputedValue - _currentValue;
+                    textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
+                    _lastValue = 0;
+                    _currentValue = 0;
+                }
+            }
+        }
+
+        private void DoMultiplication()
+        {
+            if (_lastComputedValue == 0)
+            {
+                if (_lastValue == 0)
+                {
+                    _lastValue = _currentValue;
+                    _currentValue = 0;
+                }
+                else
+                {
+                    _lastComputedValue = _lastValue * _currentValue;
+                    textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
+                    _lastValue = 0;
+                    _currentValue = 0;
+                }
+            }
+            else
+            {
+                if (_currentValue != 0)
+                {
+                    _lastComputedValue = _lastComputedValue * _currentValue;
+                    textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
+                    _lastValue = 0;
+                    _currentValue = 0;
+                }
+            }
+        }
+
+        private void DoDivision()
+        {
+            if (_lastComputedValue == 0)
+            {
+                if (_lastValue == 0)
+                {
+                    _lastValue = _currentValue;
+                    _currentValue = 0;
+                }
+                else
+                {
+                    if (_currentValue != 0)
+                    {
+                        _lastComputedValue = _lastValue / _currentValue;
+                        textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
+                        _lastValue = 0;
+                        _currentValue = 0;
+                    }
+                }
+            }
+            else
+            {
+                if (_currentValue != 0)
+                {
+                    _lastComputedValue = _lastComputedValue / _currentValue;
+                    textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
+                    _lastValue = 0;
+                    _currentValue = 0;
+                }
+            }
+        }
+
+        private void DoExponential()
+        {
+            if (_lastComputedValue == 0)
+            {
+                if (_lastValue == 0)
+                {
+                    _lastValue = _currentValue;
+                    _currentValue = 0;
+                }
+                else
+                {
+                    if (_currentValue != 0)
+                    {
+                        _lastComputedValue = Math.Pow(_lastValue, _currentValue);
+                        textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
+                        _lastValue = 0;
+                        _currentValue = 0;
+                    }
+                }
+            }
+            else
+            {
+                if (_currentValue != 0)
+                {
+                    _lastComputedValue = Math.Pow(_lastComputedValue, _currentValue);
+                    textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
+                    _lastValue = 0;
+                    _currentValue = 0;
+                }
+            }
+        }
+
+        private void DoInversion()
+        {
+            if (_lastComputedValue == 0)
+            {
+                if (_currentValue != 0)
+                {
+                    _lastComputedValue = 1 / _currentValue;
+                    textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
+                    _lastValue = 0;
+                    _currentValue = 0;
+                }
+            }
+            else
+            {
+                _lastComputedValue = 1 / _lastComputedValue;
+                textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
+                _lastValue = 0;
+                _currentValue = 0;
+            }
+        }
+
+        private void DoSquareRoot()
+        {
+            if (_lastComputedValue == 0)
+            {
+                if (_currentValue != 0)
+                {
+                    _lastComputedValue = Math.Sqrt(_currentValue);
+                    textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
+                    _lastValue = 0;
+                    _currentValue = 0;
+                }
+            }
+            else
+            {
+                _lastComputedValue = Math.Sqrt(_lastComputedValue);
+                textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
+                _lastValue = 0;
+                _currentValue = 0;
+            }
+        }
+
         private void DoMath(string action)
         {
             switch (action)
             {
                 case "ADD":
-                    if (_lastComputedValue == 0)
-                    {
-                        if (_lastValue == 0)
-                        {
-                            _lastValue = _currentValue;
-                            _currentValue = 0;
-                        }
-                        else
-                        {
-                            _lastComputedValue = _lastValue + _currentValue;
-                            textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
-                            _lastValue = 0;
-                            _currentValue = 0;
-                        }
-                    }
-                    else
-                    {
-                        if (_currentValue != 0)
-                        {
-                            _lastComputedValue = _lastComputedValue + _currentValue;
-                            textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
-                            _lastValue = 0;
-                            _currentValue = 0;
-                        }
-                    }
+                    DoAddition();
                     break;
                 case "SUBTRACT":
-                    if (_lastComputedValue == 0)
-                    {
-                        if (_lastValue == 0)
-                        {
-                            _lastValue = _currentValue;
-                            _currentValue = 0;
-                        }
-                        else
-                        {
-                            _lastComputedValue = _lastValue - _currentValue;
-                            textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
-                            _lastValue = 0;
-                            _currentValue = 0;
-                        }
-                    }
-                    else
-                    {
-                        if (_currentValue != 0)
-                        {
-                            _lastComputedValue = _lastComputedValue - _currentValue;
-                            textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
-                            _lastValue = 0;
-                            _currentValue = 0;
-                        }
-                    }
+                    DoSubtraction();
                     break;
                 case "MULTIPLY":
-                    if (_lastComputedValue == 0)
-                    {
-                        if (_lastValue == 0)
-                        {
-                            _lastValue = _currentValue;
-                            _currentValue = 0;
-                        }
-                        else
-                        {
-                            _lastComputedValue = _lastValue * _currentValue;
-                            textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
-                            _lastValue = 0;
-                            _currentValue = 0;
-                        }
-                    }
-                    else
-                    {
-                        if (_currentValue != 0)
-                        {
-                            _lastComputedValue = _lastComputedValue*_currentValue;
-                            textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
-                            _lastValue = 0;
-                            _currentValue = 0;
-                        }
-                    }
+                    DoMultiplication();
                     break;
                 case "DIVISION":
-                    if (_lastComputedValue == 0)
-                    {
-                        if (_lastValue == 0)
-                        {
-                            _lastValue = _currentValue;
-                            _currentValue = 0;
-                        }
-                        else
-                        {
-                            if (_currentValue != 0)
-                            {
-                                _lastComputedValue = _lastValue/_currentValue;
-                                textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
-                                _lastValue = 0;
-                                _currentValue = 0;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (_currentValue != 0)
-                        {
-                            _lastComputedValue = _lastComputedValue / _currentValue;
-                            textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
-                            _lastValue = 0;
-                            _currentValue = 0;
-                        }
-                    }
+                    DoDivision();
                     break;
                 case "EXPONENT":
-                    if (_lastComputedValue == 0)
-                    {
-                        if (_lastValue == 0)
-                        {
-                            _lastValue = _currentValue;
-                            _currentValue = 0;
-                        }
-                        else
-                        {
-                            if (_currentValue != 0)
-                            {
-                                _lastComputedValue = Math.Pow(_lastValue, _currentValue);
-                                textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
-                                _lastValue = 0;
-                                _currentValue = 0;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (_currentValue != 0)
-                        {
-                            _lastComputedValue = Math.Pow(_lastComputedValue, _currentValue);
-                            textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
-                            _lastValue = 0;
-                            _currentValue = 0;
-                        }
-                    }
+                    DoExponential();
                     break;
                 case "INVERSE":
-                    if (_lastComputedValue == 0)
-                    {
-                        if (_currentValue != 0)
-                        {
-                            _lastComputedValue = 1 / _currentValue;
-                            textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
-                            _lastValue = 0;
-                            _currentValue = 0;
-                        }
-                    }
-                    else
-                    {
-                        _lastComputedValue = 1 / _lastComputedValue;
-                        textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
-                        _lastValue = 0;
-                        _currentValue = 0;
-                    }
+                    DoInversion();
                     break;
                 case "SQUAREROOT":
-                    if (_lastComputedValue == 0)
-                    {
-                        if (_currentValue != 0)
-                        {
-                            _lastComputedValue = Math.Sqrt(_currentValue);
-                            textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
-                            _lastValue = 0;
-                            _currentValue = 0;
-                        }
-                    }
-                    else
-                    {
-                        _lastComputedValue = Math.Sqrt(_lastComputedValue);
-                        textDisplay.Text = _lastComputedValue.ToString(CultureInfo.InvariantCulture);
-                        _lastValue = 0;
-                        _currentValue = 0;
-                    }
+                    DoSquareRoot();
                     break;
             }
         }
@@ -405,6 +458,7 @@ namespace Calculate
 
         private void DoExponent(object sender, EventArgs e)
         {
+            _decimalValue = "";
             if ((_mathematicalAction != "") && (_mathematicalAction != "EXPONENT"))
             {
                 DoEquals(null, null);
@@ -416,6 +470,7 @@ namespace Calculate
 
         private void DoInverse(object sender, EventArgs e)
         {
+            _decimalValue = "";
             if ((_mathematicalAction != "") && (_mathematicalAction != "INVERSE"))
             {
                 DoEquals(null, null);
@@ -427,6 +482,7 @@ namespace Calculate
 
         private void DoSquareRoot(object sender, EventArgs e)
         {
+            _decimalValue = "";
             if ((_mathematicalAction != "") && (_mathematicalAction != "SQUAREROOT"))
             {
                 DoEquals(null, null);
@@ -434,7 +490,6 @@ namespace Calculate
 
             _mathematicalAction = "SQUAREROOT";
             DoMath(_mathematicalAction);
-
         }
     }
 }

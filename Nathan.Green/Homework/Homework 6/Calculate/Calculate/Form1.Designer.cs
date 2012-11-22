@@ -178,7 +178,6 @@
             // 
             // buttonDecimal
             // 
-            this.buttonDecimal.Enabled = false;
             this.buttonDecimal.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonDecimal.Location = new System.Drawing.Point(58, 236);
             this.buttonDecimal.Name = "buttonDecimal";
@@ -351,6 +350,7 @@
         private string _mathematicalAction = "";
         private string _lastMathematicalAction = "";
         private double _lastCurrentValue = 0;
+        private string _decimalValue = "";
     }
 }
 
