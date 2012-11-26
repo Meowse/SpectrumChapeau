@@ -12,8 +12,15 @@ namespace CollectionsAndIterationTest
         [Test]
         public void ShouldReturnTheLargestNumber()
         {
-            List<int> numbers = new List<int> { 1, 2, 4, 3};
+            List<int> numbers = new List<int> { 1, 2, 4, 3 };
             Assert.That(new CollectionsExamples().GetBiggest(numbers), Is.EqualTo(4));
+        }
+
+        [Test]
+        public void ShouldReturnTheSmallestNumber()
+        {
+            List<int> numbers = new List<int> { 1, 2, 4, 3};
+            Assert.That(new CollectionsExamples().GetSmallest(numbers), Is.EqualTo(1));
         }
 
         [Test]
@@ -26,17 +33,72 @@ namespace CollectionsAndIterationTest
         [Test]
         public void ShouldReturnTheLargestMagnitude()
         {
-            List<int> numbers=new List<int> {4, 5, -3, -5};
-            var largestInList = new List<int>();
-            largestInList.Add(5);
-            largestInList.Add(-5);
-            CollectionAssert.AreEquivalent(largestInList, new CollectionsExamples().GetBiggestMagnitude(numbers));
-                //Assert.That(collectionsExamples.GetBiggestMagnitude(numbers), Is.EqualTo(5));
+            List<int> numbers=new List<int> {4, 5, -8, -5};
+            List<int> largestMagnitude = new List<int> { -8 };
+            CollectionAssert.AreEquivalent(largestMagnitude, new CollectionsExamples().GetGreatestAbsolute(numbers));
         }
 
         [Test]
+        public void ShouldReturnTheLargestAbsoluteValueAmongPositiveNumbers()
+        {
+            List<int> numbers = new List<int> { 6, 4, 7, 5, 9, 3 };
+            var largestInList = new List<int> { 9 };
+            CollectionAssert.AreEquivalent(largestInList, new CollectionsExamples().GetGreatestAbsolute(numbers));
+        }
+
+        [Test]
+        public void ShouldReturnTheLargestAbsoluteValueAmongNegativeNumbers()
+        {
+            List<int> numbers = new List<int> { -6, -4, -7, -5, -9, -3 };
+            var largestInList = new List<int> { -9 };
+            CollectionAssert.AreEquivalent(largestInList, new CollectionsExamples().GetGreatestAbsolute(numbers));
+        }
+
+        [Test]
+        public void ShouldReturnTheLargestAbsoluteValueAmongMixedNumbersWithPositiveLargest()
+        {
+            List<int> numbers = new List<int> { 6, -4, 2, 5, -5 };
+            var largestInList = new List<int> { 6 };
+            CollectionAssert.AreEquivalent(largestInList, new CollectionsExamples().GetGreatestAbsolute(numbers));
+        }
+
+        [Test]
+        public void ShouldReturnTheLargestAbsoluteValueAmongMixedNumbersWithNegativeLargest()
+        {
+            List<int> numbers = new List<int> { -6, 4, -2, -5, 5 };
+            var largestInList = new List<int> { -6 };
+            CollectionAssert.AreEquivalent(largestInList, new CollectionsExamples().GetGreatestAbsolute(numbers));
+        }
+
+        [Test]
+        public void ShouldReturnSingleLargestPositiveValueIfTwoEqualPositiveMagnitudes()
+        {
+            List<int> numbers = new List<int> { 4, 5, -3, 5 };
+            var largestInList = new List<int> { 5 };
+            CollectionAssert.AreEquivalent(largestInList, new CollectionsExamples().GetGreatestAbsolute(numbers));
+        }
+
+        [Test]
+        public void ShouldReturnSingleLargestNegativeVauleIfTwoEqualNegativeMagnitudes()
+        {
+            List<int> numbers = new List<int> { 4, -5, -3, -5 };
+            var largestInList = new List<int> { -5 };
+            CollectionAssert.AreEquivalent(largestInList, new CollectionsExamples().GetGreatestAbsolute(numbers));
+        }
+
+        [Test]
+        public void ShouldReturnBothActualValuesIfPositiveAndNegativeLargestMagnitudeaAreTheSame()
+        {
+            List<int> numbers = new List<int> { 4, 5, -3, -5 };
+            var largestInList = new List<int> { 5, -5 };
+            CollectionAssert.AreEquivalent(largestInList, new CollectionsExamples().GetGreatestAbsolute(numbers));
+        }
+
+        //[Test]
         public void ShouldReturnWhatIfListIsEmpty()
         {
+            List<int> numbers = new List<int> { };
+            CollectionAssert.AreEquivalent("??", new CollectionsExamples().GetGreatestAbsolute(numbers));
         }
 
         // TODO: EXTRA CREDIT: What should we do if the list is empty?

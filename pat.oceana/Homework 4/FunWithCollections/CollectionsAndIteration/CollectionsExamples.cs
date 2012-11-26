@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace CollectionsAndIteration
@@ -8,29 +9,41 @@ namespace CollectionsAndIteration
 
         public int GetBiggest(List<int> numbers)
         {
-            return numbers.Max(); 
+            return numbers.Max();
         }
-        //TODO: needs add'l comparison- currently finds 1, 2-largest Mags
-        public int[] GetBiggestMagnitude(List<int> numbers)
+        public int GetSmallest(List<int> numbers)
         {
-            int currentLargest = numbers[0];
-            int previousLargest = numbers[0];
-            var largestMagnitude=new List<int>();
+            return numbers.Min();
+        }
+
+        public int[] GetGreatestAbsolute(List<int> numbers)
+        {
+            int biggestAbsolute = numbers[0];
+            bool biggestAbsoluteIsDuplicate = false;
+
             foreach (int number in numbers)
             {
-                if (System.Math.Abs(number) >= currentLargest)
+                if (Math.Abs(number) > Math.Abs(biggestAbsolute))
                 {
-                    previousLargest = currentLargest;
-                    currentLargest = number;
+                    biggestAbsolute = number;
+                    biggestAbsoluteIsDuplicate = false;
                 }
-
+                else if (Math.Abs(number) == Math.Abs(biggestAbsolute))
+                {
+                    bool numberIsPositive = number > 0;
+                    bool biggestMagnitudeIsPositive = biggestAbsolute > 0;
+                    if (numberIsPositive != biggestMagnitudeIsPositive)
+                    {
+                        biggestAbsoluteIsDuplicate = true;
+                    }
+                }
             }
 
-            largestMagnitude.Add(currentLargest);
-            largestMagnitude.Add(previousLargest);
-
-            return largestMagnitude.ToArray();
+            return biggestAbsoluteIsDuplicate
+                ? new List<int> { Math.Abs(biggestAbsolute), -Math.Abs(biggestAbsolute) }.ToArray()
+                : new List<int> { biggestAbsolute }.ToArray();
         }
-
     }
 }
+
+ 
