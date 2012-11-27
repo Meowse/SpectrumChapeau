@@ -491,5 +491,26 @@ namespace Calculate
             _mathematicalAction = "SQUAREROOT";
             DoMath(_mathematicalAction);
         }
+
+//        private void FormCalculate_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+//        {
+//
+//            // Determine whether the keystroke is a number from the top of the keyboard. 
+//            if (e.KeyCode < Keys.D0 || e.KeyCode > Keys.D9)
+//            {
+//                // Determine whether the keystroke is a number from the keypad. 
+//                if (e.KeyCode < Keys.NumPad0 || e.KeyCode > Keys.NumPad9)
+//                {
+//                    if ((e.KeyCode == Keys.D0) || (e.KeyCode == Keys.NumPad0))
+//                    {
+//                        Do0(null,null);
+//                    }
+//                    else if ((e.KeyCode == Keys.D1) || (e.KeyCode == Keys.NumPad1))
+//                    {
+//                        Do1(null,null);
+//                    }
+//                }
+//            }
+//        }
     }
 }
