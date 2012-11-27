@@ -27,5 +27,10 @@ namespace FunWithObjects
         {
             Text = "Done!";
         }
+
+        private void DoesSomething_Load(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }

@@ -49,6 +49,7 @@
             this.Controls.Add(this.button1);
             this.Name = "DoesSomething";
             this.Text = "Does Something";
+            this.Load += new System.EventHandler(this.DoesSomething_Load);
             this.ResumeLayout(false);
 
         }
