@@ -19,15 +19,53 @@ namespace Calculator
 
         private void EnterNumberInTextField(int i)
         {
-            if (_startNewNumber)
+            if (!HasDecimal())
             {
-                textBox1.Text = i.ToString();
-                _startNewNumber = false;
+
+                if (_startNewNumber)
+                {
+                    textBox1.Text = i.ToString();
+                    _startNewNumber = false;
+                }
+                else
+                {
+                    textBox1.Text = (Convert.ToDouble(textBox1.Text)*10 + i).ToString();
+                }
             }
             else
             {
-                textBox1.Text = (Convert.ToDouble(textBox1.Text)*10 + i).ToString();
+                if (_startNewNumber)
+                {
+                    textBox1.Text = i.ToString();
+                    _startNewNumber = false;
+                }
+                else
+                {
+                    textBox1.Text += i.ToString();
+                }
             }
+        }
+
+        private void AddDecimal()
+        {
+            if (!HasDecimal())
+            {
+                textBox1.Text += ".";
+                if (_startNewNumber)
+                {
+                    _startNewNumber = false;
+                }
+            }
+        }
+
+        private bool HasDecimal()
+        {
+            return textBox1.Text.Contains(".");
+        }
+
+        private void DecimalClick(object sender, EventArgs e)
+        {
+            AddDecimal();
         }
 
         private void ZeroClick(object sender, EventArgs e)
@@ -182,5 +220,6 @@ namespace Calculator
                     break;
             }
         }
+
     }
 }

@@ -65,7 +65,7 @@
             this.seven.Location = new System.Drawing.Point(18, 85);
             this.seven.Name = "seven";
             this.seven.Size = new System.Drawing.Size(40, 35);
-            this.seven.TabIndex = 1;
+            this.seven.TabIndex = 5;
             this.seven.Text = "7";
             this.seven.UseVisualStyleBackColor = true;
             this.seven.Click += new System.EventHandler(this.SevenClick);
@@ -75,7 +75,7 @@
             this.eight.Location = new System.Drawing.Point(64, 85);
             this.eight.Name = "eight";
             this.eight.Size = new System.Drawing.Size(40, 35);
-            this.eight.TabIndex = 2;
+            this.eight.TabIndex = 6;
             this.eight.Text = "8";
             this.eight.UseVisualStyleBackColor = true;
             this.eight.Click += new System.EventHandler(this.EightClick);
@@ -85,7 +85,7 @@
             this.nine.Location = new System.Drawing.Point(110, 85);
             this.nine.Name = "nine";
             this.nine.Size = new System.Drawing.Size(40, 35);
-            this.nine.TabIndex = 3;
+            this.nine.TabIndex = 7;
             this.nine.Text = "9";
             this.nine.UseVisualStyleBackColor = true;
             this.nine.Click += new System.EventHandler(this.NineClick);
@@ -95,7 +95,7 @@
             this.four.Location = new System.Drawing.Point(18, 126);
             this.four.Name = "four";
             this.four.Size = new System.Drawing.Size(40, 35);
-            this.four.TabIndex = 4;
+            this.four.TabIndex = 9;
             this.four.Text = "4";
             this.four.UseVisualStyleBackColor = true;
             this.four.Click += new System.EventHandler(this.FourClick);
@@ -105,7 +105,7 @@
             this.five.Location = new System.Drawing.Point(64, 126);
             this.five.Name = "five";
             this.five.Size = new System.Drawing.Size(40, 35);
-            this.five.TabIndex = 5;
+            this.five.TabIndex = 10;
             this.five.Text = "5";
             this.five.UseVisualStyleBackColor = true;
             this.five.Click += new System.EventHandler(this.FiveClick);
@@ -115,7 +115,7 @@
             this.six.Location = new System.Drawing.Point(110, 126);
             this.six.Name = "six";
             this.six.Size = new System.Drawing.Size(40, 35);
-            this.six.TabIndex = 6;
+            this.six.TabIndex = 11;
             this.six.Text = "6";
             this.six.UseVisualStyleBackColor = true;
             this.six.Click += new System.EventHandler(this.SixClick);
@@ -125,7 +125,7 @@
             this.one.Location = new System.Drawing.Point(17, 167);
             this.one.Name = "one";
             this.one.Size = new System.Drawing.Size(40, 35);
-            this.one.TabIndex = 7;
+            this.one.TabIndex = 13;
             this.one.Text = "1";
             this.one.UseVisualStyleBackColor = true;
             this.one.Click += new System.EventHandler(this.OneClick);
@@ -135,7 +135,7 @@
             this.two.Location = new System.Drawing.Point(64, 167);
             this.two.Name = "two";
             this.two.Size = new System.Drawing.Size(40, 35);
-            this.two.TabIndex = 8;
+            this.two.TabIndex = 14;
             this.two.Text = "2";
             this.two.UseVisualStyleBackColor = true;
             this.two.Click += new System.EventHandler(this.TwoClick);
@@ -145,7 +145,7 @@
             this.three.Location = new System.Drawing.Point(110, 167);
             this.three.Name = "three";
             this.three.Size = new System.Drawing.Size(40, 35);
-            this.three.TabIndex = 9;
+            this.three.TabIndex = 15;
             this.three.Text = "3";
             this.three.UseVisualStyleBackColor = true;
             this.three.Click += new System.EventHandler(this.ThreeClick);
@@ -155,7 +155,7 @@
             this.zero.Location = new System.Drawing.Point(17, 208);
             this.zero.Name = "zero";
             this.zero.Size = new System.Drawing.Size(40, 35);
-            this.zero.TabIndex = 10;
+            this.zero.TabIndex = 17;
             this.zero.Text = "0";
             this.zero.UseVisualStyleBackColor = true;
             this.zero.Click += new System.EventHandler(this.ZeroClick);
@@ -165,16 +165,17 @@
             this.point.Location = new System.Drawing.Point(64, 208);
             this.point.Name = "point";
             this.point.Size = new System.Drawing.Size(40, 35);
-            this.point.TabIndex = 11;
+            this.point.TabIndex = 18;
             this.point.Text = ".";
             this.point.UseVisualStyleBackColor = true;
+            this.point.Click += new System.EventHandler(this.DecimalClick);
             // 
             // equals
             // 
             this.equals.Location = new System.Drawing.Point(110, 208);
             this.equals.Name = "equals";
             this.equals.Size = new System.Drawing.Size(40, 35);
-            this.equals.TabIndex = 12;
+            this.equals.TabIndex = 19;
             this.equals.Text = "=";
             this.equals.UseVisualStyleBackColor = true;
             this.equals.Click += new System.EventHandler(this.EqualsClick);
@@ -184,7 +185,7 @@
             this.addition.Location = new System.Drawing.Point(156, 85);
             this.addition.Name = "addition";
             this.addition.Size = new System.Drawing.Size(40, 35);
-            this.addition.TabIndex = 13;
+            this.addition.TabIndex = 8;
             this.addition.Text = "+";
             this.addition.UseVisualStyleBackColor = true;
             this.addition.Click += new System.EventHandler(this.AdditionClick);
@@ -194,7 +195,7 @@
             this.subtraction.Location = new System.Drawing.Point(156, 126);
             this.subtraction.Name = "subtraction";
             this.subtraction.Size = new System.Drawing.Size(40, 35);
-            this.subtraction.TabIndex = 14;
+            this.subtraction.TabIndex = 12;
             this.subtraction.Text = "-";
             this.subtraction.UseVisualStyleBackColor = true;
             this.subtraction.Click += new System.EventHandler(this.SubtractionClick);
@@ -204,7 +205,7 @@
             this.multiplication.Location = new System.Drawing.Point(156, 167);
             this.multiplication.Name = "multiplication";
             this.multiplication.Size = new System.Drawing.Size(40, 35);
-            this.multiplication.TabIndex = 15;
+            this.multiplication.TabIndex = 16;
             this.multiplication.Text = "*";
             this.multiplication.UseVisualStyleBackColor = true;
             this.multiplication.Click += new System.EventHandler(this.MultiplicationClick);
@@ -214,7 +215,7 @@
             this.division.Location = new System.Drawing.Point(156, 208);
             this.division.Name = "division";
             this.division.Size = new System.Drawing.Size(40, 35);
-            this.division.TabIndex = 16;
+            this.division.TabIndex = 20;
             this.division.Text = "/";
             this.division.UseVisualStyleBackColor = true;
             this.division.Click += new System.EventHandler(this.DivisionClick);
@@ -224,7 +225,7 @@
             this.button17.Location = new System.Drawing.Point(156, 44);
             this.button17.Name = "button17";
             this.button17.Size = new System.Drawing.Size(40, 35);
-            this.button17.TabIndex = 17;
+            this.button17.TabIndex = 4;
             this.button17.Text = "C";
             this.button17.UseVisualStyleBackColor = true;
             this.button17.Click += new System.EventHandler(this.ClearClick);
@@ -234,7 +235,7 @@
             this.exponentiation.Location = new System.Drawing.Point(110, 44);
             this.exponentiation.Name = "exponentiation";
             this.exponentiation.Size = new System.Drawing.Size(40, 35);
-            this.exponentiation.TabIndex = 18;
+            this.exponentiation.TabIndex = 3;
             this.exponentiation.Text = "x^y";
             this.exponentiation.UseVisualStyleBackColor = true;
             this.exponentiation.Click += new System.EventHandler(this.ExponentiationClick);
@@ -245,7 +246,7 @@
             this.squareroot.Location = new System.Drawing.Point(64, 44);
             this.squareroot.Name = "squareroot";
             this.squareroot.Size = new System.Drawing.Size(40, 35);
-            this.squareroot.TabIndex = 19;
+            this.squareroot.TabIndex = 2;
             this.squareroot.Text = "x^1/2";
             this.squareroot.UseVisualStyleBackColor = true;
             this.squareroot.Click += new System.EventHandler(this.SquarerootClick);
@@ -255,7 +256,7 @@
             this.inverse.Location = new System.Drawing.Point(18, 44);
             this.inverse.Name = "inverse";
             this.inverse.Size = new System.Drawing.Size(40, 35);
-            this.inverse.TabIndex = 20;
+            this.inverse.TabIndex = 1;
             this.inverse.Text = "1/x";
             this.inverse.UseVisualStyleBackColor = true;
             this.inverse.Click += new System.EventHandler(this.InverseClick);
