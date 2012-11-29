@@ -46,6 +46,9 @@
             this.multiplication = new System.Windows.Forms.Button();
             this.division = new System.Windows.Forms.Button();
             this.button17 = new System.Windows.Forms.Button();
+            this.exponentiation = new System.Windows.Forms.Button();
+            this.squareroot = new System.Windows.Forms.Button();
+            this.inverse = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox1
@@ -226,11 +229,45 @@
             this.button17.UseVisualStyleBackColor = true;
             this.button17.Click += new System.EventHandler(this.ClearClick);
             // 
+            // exponentiation
+            // 
+            this.exponentiation.Location = new System.Drawing.Point(110, 44);
+            this.exponentiation.Name = "exponentiation";
+            this.exponentiation.Size = new System.Drawing.Size(40, 35);
+            this.exponentiation.TabIndex = 18;
+            this.exponentiation.Text = "x^y";
+            this.exponentiation.UseVisualStyleBackColor = true;
+            this.exponentiation.Click += new System.EventHandler(this.ExponentiationClick);
+            // 
+            // squareroot
+            // 
+            this.squareroot.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.squareroot.Location = new System.Drawing.Point(64, 44);
+            this.squareroot.Name = "squareroot";
+            this.squareroot.Size = new System.Drawing.Size(40, 35);
+            this.squareroot.TabIndex = 19;
+            this.squareroot.Text = "x^1/2";
+            this.squareroot.UseVisualStyleBackColor = true;
+            this.squareroot.Click += new System.EventHandler(this.SquarerootClick);
+            // 
+            // inverse
+            // 
+            this.inverse.Location = new System.Drawing.Point(18, 44);
+            this.inverse.Name = "inverse";
+            this.inverse.Size = new System.Drawing.Size(40, 35);
+            this.inverse.TabIndex = 20;
+            this.inverse.Text = "1/x";
+            this.inverse.UseVisualStyleBackColor = true;
+            this.inverse.Click += new System.EventHandler(this.InverseClick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(212, 252);
+            this.Controls.Add(this.inverse);
+            this.Controls.Add(this.squareroot);
+            this.Controls.Add(this.exponentiation);
             this.Controls.Add(this.button17);
             this.Controls.Add(this.division);
             this.Controls.Add(this.multiplication);
@@ -276,6 +313,9 @@
         private System.Windows.Forms.Button multiplication;
         private System.Windows.Forms.Button division;
         private System.Windows.Forms.Button button17;
+        private System.Windows.Forms.Button exponentiation;
+        private System.Windows.Forms.Button squareroot;
+        private System.Windows.Forms.Button inverse;
     }
 }
 

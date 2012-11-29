@@ -26,7 +26,7 @@ namespace Calculator
             }
             else
             {
-                textBox1.Text = (Convert.ToInt32(textBox1.Text)*10 + i).ToString();
+                textBox1.Text = (Convert.ToDouble(textBox1.Text)*10 + i).ToString();
             }
         }
 
@@ -92,7 +92,7 @@ namespace Calculator
             _operations.Clear();
         }
 
-        private void OperatorSelected(string operation)
+        private void NonUnaryOperatorSelected(string operation)
         {
             _operands.Add(textBox1.Text);
             _operations.Add(operation);
@@ -101,22 +101,37 @@ namespace Calculator
 
         private void AdditionClick(object sender, EventArgs e)
         {
-            OperatorSelected("addition");
+            NonUnaryOperatorSelected("addition");
         }
 
         private void SubtractionClick(object sender, EventArgs e)
         {
-            OperatorSelected("subtraction");
+            NonUnaryOperatorSelected("subtraction");
         }
 
         private void MultiplicationClick(object sender, EventArgs e)
         {
-            OperatorSelected("multiplication");
+            NonUnaryOperatorSelected("multiplication");
         }
 
         private void DivisionClick(object sender, EventArgs e)
         {
-            OperatorSelected("division");
+            NonUnaryOperatorSelected("division");
+        }
+
+        private void ExponentiationClick(object sender, EventArgs e)
+        {
+            NonUnaryOperatorSelected("exponentiation");
+        }
+
+        private void SquarerootClick(object sender, EventArgs e)
+        {
+            DoUnaryCalculation("squareroot");
+        }
+
+        private void InverseClick(object sender, EventArgs e)
+        {
+            DoUnaryCalculation("inverse");
         }
 
         private void EqualsClick(object sender, EventArgs e)
@@ -126,7 +141,7 @@ namespace Calculator
             _currentTotal = _operands[0];
             for (int i = 1; i < _operands.Count; i++)
             {
-                DoCalculation(_currentTotal, _operands[i], _operations[i-1]);
+                DoCalculation(_currentTotal, _operands[i], _operations[i - 1]);
             }
             textBox1.Text = _currentTotal;
             _operands.Clear();
@@ -138,19 +153,34 @@ namespace Calculator
             switch (operation)
             {
                 case "addition":
-                    _currentTotal = (Convert.ToInt32(currentTotal) + Convert.ToInt32(number)).ToString();
+                    _currentTotal = (Convert.ToDouble(currentTotal) + Convert.ToDouble(number)).ToString();
                     break;
                 case "subtraction":
-                    _currentTotal = (Convert.ToInt32(currentTotal) - Convert.ToInt32(number)).ToString();
+                    _currentTotal = (Convert.ToDouble(currentTotal) - Convert.ToDouble(number)).ToString();
                     break;
                 case "multiplication":
-                    _currentTotal = (Convert.ToInt32(currentTotal) * Convert.ToInt32(number)).ToString();
+                    _currentTotal = (Convert.ToDouble(currentTotal) * Convert.ToDouble(number)).ToString();
                     break;
                 case "division":
                     _currentTotal = (Convert.ToDouble(currentTotal) / Convert.ToDouble(number)).ToString();
                     break;
+                case "exponentiation":
+                    _currentTotal = (Math.Pow(Convert.ToDouble(currentTotal), Convert.ToDouble(number))).ToString();
+                    break;
             }
         }
 
+        private void DoUnaryCalculation(string operation)
+        {
+            switch (operation)
+            {
+                case "squareroot":
+                    textBox1.Text = Math.Sqrt(Convert.ToDouble(textBox1.Text)).ToString();
+                    break;
+                case "inverse":
+                    textBox1.Text = (1 / Convert.ToDouble(textBox1.Text)).ToString();
+                    break;
+            }
+        }
     }
 }
