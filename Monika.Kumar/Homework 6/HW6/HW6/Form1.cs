@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -16,9 +17,6 @@ namespace HW6
             InitializeComponent();
         }
 
-       
-
-
         private void button6_Click(object sender, EventArgs e)
         {
            
@@ -29,14 +27,11 @@ namespace HW6
         {
 
         }
+
         double total1 = 0;
         double total2 = 0;
         private string theOperator;
-        private bool plusbuttonclicked = false;
-        private bool minusbuttonclicked = false;
-        private bool multiplybuttonclicked = false;
-        private bool dividebuttonclicked = false;
-
+        
         private void button1_Click(object sender, EventArgs e)
         {
             textBox1.Text += button1.Text;
@@ -100,31 +95,32 @@ namespace HW6
             switch(theOperator)
             {
                 case "+":
-                total2 = total1 + double.Parse(textBox1.Text);
-                textBox1.Text = total2.ToString();
-                total1 = 0;
-                break;
+                    total2 = total1 + double.Parse(textBox1.Text);
+                    textBox1.Text = total2.ToString(CultureInfo.InvariantCulture);
+                    total1 = 0;
+                    break;
 
                 case "-": 
-                total2 = total1 - double.Parse(textBox1.Text);
-                textBox1.Text = total2.ToString();
-                total1 = 0;
-                break;
+                    total2 = total1 - double.Parse(textBox1.Text);
+                    textBox1.Text = total2.ToString(CultureInfo.InvariantCulture);
+                    total1 = 0;
+                    break;
 
                 case "*": 
-                total2 = total1*double.Parse(textBox1.Text);
-                textBox1.Text = total2.ToString();
-                total1 = 0;
-                break;
+                    total2 = total1 * double.Parse(textBox1.Text);
+                    textBox1.Text = total2.ToString(CultureInfo.InvariantCulture);
+                    total1 = 0;
+                    break;
 
-                case "/": total2 = total1/double.Parse(textBox1.Text);
-                textBox1.Text = total2.ToString();
-                total1 = 0;
-                break;
+                case "/": 
+                    total2 = total1 / double.Parse(textBox1.Text);
+                    textBox1.Text = total2.ToString(CultureInfo.InvariantCulture);
+                    total1 = 0;
+                    break;
 
                 default:
-                total2 = 0;
-                break;
+                    total2 = 0;
+                    break;
 
             }
         }
