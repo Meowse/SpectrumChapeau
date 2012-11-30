@@ -7,6 +7,14 @@ namespace Calculate
     public partial class FormCalculate : Form
     {
         private double _currentValue;
+        public new event KeyPressEventHandler KeyPress;
+
+        protected new virtual void OnKeyPress(KeyPressEventArgs e)
+        {
+            var handler = KeyPress;
+            if (handler != null) handler(this, e);
+            if (e != null) textDisplay.Text += e.KeyChar.ToString();
+        }
 
         public FormCalculate()
         {
