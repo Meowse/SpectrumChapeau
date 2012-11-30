@@ -1,5 +1,5 @@
 ﻿Public Class Form1
- 
+
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -28,7 +28,7 @@
         Display.Text = Display.Text + Button7.Text
     End Sub
 
-        
+
     Private Sub Button8Click(sender As Object, e As EventArgs) Handles add.Click
 
 
