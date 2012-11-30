@@ -1,0 +1,6 @@
+Interface -- a contract (promise to provide certain behavior) that any class can choose to sign on to.  The "what" to the implementation's "how".
+
+Implementation -- how a given class provides that behavior.  Each class can have its own implementation of the interface.
+
+
+Hello World 
