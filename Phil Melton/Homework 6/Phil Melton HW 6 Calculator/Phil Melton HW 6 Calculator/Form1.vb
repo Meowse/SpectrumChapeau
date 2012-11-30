@@ -1,9 +1,13 @@
 ﻿Public Class Form1
+ 
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+
     End Sub
 
 
-    Private Sub Button1Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1Click(sender As Object, e As EventArgs) Handles clear.Click
 
         Display.Clear()
     End Sub
@@ -24,11 +28,12 @@
         Display.Text = Display.Text + Button7.Text
     End Sub
 
-    _doubleTotal1 = 0
-    Private Sub Button8Click(sender As Object, e As EventArgs) Handles Button8.Click
+        
+    Private Sub Button8Click(sender As Object, e As EventArgs) Handles add.Click
 
 
-        Display.Text = Button8.Text
+        Display.Clear()
+
     End Sub
 
     Private Sub Button9Click(sender As Object, e As EventArgs) Handles Button9.Click
@@ -46,9 +51,9 @@
         Display.Text = Display.Text + Button11.Text
     End Sub
 
-    Private Sub Button12Click(sender As Object, e As EventArgs) Handles Button12.Click
+    Private Sub Button12Click(sender As Object, e As EventArgs) Handles subtract.Click
 
-        Display.Text = Button12.Text
+        Display.Text = subtract.Text
     End Sub
 
     Private Sub Button13Click(sender As Object, e As EventArgs) Handles Button13.Click
@@ -66,9 +71,9 @@
         Display.Text = Display.Text + Button15.Text
     End Sub
 
-    Private Sub Button16Click(sender As Object, e As EventArgs) Handles Button16.Click
+    Private Sub Button16Click(sender As Object, e As EventArgs) Handles multiply.Click
 
-        Display.Text = Button16.Text
+        Display.Text = multiply.Text
     End Sub
 
     Private Sub Button17Click(sender As Object, e As EventArgs) Handles Button17.Click
@@ -76,9 +81,9 @@
         Display.Text = Button17.Text
     End Sub
 
-    Private Sub Button18Click(sender As Object, e As EventArgs) Handles Button18.Click
+    Private Sub Button18Click(sender As Object, e As EventArgs) Handles dot.Click
 
-        Display.Text = Button18.Text
+        Display.Text = dot.Text
     End Sub
 
     Private Sub Button19Click(sender As Object, e As EventArgs) Handles Button19.Click
@@ -86,9 +91,9 @@
         Display.Text = Button19.Text
     End Sub
 
-    Private Sub Button20Click(sender As Object, e As EventArgs) Handles Button20.Click
+    Private Sub Button20Click(sender As Object, e As EventArgs) Handles divide.Click
 
-        Display.Text = Button20.Text
+        Display.Text = divide.Text
     End Sub
 
     Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles Display.TextChanged
