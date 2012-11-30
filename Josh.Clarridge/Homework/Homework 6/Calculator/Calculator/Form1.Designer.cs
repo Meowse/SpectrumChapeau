@@ -242,12 +242,12 @@
             // 
             // squareroot
             // 
-            this.squareroot.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.squareroot.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.squareroot.Location = new System.Drawing.Point(64, 44);
             this.squareroot.Name = "squareroot";
             this.squareroot.Size = new System.Drawing.Size(40, 35);
             this.squareroot.TabIndex = 2;
-            this.squareroot.Text = "x^1/2";
+            this.squareroot.Text = "√x";
             this.squareroot.UseVisualStyleBackColor = true;
             this.squareroot.Click += new System.EventHandler(this.SquarerootClick);
             // 
