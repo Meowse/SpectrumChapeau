@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 
@@ -10,20 +8,40 @@ namespace DrawIt
     public class DrawingModel
     {
         private readonly Control _control;
-        private readonly List<DrawAction> _drawActions = new List<DrawAction>();
-
-        private int _numberOfActionsToDraw;
-        private int _numberOfActionsDrawn;
+        private readonly IActionSource<DrawAction> _drawActionSource;
         private Bitmap _backBuffer;
 
-        private DrawAction Cursor { get; set; }
+        private DrawAction _cursor;
+        public DrawAction Cursor
+        {
+            get { return _cursor; }
+            set
+            {
+                _cursor = value; 
+                DrawActionsChanged();
+            }
+        }
 
-        public DrawingModel(Control control)
+        private DrawAction _background;
+        public DrawAction Background
+        {
+            get { return _background; }
+            set
+            {
+                _background = value; 
+                DrawActionsChanged();
+            }
+        }
+
+        public DrawingModel(Control control, IActionSource<DrawAction> drawActionSource)
         {
             _control = control;
+            _drawActionSource = drawActionSource;
+
             control.Paint += Paint;
             control.SizeChanged += HandleControlSizeChanged;
             StopFlickerBySuspendingBackgroundRedrawing();
+            UpdateBackBuffer();
         }
 
         private void StopFlickerBySuspendingBackgroundRedrawing()
@@ -43,12 +61,17 @@ namespace DrawIt
 
         public void Paint(object sender, PaintEventArgs e)
         {
-            UpdateBackBuffer();
             e.Graphics.DrawImageUnscaled(_backBuffer, 0, 0);
             if (Cursor != null)
             {
                 Cursor.DrawOn(e.Graphics);
             }
+        }
+
+        public void DrawActionsChanged()
+        {
+            UpdateBackBuffer();
+            _control.Invalidate();    
         }
 
         private void UpdateBackBuffer()
@@ -57,83 +80,22 @@ namespace DrawIt
             {
                 _backBuffer = new Bitmap(_control.ClientSize.Width, _control.ClientSize.Height);
             }
-            if (_numberOfActionsDrawn < _numberOfActionsToDraw)
-            {
-                Graphics g = Graphics.FromImage(_backBuffer);
-                DrawOn(g);
-                g.Dispose();
-            }
-        }
 
-        public void Undo()
-        {
-            if (_numberOfActionsToDraw > 1)
-            {
-                _numberOfActionsToDraw--;
-                _numberOfActionsDrawn = 0;
-                UpdateBackBuffer();
-                _control.Invalidate();
-            }
-        }
-
-        public void Redo()
-        {
-            if (_numberOfActionsToDraw < _drawActions.Count)
-            {
-                _numberOfActionsToDraw++;
-                UpdateBackBuffer();
-                _control.Invalidate();
-            }
-        }
-
-        public virtual void DrawLine(Pen pen, int x1, int y1, int x2, int y2, bool isCursor = false)
-        {
-            AddDrawAction(new DrawLineAction(pen, x1, y1, x2, y2), isCursor);
-        }
-
-        public virtual void DrawCircle(Pen pen, int x, int y, int radius, bool isCursor = false)
-        {
-            AddDrawAction(new DrawCircleAction(pen, x, y, radius), isCursor);
-        }
-
-        private void AddDrawAction(DrawAction drawAction, bool isCursor = false)
-        {
-            if (isCursor)
-            {
-                Cursor = drawAction;
-            }
-            else
-            {
-                Cursor = null;
-                _numberOfActionsToDraw++;
-                _drawActions.Add(drawAction);
-            }
-            drawAction.Invalidate(_control);
+            Graphics g = Graphics.FromImage(_backBuffer);
+            DrawOn(g);
+            g.Dispose();
         }
 
         public void DrawOn(Graphics graphics)
         {
-            foreach (DrawAction drawAction in _drawActions.Take(_numberOfActionsToDraw).Skip(_numberOfActionsDrawn))
+            if (Background != null)
+            {
+                Background.DrawOn(graphics);
+            }
+            foreach (DrawAction drawAction in _drawActionSource.Actions)
             {
                 drawAction.DrawOn(graphics);
             }
-            _numberOfActionsDrawn = _numberOfActionsToDraw;
-        }
-
-        public virtual void Clear(Color color)
-        {
-            _drawActions.Clear();
-            _numberOfActionsToDraw = 0;
-            _numberOfActionsDrawn = 0;
-            AddDrawAction(new DrawBackgroundAction(color));
-        }
-
-        public virtual void Clear()
-        {
-            _drawActions.Clear();
-            _numberOfActionsToDraw = 0;
-            _numberOfActionsDrawn = 0;
-            _control.Invalidate();
         }
     }
 

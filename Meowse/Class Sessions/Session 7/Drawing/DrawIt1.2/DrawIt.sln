@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrawIt", "DrawIt\DrawIt.csproj", "{D5DC264D-DF05-45F1-A4BA-A9AC212575B7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrawItTest", "DrawItTest\DrawItTest.csproj", "{D33E8907-E844-4CC8-BC6F-A8A3D219031E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,16 @@ Global
 		{D5DC264D-DF05-45F1-A4BA-A9AC212575B7}.Release|Mixed Platforms.Build.0 = Release|x86
 		{D5DC264D-DF05-45F1-A4BA-A9AC212575B7}.Release|x86.ActiveCfg = Release|x86
 		{D5DC264D-DF05-45F1-A4BA-A9AC212575B7}.Release|x86.Build.0 = Release|x86
+		{D33E8907-E844-4CC8-BC6F-A8A3D219031E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D33E8907-E844-4CC8-BC6F-A8A3D219031E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D33E8907-E844-4CC8-BC6F-A8A3D219031E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{D33E8907-E844-4CC8-BC6F-A8A3D219031E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{D33E8907-E844-4CC8-BC6F-A8A3D219031E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D33E8907-E844-4CC8-BC6F-A8A3D219031E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D33E8907-E844-4CC8-BC6F-A8A3D219031E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D33E8907-E844-4CC8-BC6F-A8A3D219031E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{D33E8907-E844-4CC8-BC6F-A8A3D219031E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{D33E8907-E844-4CC8-BC6F-A8A3D219031E}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

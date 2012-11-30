@@ -3,4 +3,17 @@ Interface -- a contract (promise to provide certain behavior) that any class can
 Implementation -- how a given class provides that behavior.  Each class can have its own implementation of the interface.
 
 
-Hello World 
+"Single Responsibility Principle" -- a class should do one thing, and only one thing, and do it well.
+
+"Single Responsibility Principle" -- a method should do one thing, and only one thing, and do it well.
+
+"Loose Coupling" -- code is "loosely coupled" if one part of it can change without forcing changes in another part.
+
+"Tight Coupling" -- code is "tightly coupled" if changes to one part of it require changes to another part of it.
+
+"Technical Debt" -- The messiness that builds up in a codebase over time.  The reason that, after months or years of development, the developers increasingly wish they could just "throw this darned thing away and rewrite it from scratch"
+
+"Test Debt" -- a specific kind of technical debt where you promise you'll write the tests later, really, I swear.
+
+"Refactoring" -- The actual solution to technical debt, since nobody can ever really afford						 to throw it away and rebuild it from scratch.
+

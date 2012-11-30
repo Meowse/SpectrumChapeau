@@ -80,6 +80,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UndoRedoDrawActionSource.cs" />
+    <Compile Include="BrokenDrawActionSource.cs" />
+    <Compile Include="SimpleDrawActionSource.cs" />
+    <Compile Include="IActionSource.cs" />
+    <Compile Include="IUndoRedoActionSource.cs" />
     <Compile Include="MathHelpers.cs" />
     <Compile Include="DrawingModel.cs" />
     <Compile Include="DrawIt.cs">
