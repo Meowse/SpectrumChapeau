@@ -3,9 +3,14 @@ using System.Collections.Generic;
 
 namespace DrawIt
 {
-    public class UndoRedoDrawActionSource : IUndoRedoActionSource<DrawAction>
+    public class UndoRedoDrawActionSource : IUndoRedoActionSource<IDrawAction>
     {
-        public IEnumerable<DrawAction> Actions {
+        // This declares the ActionsChanged event.  Remember to call ActionsChanged() whenever
+        // the publicly-visible list of Actions changes, so that your delegates can respond
+        // appropriately to the list of Actions changing.
+        public event ActionsChangedEventHandler ActionsChanged;
+
+        public IEnumerable<IDrawAction> Actions {
             get
             {
                 throw new NotImplementedException();
@@ -37,7 +42,7 @@ namespace DrawIt
             }
         }
 
-        public void Add(DrawAction action)
+        public void Add(IDrawAction action)
         {
             throw new NotImplementedException();
         }

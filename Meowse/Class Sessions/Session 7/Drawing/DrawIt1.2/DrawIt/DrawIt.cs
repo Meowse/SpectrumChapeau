@@ -44,7 +44,7 @@ namespace DrawIt
         // lines and circles onto it.  This line doesn't actually create a DrawingModel -- we'll do
         // that in the DrawIt constructor below!
         private readonly DrawingModel _canvasModel;
-        private readonly IUndoRedoActionSource<DrawAction> _actions; 
+        private readonly IUndoRedoActionSource<IDrawAction> _actions; 
 
         // A Pen is used by the drawing libraries to actually draw on the screen.  It controls things
         // like color, line width, etc.  We'll create a pen in the DrawIt constructor as well.
@@ -66,7 +66,7 @@ namespace DrawIt
             InitializeComponent();
 
             // This line creates a SimpleDrawActionSource(), which is a class that very minimally
-            // implements IUndoRedoActionSource with an action type of DrawAction.
+            // implements IUndoRedoActionSource with an action type of IDrawAction.
             // This won't support Undo or Redo, so the buttons will always be disabled, but it 
             // will allow us to use the interface (since it has been implemented), and later we can
             // replace it with a more advanced implementation.
@@ -77,11 +77,31 @@ namespace DrawIt
             // allow Undo and Redo, but if you Undo some actions and then
             // start drawing more circles, it redraws the undone actions 
             // before it starts drawing the new circles.
-            // _actions = new BrokenDrawActionSource();
+            _actions = new BrokenDrawActionSource();
             
             // Homework: Create an actual UndoRedoDrawActionSource() and make sure
             // that it has the proper Undo() and Redo() semantics.
-            _actions = new UndoRedoDrawActionSource();
+            //_actions = new UndoRedoDrawActionSource();
+
+            // This line says, "I want to listen to ActionsChanged events from this IActionSource.
+            // Every time the ActionsChanged event happens, I want my UpdateUi() method to be called.
+            //
+            // Note the use of "+=" instead of "=".  That's how delegates are assigned to events.  Instead
+            // of using "=", which would imply that only one delegate could listen to an event, we use "+=",
+            // which basically says "Add my UpdateUi method as a listener to this event, along with any other
+            // listeners who are listening to this event."  This is a good thing, because while we're listening
+            // to the ActionsChanged event to update our UI, the DrawingModel will be listening to the same
+            // ActionsChanged event to know when to redraw.
+            //
+            // Note also that I did *NOT* put parentheses after the "UpdateUi" in the line below.  Parentheses
+            // indicate a method call -- that I'm actually invoking the method.  In this line, I'm NOT invoking
+            // UpdateUi.  Instead, I'm talking about it.  I'm actually giving the event a reference to the method,
+            // rather than calling the method.  I'm treating "UpdateUi" as if it were just another value, to be
+            // assigned.  This is one of the great things about C#: a method can be treated as just another value,
+            // assigned to a variable, passed around to another method as a parameter, etc.  It's a very powerful
+            // and advanced language feature, which we're using here to set up our "UpdateUi" method as a listener
+            // ("delegate") on the ActionsChanged event of our actions model.
+            _actions.ActionsChanged += UpdateUi;
 
             // This line creates a new DrawingModel which wraps around and encapsulates 
             // the CanvasPanel, and then stores that DrawingModel into the instance variable 
@@ -122,7 +142,10 @@ namespace DrawIt
         // This will draw a circle on the canvas wherever the user clicks the mouse.
         private void HandleMouseDown(object sender, MouseEventArgs e)
         {
-            DrawCircle(_pen, e.Location.X, e.Location.Y, 20);
+            // Since we want to actually draw a circle here, we're going to make a new DrawCircleAction and
+            // add it to the list of actions.  We get the center of the circle from the mouse event "e",
+            // set the radius to 20, and use our standard pen "_pen" to draw the circle.
+            _actions.Add(new DrawCircleAction(_pen, e.Location.X, e.Location.Y, 20));
         }
 
         private void HandleMouseUp(object sender, MouseEventArgs e)
@@ -134,14 +157,14 @@ namespace DrawIt
         // the mouse.  This cursor is the same size as the actual circle that will
         // be drawn in HandleMouseDown(), so that the user can know where they are
         // going to be drawing if they click the mouse.
-        //
-        // This draws a cursor instead of an actual circle because the last parameter
-        // to DrawCircle is "true" -- and that parameter is the "isCursor" parameter,
-        // which tells the DrawingModel to draw a temporary circle as a cursor, instead
-        // of drawing an actual circle.
         private void HandleMouseMoved(object sender, MouseEventArgs e)
         {
-            DrawCircle(_cursorPen, e.Location.X, e.Location.Y, 20, true);
+            // We don't want to actually draw a circle here, but instead to draw a temporary cursor.
+            // So we're going to make a new DrawCircleAction just like in HandleMouseDown, but instead
+            // of adding it to the list of actions, we're going to set it as the Cursor of the DrawingModel.
+            // We'll let the DrawingModel take care of the details of drawing a cursor (a temporary image)
+            // instead of drawing a permanent circle.
+            _canvasModel.Cursor = new DrawCircleAction(_cursorPen, e.Location.X, e.Location.Y, 20);
         }
 
         private void ClearButtonClicked(object sender, EventArgs e)
@@ -152,46 +175,28 @@ namespace DrawIt
         private void Clear()
         {
             _actions.Clear();
-            _canvasModel.DrawActionsChanged();
-            UpdateUi();
+
+            // We no longer need to call _canvasModel.DrawActionsChanged() here (and everywhere else in this class
+            // that we modify the list of drawing actions).  The DrawingModel is now responsible for listening
+            // to ActionsChanged events from the _actions model and updating itself accordingly, so we don't
+            // need to worry about doing that ourselves.
+            // _canvasModel.DrawActionsChanged()
+
+            // We no longer need to call UpdateUi() here (and everywhere else in this class that we modify
+            // the list of drawing actions).  We're listening to ActionsChanged events from the _actions
+            // model, and calling UpdateUi whenever the actions change, so we will automatically call
+            // UpdateUi when we Clear, Undo, Redo, etc. the _actions model.
+            // UpdateUi();
         }
 
         private void UndoButtonClicked(object sender, EventArgs e)
         {
             _actions.Undo();
-            _canvasModel.DrawActionsChanged();
-            UpdateUi();
         }
 
         private void RedoButtonClicked(object sender, EventArgs e)
         {
             _actions.Redo();
-            _canvasModel.DrawActionsChanged();
-            UpdateUi();
-        }
-
-        public virtual void DrawLine(Pen pen, int x1, int y1, int x2, int y2, bool isCursor = false)
-        {
-            AddDrawAction(isCursor, new DrawLineAction(pen, x1, y1, x2, y2));
-        }
-
-        public virtual void DrawCircle(Pen pen, int x, int y, int radius, bool isCursor = false)
-        {
-            AddDrawAction(isCursor, new DrawCircleAction(pen, x, y, radius));
-        }
-
-        private void AddDrawAction(bool isCursor, DrawAction drawCircle)
-        {
-            if (isCursor)
-            {
-                _canvasModel.Cursor = drawCircle;
-            }
-            else
-            {
-                _actions.Add(drawCircle);
-                _canvasModel.DrawActionsChanged();
-                UpdateUi();
-            }
         }
 
         private void UpdateUi()
