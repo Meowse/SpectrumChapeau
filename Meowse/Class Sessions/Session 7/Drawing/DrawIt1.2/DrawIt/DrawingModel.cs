@@ -8,22 +8,22 @@ namespace DrawIt
     public class DrawingModel
     {
         private readonly Control _control;
-        private readonly IActionSource<DrawAction> _drawActionSource;
+        private readonly IActionSource<IDrawAction> _drawActionSource;
         private Bitmap _backBuffer;
 
-        private DrawAction _cursor;
-        public DrawAction Cursor
+        private IDrawAction _cursor;
+        public IDrawAction Cursor
         {
             get { return _cursor; }
             set
             {
-                _cursor = value; 
-                DrawActionsChanged();
+                _cursor = value;
+                _control.Invalidate();
             }
         }
 
-        private DrawAction _background;
-        public DrawAction Background
+        private IDrawAction _background;
+        public IDrawAction Background
         {
             get { return _background; }
             set
@@ -33,10 +33,16 @@ namespace DrawIt
             }
         }
 
-        public DrawingModel(Control control, IActionSource<DrawAction> drawActionSource)
+        public DrawingModel(Control control, IActionSource<IDrawAction> drawActionSource)
         {
             _control = control;
             _drawActionSource = drawActionSource;
+
+            // This line says, "I want to listen to my _drawActionSource for changes to 
+            // its Actions.  Every time its Actions changes, I want it to call my
+            // DrawActionsChanged method, so I can appropriately update the _control that
+            // I'm drawing onto."
+            _drawActionSource.ActionsChanged += DrawActionsChanged;
 
             control.Paint += Paint;
             control.SizeChanged += HandleControlSizeChanged;
@@ -92,76 +98,10 @@ namespace DrawIt
             {
                 Background.DrawOn(graphics);
             }
-            foreach (DrawAction drawAction in _drawActionSource.Actions)
+            foreach (IDrawAction drawAction in _drawActionSource.Actions)
             {
                 drawAction.DrawOn(graphics);
             }
-        }
-    }
-
-    public abstract class DrawAction
-    {
-        public abstract void DrawOn(Graphics graphics);
-
-        public virtual void Invalidate(Control control)
-        {
-            control.Invalidate();
-        }
-    }
-
-    public class DrawBackgroundAction : DrawAction
-    {
-        private readonly Color _backgroundColor;
-
-        public DrawBackgroundAction(Color backgroundColor)
-        {
-            _backgroundColor = backgroundColor;
-        }
-
-        public override void DrawOn(Graphics graphics)
-        {
-            graphics.Clear(_backgroundColor);
-        }
-    }
-
-    public class DrawLineAction : DrawAction
-    {
-        private readonly Pen _pen;
-        private readonly Point _startPoint;
-        private readonly Point _endPoint;
-
-        public DrawLineAction(Pen pen, int x1, int y1, int x2, int y2)
-        {
-            _pen = pen;
-            _startPoint = new Point(x1, y1);
-            _endPoint = new Point(x2, y2);
-
-        }
-
-        public override void DrawOn(Graphics graphics)
-        {
-            graphics.DrawLine(_pen, _startPoint, _endPoint);
-        }
-    }
-
-    public class DrawCircleAction : DrawAction
-    {
-        private readonly Pen _pen;
-        private readonly Point _center;
-        private readonly int _radius;
-        private readonly int _diameter;
-
-        public DrawCircleAction(Pen pen, int x, int y, int radius)
-        {
-            _pen = pen;
-            _center = new Point(x, y);
-            _radius = radius;
-            _diameter = _radius*2;
-        }
-
-        public override void DrawOn(Graphics graphics)
-        {
-            graphics.DrawArc(_pen, _center.X - _radius, _center.Y - _radius, _diameter, _diameter, 0, 360);
         }
     }
 }
