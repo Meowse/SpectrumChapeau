@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace DrawIt
+﻿namespace ActionSources
 {
     public interface IUndoRedoActionSource<T> : IActionSource<T>
     {

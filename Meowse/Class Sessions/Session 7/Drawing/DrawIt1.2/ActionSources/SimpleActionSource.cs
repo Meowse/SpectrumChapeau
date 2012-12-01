@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DrawIt
+namespace ActionSources
 {
-    class SimpleDrawActionSource : IUndoRedoActionSource<IDrawAction>
+    public class SimpleActionSource<T> : IUndoRedoActionSource<T>
     {
         // This line says, "I have an event named ActionsChanged, and delegates that want
         // to listen to that event need to define a method with the ActionsChangedEventHandler
@@ -12,47 +12,50 @@ namespace DrawIt
         // members of the interface.
         public event ActionsChangedEventHandler ActionsChanged;
 
-        private readonly List<IDrawAction> _drawActions = new List<IDrawAction>();
+        private readonly List<T> _actions = new List<T>();
 
-        public IEnumerable<IDrawAction> Actions {
+        public IEnumerable<T> Actions {
             get
             {
-                return new List<IDrawAction>(_drawActions);
+                return new List<T>(_actions);
             }
         }
 
         public void Undo()
         {
-            throw new NotImplementedException("SimpleDrawActionSource does not support Undo()");
+            throw new NotImplementedException("SimpleActionSource does not support Undo()");
         }
 
         public void Redo()
         {
-            throw new NotImplementedException("SimpleDrawActionSource does not support Redo()");
+            throw new NotImplementedException("SimpleActionSource does not support Redo()");
         }
 
         public bool CanUndo { get { return false; } }
         public bool CanRedo { get { return false; } }
 
-        public void Add(IDrawAction drawAction)
+        public void Add(T action)
         {
-            _drawActions.Add(drawAction);
+            _actions.Add(action);
 
             // This line causes an ActionsChanged event to be seen by all of the delegates
             // that are listening to the event.  Basically, it calls the method on each delegate
             // that has been registered (by being added with "+=") as a listener on the 
             // ActionsChanged event.
-            ActionsChanged();
+            //
+            // Note that we have to check if ActionsChanged is null before we can call it.  If nobody
+            // is listening, we don't want to tell nobody that our actions have changed!
+            if (ActionsChanged != null) { ActionsChanged(); }
         }
 
         public virtual void Clear()
         {
-            _drawActions.Clear();
+            _actions.Clear();
 
             // This line also causes an ActionsChanged event to be seen by all of the delegates.
-            // We have to call ActionsChanged every time we change our _drawActions list, so that
+            // We have to call ActionsChanged every time we change our _actions list, so that
             // anyone who cares about these events can react to the change in our actions.
-            ActionsChanged();
+            if (ActionsChanged != null) { ActionsChanged(); }
         }
     }
 }

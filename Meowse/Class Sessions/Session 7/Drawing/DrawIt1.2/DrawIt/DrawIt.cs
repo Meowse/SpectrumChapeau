@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using ActionSources;
+using SimplifiedDrawingModel;
 
 namespace DrawIt
 {
@@ -77,7 +79,7 @@ namespace DrawIt
             // allow Undo and Redo, but if you Undo some actions and then
             // start drawing more circles, it redraws the undone actions 
             // before it starts drawing the new circles.
-            _actions = new BrokenDrawActionSource();
+            _actions = new BrokenActionSource<IDrawAction>();
             
             // Homework: Create an actual UndoRedoDrawActionSource() and make sure
             // that it has the proper Undo() and Redo() semantics.

@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DrawIt
+namespace ActionSources
 {
-    public class UndoRedoDrawActionSource : IUndoRedoActionSource<IDrawAction>
+    public class UndoRedoActionSource<T> : IUndoRedoActionSource<T>
     {
         // This declares the ActionsChanged event.  Remember to call ActionsChanged() whenever
         // the publicly-visible list of Actions changes, so that your delegates can respond
         // appropriately to the list of Actions changing.
         public event ActionsChangedEventHandler ActionsChanged;
 
-        public IEnumerable<IDrawAction> Actions {
+        public IEnumerable<T> Actions {
             get
             {
                 throw new NotImplementedException();
@@ -42,7 +42,7 @@ namespace DrawIt
             }
         }
 
-        public void Add(IDrawAction action)
+        public void Add(T action)
         {
             throw new NotImplementedException();
         }

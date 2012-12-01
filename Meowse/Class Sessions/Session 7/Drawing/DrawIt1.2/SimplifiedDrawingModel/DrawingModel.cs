@@ -2,8 +2,9 @@
 using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
+using ActionSources;
 
-namespace DrawIt
+namespace SimplifiedDrawingModel
 {
     public class DrawingModel
     {

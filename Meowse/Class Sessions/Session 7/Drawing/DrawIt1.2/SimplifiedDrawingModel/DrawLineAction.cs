@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace DrawIt
+namespace SimplifiedDrawingModel
 {
     public class DrawLineAction : IDrawAction
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DrawIt
+namespace ActionSources
 {
     // Ths line says, "There are things in the world called ActionsChangedEventHandlers, and 
     // I can delegate to them the responsibility to handle ActionsChangedEvents."  It's just like

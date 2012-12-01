@@ -80,17 +80,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DrawBackgroundAction.cs" />
-    <Compile Include="DrawCircleAction.cs" />
-    <Compile Include="DrawLineAction.cs" />
-    <Compile Include="IDrawAction.cs" />
-    <Compile Include="UndoRedoDrawActionSource.cs" />
-    <Compile Include="BrokenDrawActionSource.cs" />
-    <Compile Include="SimpleDrawActionSource.cs" />
-    <Compile Include="IActionSource.cs" />
-    <Compile Include="IUndoRedoActionSource.cs" />
     <Compile Include="MathHelpers.cs" />
-    <Compile Include="DrawingModel.cs" />
     <Compile Include="DrawIt.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,6 +133,16 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ActionSources\ActionSources.csproj">
+      <Project>{4392BF85-B5B9-43C2-8C60-4FF388EBEE4D}</Project>
+      <Name>ActionSources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SimplifiedDrawingModel\SimplifiedDrawingModel.csproj">
+      <Project>{4D678F4F-F002-484C-9EA7-ED9F9EC861C6}</Project>
+      <Name>SimplifiedDrawingModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
