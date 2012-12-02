@@ -46,7 +46,7 @@ namespace ActionSources
                 // "consumers" (the objects that are using us as a resource), our effective list of actions
                 // changes whenever _numberOfActionsToTake changes, as well as when our actual _actions
                 // list changes.  So we need to notify them that our actions have changed in either case.
-                ActionsChanged();
+                if (ActionsChanged != null) { ActionsChanged(); }
             }
         }
 
