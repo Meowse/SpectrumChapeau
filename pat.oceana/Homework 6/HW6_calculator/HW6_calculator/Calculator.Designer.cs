@@ -59,6 +59,7 @@
             this.calcTextBox.Name = "calcTextBox";
             this.calcTextBox.Size = new System.Drawing.Size(271, 38);
             this.calcTextBox.TabIndex = 0;
+            this.calcTextBox.TextChanged += new System.EventHandler(this.calcTextBox_TextChanged);
             // 
             // buttonClear
             // 
@@ -310,6 +311,7 @@
             this.Controls.Add(this.buttonOne);
             this.Controls.Add(this.buttonClear);
             this.Controls.Add(this.calcTextBox);
+            this.Location = new System.Drawing.Point(5, 5);
             this.Name = "Calculator";
             this.Text = "Calculator";
             this.ResumeLayout(false);
