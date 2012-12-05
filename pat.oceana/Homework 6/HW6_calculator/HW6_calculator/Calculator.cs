@@ -152,8 +152,8 @@ namespace HW6_calculator
            _inputValue1 = 0;
            _inputValue2 = 0;
            _result = 0;
-           _lastWasOperator = true;
-           calcTextBox.Text = _result.ToString();
+           //_lastWasOperator = true;
+           calcTextBox.Text = "";
        }
 
        private void ButtonAddClick(object sender, EventArgs e)
@@ -170,7 +170,7 @@ namespace HW6_calculator
            _inputValue1 = double.Parse(calcTextBox.Text);
            _lastWasOperator = true;
            _operator = "-";
-           _result = _result - _inputValue1;
+           _result = _inputValue1;
            calcTextBox.Text = _result.ToString();
        }
 
@@ -194,34 +194,37 @@ namespace HW6_calculator
 
        private void ButtonEqualClick(object sender, EventArgs e)
        {
+           _inputValue2 = double.Parse(calcTextBox.Text);
 
            switch (_operator)
            {
                case ("+"):
-                   _inputValue2 = double.Parse(calcTextBox.Text);
+                   //_inputValue2 = double.Parse(calcTextBox.Text);
                    _result = _result + _inputValue2;
-                   calcTextBox.Text = _result.ToString();
+                   //calcTextBox.Text = _result.ToString();
                    break;
 
                case ("-"):
-                   _inputValue2 = double.Parse(calcTextBox.Text);
+                   //_inputValue2 = double.Parse(calcTextBox.Text);
                    _result = _inputValue1 - _inputValue2;
-                   calcTextBox.Text = _result.ToString();
+                   //calcTextBox.Text = _result.ToString();
                    break;
 
                case ("*"):
-                   _inputValue2 = double.Parse(calcTextBox.Text);
+                   //_inputValue2 = double.Parse(calcTextBox.Text);
                    _result = _inputValue1 * _inputValue2;
-                   calcTextBox.Text = _result.ToString();
+                   //calcTextBox.Text = _result.ToString();
                    break;
 
                case ("/"):
-                   _inputValue2 = double.Parse(calcTextBox.Text);
+                   //_inputValue2 = double.Parse(calcTextBox.Text);
                    _result = _inputValue1 / _inputValue2;
-                   calcTextBox.Text = _result.ToString();
+                   //calcTextBox.Text = _result.ToString();
                    break;
-           }       
-
+           }
+           calcTextBox.Text = _result.ToString();
+           _result = 0;
+           _lastWasOperator = true;
        }
        private void calcTextBox_TextChanged(object sender, EventArgs e)
        {
