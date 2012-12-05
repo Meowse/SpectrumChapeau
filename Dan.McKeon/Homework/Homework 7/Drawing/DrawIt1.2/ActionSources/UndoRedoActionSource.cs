@@ -29,10 +29,7 @@ namespace ActionSources
 
         public bool CanUndo
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return false; }
         }
         public bool CanRedo
         {
