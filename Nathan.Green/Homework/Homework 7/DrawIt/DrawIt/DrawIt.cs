@@ -54,6 +54,12 @@ namespace DrawIt
 
         // A Pen of a different color to draw the cursor with.
         private readonly Pen _cursorPen;
+        // A Pen of the background color to clear the last cursor drawn.
+        private readonly Pen _blankCursorPen;
+
+        //The last known location of the cursor;
+        private int _lastKnownCursorYValue;
+        private int _lastKnownCursorXValue;
 
         private static readonly Color _BACKGROUND_COLOR = Color.DarkGray;
         private static readonly Color _COLOR = Color.Red;
@@ -128,6 +134,9 @@ namespace DrawIt
             // This creates the Pen instance that draws the cursor.
             _cursorPen = new Pen(_CURSOR_COLOR, _LINE_WIDTH);
 
+            // This creates the Pen color to wipe out the last pen
+            _blankCursorPen = new Pen(_BACKGROUND_COLOR, _LINE_WIDTH);
+
             // This starts us out with a dark gray background on the canvas (so the user can see
             // where to draw).
             Clear();
@@ -139,6 +148,7 @@ namespace DrawIt
             CanvasPanel.MouseDown += HandleMouseDown;
             CanvasPanel.MouseUp += HandleMouseUp;
             CanvasPanel.MouseMove += HandleMouseMoved;
+            CanvasPanel.MouseLeave += HandleMouseLeave;
         }
 
         // This will draw a circle on the canvas wherever the user clicks the mouse.
@@ -167,6 +177,15 @@ namespace DrawIt
             // We'll let the DrawingModel take care of the details of drawing a cursor (a temporary image)
             // instead of drawing a permanent circle.
             _canvasModel.Cursor = new DrawCircleAction(_cursorPen, e.Location.X, e.Location.Y, 20);
+            _lastKnownCursorXValue = e.Location.X;
+            _lastKnownCursorYValue = e.Location.Y;
+        }
+
+        // This is the base method to handle the mouseleave event.
+        private void HandleMouseLeave(object sender, EventArgs eventArgs)
+        {
+            _canvasModel.Cursor = new DrawCircleAction(_blankCursorPen, _lastKnownCursorXValue, _lastKnownCursorYValue, 20);
+            _canvasModel.DrawActionsChanged();
         }
 
         private void ClearButtonClicked(object sender, EventArgs e)
