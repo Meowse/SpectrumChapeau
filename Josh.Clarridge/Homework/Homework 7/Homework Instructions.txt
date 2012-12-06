@@ -1,0 +1,59 @@
+This homework assignment is to implement proper Undo/Redo behavior in the DrawIt application.
+
+You'll be writing tests in UndoRedoActionSourceTest, in the ActionSourcesTest project.
+
+You'll be writing your code in UndoRedoActionSource, in the ActionSources project.
+
+You can find sample tests, all of which pass, in SimpleActionSourceTest, in the ActionSourcesTest project.  I've also included the same sample tests, which currently do not pass, in UndoRedoActionSourceTest, in the ActionSourcesTest project.
+
+
+Note:
+
+We now have multiple projects in the solution.  The ActionSource code is in the ActionSources project, the simplified drawing model is in the SimplifiedDrawingModel project, and the main application is in the DrawIt project.  This gives you a much more structured environment to work in, where it's easier to find the code you're looking for.  Don't let it throw you -- the same code is still there, it's just filed under logical groupings that make sense.
+
+In order to do this separation, UndoRedoDrawActionSource had to become a generic UndoRedoActionSource that takes a type parameter (IDrawAction).  This doesn't change anything, except that it's a lot easier to write your tests now, because your "action type" can be anything you want it to be (for the sample tests, I've made it "int").  I recommend using "int" as the "action type", because it makes writing comparisons and expectations in the tests really easy.  But the UndoRedoActionSource doesn't care, and if it works correctly for "int", it'll work correctly for the much more complex "IDrawAction" type in the final code.
+
+
+Getting Started:
+
+A good starting point is to make the tests that are currently in UndoRedoActionSourceTest all pass, by changing the code in UndoRedoActionSource.  If you're not sure how to make them pass, look at the code in SimpleActionSource and BrokenActionSource.  For these tests, the code should probably be quite similar.
+
+
+Moving Forward:
+
+Once you've got the existing tests passing, you'll want to write new tests that define your expectations for UndoRedoActionSource.  For example, you might write a test that says that you can't Redo on a list that has no contents.  You might write a test that says you can't Redo on a list where you've never done an Undo.  You might write a test that says that if you add one Action to a list, and then undo it, the list should be empty.  And so on.  Tests can be (and should be) really simple.  They should test one thing, and make sure that one aspect of the behavior works correctly.  And you can write a lot of tests, and a lot of the behavior of a class, without ever getting into the complicated undo/redo behavior.
+
+
+Wrapping It Up:
+
+The tricky "algorithm" (recipe for doing something) in this assignment is handling the case where we Undo some actions, and then Add a new action.  This is where BrokenActionSource is broken, and where you'll have to figure out how to make the code show the desired behavior.
+
+Here's the desired behavior:
+
+If I add to a list, and then Undo some of the actions, and then Add a new action, it should throw away all of the Undone actions.
+
+Example:
+
+Add 1		List is "1"
+Add 2		List is "1,2"
+Add 3		List is "1,2,3"
+Undo		List is "1,2"
+Undo		List is "1"
+Add 4		List is "1,4"
+Undo		List is "1"
+Undo		List is ""
+Redo		List is "1"
+Redo		List is "1,4"
+
+
+Extra Credit:
+
+The extra credit assignment this week is simple: figure out how to get rid of the cursor once the mouse leaves the drawing canvas.
+
+
+Super Duper Extra Credit:
+
+DrawIt1.1, in the Meowse/Class Sessions/Session 7/Drawing folder, separates out the mouse-handling logic from the drawing logic.  Merge those changes into the current homework assignment, so that your drawing program is using the more logical mouse-response model from DrawIt1.1.
+
+If several people complete the Super Duper Extra Credit, we will use the best implementation as the starting point for the next class, where we'll be adding support for drawing lines, rectangles, and other shapes as well as circles.
+
