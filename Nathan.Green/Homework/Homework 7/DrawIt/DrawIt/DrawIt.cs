@@ -79,7 +79,7 @@ namespace DrawIt
             // allow Undo and Redo, but if you Undo some actions and then
             // start drawing more circles, it redraws the undone actions 
             // before it starts drawing the new circles.
-            _actions = new BrokenActionSource<IDrawAction>();
+            _actions = new UndoRedoActionSource<IDrawAction>();
             
             // Homework: Create an actual UndoRedoDrawActionSource() and make sure
             // that it has the proper Undo() and Redo() semantics.

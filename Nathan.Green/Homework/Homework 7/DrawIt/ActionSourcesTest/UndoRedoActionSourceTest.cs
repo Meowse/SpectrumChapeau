@@ -60,6 +60,80 @@ namespace ActionSourcesTest
             Assert.That(_actionSource.Actions, Is.EquivalentTo(new[] { 3, 4 }));
         }
 
+        // This test asserts that a list where Undo has not been pressed, Redo cannot be done 
+        [Test]
+        public void CannotRedoOnAListWhenNeverPressedUndo()
+        {
+            _actionSource.Add(3);
+
+            //This line verifies that Redo cannot be done since Undo has not been pressed
+            Assert.That(_actionSource.CanRedo == false);
+        }
+
+        // This test asserts that a one item list that has been undone has a list size of 0
+        [Test]
+        public void UndoAOneItemListResultsinaZeroLengthList()
+        {
+            _actionSource.Add(3);
+            _actionSource.Undo();
+
+            // The "ToList()" call here converts Actions, which is an IEnumerable<int>,
+            // into a List<int>, which has a Count method, and which allows you to get 
+            // specific elements via [0], [1], etc.  It's just a little easier to work with.
+            List<int> actualList = _actionSource.Actions.ToList();
+
+            // This line verifies that we have exactly 0 elements in the list of actions.
+            Assert.That(actualList.Count, Is.EqualTo(0));
+        }
+
+        // This is a complicated test
+        [Test]
+        public void ComplicatedTest()
+        {
+            _actionSource.Add(1);
+            _actionSource.Add(2);
+            _actionSource.Add(3);
+
+            // List now contains 3 elements: 1, 2, 3.
+            List<int> actualList = _actionSource.Actions.ToList();
+
+            // This line verifies that we have exactly 3 elements in the list of actions and they are: 1, 2, 3.
+            Assert.That(actualList.Count, Is.EqualTo(3));
+            Assert.That(_actionSource.Actions, Is.EquivalentTo(new[] { 1, 2, 3 }));
+
+            // Attempt an Undo
+            _actionSource.Undo();
+
+            // List now contains 2 elements: 1, 2.
+            actualList = _actionSource.Actions.ToList();
+
+            // This line verifies that we have exactly 2 elements in the list of actions and they are:  1, 2.
+            Assert.That(actualList.Count, Is.EqualTo(2));
+            Assert.That(_actionSource.Actions, Is.EquivalentTo(new[] { 1, 2 }));
+
+            // Add a new member
+            _actionSource.Add(4);
+
+            // List now contains 3 elements: 1, 2, 4.
+            actualList = _actionSource.Actions.ToList();
+
+            // This line verifies that we have exactly 3 elements in the list of actions and they are:  1, 2, 4.
+            Assert.That(actualList.Count, Is.EqualTo(3));
+            Assert.That(_actionSource.Actions, Is.EquivalentTo(new[] { 1, 2, 4 }));
+
+            // Undo twice, then add 2 new members
+            _actionSource.Undo();
+            _actionSource.Undo();
+            _actionSource.Add(5);
+            _actionSource.Add(6);
+
+            // List now contains 3 elements: 1, 5, 6.
+            actualList = _actionSource.Actions.ToList();
+
+            // This line verifies that we have exactly 3 elements in the list of actions and they are:  1, 5, 6.
+            Assert.That(actualList.Count, Is.EqualTo(3));
+            Assert.That(_actionSource.Actions, Is.EquivalentTo(new[] { 1, 5, 6 }));
+        }
 
         // And one more sample test, to show you how to verify that you are sending ActionsChanged
         // events at the right times.
