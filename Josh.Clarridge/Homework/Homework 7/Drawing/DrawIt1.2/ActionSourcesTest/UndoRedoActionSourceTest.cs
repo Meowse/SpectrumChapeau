@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using ActionSources;
 using NUnit.Framework;
@@ -86,6 +85,93 @@ namespace ActionSourcesTest
             {
                 EventsHandled++;
             }
+        }
+
+        [Test]
+        public void CannotRedoEmptyList()
+        {
+            Assert.That(_actionSource.CanRedo, Is.False);
+        }
+
+        [Test]
+        public void CannotRedoWithoutPriorUndo()
+        {
+            _actionSource.Add(3);
+            Assert.That(_actionSource.CanRedo, Is.False);
+        }
+
+        [Test]
+        public void CanRedoWithPriorUndo()
+        {
+            _actionSource.Add(4);
+            _actionSource.Undo();
+            Assert.That(_actionSource.CanRedo, Is.True);
+        }
+
+        [Test]
+        public void UndoRemovesOneItemFromList()
+        {
+            _actionSource.Add(6);
+            _actionSource.Add(7);
+            _actionSource.Add(8);
+            _actionSource.Undo();
+            Assert.That(_actionSource.Actions, Is.EquivalentTo(new[] { 6, 7 }));
+        }
+
+        [Test]
+        public void CanUndoMultipleItems()
+        {
+            _actionSource.Add(1);
+            _actionSource.Add(2);
+            _actionSource.Add(3);
+            _actionSource.Undo();
+            _actionSource.Undo();
+            Assert.That(_actionSource.Actions, Is.EquivalentTo(new[] { 1 }));
+        }
+
+        [Test]
+        public void UndoOnListWithOneItemCreatesEmptyList()
+        {
+            _actionSource.Add(5);
+            _actionSource.Undo();
+            Assert.That(_actionSource.Actions, Is.Empty);
+        }
+
+        [Test]
+        public void RedoRedoesAnUndoneEvent()
+        {
+            _actionSource.Add(10);
+            _actionSource.Add(11);
+            _actionSource.Undo();
+            _actionSource.Redo();
+            Assert.That(_actionSource.Actions, Is.EquivalentTo(new[] { 10, 11 }));
+        }
+
+        [Test]
+        public void AddingItemClearsUndoRedoStack()
+        {
+            _actionSource.Add(3);
+            _actionSource.Add(4);
+            _actionSource.Add(5);
+            _actionSource.Undo();
+            _actionSource.Add(6);
+            Assert.That(_actionSource.UndoRedoStack, Is.Empty);
+        }
+
+        [Test]
+        public void AddingItemAfterUndoResetsUndoRedoStack()
+        {
+            _actionSource.Add(1);
+            _actionSource.Add(2);
+            _actionSource.Add(3);
+            _actionSource.Undo();
+            _actionSource.Undo();
+            _actionSource.Add(4);
+            _actionSource.Undo();
+            _actionSource.Undo();
+            _actionSource.Redo();
+            _actionSource.Redo();
+            Assert.That(_actionSource.Actions, Is.EquivalentTo(new[] { 1, 4 }));
         }
     }
 }

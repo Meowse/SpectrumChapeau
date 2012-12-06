@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace ActionSources
 {
@@ -10,46 +9,65 @@ namespace ActionSources
         // appropriately to the list of Actions changing.
         public event ActionsChangedEventHandler ActionsChanged;
 
+        private readonly List<T> _actions = new List<T>();
+        private readonly List<T> _undoRedoStack = new List<T>(); 
+
         public IEnumerable<T> Actions {
             get
             {
-                throw new NotImplementedException();
+                return new List<T>(_actions);
+            }
+        }
+
+        public IEnumerable<T> UndoRedoStack {
+            get 
+            { 
+                return new List<T>(_undoRedoStack);
             }
         }
 
         public void Undo()
         {
-            throw new NotImplementedException();
+            if (CanUndo)
+            {
+                T undoneAction = _actions[_actions.Count - 1];
+                _actions.RemoveAt(_actions.Count - 1);
+                _undoRedoStack.Add(undoneAction);
+                if (ActionsChanged != null) { ActionsChanged(); }
+            }
         }
 
         public void Redo()
         {
-            throw new NotImplementedException();
+            if (CanRedo)
+            {
+                _actions.Add(_undoRedoStack[_undoRedoStack.Count - 1]);
+                _undoRedoStack.RemoveAt(_undoRedoStack.Count - 1);
+                if (ActionsChanged != null) { ActionsChanged(); }
+            }
         }
 
         public bool CanUndo
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return _actions.Count > 0; }
         }
         public bool CanRedo
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return _undoRedoStack.Count > 0; }
         }
 
         public void Add(T action)
         {
-            throw new NotImplementedException();
+            _actions.Add(action);
+            _undoRedoStack.Clear();
+            if (ActionsChanged != null) { ActionsChanged(); }
         }
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            _actions.Clear();
+            _undoRedoStack.Clear();
+            if (ActionsChanged != null) { ActionsChanged(); }
         }
     }
 }
