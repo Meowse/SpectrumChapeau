@@ -67,13 +67,14 @@ namespace ActionSources
 
         public void Add(T action)
         {
-            if (_actions.Count > 0)
+            if (_actions.Count > _numberOfActionsToTake)
             {
-                for (int i = _numberOfActionsToTake; i < _actions.Count; i++)
+                int localActionsCount = _actions.Count;
+                for (int i = _numberOfActionsToTake; i < localActionsCount; i++)
                 {
-                    _actions.RemoveAt(i);
-                    _numberOfActionsToTake = _actions.Count;
+                    _actions.RemoveAt(_numberOfActionsToTake);
                 }
+                _numberOfActionsToTake = _actions.Count;
             }
 
             _actions.Add(action);
