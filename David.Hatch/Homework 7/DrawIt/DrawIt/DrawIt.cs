@@ -72,7 +72,7 @@ namespace DrawIt
             // This won't support Undo or Redo, so the buttons will always be disabled, but it 
             // will allow us to use the interface (since it has been implemented), and later we can
             // replace it with a more advanced implementation.
-             _actions = new SimpleActionSource();
+             _actions = new SimpleActionSource<IDrawAction>();
 
             // This line creates a BrokenDrawActionSource(), with the behavior
             // we saw at the beginning of class (in DrawIt 1.0).  It appears to
@@ -139,6 +139,14 @@ namespace DrawIt
             CanvasPanel.MouseDown += HandleMouseDown;
             CanvasPanel.MouseUp += HandleMouseUp;
             CanvasPanel.MouseMove += HandleMouseMoved;
+            CanvasPanel.MouseLeave += HandleMouseLeave;
+        }
+
+        private void HandleMouseLeave(object sender, EventArgs e)
+        {
+            //Pen blankCursorPen=new Pen(_BACKGROUND_COLOR, _LINE_WIDTH);
+           _canvasModel.Cursor = null;
+
         }
 
         // This will draw a circle on the canvas wherever the user clicks the mouse.

@@ -14,6 +14,7 @@ namespace ActionSources
             get
             {
                 throw new NotImplementedException();
+               // return new List<T>(_actions);
             }
         }
 
@@ -31,6 +32,7 @@ namespace ActionSources
         {
             get
             {
+                //return _actions > 0;
                 throw new NotImplementedException();
             }
         }

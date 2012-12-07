@@ -17,8 +17,7 @@ namespace ActionSources
         public IEnumerable<T> Actions {
             get
             {
-                return new List<T>(_actions);
-            }
+                return new List<T>(_actions);}
         }
 
         public void Undo()
