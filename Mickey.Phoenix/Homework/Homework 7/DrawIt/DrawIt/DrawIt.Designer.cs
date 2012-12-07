@@ -51,6 +51,7 @@ namespace DrawIt
             // 
             // ClearButton
             // 
+            this.ClearButton.Enabled = false;
             this.ClearButton.Location = new System.Drawing.Point(508, 12);
             this.ClearButton.Name = "ClearButton";
             this.ClearButton.Size = new System.Drawing.Size(75, 23);
@@ -119,6 +120,7 @@ namespace DrawIt
             // 
             // UndoButton
             // 
+            this.UndoButton.Enabled = false;
             this.UndoButton.Location = new System.Drawing.Point(280, 13);
             this.UndoButton.Name = "UndoButton";
             this.UndoButton.Size = new System.Drawing.Size(75, 23);
@@ -129,6 +131,7 @@ namespace DrawIt
             // 
             // RedoButton
             // 
+            this.RedoButton.Enabled = false;
             this.RedoButton.Location = new System.Drawing.Point(362, 12);
             this.RedoButton.Name = "RedoButton";
             this.RedoButton.Size = new System.Drawing.Size(75, 23);
@@ -141,7 +144,7 @@ namespace DrawIt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(591, 611);
+            this.ClientSize = new System.Drawing.Size(591, 574);
             this.Controls.Add(this.RedoButton);
             this.Controls.Add(this.UndoButton);
             this.Controls.Add(this.groupBox1);

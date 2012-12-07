@@ -72,7 +72,7 @@ namespace DrawIt
             // This won't support Undo or Redo, so the buttons will always be disabled, but it 
             // will allow us to use the interface (since it has been implemented), and later we can
             // replace it with a more advanced implementation.
-            // _actions = new SimpleDrawActionSource();
+            // _actions = new SimpleActionSource<IDrawAction>();
 
             // This line creates a BrokenDrawActionSource(), with the behavior
             // we saw at the beginning of class (in DrawIt 1.0).  It appears to
@@ -104,6 +104,11 @@ namespace DrawIt
             // and advanced language feature, which we're using here to set up our "UpdateUi" method as a listener
             // ("delegate") on the ActionsChanged event of our actions model.
             _actions.ActionsChanged += UpdateUi;
+
+            // This adds ANOTHER event handler ("event listener") on the ActionsChanged
+            // event of the _actions object.  When the _actions object fires its
+            // ActionsChanged event, it will also call UpdateClearButton()
+            _actions.ActionsChanged += UpdateClearButton;
 
             // This line creates a new DrawingModel which wraps around and encapsulates 
             // the CanvasPanel, and then stores that DrawingModel into the instance variable 
@@ -139,6 +144,17 @@ namespace DrawIt
             CanvasPanel.MouseDown += HandleMouseDown;
             CanvasPanel.MouseUp += HandleMouseUp;
             CanvasPanel.MouseMove += HandleMouseMoved;
+            CanvasPanel.MouseLeave += HandleMouseLeave;
+        }
+
+//        private int _lastKnownX;
+//        private int _lastKnownY;
+
+        private void HandleMouseLeave(object sender, EventArgs e)
+        {
+//            Pen blankCursorPen = new Pen(_BACKGROUND_COLOR, _LINE_WIDTH);
+//            _canvasModel.Cursor = new DrawCircleAction(blankCursorPen, _lastKnownX, _lastKnownY, 20);
+            _canvasModel.Cursor = null;
         }
 
         // This will draw a circle on the canvas wherever the user clicks the mouse.
@@ -167,6 +183,8 @@ namespace DrawIt
             // We'll let the DrawingModel take care of the details of drawing a cursor (a temporary image)
             // instead of drawing a permanent circle.
             _canvasModel.Cursor = new DrawCircleAction(_cursorPen, e.Location.X, e.Location.Y, 20);
+//            _lastKnownX = e.Location.X;
+//            _lastKnownY = e.Location.Y;
         }
 
         private void ClearButtonClicked(object sender, EventArgs e)
@@ -199,12 +217,18 @@ namespace DrawIt
         private void RedoButtonClicked(object sender, EventArgs e)
         {
             _actions.Redo();
+            ClearButton.Enabled = _actions.CanClear;
         }
 
         private void UpdateUi()
         {
             UndoButton.Enabled = _actions.CanUndo;
             RedoButton.Enabled = _actions.CanRedo;
+        }
+
+        private void UpdateClearButton()
+        {
+            ClearButton.Enabled = _actions.CanClear;
         }
     }
 }

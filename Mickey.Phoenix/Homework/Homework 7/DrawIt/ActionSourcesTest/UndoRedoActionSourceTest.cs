@@ -23,25 +23,41 @@ namespace ActionSourcesTest
             Assert.That(_actionSource.CanUndo, Is.False);
         }
 
-        // I've added a couple more sample test here, to show you some ways to work with the
-        // Actions enumeration.
-
         [Test]
         public void CanAddOneItemToList()
         {
             _actionSource.Add(3);
+            Assert.That(_actionSource.Actions, Is.EqualTo(new[] { 3 }));
+        }
 
-            // The "ToList()" call here converts Actions, which is an IEnumerable<int>,
-            // into a List<int>, which has a Count method, and which allows you to get 
-            // specific elements via [0], [1], etc.  It's just a little easier to work with.
-            List<int> actualList = _actionSource.Actions.ToList();
+        [Test]
+        public void CanUndoAfterAdding()
+        {
+            _actionSource.Add(3);
+            Assert.That(_actionSource.CanUndo, Is.True);
+        }
 
-            // This line verifies that we have exactly 1 element in the list of actions.
-            Assert.That(actualList.Count, Is.EqualTo(1));
+        [Test]
+        public void UndoWorksAfterAdding()
+        {
+            _actionSource.Add(3);
+            _actionSource.Undo();
 
-            // This line verifies that the first element in the list (the element at index 0)
-            // is "3", the expected value.
-            Assert.That(actualList[0], Is.EqualTo(3));
+            // These two lines are equivalent, in this case, because the "Is.EqualTo()"
+            // is only looking at the contents of the collections, not the type of the
+            // collections.
+            Assert.That(_actionSource.Actions, Is.EqualTo(new List<int>()));
+            Assert.That(_actionSource.Actions, Is.EqualTo(new int[] { }));
+        }
+
+        [Test]
+        public void RedoAfterUndoRestoresList()
+        {
+            _actionSource.Add(3);
+            _actionSource.Undo();
+            _actionSource.Redo();
+
+            Assert.That(_actionSource.Actions, Is.EqualTo(new[] { 3 }));
         }
 
         [Test]
@@ -49,20 +65,8 @@ namespace ActionSourcesTest
         {
             _actionSource.Add(3);
             _actionSource.Add(4);
-
-            // Here, instead of using the "ToList()" call and then verifying the attributes
-            // of the resulting List, we're using the "EquivalentTo" test helper.  The
-            // "EquivalentTo" test helper allows you to check whether two collections have
-            // the same elements in them.  I recommend using this syntax, rather than the
-            // "ToList()" syntax above, because it's a lot simpler.  It is more clear and
-            // direct in expressing your expectation about the results -- and tests are all
-            // about clearly and directly expressing expectations for the results of the code.
-            Assert.That(_actionSource.Actions, Is.EquivalentTo(new[] { 3, 4 }));
+            Assert.That(_actionSource.Actions, Is.EqualTo(new[] { 3, 4 }));
         }
-
-
-        // And one more sample test, to show you how to verify that you are sending ActionsChanged
-        // events at the right times.
 
         [Test]
         public void SendsActionsChangedEventWhenActionIsAdded()

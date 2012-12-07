@@ -14,7 +14,7 @@ namespace ActionSources
 
         private readonly List<T> _actions = new List<T>();
 
-        public IEnumerable<T> Actions {
+        public List<T> Actions {
             get
             {
                 return new List<T>(_actions);
@@ -33,6 +33,7 @@ namespace ActionSources
 
         public bool CanUndo { get { return false; } }
         public bool CanRedo { get { return false; } }
+        public bool CanClear { get { return true; } }
 
         public void Add(T action)
         {

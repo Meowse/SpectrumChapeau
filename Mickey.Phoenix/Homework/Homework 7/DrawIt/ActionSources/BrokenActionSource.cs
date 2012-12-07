@@ -16,8 +16,9 @@ namespace ActionSources
         private readonly List<T> _actions = new List<T>(); 
         private int _numberOfActionsToTake;
 
-        public IEnumerable<T> Actions {
-            get { return _actions.Take(_numberOfActionsToTake); }
+        public List<T> Actions
+        {
+            get { return _actions.Take(_numberOfActionsToTake).ToList(); }
         }
 
         public void Undo()
@@ -52,6 +53,7 @@ namespace ActionSources
 
         public bool CanUndo { get { return _numberOfActionsToTake > 0; } }
         public bool CanRedo { get { return _numberOfActionsToTake < _actions.Count; } }
+        public bool CanClear { get { return _actions.Count > 0; } }
 
         public void Add(T action)
         {
@@ -64,11 +66,17 @@ namespace ActionSources
 
         public virtual void Clear()
         {
-            _actions.Clear();
-            _numberOfActionsToTake = 0;
+            if (CanClear)
+            {
+                _actions.Clear();
+                _numberOfActionsToTake = 0;
 
-            // Notifying our listeners (our delegates) about the change in our actions.
-            if (ActionsChanged != null) { ActionsChanged(); }
+                // Notifying our listeners (our delegates) about the change in our actions.
+                if (ActionsChanged != null)
+                {
+                    ActionsChanged();
+                }
+            }
         }
     }
 }
