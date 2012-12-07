@@ -52,6 +52,7 @@ namespace ActionSources
 
         public bool CanUndo { get { return _numberOfActionsToTake > 0; } }
         public bool CanRedo { get { return _numberOfActionsToTake < _actions.Count; } }
+        public bool CanClear { get { return _actions.Count > 0; } }
 
         public void Add(T action)
         {

@@ -8,5 +8,6 @@
         void Redo();
         bool CanUndo { get; }
         bool CanRedo { get; }
+        bool CanClear { get; }
     }
 }

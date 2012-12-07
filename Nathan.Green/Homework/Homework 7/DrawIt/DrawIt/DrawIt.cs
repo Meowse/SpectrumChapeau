@@ -54,12 +54,6 @@ namespace DrawIt
 
         // A Pen of a different color to draw the cursor with.
         private readonly Pen _cursorPen;
-        // A Pen of the background color to clear the last cursor drawn.
-        private readonly Pen _blankCursorPen;
-
-        //The last known location of the cursor;
-        private int _lastKnownCursorYValue;
-        private int _lastKnownCursorXValue;
 
         private static readonly Color _BACKGROUND_COLOR = Color.DarkGray;
         private static readonly Color _COLOR = Color.Red;
@@ -134,9 +128,6 @@ namespace DrawIt
             // This creates the Pen instance that draws the cursor.
             _cursorPen = new Pen(_CURSOR_COLOR, _LINE_WIDTH);
 
-            // This creates the Pen color to wipe out the last pen
-            _blankCursorPen = new Pen(_BACKGROUND_COLOR, _LINE_WIDTH);
-
             // This starts us out with a dark gray background on the canvas (so the user can see
             // where to draw).
             Clear();
@@ -157,7 +148,19 @@ namespace DrawIt
             // Since we want to actually draw a circle here, we're going to make a new DrawCircleAction and
             // add it to the list of actions.  We get the center of the circle from the mouse event "e",
             // set the radius to 20, and use our standard pen "_pen" to draw the circle.
-            _actions.Add(new DrawCircleAction(_pen, e.Location.X, e.Location.Y, 20));
+            if (DrawCirclesButton.Checked == true)
+            {
+                _actions.Add(new DrawCircleAction(_pen, e.Location.X, e.Location.Y, 20));
+            }
+            else if (DrawLinesButton.Checked == true)
+            {
+            }
+            else if (DrawRectanglesButton.Checked == true)
+            {
+            }
+            else if (DrawXesButton.Checked == true)
+            {
+            }
         }
 
         private void HandleMouseUp(object sender, MouseEventArgs e)
@@ -169,6 +172,7 @@ namespace DrawIt
         // the mouse.  This cursor is the same size as the actual circle that will
         // be drawn in HandleMouseDown(), so that the user can know where they are
         // going to be drawing if they click the mouse.
+        
         private void HandleMouseMoved(object sender, MouseEventArgs e)
         {
             // We don't want to actually draw a circle here, but instead to draw a temporary cursor.
@@ -177,15 +181,12 @@ namespace DrawIt
             // We'll let the DrawingModel take care of the details of drawing a cursor (a temporary image)
             // instead of drawing a permanent circle.
             _canvasModel.Cursor = new DrawCircleAction(_cursorPen, e.Location.X, e.Location.Y, 20);
-            _lastKnownCursorXValue = e.Location.X;
-            _lastKnownCursorYValue = e.Location.Y;
         }
 
         // This is the base method to handle the mouseleave event.
         private void HandleMouseLeave(object sender, EventArgs eventArgs)
         {
-            _canvasModel.Cursor = new DrawCircleAction(_blankCursorPen, _lastKnownCursorXValue, _lastKnownCursorYValue, 20);
-            _canvasModel.DrawActionsChanged();
+            _canvasModel.Cursor = null;
         }
 
         private void ClearButtonClicked(object sender, EventArgs e)
@@ -224,6 +225,7 @@ namespace DrawIt
         {
             UndoButton.Enabled = _actions.CanUndo;
             RedoButton.Enabled = _actions.CanRedo;
+            ClearButton.Enabled = _actions.CanClear;
         }
     }
 }

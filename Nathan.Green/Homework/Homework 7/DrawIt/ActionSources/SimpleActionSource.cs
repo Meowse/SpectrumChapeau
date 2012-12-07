@@ -33,6 +33,7 @@ namespace ActionSources
 
         public bool CanUndo { get { return false; } }
         public bool CanRedo { get { return false; } }
+        public bool CanClear { get { return true; } }
 
         public void Add(T action)
         {
