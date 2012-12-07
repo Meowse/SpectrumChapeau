@@ -56,7 +56,7 @@ namespace ActionSourcesTest
             // "ToList()" syntax above, because it's a lot simpler.  It is more clear and
             // direct in expressing your expectation about the results -- and tests are all
             // about clearly and directly expressing expectations for the results of the code.
-            Assert.That(_actionSource.Actions, Is.EquivalentTo(new[] { 3, 4 }));
+            Assert.AreEqual(_actionSource.Actions, new[] { 3, 4 });
         }
 
         // This test asserts that a list where Undo has not been pressed, Redo cannot be done 
@@ -97,7 +97,7 @@ namespace ActionSourcesTest
 
             // This line verifies that we have exactly 3 elements in the list of actions and they are: 1, 2, 3.
             Assert.That(_actionSource.Actions.Count(), Is.EqualTo(3));
-            Assert.That(_actionSource.Actions, Is.EquivalentTo(new[] { 1, 2, 3 }));
+            Assert.AreEqual(_actionSource.Actions, new[] { 1, 2, 3 });
 
             // Attempt an Undo
             _actionSource.Undo();
@@ -106,7 +106,7 @@ namespace ActionSourcesTest
 
             // This line verifies that we have exactly 2 elements in the list of actions and they are:  1, 2.
             Assert.That(_actionSource.Actions.Count(), Is.EqualTo(2));
-            Assert.That(_actionSource.Actions, Is.EquivalentTo(new[] { 1, 2 }));
+            Assert.AreEqual(_actionSource.Actions, new[] { 1, 2 });
 
             // Add a new member
             _actionSource.Add(4);
@@ -115,7 +115,7 @@ namespace ActionSourcesTest
 
             // This line verifies that we have exactly 3 elements in the list of actions and they are:  1, 2, 4.
             Assert.That(_actionSource.Actions.Count(), Is.EqualTo(3));
-            Assert.That(_actionSource.Actions, Is.EquivalentTo(new[] { 1, 2, 4 }));
+            Assert.AreEqual(_actionSource.Actions, new[] { 1, 2, 4 });
 
             // Undo twice, then add 2 new members
             _actionSource.Undo();
@@ -127,7 +127,7 @@ namespace ActionSourcesTest
 
             // This line verifies that we have exactly 3 elements in the list of actions and they are:  1, 5, 6.
             Assert.That(_actionSource.Actions.Count(), Is.EqualTo(3));
-            Assert.That(_actionSource.Actions, Is.EquivalentTo(new[] { 1, 5, 6 }));
+            Assert.AreEqual(_actionSource.Actions, new[] { 1, 5, 6 });
         }
 
         // And one more sample test, to show you how to verify that you are sending ActionsChanged
