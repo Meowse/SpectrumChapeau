@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using ActionSources;
 using NUnit.Framework;
@@ -88,37 +87,34 @@ namespace ActionSourcesTest
 
         // This is a complicated test
         [Test]
-        public void ComplicatedTest()
+        public void ConfirmThatMultipleAddsUndosRedosAddsAgainWorkTest()
         {
             _actionSource.Add(1);
             _actionSource.Add(2);
             _actionSource.Add(3);
 
             // List now contains 3 elements: 1, 2, 3.
-            List<int> actualList = _actionSource.Actions.ToList();
 
             // This line verifies that we have exactly 3 elements in the list of actions and they are: 1, 2, 3.
-            Assert.That(actualList.Count, Is.EqualTo(3));
+            Assert.That(_actionSource.Actions.Count(), Is.EqualTo(3));
             Assert.That(_actionSource.Actions, Is.EquivalentTo(new[] { 1, 2, 3 }));
 
             // Attempt an Undo
             _actionSource.Undo();
 
             // List now contains 2 elements: 1, 2.
-            actualList = _actionSource.Actions.ToList();
 
             // This line verifies that we have exactly 2 elements in the list of actions and they are:  1, 2.
-            Assert.That(actualList.Count, Is.EqualTo(2));
+            Assert.That(_actionSource.Actions.Count(), Is.EqualTo(2));
             Assert.That(_actionSource.Actions, Is.EquivalentTo(new[] { 1, 2 }));
 
             // Add a new member
             _actionSource.Add(4);
 
             // List now contains 3 elements: 1, 2, 4.
-            actualList = _actionSource.Actions.ToList();
 
             // This line verifies that we have exactly 3 elements in the list of actions and they are:  1, 2, 4.
-            Assert.That(actualList.Count, Is.EqualTo(3));
+            Assert.That(_actionSource.Actions.Count(), Is.EqualTo(3));
             Assert.That(_actionSource.Actions, Is.EquivalentTo(new[] { 1, 2, 4 }));
 
             // Undo twice, then add 2 new members
@@ -128,10 +124,9 @@ namespace ActionSourcesTest
             _actionSource.Add(6);
 
             // List now contains 3 elements: 1, 5, 6.
-            actualList = _actionSource.Actions.ToList();
 
             // This line verifies that we have exactly 3 elements in the list of actions and they are:  1, 5, 6.
-            Assert.That(actualList.Count, Is.EqualTo(3));
+            Assert.That(_actionSource.Actions.Count(), Is.EqualTo(3));
             Assert.That(_actionSource.Actions, Is.EquivalentTo(new[] { 1, 5, 6 }));
         }
 

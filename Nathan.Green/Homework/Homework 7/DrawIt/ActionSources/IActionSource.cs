@@ -19,6 +19,10 @@ namespace ActionSources
     {
         IEnumerable<T> Actions { get; }
 
+        void Add(T action);
+        void Clear();
+        bool CanClear { get; }
+
         // This line says, "IActionSource implementers are a source of ActionsChanged events,
         // and if you want to handle them, you should listen for them here, and you will need to be
         // an ActionsChangedEventHandler in order to do this."  Anybody who cares about ActionsChanged
