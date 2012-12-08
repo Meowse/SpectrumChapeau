@@ -23,18 +23,28 @@ namespace ActionSources
 
         public void Undo()
         {
-            int lastActionIndex = _actions.Count - 1;
-            TAction lastAction = _actions[lastActionIndex];
-            _actions.RemoveAt(lastActionIndex);
-            _redoActions.Add(lastAction);
+            if (CanUndo)
+            {
+                int lastActionIndex = _actions.Count - 1;
+                TAction lastAction = _actions[lastActionIndex];
+                _actions.RemoveAt(lastActionIndex);
+                _redoActions.Add(lastAction);
+                if (ActionsChanged != null){ActionsChanged();}
+            }
         }
 
         public void Redo()
         {
-            int lastActionIndex = _redoActions.Count - 1;
-            TAction lastAction = _redoActions[lastActionIndex];
-            _redoActions.RemoveAt(lastActionIndex);
-            _actions.Add(lastAction);
+
+            if (CanRedo)
+            {
+                int lastActionIndex = _redoActions.Count - 1;
+                TAction lastAction = _redoActions[lastActionIndex];
+                _redoActions.RemoveAt(lastActionIndex);
+                _actions.Add(lastAction);
+                if (ActionsChanged != null){ActionsChanged();}
+
+            }
         }
 
         public bool CanUndo
@@ -49,24 +59,33 @@ namespace ActionSources
         {
             get
             {
-                throw new NotImplementedException();
+                return _redoActions.Count > 0;
             }
         }
 
         public bool CanClear
         {
-            get { throw new NotImplementedException(); }
+            get { return _actions.Count > 0 || _redoActions.Count > 0;}
         }
 
         public void Add(TAction action)
         {
             _actions.Add(action);
+            if (_redoActions.Count > 0)
+            {
+                _redoActions.Clear();
+            }
             if (ActionsChanged != null) { ActionsChanged(); }
         }
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            if (CanClear)
+            {
+                _redoActions.Clear();
+                _actions.Clear();
+            }
+            if (ActionsChanged != null) { ActionsChanged(); }
         }
     }
 }
