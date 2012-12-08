@@ -56,7 +56,9 @@ namespace ActionSourcesTest
             // "ToList()" syntax above, because it's a lot simpler.  It is more clear and
             // direct in expressing your expectation about the results -- and tests are all
             // about clearly and directly expressing expectations for the results of the code.
-            Assert.That(_actionSource.Actions, Is.EquivalentTo(new[] { 3, 4 }));
+            //Assert.That(_actionSource.Actions, Is.EquivalentTo(new[] { 3, 4 }));
+            //Assert.AreEqual(_actionSource.Actions, new[] {3, 4});
+            Assert.That(_actionSource.Actions, Is.EqualTo(new[] { 3, 4 }));
         }
 
 
@@ -173,5 +175,6 @@ namespace ActionSourcesTest
             _actionSource.Redo();
             Assert.That(_actionSource.Actions, Is.EquivalentTo(new[] { 1, 4 }));
         }
+
     }
 }
