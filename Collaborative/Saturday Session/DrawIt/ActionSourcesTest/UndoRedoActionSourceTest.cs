@@ -91,5 +91,36 @@ namespace ActionSourcesTest
                 EventsHandled++;
             }
         }
+        [Test]
+        public void DiscardRedoItemFromListAfterAddAfterUndo()
+        {
+            _actionSource.Add(1);
+            _actionSource.Add(2);
+            _actionSource.Add(3);
+            _actionSource.Add(4);
+            _actionSource.Add(5);
+            _actionSource.Undo(); // 1,2,3,4
+            _actionSource.Undo(); //1,2,3
+            _actionSource.Add(6); //1,2,3,6
+            _actionSource.Add(7); //1,2,3,6,7
+            _actionSource.Undo(); //1,2,3,6
+            _actionSource.Undo(); //1,2,3
+            _actionSource.Undo(); // 1,2
+            _actionSource.Redo(); // 1,2,3
+            _actionSource.Redo(); // 1,2,3,6
+            _actionSource.Redo(); // 1,2,3,6,7
+
+            // should not be able to redo anymore
+            Assert.That(_actionSource.CanRedo, Is.False);
+            Assert.That(_actionSource.Actions, Is.EqualTo(new[] {1, 2, 3, 6, 7}));
+        }
+        [Test]
+        public void AddingItemClearsRedo()
+        {
+            _actionSource.Add(1);
+            _actionSource.Undo();
+            _actionSource.Add(2);
+            Assert.That(_actionSource.RedoActions, Is.EqualTo(new int[] {}));
+        }
     }
 }

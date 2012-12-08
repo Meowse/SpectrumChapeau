@@ -20,7 +20,13 @@ namespace ActionSources
                 return _actions;
             }
         }
-
+        public List<TAction> RedoActions
+        {
+            get
+            {
+                return _redoActions;
+            }
+        }
         public void Undo()
         {
             if (CanUndo)
@@ -70,11 +76,11 @@ namespace ActionSources
 
         public void Add(TAction action)
         {
-            _actions.Add(action);
             if (_redoActions.Count > 0)
             {
                 _redoActions.Clear();
             }
+            _actions.Add(action);
             if (ActionsChanged != null) { ActionsChanged(); }
         }
 
