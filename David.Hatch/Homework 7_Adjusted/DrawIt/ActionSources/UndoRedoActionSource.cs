@@ -13,6 +13,12 @@ namespace ActionSources
         private readonly List<TAction> _actions = new List<TAction>();
         private readonly List<TAction> _redoActions = new List<TAction>(); 
 
+        //dsh
+        //set true when undo used - when add called clear redoActions list and set to false
+        private bool UndoCalled;
+
+
+
         public List<TAction> Actions
         {
             get
@@ -23,18 +29,33 @@ namespace ActionSources
 
         public void Undo()
         {
-            int lastActionIndex = _actions.Count - 1;
-            TAction lastAction = _actions[lastActionIndex];
-            _actions.RemoveAt(lastActionIndex);
-            _redoActions.Add(lastAction);
+            if (CanUndo)
+            {
+                int lastActionIndex = _actions.Count - 1;
+                TAction lastAction = _actions[lastActionIndex];
+                _actions.RemoveAt(lastActionIndex);
+                _redoActions.Add(lastAction);
+                UndoCalled=true;
+                if (ActionsChanged != null)
+                {
+                    ActionsChanged();
+                }
+            }
         }
 
         public void Redo()
         {
-            int lastActionIndex = _redoActions.Count - 1;
-            TAction lastAction = _redoActions[lastActionIndex];
-            _redoActions.RemoveAt(lastActionIndex);
-            _actions.Add(lastAction);
+            if (CanRedo)
+            {
+                int lastActionIndex = _redoActions.Count - 1;
+                TAction lastAction = _redoActions[lastActionIndex];
+                _redoActions.RemoveAt(lastActionIndex);
+                _actions.Add(lastAction);
+                if (ActionsChanged != null)
+                {
+                    ActionsChanged();
+                }
+            }
         }
 
         public bool CanUndo
@@ -49,24 +70,43 @@ namespace ActionSources
         {
             get
             {
-                throw new NotImplementedException();
+                return _redoActions.Count > 0;
             }
         }
 
         public bool CanClear
         {
-            get { throw new NotImplementedException(); }
+            get 
+            { 
+                return _actions.Count > 0 || _redoActions.Count > 0; 
+            }
         }
 
         public void Add(TAction action)
         {
+            if (UndoCalled)
+            {
+                _redoActions.Clear();
+                UndoCalled = false;
+            }
             _actions.Add(action);
+
             if (ActionsChanged != null) { ActionsChanged(); }
         }
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            if (CanClear)
+            {
+                _actions.Clear();
+                _redoActions.Clear();
+                if (ActionsChanged != null)
+                {
+                    ActionsChanged();
+                }
+            }
         }
+
+
     }
 }
