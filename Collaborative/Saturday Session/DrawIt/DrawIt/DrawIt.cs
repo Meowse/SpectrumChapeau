@@ -58,6 +58,8 @@ namespace DrawIt
         private static readonly Color _BACKGROUND_COLOR = Color.DarkGray;
         private static readonly Color _COLOR = Color.Red;
         private static readonly Color _CURSOR_COLOR = Color.AliceBlue;
+        private Point _startPoint;
+        private bool _isDrawing;
 
         // This is a constructor method for the DrawIt class.  Notice that it has the same name ("DrawIt") as the class,
         // and does not have a return type.  That's how we know it's a constructor method.
@@ -163,12 +165,28 @@ namespace DrawIt
             // Since we want to actually draw a circle here, we're going to make a new DrawCircleAction and
             // add it to the list of actions.  We get the center of the circle from the mouse event "e",
             // set the radius to 20, and use our standard pen "_pen" to draw the circle.
-            _actions.Add(new DrawCircleAction(_pen, e.Location.X, e.Location.Y, 20));
+
+            if (DrawLinesButton.Checked)
+            {
+                _startPoint = new Point(e.Location.X, e.Location.Y);
+                _isDrawing = true;
+            }
+            else if (DrawCirclesButton.Checked)
+            {
+                _actions.Add(new DrawCircleAction(_pen, e.Location.X, e.Location.Y, 20));
+            }
         }
 
         private void HandleMouseUp(object sender, MouseEventArgs e)
         {
             // Doesn't do anything yet.
+            if (DrawLinesButton.Checked)
+            {
+                _actions.Add(new DrawLineAction(_pen, _startPoint.X, _startPoint.Y, e.Location.X, e.Location.Y));
+                _canvasModel.Cursor = null;
+                _isDrawing = false;
+
+            }
         }
 
         // This will draw a temporary circle as a "cursor" wherever the user moves
@@ -182,7 +200,19 @@ namespace DrawIt
             // of adding it to the list of actions, we're going to set it as the Cursor of the DrawingModel.
             // We'll let the DrawingModel take care of the details of drawing a cursor (a temporary image)
             // instead of drawing a permanent circle.
-            _canvasModel.Cursor = new DrawCircleAction(_cursorPen, e.Location.X, e.Location.Y, 20);
+            if (DrawLinesButton.Checked)
+            {
+                if (_isDrawing)
+                {
+                    _canvasModel.Cursor = new DrawLineAction(_cursorPen, _startPoint.X, _startPoint.Y, e.Location.X,
+                                                             e.Location.Y);
+
+                }
+            }
+            else if (DrawCirclesButton.Checked)
+            {
+                _canvasModel.Cursor = new DrawCircleAction(_cursorPen, e.Location.X, e.Location.Y, 20);
+            }
 //            _lastKnownX = e.Location.X;
 //            _lastKnownY = e.Location.Y;
         }
