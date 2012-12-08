@@ -149,9 +149,6 @@ namespace DrawIt
             CanvasPanel.MouseLeave += HandleMouseLeave;
         }
 
-//        private int _lastKnownX;
-//        private int _lastKnownY;
-
         private void HandleMouseLeave(object sender, EventArgs e)
         {
 //            Pen blankCursorPen = new Pen(_BACKGROUND_COLOR, _LINE_WIDTH);
@@ -159,33 +156,34 @@ namespace DrawIt
             _canvasModel.Cursor = null;
         }
 
-        // This will draw a circle on the canvas wherever the user clicks the mouse.
         private void HandleMouseDown(object sender, MouseEventArgs e)
         {
-            // Since we want to actually draw a circle here, we're going to make a new DrawCircleAction and
-            // add it to the list of actions.  We get the center of the circle from the mouse event "e",
-            // set the radius to 20, and use our standard pen "_pen" to draw the circle.
-
             if (DrawLinesButton.Checked)
             {
+                // We don't want to actually draw a line (or even a "line cursor") here -- we just want
+                // to record the start point for the line, and also mark that we're "drawing".
                 _startPoint = new Point(e.Location.X, e.Location.Y);
                 _isDrawing = true;
             }
             else if (DrawCirclesButton.Checked)
             {
+                // Since we want to actually draw a circle here, we're going to make a new DrawCircleAction and
+                // add it to the list of actions.  We get the center of the circle from the mouse event "e",
+                // set the radius to 20, and use our standard pen "_pen" to draw the circle.
+
                 _actions.Add(new DrawCircleAction(_pen, e.Location.X, e.Location.Y, 20));
             }
         }
 
         private void HandleMouseUp(object sender, MouseEventArgs e)
         {
-            // Doesn't do anything yet.
             if (DrawLinesButton.Checked)
             {
+                // Here's where we actually draw the line.  We also hide the line cursor (by setting it to 
+                // null) and turn off the "_isDrawing" flag value.
                 _actions.Add(new DrawLineAction(_pen, _startPoint.X, _startPoint.Y, e.Location.X, e.Location.Y));
                 _canvasModel.Cursor = null;
                 _isDrawing = false;
-
             }
         }
 
