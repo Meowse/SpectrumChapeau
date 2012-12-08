@@ -1,0 +1,6 @@
+A Product Increment/User Story is Done when:
+
+1) It runs on multiple machines
+2) It passes manual testing
+3) It has automated unit tests where practical
+
