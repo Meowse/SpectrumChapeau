@@ -87,5 +87,18 @@ namespace ActionSourcesTest
                 EventsHandled++;
             }
         }
+
+        [Test]
+        public void CannotRedoEmptyList()
+        {
+            Assert.That(_actionSource.CanRedo, Is.False);
+        }
+
+
+
+
+
+
+
     }
 }

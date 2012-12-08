@@ -40,7 +40,7 @@ namespace ActionSources
         {
             get
             {
-                throw new NotImplementedException();
+                return false;
             }
         }
 
