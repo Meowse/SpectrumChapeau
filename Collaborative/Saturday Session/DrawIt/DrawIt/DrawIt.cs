@@ -167,11 +167,8 @@ namespace DrawIt
             }
             else if (DrawCirclesButton.Checked)
             {
-                // Since we want to actually draw a circle here, we're going to make a new DrawCircleAction and
-                // add it to the list of actions.  We get the center of the circle from the mouse event "e",
-                // set the radius to 20, and use our standard pen "_pen" to draw the circle.
-
-                _actions.Add(new DrawCircleAction(_pen, e.Location.X, e.Location.Y, 20));
+                _startPoint = new Point(e.Location.X, e.Location.Y);
+                _isDrawing = true;
             }
         }
 
@@ -182,6 +179,13 @@ namespace DrawIt
                 // Here's where we actually draw the line.  We also hide the line cursor (by setting it to 
                 // null) and turn off the "_isDrawing" flag value.
                 _actions.Add(new DrawLineAction(_pen, _startPoint.X, _startPoint.Y, e.Location.X, e.Location.Y));
+                _canvasModel.Cursor = null;
+                _isDrawing = false;
+            }
+            else if (DrawCirclesButton.Checked)
+            {
+                int radius = MathHelpers.GetRadius(_startPoint, new Point(e.Location.X, e.Location.Y));
+                _actions.Add(new DrawCircleAction(_pen, _startPoint.X, _startPoint.Y, radius));
                 _canvasModel.Cursor = null;
                 _isDrawing = false;
             }
@@ -207,9 +211,10 @@ namespace DrawIt
 
                 }
             }
-            else if (DrawCirclesButton.Checked)
+            else if (DrawCirclesButton.Checked && _isDrawing)
             {
-                _canvasModel.Cursor = new DrawCircleAction(_cursorPen, e.Location.X, e.Location.Y, 20);
+                int radius = MathHelpers.GetRadius(_startPoint, new Point(e.Location.X, e.Location.Y));
+                _canvasModel.Cursor=new DrawCircleAction(_cursorPen, _startPoint.X, _startPoint.Y, radius);
             }
 //            _lastKnownX = e.Location.X;
 //            _lastKnownY = e.Location.Y;
