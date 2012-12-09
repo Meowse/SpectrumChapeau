@@ -205,7 +205,10 @@ namespace DrawIt
                 else if (DrawCirclesButton.Checked)
                 {
                     int radius = MathHelpers.GetRadius(_startPoint, new Point(e.Location.X, e.Location.Y));
-                    _canvasModel.Cursor = new DrawCircleAction(_cursorPen, _startPoint.X, _startPoint.Y, radius);
+                    if (radius > 0)
+                    {
+                        _canvasModel.Cursor = new DrawCircleAction(_cursorPen, _startPoint.X, _startPoint.Y, radius);
+                    }
                 }
             }
 //            _lastKnownX = e.Location.X;
