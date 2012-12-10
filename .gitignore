@@ -3,6 +3,8 @@ bin
 obj
 _Resharper.*
 *.suo
+*.user
+*.gitignore
 
 # mstest test results
 TestResults
