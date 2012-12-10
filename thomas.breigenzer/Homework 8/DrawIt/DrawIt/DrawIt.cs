@@ -72,18 +72,19 @@ namespace DrawIt
             // This won't support Undo or Redo, so the buttons will always be disabled, but it 
             // will allow us to use the interface (since it has been implemented), and later we can
             // replace it with a more advanced implementation.
-            // _actions = new SimpleActionSource<IDrawAction>();
-
+            _actions = new SimpleActionSource<IDrawAction>();
+            
             // This line creates a BrokenDrawActionSource(), with the behavior
             // we saw at the beginning of class (in DrawIt 1.0).  It appears to
             // allow Undo and Redo, but if you Undo some actions and then
             // start drawing more circles, it redraws the undone actions 
             // before it starts drawing the new circles.
-            _actions = new BrokenActionSource<IDrawAction>();
+            //_actions = new BrokenActionSource<IDrawAction>();
             
             // Homework: Create an actual UndoRedoDrawActionSource() and make sure
             // that it has the proper Undo() and Redo() semantics.
             //_actions = new UndoRedoDrawActionSource();
+            _actions= new UndoRedoActionSource<IDrawAction>();
 
             // This line says, "I want to listen to ActionsChanged events from this IActionSource.
             // Every time the ActionsChanged event happens, I want my UpdateUi() method to be called.

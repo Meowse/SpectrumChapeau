@@ -15,10 +15,7 @@ namespace ActionSources
 
         public List<TAction> Actions
         {
-            get
-            {
-                return _actions;
-            }
+            get {return _actions;}
         }
 
         public void Undo()
@@ -27,6 +24,7 @@ namespace ActionSources
             TAction lastAction = _actions[lastActionIndex];
             _actions.RemoveAt(lastActionIndex);
             _redoActions.Add(lastAction);
+            if (ActionsChanged != null) { ActionsChanged(); }
         }
 
         public void Redo()
@@ -35,38 +33,35 @@ namespace ActionSources
             TAction lastAction = _redoActions[lastActionIndex];
             _redoActions.RemoveAt(lastActionIndex);
             _actions.Add(lastAction);
+            if (ActionsChanged != null) { ActionsChanged(); }
         }
 
         public bool CanUndo
         {
-            get
-            {
-                return _actions.Count > 0;
-            }
+            get {return _actions.Count > 0;}
         }
 
         public bool CanRedo
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get {return _redoActions.Count > 0;}
         }
 
         public bool CanClear
         {
-            get { throw new NotImplementedException(); }
+            get { return _actions.Count > 0; }
         }
 
         public void Add(TAction action)
         {
+            if (_redoActions.Count>0){_redoActions.Clear();}
             _actions.Add(action);
-            if (ActionsChanged != null) { ActionsChanged(); }
+            if (ActionsChanged != null) { ActionsChanged();}
         }
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            _actions.Clear();
+            if (ActionsChanged != null) { ActionsChanged(); }
         }
     }
 }
