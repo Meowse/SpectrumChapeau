@@ -9,47 +9,62 @@ namespace ActionSources
         // the publicly-visible list of Actions changes, so that your delegates can respond
         // appropriately to the list of Actions changing.
         public event ActionsChangedEventHandler ActionsChanged;
+        private List<T> _active = new List<T>();
+        private List<T> _passive = new List<T>();
 
-        public IEnumerable<T> Actions {
+        public IEnumerable<T> Actions
+        {
             get
             {
-                throw new NotImplementedException();
+                return _active;
             }
         }
 
         public void Undo()
         {
-            throw new NotImplementedException();
+            int lastActionIndex = _active.Count - 1;
+            T lastAction = _active[lastActionIndex];
+            _active.RemoveAt(lastActionIndex);
+            _passive.Add(lastAction);
         }
 
         public void Redo()
         {
-            throw new NotImplementedException();
+            int lastActionIndex = _passive.Count - 1;
+            T lastAction = _passive[lastActionIndex];
+            _passive.RemoveAt(lastActionIndex);
+            _active.Add(lastAction);
         }
 
         public bool CanUndo
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return false; }
         }
+
         public bool CanRedo
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return false; }
         }
 
         public void Add(T action)
         {
-            throw new NotImplementedException();
+            this._active.Add(action);
+            
+            if (ActionsChanged != null)
+            {
+                ActionsChanged();
+            }
         }
+         
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            this._active.Clear();
+            if (ActionsChanged != null)
+            {
+                ActionsChanged();
+            }
+
         }
     }
 }
