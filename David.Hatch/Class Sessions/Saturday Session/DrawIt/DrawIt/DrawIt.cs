@@ -128,6 +128,8 @@ namespace DrawIt
             {
                 Background = new DrawBackgroundAction(_BACKGROUND_COLOR)
             };
+            // set button color to color of drawing cursor
+            ColorSelectButton.BackColor = _COLOR;
 
             // This creates the Pen intance that draws lines on the canvas.
             _pen = new Pen(_COLOR, _LINE_WIDTH);
@@ -257,6 +259,20 @@ namespace DrawIt
         private void UpdateClearButton()
         {
             ClearButton.Enabled = _actions.CanClear;
+        }
+
+        private void ColorSelectButton_Click(object sender, EventArgs e)
+        {
+            ColorDialog ColorDialog1 = new ColorDialog();
+            DialogResult result = ColorDialog1.ShowDialog();
+            if (result == DialogResult.OK)
+            
+            {
+                ColorSelectButton.BackColor = ColorDialog1.Color;
+                _pen.Color = ColorDialog1.Color;
+                
+            }
+
         }
     }
 }
