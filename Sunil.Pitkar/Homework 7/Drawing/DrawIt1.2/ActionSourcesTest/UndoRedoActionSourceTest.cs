@@ -34,14 +34,14 @@ namespace ActionSourcesTest
             // The "ToList()" call here converts Actions, which is an IEnumerable<int>,
             // into a List<int>, which has a Count method, and which allows you to get 
             // specific elements via [0], [1], etc.  It's just a little easier to work with.
-            List<int> actualList = _actionSource.Actions.ToList();
+            //List<int> actualList = _actionSource.Actions.ToList();
 
-            // This line verifies that we have exactly 1 element in the list of actions.
-            Assert.That(actualList.Count, Is.EqualTo(1));
+            //// This line verifies that we have exactly 1 element in the list of actions.
+            //Assert.That(actualList.Count, Is.EqualTo(1));
 
-            // This line verifies that the first element in the list (the element at index 0)
-            // is "3", the expected value.
-            Assert.That(actualList[0], Is.EqualTo(3));
+            //// This line verifies that the first element in the list (the element at index 0)
+            //// is "3", the expected value.
+            Assert.That(_actionSource.Actions, Is.EqualTo(new[] { 3 }));
         }
 
         [Test]
@@ -57,7 +57,7 @@ namespace ActionSourcesTest
             // "ToList()" syntax above, because it's a lot simpler.  It is more clear and
             // direct in expressing your expectation about the results -- and tests are all
             // about clearly and directly expressing expectations for the results of the code.
-            Assert.That(_actionSource.Actions, Is.EquivalentTo(new[] { 3, 4 }));
+            Assert.That(_actionSource.Actions, Is.EqualTo(new[] { 3, 4 }));
         }
 
 

@@ -24,7 +24,12 @@ namespace ActionSourcesTest
 
         // I've added a couple more sample test here, to show you some ways to work with the
         // Actions enumeration.
-
+        [Test]
+        public void CannotUndoListEvenAfterAdding()
+        {
+            _actionSource.Add(5);
+            Assert.That(_actionSource.CanUndo, Is.False);
+        }
         [Test]
         public void CanAddOneItemToList()
         {
@@ -56,7 +61,8 @@ namespace ActionSourcesTest
             // "ToList()" syntax above, because it's a lot simpler.  It is more clear and
             // direct in expressing your expectation about the results -- and tests are all
             // about clearly and directly expressing expectations for the results of the code.
-            Assert.That(_actionSource.Actions, Is.EquivalentTo(new[] { 3, 4 }));
+            //Assert.That(_actionSource.Actions, Is.EquivalentTo(new[] { 3, 4 }));
+            Assert.That(_actionSource.Actions, Is.EqualTo(new[] { 3, 4 }));
         }
 
         // And one more sample test, to show you how to verify that you are sending ActionsChanged
