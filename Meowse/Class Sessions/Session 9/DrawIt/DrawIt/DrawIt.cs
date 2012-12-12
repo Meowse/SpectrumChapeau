@@ -200,6 +200,11 @@ namespace DrawIt
         {
             Pen pen = _pen;
 
+            return GetAction(e, pen);
+        }
+
+        private IDrawAction GetAction(MouseEventArgs e, Pen pen)
+        {
             IDrawAction drawAction = null;
 
             // Here's where we actually draw the shape.  We also hide the cursor (by setting it to 
