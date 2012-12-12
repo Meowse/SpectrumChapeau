@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using ActionSources;
 using NUnit.Framework;
@@ -21,6 +20,12 @@ namespace ActionSourcesTest
         public void CannotUndoEmptyList()
         {
             Assert.That(_actionSource.CanUndo, Is.False);
+        }
+
+        [Test]
+        public void CannotRedoEmptyList()
+        {
+            Assert.That(_actionSource.CanRedo, Is.False);
         }
 
         // I've added a couple more sample test here, to show you some ways to work with the
@@ -59,7 +64,6 @@ namespace ActionSourcesTest
             // about clearly and directly expressing expectations for the results of the code.
             Assert.That(_actionSource.Actions, Is.EquivalentTo(new[] { 3, 4 }));
         }
-
 
         // And one more sample test, to show you how to verify that you are sending ActionsChanged
         // events at the right times.

@@ -11,6 +11,7 @@ namespace ActionSources
         public event ActionsChangedEventHandler ActionsChanged;
 
         private readonly List<T> _actions = new List<T>();
+        private readonly List<T> _redoActions = new List<T>();
 
         public IEnumerable<T> Actions 
         {
@@ -22,26 +23,39 @@ namespace ActionSources
 
         public void Undo()
         {
-            throw new NotImplementedException();
+            if (CanUndo)
+            {
+                int lastActionIndex = _actions.Count - 1;
+                T lastAction = _actions[lastActionIndex];
+                _actions.RemoveAt(lastActionIndex);
+                _redoActions.Add(lastAction);
+            }
         }
 
         public void Redo()
         {
-            throw new NotImplementedException();
+            if (CanRedo)
+            {
+                int lastActionIndex = _redoActions.Count - 1;
+                T lastAction = _redoActions[lastActionIndex];
+                _redoActions.RemoveAt(lastActionIndex);
+                _actions.Add(lastAction);
+            }
         }
 
         public bool CanUndo
         {
-            get {
+            get 
+            {
                 return _actions.Count > 0;
             }
         }
 
         public bool CanRedo
         {
-            get
-            {
-                throw new NotImplementedException();
+            get 
+            { 
+                return _redoActions.Count > 0; 
             }
         }
 
