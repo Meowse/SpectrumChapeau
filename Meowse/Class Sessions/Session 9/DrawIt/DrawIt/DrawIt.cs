@@ -185,10 +185,15 @@ namespace DrawIt
             // HandleMouseDown, but instead of adding it to the list of actions, we're going to set it 
             // as the Cursor of the DrawingModel. We'll let the DrawingModel take care of the details of 
             // drawing a cursor (a temporary image) instead of drawing a permanent shape.
-            if (e.Button != MouseButtons.None)
+            if (IsDrawing(e))
             {
                 _canvasModel.Cursor = GetAction(e, _cursorPen);
             }
+        }
+
+        private static bool IsDrawing(MouseEventArgs e)
+        {
+            return e.Button != MouseButtons.None;
         }
 
         private IDrawAction GetAction(MouseEventArgs e, Pen pen)
