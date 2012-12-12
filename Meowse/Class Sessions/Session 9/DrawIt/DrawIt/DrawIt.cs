@@ -198,9 +198,12 @@ namespace DrawIt
 
         private IDrawAction GetDrawAction(MouseEventArgs e)
         {
-            Pen pen = _pen;
+            return GetAction(e, _pen);
+        }
 
-            return GetAction(e, pen);
+        private IDrawAction GetCursorAction(MouseEventArgs e)
+        {
+            return GetAction(e, _cursorPen);
         }
 
         private IDrawAction GetAction(MouseEventArgs e, Pen pen)
@@ -226,29 +229,6 @@ namespace DrawIt
                 }
             }
             return drawAction;
-        }
-
-        private IDrawAction GetCursorAction(MouseEventArgs e)
-        {
-            IDrawAction cursorAction = null;
-            if (DrawLinesButton.Checked)
-            {
-                cursorAction = new DrawLineAction(_cursorPen, _startPoint.X, _startPoint.Y, e.Location.X,
-                                                  e.Location.Y);
-            }
-            else if (DrawCirclesButton.Checked)
-            {
-                int radius = MathHelpers.GetRadius(_startPoint, new Point(e.Location.X, e.Location.Y));
-                if (radius > 0)
-                {
-                    cursorAction = new DrawCircleAction(_cursorPen, _startPoint.X, _startPoint.Y, radius);
-                }
-                else
-                {
-                    cursorAction = null;
-                }
-            }
-            return cursorAction;
         }
 
         private void ClearButtonClicked(object sender, EventArgs e)
