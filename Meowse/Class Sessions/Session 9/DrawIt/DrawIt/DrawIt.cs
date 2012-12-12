@@ -177,31 +177,6 @@ namespace DrawIt
             _isDrawing = false;
         }
 
-        private IDrawAction GetDrawAction(MouseEventArgs e)
-        {
-            IDrawAction drawAction = null;
-
-            // Here's where we actually draw the shape.  We also hide the cursor (by setting it to 
-            // null) and turn off the "_isDrawing" flag value.
-            if (DrawLinesButton.Checked)
-            {
-                drawAction = new DrawLineAction(_pen, _startPoint.X, _startPoint.Y, e.Location.X, e.Location.Y);
-            }
-            else if (DrawCirclesButton.Checked)
-            {
-                int radius = MathHelpers.GetRadius(_startPoint, new Point(e.Location.X, e.Location.Y));
-                if (radius > 0)
-                {
-                    drawAction = new DrawCircleAction(_pen, _startPoint.X, _startPoint.Y, radius);
-                }
-                else
-                {
-                    drawAction = null;
-                }
-            }
-            return drawAction;
-        }
-
         // This will draw a temporary shape as a "cursor" wherever the user moves
         // the mouse.  This cursor is the same size as the actual shape that will
         // be drawn in HandleMouseDown(), so that the user can know where they are
@@ -219,6 +194,33 @@ namespace DrawIt
             }
 //            _lastKnownX = e.Location.X;
 //            _lastKnownY = e.Location.Y;
+        }
+
+        private IDrawAction GetDrawAction(MouseEventArgs e)
+        {
+            Pen pen = _pen;
+
+            IDrawAction drawAction = null;
+
+            // Here's where we actually draw the shape.  We also hide the cursor (by setting it to 
+            // null) and turn off the "_isDrawing" flag value.
+            if (DrawLinesButton.Checked)
+            {
+                drawAction = new DrawLineAction(pen, _startPoint.X, _startPoint.Y, e.Location.X, e.Location.Y);
+            }
+            else if (DrawCirclesButton.Checked)
+            {
+                int radius = MathHelpers.GetRadius(_startPoint, new Point(e.Location.X, e.Location.Y));
+                if (radius > 0)
+                {
+                    drawAction = new DrawCircleAction(pen, _startPoint.X, _startPoint.Y, radius);
+                }
+                else
+                {
+                    drawAction = null;
+                }
+            }
+            return drawAction;
         }
 
         private IDrawAction GetCursorAction(MouseEventArgs e)
