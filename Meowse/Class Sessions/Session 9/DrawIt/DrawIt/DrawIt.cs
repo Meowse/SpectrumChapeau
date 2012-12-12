@@ -197,9 +197,10 @@ namespace DrawIt
             // drawing a cursor (a temporary image) instead of drawing a permanent shape.
             if (_isDrawing)
             {
+                IDrawAction cursorAction = null;
                 if (DrawLinesButton.Checked)
                 {
-                    _canvasModel.Cursor = new DrawLineAction(_cursorPen, _startPoint.X, _startPoint.Y, e.Location.X,
+                    cursorAction = new DrawLineAction(_cursorPen, _startPoint.X, _startPoint.Y, e.Location.X,
                                                              e.Location.Y);
                 }
                 else if (DrawCirclesButton.Checked)
@@ -207,13 +208,14 @@ namespace DrawIt
                     int radius = MathHelpers.GetRadius(_startPoint, new Point(e.Location.X, e.Location.Y));
                     if (radius > 0)
                     {
-                        _canvasModel.Cursor = new DrawCircleAction(_cursorPen, _startPoint.X, _startPoint.Y, radius);
+                        cursorAction = new DrawCircleAction(_cursorPen, _startPoint.X, _startPoint.Y, radius);
                     }
                     else
                     {
-                        _canvasModel.Cursor = null;
+                        cursorAction = null;
                     }
                 }
+                _canvasModel.Cursor = cursorAction;
             }
 //            _lastKnownX = e.Location.X;
 //            _lastKnownY = e.Location.Y;
