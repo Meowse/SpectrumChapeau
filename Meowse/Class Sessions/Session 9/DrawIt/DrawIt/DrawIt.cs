@@ -59,6 +59,7 @@ namespace DrawIt
         private static readonly Color _COLOR = Color.Red;
         private static readonly Color _CURSOR_COLOR = Color.AliceBlue;
         private Point _startPoint;
+        private bool _isDrawing;
 
         // This is a constructor method for the DrawIt class.  Notice that it has the same name ("DrawIt") as the class,
         // and does not have a return type.  That's how we know it's a constructor method.
@@ -146,6 +147,17 @@ namespace DrawIt
             CanvasPanel.MouseUp += HandleMouseUp;
             CanvasPanel.MouseMove += HandleMouseMoved;
             CanvasPanel.MouseLeave += HandleMouseLeave;
+
+            KeyDown += HandleKeyDown;
+        }
+
+        private void HandleKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                _canvasModel.Cursor = null;
+                _isDrawing = false;
+            }
         }
 
         private void HandleMouseLeave(object sender, EventArgs e)
@@ -158,20 +170,25 @@ namespace DrawIt
             // We don't want to actually draw anything (or even a "cursor") here -- we just want
             // to record the start point for the shape.
             _startPoint = new Point(e.Location.X, e.Location.Y);
+            _isDrawing = true;
         }
 
         private void HandleMouseUp(object sender, MouseEventArgs e)
         {
-            // Here's where we actually draw the shape.  
-            var drawAction = GetAction(e, _drawingPen);
-
-            if (drawAction != null)
+            if (_isDrawing)
             {
-                _actions.Add(drawAction);
+                // Here's where we actually draw the shape.  
+                var drawAction = GetAction(e, _drawingPen);
+
+                if (drawAction != null)
+                {
+                    _actions.Add(drawAction);
+                }
             }
 
             // We also hide the cursor (by setting it to null).
             _canvasModel.Cursor = null;
+            _isDrawing = false;
         }
 
         // This will draw a temporary shape as a "cursor" wherever the user moves
@@ -185,15 +202,10 @@ namespace DrawIt
             // HandleMouseDown, but instead of adding it to the list of actions, we're going to set it 
             // as the Cursor of the DrawingModel. We'll let the DrawingModel take care of the details of 
             // drawing a cursor (a temporary image) instead of drawing a permanent shape.
-            if (IsDrawing(e))
+            if (_isDrawing)
             {
                 _canvasModel.Cursor = GetAction(e, _cursorPen);
             }
-        }
-
-        private static bool IsDrawing(MouseEventArgs e)
-        {
-            return e.Button != MouseButtons.None;
         }
 
         private IDrawAction GetAction(MouseEventArgs e, Pen pen)

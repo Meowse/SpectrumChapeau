@@ -26,3 +26,7 @@ Automated tests, or (vast amounts of immediately obsolete) documentation, give t
 
 "narrative sense" -- ideally, a test will "tell a story" about the expected behavior of the code being tested
 
+
+How to handle keyboard input in a Windows Forms application:
+
+http://msdn.microsoft.com/en-us/library/ms171534.aspx

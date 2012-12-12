@@ -150,6 +150,7 @@ namespace DrawIt
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.ClearButton);
             this.Controls.Add(this.CanvasPanel);
+            this.KeyPreview = true;
             this.Name = "DrawIt";
             this.Text = "DrawIt!";
             this.groupBox1.ResumeLayout(false);
