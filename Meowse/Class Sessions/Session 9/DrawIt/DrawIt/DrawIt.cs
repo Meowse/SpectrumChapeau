@@ -166,22 +166,40 @@ namespace DrawIt
 
         private void HandleMouseUp(object sender, MouseEventArgs e)
         {
+            var drawAction = GetDrawAction(e);
+
+            if (drawAction != null)
+            {
+                _actions.Add(drawAction);
+            }
+
+            _canvasModel.Cursor = null;
+            _isDrawing = false;
+        }
+
+        private IDrawAction GetDrawAction(MouseEventArgs e)
+        {
+            IDrawAction drawAction = null;
+
             // Here's where we actually draw the shape.  We also hide the cursor (by setting it to 
             // null) and turn off the "_isDrawing" flag value.
             if (DrawLinesButton.Checked)
             {
-                _actions.Add(new DrawLineAction(_pen, _startPoint.X, _startPoint.Y, e.Location.X, e.Location.Y));
+                drawAction = new DrawLineAction(_pen, _startPoint.X, _startPoint.Y, e.Location.X, e.Location.Y);
             }
             else if (DrawCirclesButton.Checked)
             {
                 int radius = MathHelpers.GetRadius(_startPoint, new Point(e.Location.X, e.Location.Y));
                 if (radius > 0)
                 {
-                    _actions.Add(new DrawCircleAction(_pen, _startPoint.X, _startPoint.Y, radius));
+                    drawAction = new DrawCircleAction(_pen, _startPoint.X, _startPoint.Y, radius);
+                }
+                else
+                {
+                    drawAction = null;
                 }
             }
-            _canvasModel.Cursor = null;
-            _isDrawing = false;
+            return drawAction;
         }
 
         // This will draw a temporary shape as a "cursor" wherever the user moves
@@ -197,28 +215,33 @@ namespace DrawIt
             // drawing a cursor (a temporary image) instead of drawing a permanent shape.
             if (_isDrawing)
             {
-                IDrawAction cursorAction = null;
-                if (DrawLinesButton.Checked)
-                {
-                    cursorAction = new DrawLineAction(_cursorPen, _startPoint.X, _startPoint.Y, e.Location.X,
-                                                             e.Location.Y);
-                }
-                else if (DrawCirclesButton.Checked)
-                {
-                    int radius = MathHelpers.GetRadius(_startPoint, new Point(e.Location.X, e.Location.Y));
-                    if (radius > 0)
-                    {
-                        cursorAction = new DrawCircleAction(_cursorPen, _startPoint.X, _startPoint.Y, radius);
-                    }
-                    else
-                    {
-                        cursorAction = null;
-                    }
-                }
-                _canvasModel.Cursor = cursorAction;
+                _canvasModel.Cursor = GetCursorAction(e);
             }
 //            _lastKnownX = e.Location.X;
 //            _lastKnownY = e.Location.Y;
+        }
+
+        private IDrawAction GetCursorAction(MouseEventArgs e)
+        {
+            IDrawAction cursorAction = null;
+            if (DrawLinesButton.Checked)
+            {
+                cursorAction = new DrawLineAction(_cursorPen, _startPoint.X, _startPoint.Y, e.Location.X,
+                                                  e.Location.Y);
+            }
+            else if (DrawCirclesButton.Checked)
+            {
+                int radius = MathHelpers.GetRadius(_startPoint, new Point(e.Location.X, e.Location.Y));
+                if (radius > 0)
+                {
+                    cursorAction = new DrawCircleAction(_cursorPen, _startPoint.X, _startPoint.Y, radius);
+                }
+                else
+                {
+                    cursorAction = null;
+                }
+            }
+            return cursorAction;
         }
 
         private void ClearButtonClicked(object sender, EventArgs e)
