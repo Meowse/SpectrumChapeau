@@ -50,7 +50,7 @@ namespace DrawIt
 
         // A Pen is used by the drawing libraries to actually draw on the screen.  It controls things
         // like color, line width, etc.  We'll create a pen in the DrawIt constructor as well.
-        private readonly Pen _pen;
+        private readonly Pen _drawingPen;
 
         // A Pen of a different color to draw the cursor with.
         private readonly Pen _cursorPen;
@@ -81,7 +81,7 @@ namespace DrawIt
             // allow Undo and Redo, but if you Undo some actions and then
             // start drawing more circles, it redraws the undone actions 
             // before it starts drawing the new circles.
-            //_actions = new BrokenActionSource<IDrawAction>();
+            // _actions = new BrokenActionSource<IDrawAction>();
             
             // Homework: Create an actual UndoRedoDrawActionSource() and make sure
             // that it has the proper Undo() and Redo() semantics.
@@ -130,7 +130,7 @@ namespace DrawIt
             };
 
             // This creates the Pen intance that draws lines on the canvas.
-            _pen = new Pen(_COLOR, _LINE_WIDTH);
+            _drawingPen = new Pen(_COLOR, _LINE_WIDTH);
 
             // This creates the Pen instance that draws the cursor.
             _cursorPen = new Pen(_CURSOR_COLOR, _LINE_WIDTH);
@@ -147,39 +147,46 @@ namespace DrawIt
             CanvasPanel.MouseUp += HandleMouseUp;
             CanvasPanel.MouseMove += HandleMouseMoved;
             CanvasPanel.MouseLeave += HandleMouseLeave;
+
+            KeyDown += HandleKeyDown;
+        }
+
+        private void HandleKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                _canvasModel.Cursor = null;
+                _isDrawing = false;
+            }
         }
 
         private void HandleMouseLeave(object sender, EventArgs e)
         {
-//            Pen blankCursorPen = new Pen(_BACKGROUND_COLOR, _LINE_WIDTH);
-//            _canvasModel.Cursor = new DrawCircleAction(blankCursorPen, _lastKnownX, _lastKnownY, 20);
             _canvasModel.Cursor = null;
         }
 
         private void HandleMouseDown(object sender, MouseEventArgs e)
         {
             // We don't want to actually draw anything (or even a "cursor") here -- we just want
-            // to record the start point for the shape, and also mark that we're "drawing".
+            // to record the start point for the shape.
             _startPoint = new Point(e.Location.X, e.Location.Y);
             _isDrawing = true;
         }
 
         private void HandleMouseUp(object sender, MouseEventArgs e)
         {
-            // Here's where we actually draw the shape.  We also hide the cursor (by setting it to 
-            // null) and turn off the "_isDrawing" flag value.
-            if (DrawLinesButton.Checked)
+            if (_isDrawing)
             {
-                _actions.Add(new DrawLineAction(_pen, _startPoint.X, _startPoint.Y, e.Location.X, e.Location.Y));
-            }
-            else if (DrawCirclesButton.Checked)
-            {
-                int radius = MathHelpers.GetRadius(_startPoint, new Point(e.Location.X, e.Location.Y));
-                if (radius > 0)
+                // Here's where we actually draw the shape.  
+                var drawAction = GetAction(e, _drawingPen);
+
+                if (drawAction != null)
                 {
-                    _actions.Add(new DrawCircleAction(_pen, _startPoint.X, _startPoint.Y, radius));
+                    _actions.Add(drawAction);
                 }
             }
+
+            // We also hide the cursor (by setting it to null).
             _canvasModel.Cursor = null;
             _isDrawing = false;
         }
@@ -197,22 +204,28 @@ namespace DrawIt
             // drawing a cursor (a temporary image) instead of drawing a permanent shape.
             if (_isDrawing)
             {
-                if (DrawLinesButton.Checked)
-                {
-                    _canvasModel.Cursor = new DrawLineAction(_cursorPen, _startPoint.X, _startPoint.Y, e.Location.X,
-                                                             e.Location.Y);
-                }
-                else if (DrawCirclesButton.Checked)
-                {
-                    int radius = MathHelpers.GetRadius(_startPoint, new Point(e.Location.X, e.Location.Y));
-                    if (radius > 0)
-                    {
-                        _canvasModel.Cursor = new DrawCircleAction(_cursorPen, _startPoint.X, _startPoint.Y, radius);
-                    }
-                }
+                _canvasModel.Cursor = GetAction(e, _cursorPen);
             }
-//            _lastKnownX = e.Location.X;
-//            _lastKnownY = e.Location.Y;
+        }
+
+        private IDrawAction GetAction(MouseEventArgs e, Pen pen)
+        {
+            if (DrawLinesButton.Checked)
+            {
+                return new DrawLineAction(pen, _startPoint.X, _startPoint.Y, e.Location.X, e.Location.Y);
+            }
+            
+            if (DrawCirclesButton.Checked)
+            {
+                int radius = MathHelpers.GetRadius(_startPoint, new Point(e.Location.X, e.Location.Y));
+                if (radius == 0)
+                {
+                    return null;
+                }
+                return new DrawCircleAction(pen, _startPoint.X, _startPoint.Y, radius);
+            }
+
+            return null;
         }
 
         private void ClearButtonClicked(object sender, EventArgs e)

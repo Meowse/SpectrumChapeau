@@ -1,3 +1,8 @@
+Draw Rectangles
+
+Draw Squares
+-- like "Draw Rectangles", but the sides of the rectangle are kept the same
+-- triggered by a "shift key" modifier, rather than a separate control
 
 Change Color  (S)
 -- user can choose *any* other color
@@ -5,8 +10,6 @@ Change Color  (S)
 
 Show Current Color (S)
 -- the change color button displays the current color
-
-ESC Cancels Draw (M)
 
 Snap-to-Grid (M)
 -- 5-pixel grid
@@ -26,6 +29,10 @@ Filled Shapes (M)
 Draw Ovals (M)
 -- draw inside an invisible bounding box (rectangle or X, but drawing the inscribed oval instead)
 -- snap bounding box to grid (unlike circles, above)
+
+Draw Circles "from edge to edge" instead of center-to-radius
+-- Circle is drawn inside a "square box", one of whose corners is the starting point, the other of which is the mouse point.
+-- is "draw ovals" plus the shift-key modifier
 
 Fill With Second Color (M)
 -- specify a secondary "fill color"

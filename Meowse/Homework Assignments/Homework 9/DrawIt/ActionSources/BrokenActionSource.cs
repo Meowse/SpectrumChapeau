@@ -57,6 +57,9 @@ namespace ActionSources
 
         public void Add(T action)
         {
+            // All of the "redo actions" are stored in the same _actions list as the
+            // "real actions".  So in order to make this "not broken", you would need
+            // to remove everything from _actions after _numberOfActionsToTake - 1.
             _actions.Add(action);
             _numberOfActionsToTake++;
 

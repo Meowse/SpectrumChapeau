@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace ActionSources
 {
@@ -20,13 +19,7 @@ namespace ActionSources
                 return _actions;
             }
         }
-        public List<TAction> RedoActions
-        {
-            get
-            {
-                return _redoActions;
-            }
-        }
+
         public void Undo()
         {
             if (CanUndo)
@@ -41,15 +34,13 @@ namespace ActionSources
 
         public void Redo()
         {
-
             if (CanRedo)
             {
                 int lastActionIndex = _redoActions.Count - 1;
                 TAction lastAction = _redoActions[lastActionIndex];
                 _redoActions.RemoveAt(lastActionIndex);
                 _actions.Add(lastAction);
-                if (ActionsChanged != null){ActionsChanged();}
-
+                if (ActionsChanged != null) { ActionsChanged(); }
             }
         }
 
@@ -76,10 +67,7 @@ namespace ActionSources
 
         public void Add(TAction action)
         {
-            if (_redoActions.Count > 0)
-            {
-                _redoActions.Clear();
-            }
+            _redoActions.Clear();
             _actions.Add(action);
             if (ActionsChanged != null) { ActionsChanged(); }
         }
