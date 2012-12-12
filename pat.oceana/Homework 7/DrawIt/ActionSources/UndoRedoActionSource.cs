@@ -10,10 +10,13 @@ namespace ActionSources
         // appropriately to the list of Actions changing.
         public event ActionsChangedEventHandler ActionsChanged;
 
-        public IEnumerable<T> Actions {
+        private readonly List<T> _actions = new List<T>();
+
+        public IEnumerable<T> Actions 
+        {
             get
             {
-                throw new NotImplementedException();
+                return _actions;
             }
         }
 
@@ -29,11 +32,11 @@ namespace ActionSources
 
         public bool CanUndo
         {
-            get
-            {
-                throw new NotImplementedException();
+            get {
+                return _actions.Count > 0;
             }
         }
+
         public bool CanRedo
         {
             get
@@ -44,7 +47,8 @@ namespace ActionSources
 
         public void Add(T action)
         {
-            throw new NotImplementedException();
+            _actions.Add(action);
+            if (ActionsChanged != null) { ActionsChanged(); }
         }
 
         public void Clear()
