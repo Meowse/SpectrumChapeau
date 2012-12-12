@@ -1,3 +1,4 @@
+Draw Rectangles
 
 Change Color  (S)
 -- user can choose *any* other color
