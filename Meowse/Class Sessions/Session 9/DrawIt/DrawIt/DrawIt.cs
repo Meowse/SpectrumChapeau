@@ -209,7 +209,10 @@ namespace DrawIt
                     {
                         _canvasModel.Cursor = new DrawCircleAction(_cursorPen, _startPoint.X, _startPoint.Y, radius);
                     }
-
+                    else
+                    {
+                        _canvasModel.Cursor = null;
+                    }
                 }
             }
 //            _lastKnownX = e.Location.X;
