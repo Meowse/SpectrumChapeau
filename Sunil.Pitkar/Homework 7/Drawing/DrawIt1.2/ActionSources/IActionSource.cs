@@ -17,7 +17,7 @@ namespace ActionSources
 
     public interface IActionSource<T>
     {
-        IEnumerable<T> Actions { get; }
+        List<T> Actions { get; }
         void Add(T action);
         void Clear();
         //bool CanClear { get; }

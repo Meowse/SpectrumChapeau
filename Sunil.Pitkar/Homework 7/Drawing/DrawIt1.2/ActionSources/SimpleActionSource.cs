@@ -14,7 +14,7 @@ namespace ActionSources
 
         private readonly List<T> _actions = new List<T>();
 
-        public IEnumerable<T> Actions {
+        public List<T> Actions {
             get
             {
                 return new List<T>(_actions);

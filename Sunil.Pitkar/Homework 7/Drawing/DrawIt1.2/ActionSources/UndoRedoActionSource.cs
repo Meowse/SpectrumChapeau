@@ -12,7 +12,7 @@ namespace ActionSources
 
         private readonly List<T> _actions = new List<T>(); 
         
-        public IEnumerable<T> Actions {
+        public List<T> Actions {
             get
             {
                 //throw new NotImplementedException();
@@ -50,6 +50,8 @@ namespace ActionSources
         {
             //throw new NotImplementedException();
             _actions.Add(action);
+            if(ActionsChanged != null { ActionsChanged();}
+
         }
 
         public void Clear()
