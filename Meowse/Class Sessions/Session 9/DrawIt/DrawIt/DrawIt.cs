@@ -59,7 +59,6 @@ namespace DrawIt
         private static readonly Color _COLOR = Color.Red;
         private static readonly Color _CURSOR_COLOR = Color.AliceBlue;
         private Point _startPoint;
-        private bool _isDrawing;
 
         // This is a constructor method for the DrawIt class.  Notice that it has the same name ("DrawIt") as the class,
         // and does not have a return type.  That's how we know it's a constructor method.
@@ -151,21 +150,19 @@ namespace DrawIt
 
         private void HandleMouseLeave(object sender, EventArgs e)
         {
-//            Pen blankCursorPen = new Pen(_BACKGROUND_COLOR, _LINE_WIDTH);
-//            _canvasModel.Cursor = new DrawCircleAction(blankCursorPen, _lastKnownX, _lastKnownY, 20);
             _canvasModel.Cursor = null;
         }
 
         private void HandleMouseDown(object sender, MouseEventArgs e)
         {
             // We don't want to actually draw anything (or even a "cursor") here -- we just want
-            // to record the start point for the shape, and also mark that we're "drawing".
+            // to record the start point for the shape.
             _startPoint = new Point(e.Location.X, e.Location.Y);
-            _isDrawing = true;
         }
 
         private void HandleMouseUp(object sender, MouseEventArgs e)
         {
+            // Here's where we actually draw the shape.  
             var drawAction = GetAction(e, _drawingPen);
 
             if (drawAction != null)
@@ -173,8 +170,8 @@ namespace DrawIt
                 _actions.Add(drawAction);
             }
 
+            // We also hide the cursor (by setting it to null).
             _canvasModel.Cursor = null;
-            _isDrawing = false;
         }
 
         // This will draw a temporary shape as a "cursor" wherever the user moves
@@ -188,7 +185,7 @@ namespace DrawIt
             // HandleMouseDown, but instead of adding it to the list of actions, we're going to set it 
             // as the Cursor of the DrawingModel. We'll let the DrawingModel take care of the details of 
             // drawing a cursor (a temporary image) instead of drawing a permanent shape.
-            if (_isDrawing)
+            if (e.Button != MouseButtons.None)
             {
                 _canvasModel.Cursor = GetAction(e, _cursorPen);
             }
@@ -196,27 +193,22 @@ namespace DrawIt
 
         private IDrawAction GetAction(MouseEventArgs e, Pen pen)
         {
-            IDrawAction drawAction = null;
-
-            // Here's where we actually draw the shape.  We also hide the cursor (by setting it to 
-            // null) and turn off the "_isDrawing" flag value.
             if (DrawLinesButton.Checked)
             {
-                drawAction = new DrawLineAction(pen, _startPoint.X, _startPoint.Y, e.Location.X, e.Location.Y);
+                return new DrawLineAction(pen, _startPoint.X, _startPoint.Y, e.Location.X, e.Location.Y);
             }
-            else if (DrawCirclesButton.Checked)
+            
+            if (DrawCirclesButton.Checked)
             {
                 int radius = MathHelpers.GetRadius(_startPoint, new Point(e.Location.X, e.Location.Y));
-                if (radius > 0)
+                if (radius == 0)
                 {
-                    drawAction = new DrawCircleAction(pen, _startPoint.X, _startPoint.Y, radius);
+                    return null;
                 }
-                else
-                {
-                    drawAction = null;
-                }
+                return new DrawCircleAction(pen, _startPoint.X, _startPoint.Y, radius);
             }
-            return drawAction;
+
+            return null;
         }
 
         private void ClearButtonClicked(object sender, EventArgs e)
