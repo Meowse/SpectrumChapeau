@@ -16,8 +16,8 @@ namespace ActionSources
         private readonly List<T> _actions = new List<T>(); 
         private int _numberOfActionsToTake;
 
-        public List<T> Actions {
-            get { return _actions.Take(_numberOfActionsToTake).ToList(); }
+        public IEnumerable<T> Actions {
+            get { return _actions.Take(_numberOfActionsToTake); }
         }
 
         public void Undo()

@@ -9,11 +9,12 @@ namespace ActionSources
         // the publicly-visible list of Actions changes, so that your delegates can respond
         // appropriately to the list of Actions changing.
         public event ActionsChangedEventHandler ActionsChanged;
-
-        public IEnumerable<T> Actions {
+        private readonly List<T> _actions = new List<T>();
+        public List<T> Actions {
             get
             {
-                throw new NotImplementedException();
+                //throw new NotImplementedException();
+                return _actions;
             }
         }
 
@@ -31,7 +32,8 @@ namespace ActionSources
         {
             get
             {
-                throw new NotImplementedException();
+                //throw new NotImplementedException();
+                return false;
             }
         }
         public bool CanRedo
@@ -44,7 +46,13 @@ namespace ActionSources
 
         public void Add(T action)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            _actions.Add(action);
+            //ActionsChanged();
+            if (ActionsChanged != null)
+            {
+                ActionsChanged();
+            }
         }
 
         public void Clear()
