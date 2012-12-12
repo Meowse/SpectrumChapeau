@@ -50,7 +50,7 @@ namespace DrawIt
 
         // A Pen is used by the drawing libraries to actually draw on the screen.  It controls things
         // like color, line width, etc.  We'll create a pen in the DrawIt constructor as well.
-        private readonly Pen _pen;
+        private readonly Pen _drawingPen;
 
         // A Pen of a different color to draw the cursor with.
         private readonly Pen _cursorPen;
@@ -130,7 +130,7 @@ namespace DrawIt
             };
 
             // This creates the Pen intance that draws lines on the canvas.
-            _pen = new Pen(_COLOR, _LINE_WIDTH);
+            _drawingPen = new Pen(_COLOR, _LINE_WIDTH);
 
             // This creates the Pen instance that draws the cursor.
             _cursorPen = new Pen(_CURSOR_COLOR, _LINE_WIDTH);
@@ -166,7 +166,7 @@ namespace DrawIt
 
         private void HandleMouseUp(object sender, MouseEventArgs e)
         {
-            var drawAction = GetDrawAction(e);
+            var drawAction = GetAction(e, _drawingPen);
 
             if (drawAction != null)
             {
@@ -190,20 +190,8 @@ namespace DrawIt
             // drawing a cursor (a temporary image) instead of drawing a permanent shape.
             if (_isDrawing)
             {
-                _canvasModel.Cursor = GetCursorAction(e);
+                _canvasModel.Cursor = GetAction(e, _cursorPen);
             }
-//            _lastKnownX = e.Location.X;
-//            _lastKnownY = e.Location.Y;
-        }
-
-        private IDrawAction GetDrawAction(MouseEventArgs e)
-        {
-            return GetAction(e, _pen);
-        }
-
-        private IDrawAction GetCursorAction(MouseEventArgs e)
-        {
-            return GetAction(e, _cursorPen);
         }
 
         private IDrawAction GetAction(MouseEventArgs e, Pen pen)
