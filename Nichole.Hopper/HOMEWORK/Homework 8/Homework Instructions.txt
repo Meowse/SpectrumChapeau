@@ -1,0 +1,8 @@
+Homework 8 is to continue the work we were doing in class in Session 8, implementing UndoRedoActionSource.  Continue writing tests in UndoRedoActionSourceTest, and then writing
+code in UndoRedoActionSource to make them pass.  When you have added tests that fully specify
+the desired behavior for UndoRedoActionSource, you should be able to replace the use of 
+BrokenActionSource<IDrawAction> in DrawIt.cs with a use of UndoRedoActionSource<IDrawAction>, and see
+the correct Undo/Redo behavior in the application.
+
+If you are unclear on how to do any of this, it may help to review the last hour or so of Session 8.
+You can find the Session 8 recording at http://uweoconnect.extn.washington.edu/p2wx8n0e58e/
