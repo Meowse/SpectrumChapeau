@@ -1,0 +1,28 @@
+"interface" -- a basic type in .NET (and many other programming languages and environments), which specifies a contract that any "implementers" of the interface must satisfy.
+
+"interface" -- the public, external behavior of a piece of software.  
+
+"implementation" -- the code that actually provides the behavior of the interface.
+
+Rules of good unit testing #1: "Test the interface, not the implementation".  Test the public behavior/contract of a class, not the specific code used to implement that behavior in a specific case.
+
+A formal "interface" type captures and "secures" the syntax of the usage of a class -- names of methods, types of properties, etc.
+
+But there is also the "semantics" of the usage of a class -- expectations about how an object will BEHAVE when you do certain things to it.
+
+Automated tests, or (vast amounts of immediately obsolete) documentation, give the "semantics" of a class -- how it will behave in use.
+
+
+
+"syntax" -- formal structure.  
+"semantics" -- meaning.
+
+"Colorless green ideas sleep furiously."
+"Violent angry men fight roughly."
+
+
+
+"executable documentation" -- the idea that tests, by embodying the intended semantics of the code, function as documentation -- with the additional advantage that they can be automatedly run, over and over again, to ensure that the code continues to behave "according to spec"
+
+"narrative sense" -- ideally, a test will "tell a story" about the expected behavior of the code being tested
+
