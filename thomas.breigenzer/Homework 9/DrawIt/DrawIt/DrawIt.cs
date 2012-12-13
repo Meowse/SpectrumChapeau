@@ -225,6 +225,11 @@ namespace DrawIt
                 return new DrawCircleAction(pen, _startPoint.X, _startPoint.Y, radius);
             }
 
+            if (DrawRectanglesButton.Checked)
+            {
+                int width = MathHelpers.GetRectangleSideLength(_startPoint, new Point(e.Location.X, e.Location.Y));
+                return new DrawRectangleAction(pen, _startPoint.X, e.Location.X, _startPoint.Y, e.Location.Y);
+            }
             return null;
         }
 

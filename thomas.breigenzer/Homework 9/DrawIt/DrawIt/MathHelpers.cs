@@ -16,5 +16,10 @@ namespace DrawIt
         {
             return (int)Math.Round(Math.Sqrt(Math.Pow(center.X - pointOnCircle.X, 2) + Math.Pow(center.Y - pointOnCircle.Y,2)));
         }
+        public static int GetRectangleSideLength(Point startPoint, Point endPoint)
+        {
+            return (int)Math.Round(Math.Sqrt(Math.Pow(startPoint.X - endPoint.X, 2) + Math.Pow(startPoint.Y - endPoint.Y, 2)));
+        }
+
     }
 }
