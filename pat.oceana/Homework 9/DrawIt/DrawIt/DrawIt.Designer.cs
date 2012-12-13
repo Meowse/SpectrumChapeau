@@ -154,9 +154,9 @@ namespace DrawIt
             // 
             // ChangeColor
             // 
-            this.ChangeColor.Location = new System.Drawing.Point(732, 16);
+            this.ChangeColor.Location = new System.Drawing.Point(732, 12);
             this.ChangeColor.Name = "ChangeColor";
-            this.ChangeColor.Size = new System.Drawing.Size(102, 28);
+            this.ChangeColor.Size = new System.Drawing.Size(102, 32);
             this.ChangeColor.TabIndex = 7;
             this.ChangeColor.Text = "Change Color";
             this.ChangeColor.UseVisualStyleBackColor = true;

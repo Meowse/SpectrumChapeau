@@ -282,6 +282,7 @@ namespace DrawIt
             {
                 _COLOR =  colorDialog1.Color;
                 _drawingPen = new Pen(_COLOR, _LINE_WIDTH);
+                ChangeColor.BackColor = _COLOR;
 
             }
 
