@@ -1,0 +1,3 @@
+Homework 9 is to take any item or items of your choice from the Product Backlog (Product Backlog.txt) and implement them in the DrawIt program.  There will only be two days between Session 9 and Session 10, so feel free to do as few as one of the items.  But they'll all teach you useful things about programming, so also feel free to do as many of them as you'd like.
+
+You can also continue to work on them after the class is over, and to email me with requests for feedback or commentary on them as you complete them.
