@@ -50,13 +50,13 @@ namespace DrawIt
 
         // A Pen is used by the drawing libraries to actually draw on the screen.  It controls things
         // like color, line width, etc.  We'll create a pen in the DrawIt constructor as well.
-        private readonly Pen _drawingPen;
+        private Pen _drawingPen;
 
         // A Pen of a different color to draw the cursor with.
         private readonly Pen _cursorPen;
 
         private static readonly Color _BACKGROUND_COLOR = Color.DarkGray;
-        private static readonly Color _COLOR = Color.Red;
+        private Color _COLOR = Color.Red;
         private static readonly Color _CURSOR_COLOR = Color.AliceBlue;
         private Point _startPoint;
         private bool _isDrawing;
@@ -270,6 +270,21 @@ namespace DrawIt
         private void UpdateClearButton()
         {
             ClearButton.Enabled = _actions.CanClear;
+        }
+
+        private void ChangeColor_Click(object sender, EventArgs e)
+        {
+            // when button is clicked bring up color dialog 
+            DialogResult result = colorDialog1.ShowDialog();
+
+            // set _COLOR to color selected
+            if (result == DialogResult.OK)
+            {
+                _COLOR =  colorDialog1.Color;
+                _drawingPen = new Pen(_COLOR, _LINE_WIDTH);
+
+            }
+
         }
     }
 }
