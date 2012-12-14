@@ -1,0 +1,78 @@
+What Went Well
+-- good job talking about programming philosophy rather than just nuts and bolts
+-- really appreciated the test-driven approach -- necessary, and not done by legacy people very well +
+-- very agile -- took feedback and turned on a dime to doing actual work and working code together
+-- GitHub worked well
+-- liked the paired programming, to the extent we did it
+-- liked the extra Saturday session ++
+-- Though the course was expected to cover .NET it was good to see the user of Github, NUnit,Resharper because its practically used (there is a conflict in my mind if we should have spent more time on .NET  but i feel what we did was good)
+-- i like how you challenging you made it; fell behind at times but definitely set a standard for base knowledge +
+-- learned a lot and now know that lot more to explore +
+-- you made us have to solve it ourselves, and have to ask questions -- it wasn't spoon-fed to us
+-- even more helpful because I used Google in class and gave examples of how to do so ++
+-- use of Google is exponentially increased since seeing it used in class
+-- use of unit testing for Undo/Redo (more examples, more step-by-step creation of tests) gave what we needed to get un-stuck
+-- when the class comes up with a test in class, and then the instructor writes the test, that makes it simpler to understand +
+-- ++your comment "Naming is the most important aspect of programming"
+-- calculator and DrawIt programs allowed visible results, not just "does this test pass?" -- also helpful for the Saturday class -- helped to decide what was and wasn't working
+-- other comment: "i liked watching your techniques- we have time to code after class"
+-- watching ur videos and ur techniques really clears lota of problems
+
+
+What Could Have Gone Better
+-- record at least one of the pairing sessions from the Saturday session
+-- for NUnit and Resharper, send instructions for downloading and installing by email -- can jump right in to using it without waiting through the long install process
+-- resources were spread around -- class website, where to find stuff, the Google drive, hard to know where to find things ++
+-- not sure what to look for in which place -- putting everything in the folder for the assignment worked well, because we're syncing it anyway, and if I change or add anything, it's always right there
+-- Software download instructions should be sent to all and we should be ready on day one to write "Hello World", i think we spent some time there in the first 2 classes
+-- In the 3rd class, I went into the basics with buckets and attributes and stuff (variables) -- very basics of programming in the first class
+-- Suggest reading from the book for each class, especially for novice programmers -- helps people get used to the ideas and be more prepared for class with a working knowledge of programming
+-- a bit more of detailing on basics - should be a part of first few classes
+-- Though we tried there should be a very small program written by each one in the class everyday on the concept covered, leading in to homework, i think i started getting lost when i didnt do things with class properties on my own
+-- Honestly mickey - you should type 50%less code in class andwe should do more (i realized it from wtching video)  
+-- also the make up class could havae been taken up earlier....as lot of us getting sick due to weather
+-- a project that spans the whole course +
+-- once we got a project that lasted over several weeks, the course seemed to jump around less
+-- agree -- with an ongoing project, we can do a product backlog and see the whole product development process
+
+
+Action Items
+-- Send out software installation instructions, including "how to write Hello World", in the introductory email
+-- coordinate the textbook with the class -- referencing which sections are relevant to each class, ahead of class
+-- Think of assignments(short) and homework assignments in advance for the courses so about 10 each -- especially multi-week projects
+
+
+
+
+
+ of course you will inspect and adapt based on students but it will help you keep things short in the class but make sure its done in the class
+
+Monika Kumar: more of small programs like Calculator 
+
+Sunil Pitkar: you can also tie it to the textbook comment
+
+Sunil Pitkar: one more suggestion, small fun quiz as homework or in class and fun activity
+
+Sunil Pitkar: not and ..but "as fun activity"
+
+Sunil Pitkar: software installation might have to be coordinated with UW...no?
+
+Sunil Pitkar: i got an email from them mostly because i was online student
+
+
+
+
+-- Good textbook, but never used it before this class started (not in sync)
+-- Agree -- liked it for as far as I got with it, but once the class started going it was enough just to keep up with the class
+-- Really good pre-reading for the class
+-- Good as a reference -- when a subject was brought up, you could go to the book and read that section of it
+-- text book is good
+-- entire text book is a bit too ambitious for a 10-week course, but could be good to pick and choose
+-- Mickey - suggestion- based on the range of expereine of people in the class, head foirst bookis good if you like doing things practically and one for my types who like The Java primer which focuses on theory -- i.e. having a separate theory-focused book for people who prefer to learn "top-down"
+
+
+
+To Do:
+-- resource packet for further learning
+	-- NUnit and testing patterns books/websites
+	-- ATDD

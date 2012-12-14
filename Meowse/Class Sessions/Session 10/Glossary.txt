@@ -1,0 +1,23 @@
+"Garbage Collection" -- the language cleans up your memory for you once you're done using it.
+
+"Concurrency" -- things happening at the same time.  "multi-threading".  
+
+private static int UserSessionNumber = 0;
+
+
+public void HandleUserRequest(Request request) {
+	if (request.IsFirstRequest()) {
+		request.Session = UserSessionNumber;
+		UserSessionNumber = UserSessionNumber + 1;
+	}
+	// do some stuff
+}
+
+
+123
+abc
+
+123abc
+1a2b3c
+abc123
+1abc23
