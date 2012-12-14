@@ -248,27 +248,7 @@ namespace DrawIt
                     width = height;
                 }
 
-                if ((height > 0) && (width > 0))
-                {
-                    // if (_isShift)
-                    // {
-                    //     width = height;
-                    //     return new DrawRectangleAction(pen, _startPoint.X, _startPoint.Y, width, height);
-                    // }
-                    return new DrawRectangleAction(pen, _startPoint.X, _startPoint.Y, width, height);
-                }
-                else if ((height < 0) && (width < 0))
-                {
-                   return new DrawRectangleAction(pen, e.X, e.Y, Math.Abs(width), Math.Abs(height));
-                }
-                else if (height < 0)
-                {
-                    return new DrawRectangleAction(pen, _startPoint.X, e.Y, width, Math.Abs(height));
-                }
-                else if (width < 0)
-                {
-                    return new DrawRectangleAction(pen, e.X, _startPoint.Y, Math.Abs(width), height);
-                }
+                return new DrawRectangleAction(pen, Math.Min(_startPoint.X, e.Location.X), Math.Min(_startPoint.Y, e.Location.Y), width, height);
             }
 
             return null;
