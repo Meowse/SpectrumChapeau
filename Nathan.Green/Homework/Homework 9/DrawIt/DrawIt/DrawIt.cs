@@ -400,7 +400,7 @@ namespace DrawIt
 
             if (colorDlg.ShowDialog() == DialogResult.OK)
             {
-                _drawingPen = new Pen(colorDlg.Color, _LINE_WIDTH);
+                _drawingPen = new Pen(colorDlg.Color, _lastPixelWidth);
                 _drawingBrush = new SolidBrush(colorDlg.Color);
                 ColorButton.BackColor = colorDlg.Color;
             } 

@@ -60,9 +60,9 @@ namespace DrawIt
             // ClearButton
             // 
             this.ClearButton.Enabled = false;
-            this.ClearButton.Location = new System.Drawing.Point(534, 12);
+            this.ClearButton.Location = new System.Drawing.Point(435, 12);
             this.ClearButton.Name = "ClearButton";
-            this.ClearButton.Size = new System.Drawing.Size(75, 23);
+            this.ClearButton.Size = new System.Drawing.Size(83, 23);
             this.ClearButton.TabIndex = 1;
             this.ClearButton.Text = "Clear";
             this.ClearButton.UseVisualStyleBackColor = true;
@@ -129,9 +129,9 @@ namespace DrawIt
             // UndoButton
             // 
             this.UndoButton.Enabled = false;
-            this.UndoButton.Location = new System.Drawing.Point(280, 13);
+            this.UndoButton.Location = new System.Drawing.Point(286, 12);
             this.UndoButton.Name = "UndoButton";
-            this.UndoButton.Size = new System.Drawing.Size(75, 23);
+            this.UndoButton.Size = new System.Drawing.Size(70, 23);
             this.UndoButton.TabIndex = 5;
             this.UndoButton.Text = "Undo";
             this.UndoButton.UseVisualStyleBackColor = true;
@@ -142,7 +142,7 @@ namespace DrawIt
             this.RedoButton.Enabled = false;
             this.RedoButton.Location = new System.Drawing.Point(362, 12);
             this.RedoButton.Name = "RedoButton";
-            this.RedoButton.Size = new System.Drawing.Size(75, 23);
+            this.RedoButton.Size = new System.Drawing.Size(67, 23);
             this.RedoButton.TabIndex = 6;
             this.RedoButton.Text = "Redo";
             this.RedoButton.UseVisualStyleBackColor = true;
@@ -169,7 +169,7 @@ namespace DrawIt
             // checkBoxSnapToGrid
             // 
             this.checkBoxSnapToGrid.AutoSize = true;
-            this.checkBoxSnapToGrid.Location = new System.Drawing.Point(443, 16);
+            this.checkBoxSnapToGrid.Location = new System.Drawing.Point(534, 27);
             this.checkBoxSnapToGrid.Name = "checkBoxSnapToGrid";
             this.checkBoxSnapToGrid.Size = new System.Drawing.Size(85, 17);
             this.checkBoxSnapToGrid.TabIndex = 11;
@@ -208,7 +208,7 @@ namespace DrawIt
             // checkBoxFill
             // 
             this.checkBoxFill.AutoSize = true;
-            this.checkBoxFill.Location = new System.Drawing.Point(554, 41);
+            this.checkBoxFill.Location = new System.Drawing.Point(534, 6);
             this.checkBoxFill.Name = "checkBoxFill";
             this.checkBoxFill.Size = new System.Drawing.Size(38, 17);
             this.checkBoxFill.TabIndex = 15;
