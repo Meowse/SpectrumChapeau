@@ -43,6 +43,9 @@ namespace DrawIt
             this.ColorButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.checkBoxSnapToGrid = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBoxPixels = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,7 +59,7 @@ namespace DrawIt
             // ClearButton
             // 
             this.ClearButton.Enabled = false;
-            this.ClearButton.Location = new System.Drawing.Point(508, 12);
+            this.ClearButton.Location = new System.Drawing.Point(534, 12);
             this.ClearButton.Name = "ClearButton";
             this.ClearButton.Size = new System.Drawing.Size(75, 23);
             this.ClearButton.TabIndex = 1;
@@ -165,7 +168,7 @@ namespace DrawIt
             // checkBoxSnapToGrid
             // 
             this.checkBoxSnapToGrid.AutoSize = true;
-            this.checkBoxSnapToGrid.Location = new System.Drawing.Point(498, 41);
+            this.checkBoxSnapToGrid.Location = new System.Drawing.Point(443, 16);
             this.checkBoxSnapToGrid.Name = "checkBoxSnapToGrid";
             this.checkBoxSnapToGrid.Size = new System.Drawing.Size(85, 17);
             this.checkBoxSnapToGrid.TabIndex = 11;
@@ -173,11 +176,42 @@ namespace DrawIt
             this.checkBoxSnapToGrid.UseVisualStyleBackColor = true;
             this.checkBoxSnapToGrid.CheckedChanged += new System.EventHandler(this.CheckBoxSnapToGridCheckedChanged);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(395, 48);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(61, 13);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "Line Width:";
+            // 
+            // textBoxPixels
+            // 
+            this.textBoxPixels.Location = new System.Drawing.Point(462, 45);
+            this.textBoxPixels.Name = "textBoxPixels";
+            this.textBoxPixels.Size = new System.Drawing.Size(31, 20);
+            this.textBoxPixels.TabIndex = 13;
+            this.textBoxPixels.Text = "3";
+            this.textBoxPixels.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxPixels.TextChanged += new System.EventHandler(this.TextBox1TextChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(494, 48);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(34, 13);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Pixels";
+            // 
             // DrawIt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(623, 580);
+            this.ClientSize = new System.Drawing.Size(695, 580);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.textBoxPixels);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.checkBoxSnapToGrid);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ColorButton);
@@ -211,6 +245,9 @@ namespace DrawIt
         private Button ColorButton;
         private Label label1;
         private CheckBox checkBoxSnapToGrid;
+        private Label label2;
+        private TextBox textBoxPixels;
+        private Label label3;
     }
 }
 

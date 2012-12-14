@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
 using ActionSources;
 using SimplifiedDrawingModel;
@@ -53,7 +54,7 @@ namespace DrawIt
         private Pen _drawingPen;
 
         // A Pen of a different color to draw the cursor with.
-        private readonly Pen _cursorPen;
+        private Pen _cursorPen;
 
         private static readonly Color _BACKGROUND_COLOR = Color.DarkGray;
         private static readonly Color _COLOR = Color.Red;
@@ -381,6 +382,28 @@ namespace DrawIt
         {
             DrawingModel.DrawGrid = checkBoxSnapToGrid.Checked;
             _actions.ActionsHaveChanged();
+        }
+
+        private void TextBox1TextChanged(object sender, EventArgs e)
+        {
+            int n;
+            bool isNumeric = int.TryParse(textBoxPixels.Text, out n);
+
+            if (isNumeric)
+            {
+                if (n > 7)
+                {
+                    n = 7;
+                    textBoxPixels.Text = n.ToString(CultureInfo.InvariantCulture);
+                }
+                else if (n < 1)
+                {
+                    n = 1;
+                    textBoxPixels.Text = n.ToString(CultureInfo.InvariantCulture);
+                }
+                _drawingPen = new Pen(ColorButton.BackColor, n);
+                _cursorPen = new Pen(_CURSOR_COLOR, n);
+            }
         }
     }
 }
