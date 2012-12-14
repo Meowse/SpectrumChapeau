@@ -39,7 +39,11 @@ namespace DrawIt
             this.DrawRectanglesButton = new System.Windows.Forms.RadioButton();
             this.UndoButton = new System.Windows.Forms.Button();
             this.RedoButton = new System.Windows.Forms.Button();
+            this.colorPicker = new System.Windows.Forms.ColorDialog();
+            this.ColorSelector = new System.Windows.Forms.Button();
+            this.CurrentPenColor = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CurrentPenColor)).BeginInit();
             this.SuspendLayout();
             // 
             // CanvasPanel
@@ -132,7 +136,7 @@ namespace DrawIt
             // RedoButton
             // 
             this.RedoButton.Enabled = false;
-            this.RedoButton.Location = new System.Drawing.Point(362, 12);
+            this.RedoButton.Location = new System.Drawing.Point(361, 13);
             this.RedoButton.Name = "RedoButton";
             this.RedoButton.Size = new System.Drawing.Size(75, 23);
             this.RedoButton.TabIndex = 6;
@@ -140,11 +144,32 @@ namespace DrawIt
             this.RedoButton.UseVisualStyleBackColor = true;
             this.RedoButton.Click += new System.EventHandler(this.RedoButtonClicked);
             // 
+            // ColorSelector
+            // 
+            this.ColorSelector.Location = new System.Drawing.Point(280, 42);
+            this.ColorSelector.Name = "ColorSelector";
+            this.ColorSelector.Size = new System.Drawing.Size(98, 21);
+            this.ColorSelector.TabIndex = 7;
+            this.ColorSelector.Text = "Select Pen Color";
+            this.ColorSelector.UseVisualStyleBackColor = true;
+            this.ColorSelector.Click += new System.EventHandler(this.ColorSelectorClick);
+            // 
+            // CurrentPenColor
+            // 
+            this.CurrentPenColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CurrentPenColor.Location = new System.Drawing.Point(384, 43);
+            this.CurrentPenColor.Name = "CurrentPenColor";
+            this.CurrentPenColor.Size = new System.Drawing.Size(30, 20);
+            this.CurrentPenColor.TabIndex = 8;
+            this.CurrentPenColor.TabStop = false;
+            // 
             // DrawIt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(591, 574);
+            this.Controls.Add(this.CurrentPenColor);
+            this.Controls.Add(this.ColorSelector);
             this.Controls.Add(this.RedoButton);
             this.Controls.Add(this.UndoButton);
             this.Controls.Add(this.groupBox1);
@@ -155,6 +180,7 @@ namespace DrawIt
             this.Text = "DrawIt!";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CurrentPenColor)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -170,6 +196,9 @@ namespace DrawIt
         private System.Windows.Forms.Panel CanvasPanel;
         private System.Windows.Forms.Button UndoButton;
         private System.Windows.Forms.Button RedoButton;
+        private ColorDialog colorPicker;
+        private Button ColorSelector;
+        private PictureBox CurrentPenColor;
     }
 }
 

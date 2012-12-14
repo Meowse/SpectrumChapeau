@@ -60,6 +60,8 @@ namespace DrawIt
         private static readonly Color _CURSOR_COLOR = Color.AliceBlue;
         private Point _startPoint;
         private bool _isDrawing;
+        
+        
 
         // This is a constructor method for the DrawIt class.  Notice that it has the same name ("DrawIt") as the class,
         // and does not have a return type.  That's how we know it's a constructor method.
@@ -135,6 +137,8 @@ namespace DrawIt
             // This creates the Pen instance that draws the cursor.
             _cursorPen = new Pen(_CURSOR_COLOR, _LINE_WIDTH);
 
+            CurrentPenColor.BackColor = _COLOR;
+
             // This starts us out with a dark gray background on the canvas (so the user can see
             // where to draw).
             Clear();
@@ -168,9 +172,20 @@ namespace DrawIt
         private void HandleMouseDown(object sender, MouseEventArgs e)
         {
             // We don't want to actually draw anything (or even a "cursor") here -- we just want
-            // to record the start point for the shape.
-            _startPoint = new Point(e.Location.X, e.Location.Y);
+            // to record the start point for the shape.   
+            _startPoint = new Point(SnapToGrid(e.Location.X), SnapToGrid(e.Location.Y));
             _isDrawing = true;
+        }
+
+        private int SnapToGrid(int coord)
+        {
+            const int gridScale = 5;
+            int remainder = coord%gridScale;
+            if (remainder >= gridScale/2)
+            {
+                return coord + (gridScale - remainder);
+            }
+            return coord - remainder;
         }
 
         private void HandleMouseUp(object sender, MouseEventArgs e)
@@ -212,12 +227,12 @@ namespace DrawIt
         {
             if (DrawLinesButton.Checked)
             {
-                return new DrawLineAction(pen, _startPoint.X, _startPoint.Y, e.Location.X, e.Location.Y);
+                return new DrawLineAction(pen, _startPoint.X, _startPoint.Y, SnapToGrid(e.Location.X), SnapToGrid(e.Location.Y));
             }
             
             if (DrawCirclesButton.Checked)
             {
-                int radius = MathHelpers.GetRadius(_startPoint, new Point(e.Location.X, e.Location.Y));
+                int radius = MathHelpers.GetRadius(_startPoint, new Point(SnapToGrid(e.Location.X), SnapToGrid(e.Location.Y)));
                 if (radius == 0)
                 {
                     return null;
@@ -271,5 +286,16 @@ namespace DrawIt
         {
             ClearButton.Enabled = _actions.CanClear;
         }
+
+        private void ColorSelectorClick(object sender, EventArgs e)
+        {
+            DialogResult result = colorPicker.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                _drawingPen.Color = colorPicker.Color;
+                CurrentPenColor.BackColor = colorPicker.Color;
+            }
+        }
+
     }
 }
