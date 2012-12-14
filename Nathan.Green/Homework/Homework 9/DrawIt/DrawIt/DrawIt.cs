@@ -62,6 +62,7 @@ namespace DrawIt
         private Point _startPoint;
         private bool _isDrawing;
         private bool _isShift;
+        private int _lastPixelWidth;
 
         // This is a constructor method for the DrawIt class.  Notice that it has the same name ("DrawIt") as the class,
         // and does not have a return type.  That's how we know it's a constructor method.
@@ -135,7 +136,7 @@ namespace DrawIt
 
             // This creates the Pen instance that draws the cursor.
             _cursorPen = new Pen(_CURSOR_COLOR, _LINE_WIDTH);
-           
+            _lastPixelWidth = _LINE_WIDTH;
 
             // This starts us out with a dark gray background on the canvas (so the user can see
             // where to draw).
@@ -403,6 +404,11 @@ namespace DrawIt
                 }
                 _drawingPen = new Pen(ColorButton.BackColor, n);
                 _cursorPen = new Pen(_CURSOR_COLOR, n);
+                _lastPixelWidth = n;
+            }
+            else if (textBoxPixels.Text != "")
+            {
+                textBoxPixels.Text = _lastPixelWidth.ToString(CultureInfo.InvariantCulture);
             }
         }
     }
