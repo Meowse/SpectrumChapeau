@@ -225,6 +225,29 @@ namespace DrawIt
                 return new DrawCircleAction(pen, _startPoint.X, _startPoint.Y, radius);
             }
 
+            if (DrawRectanglesButton.Checked)
+            {
+                int height = MathHelpers.GetHeight(_startPoint, new Point(e.Location.X, e.Location.Y));
+                int width = MathHelpers.GetWidth(_startPoint, new Point(e.Location.X, e.Location.Y));
+
+                if ((height > 0) && (width > 0))
+                {
+                    return new DrawRectangleAction(pen, _startPoint.X, _startPoint.Y, width, height);
+                }
+                else if ((height < 0) && (width < 0))
+                {
+                    return new DrawRectangleAction(pen, e.X, e.Y, Math.Abs(width), Math.Abs(height));
+                }
+                else if (height < 0)
+                {
+                    return new DrawRectangleAction(pen, _startPoint.X, e.Y, width, Math.Abs(height));
+                }
+                else if (width < 0)
+                {
+                    return new DrawRectangleAction(pen, e.X, _startPoint.Y, Math.Abs(width), height);
+                }
+            }
+
             return null;
         }
 

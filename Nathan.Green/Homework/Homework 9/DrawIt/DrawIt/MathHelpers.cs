@@ -16,5 +16,19 @@ namespace DrawIt
         {
             return (int)Math.Round(Math.Sqrt(Math.Pow(center.X - pointOnCircle.X, 2) + Math.Pow(center.Y - pointOnCircle.Y,2)));
         }
+
+        public static int GetHeight(Point startingPoint, Point endingPoint)
+        {
+            int height = (endingPoint.Y - startingPoint.Y);
+
+            return (height);
+        }
+
+        public static int GetWidth(Point startingPoint, Point endingPoint)
+        {
+            int width = (endingPoint.X - startingPoint.X);
+
+            return (width);
+        }
     }
 }
