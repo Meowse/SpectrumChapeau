@@ -299,6 +299,20 @@ namespace DrawIt
                 return new DrawRectangleAction(pen, startPointX, startPointY, width, height);
             }
 
+            if (DrawXesButton.Checked)
+            {
+                int height = MathHelpers.GetHeight(_startPoint, new Point(endpointX, endpointY));
+                int width = MathHelpers.GetWidth(_startPoint, new Point(endpointX, endpointY));
+                int startPointX = _startPoint.X;
+                int startPointY = _startPoint.Y;
+                int secondStartPointX = startPointX;
+                int secondStartPointY = startPointY + height;
+                int secondEndPointX = startPointX + width;
+                int secondEndPointY = startPointY;
+
+                return new DrawXesAction(pen, startPointX, startPointY, endpointX, endpointY, secondStartPointX, secondStartPointY, secondEndPointX, secondEndPointY);
+            }
+
             return null;
         }
 
