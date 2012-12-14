@@ -243,13 +243,18 @@ namespace DrawIt
                 int height = MathHelpers.GetHeight(_startPoint, new Point(e.Location.X, e.Location.Y));
                 int width = MathHelpers.GetWidth(_startPoint, new Point(e.Location.X, e.Location.Y));
 
+                if (_isShift)
+                {
+                    width = height;
+                }
+
                 if ((height > 0) && (width > 0))
                 {
-                    if (_isShift)
-                    {
-                        width = height;
-                        return new DrawRectangleAction(pen, _startPoint.X, _startPoint.Y, width, height);
-                    }
+                    // if (_isShift)
+                    // {
+                    //     width = height;
+                    //     return new DrawRectangleAction(pen, _startPoint.X, _startPoint.Y, width, height);
+                    // }
                     return new DrawRectangleAction(pen, _startPoint.X, _startPoint.Y, width, height);
                 }
                 else if ((height < 0) && (width < 0))
