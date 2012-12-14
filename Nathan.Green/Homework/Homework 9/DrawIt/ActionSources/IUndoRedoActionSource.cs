@@ -6,5 +6,6 @@
         void Redo();
         bool CanUndo { get; }
         bool CanRedo { get; }
+        void ActionsHaveChanged();
     }
 }

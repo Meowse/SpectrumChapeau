@@ -125,10 +125,8 @@ namespace DrawIt
             // I have implemented versions of HandleMouseDown() and HandleMouseMoved() below
             // that draw simple circles on the canvas, and a circular cursor to show where
             // the next circle will be drawn, to illustrate how to use the DrawingModel.
-            _canvasModel = new DrawingModel(CanvasPanel, _actions)
-            {
-                Background = new DrawBackgroundAction(_BACKGROUND_COLOR)
-            };
+            _canvasModel = new DrawingModel(CanvasPanel, _actions);
+            DrawingModel.Background = new DrawBackgroundAction(_BACKGROUND_COLOR);
 
             // This creates the Pen intance that draws lines on the canvas.
             _drawingPen = new Pen(_COLOR, _LINE_WIDTH);
@@ -184,7 +182,15 @@ namespace DrawIt
         {
             // We don't want to actually draw anything (or even a "cursor") here -- we just want
             // to record the start point for the shape.
-            _startPoint = new Point(e.Location.X, e.Location.Y);
+            int localX = e.Location.X;
+            int localY = e.Location.Y;
+
+            if (checkBoxSnapToGrid.Checked)
+            {
+                localX = localX - (localX%5);
+                localY = localY - (localY%5);
+            }
+            _startPoint = new Point(localX, localY);
             _isDrawing = true;
         }
 
@@ -225,14 +231,23 @@ namespace DrawIt
 
         private IDrawAction GetAction(MouseEventArgs e, Pen pen)
         {
+            int endpointX = e.Location.X;
+            int endpointY = e.Location.Y;
+
+            if (checkBoxSnapToGrid.Checked)
+            {
+                endpointX = endpointX - (endpointX%5);
+                endpointY = endpointY - (endpointY%5);
+            }
+
             if (DrawLinesButton.Checked)
             {
-                return new DrawLineAction(pen, _startPoint.X, _startPoint.Y, e.Location.X, e.Location.Y);
+                return new DrawLineAction(pen, _startPoint.X, _startPoint.Y, endpointX, endpointY);
             }
             
             if (DrawCirclesButton.Checked)
             {
-                int radius = MathHelpers.GetRadius(_startPoint, new Point(e.Location.X, e.Location.Y));
+                int radius = MathHelpers.GetRadius(_startPoint, new Point(endpointX, endpointY));
                 if (radius == 0)
                 {
                     return null;
@@ -242,12 +257,10 @@ namespace DrawIt
 
             if (DrawRectanglesButton.Checked)
             {
-                int height = MathHelpers.GetHeight(_startPoint, new Point(e.Location.X, e.Location.Y));
-                int width = MathHelpers.GetWidth(_startPoint, new Point(e.Location.X, e.Location.Y));
+                int height = MathHelpers.GetHeight(_startPoint, new Point(endpointX, endpointY));
+                int width = MathHelpers.GetWidth(_startPoint, new Point(endpointX, endpointY));
                 int startPointX = _startPoint.X;
                 int startPointY = _startPoint.Y;
-                int endPointX = e.Location.X;
-                int endPointY = e.Location.Y;
 
                 if (_isShift)
                 {
@@ -279,8 +292,8 @@ namespace DrawIt
                 {
                     height = Math.Abs(height);
                     width = Math.Abs(width);
-                    startPointX = Math.Min(startPointX, endPointX);
-                    startPointY = Math.Min(startPointY, endPointY);
+                    startPointX = Math.Min(startPointX, endpointX);
+                    startPointY = Math.Min(startPointY, endpointY);
                 }
 
                 return new DrawRectangleAction(pen, startPointX, startPointY, width, height);
@@ -348,6 +361,12 @@ namespace DrawIt
                 _drawingPen = new Pen(colorDlg.Color, _LINE_WIDTH);
                 ColorButton.BackColor = colorDlg.Color;
             } 
+        }
+
+        private void CheckBoxSnapToGridCheckedChanged(object sender, EventArgs e)
+        {
+            DrawingModel.DrawGrid = checkBoxSnapToGrid.Checked;
+            _actions.ActionsHaveChanged();
         }
     }
 }

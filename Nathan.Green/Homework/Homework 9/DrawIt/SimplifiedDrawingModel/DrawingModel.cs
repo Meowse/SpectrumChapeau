@@ -8,9 +8,9 @@ namespace SimplifiedDrawingModel
 {
     public class DrawingModel
     {
-        private readonly Control _control;
-        private readonly IActionSource<IDrawAction> _drawActionSource;
-        private Bitmap _backBuffer;
+        private static Control _control;
+        private static IActionSource<IDrawAction> _drawActionSource;
+        private static Bitmap _backBuffer;
 
         private IDrawAction _cursor;
         public IDrawAction Cursor
@@ -23,8 +23,8 @@ namespace SimplifiedDrawingModel
             }
         }
 
-        private IDrawAction _background;
-        public IDrawAction Background
+        private static IDrawAction _background;
+        public static IDrawAction Background
         {
             get { return _background; }
             set
@@ -33,6 +33,8 @@ namespace SimplifiedDrawingModel
                 DrawActionsChanged();
             }
         }
+
+        public static bool DrawGrid = false;
 
         public DrawingModel(Control control, IActionSource<IDrawAction> drawActionSource)
         {
@@ -75,13 +77,13 @@ namespace SimplifiedDrawingModel
             }
         }
 
-        public void DrawActionsChanged()
+        public static void DrawActionsChanged()
         {
             UpdateBackBuffer();
             _control.Invalidate();    
         }
 
-        private void UpdateBackBuffer()
+        private static void UpdateBackBuffer()
         {
             if (_backBuffer == null)
             {
@@ -93,12 +95,26 @@ namespace SimplifiedDrawingModel
             g.Dispose();
         }
 
-        public void DrawOn(Graphics graphics)
+        public static void DrawOn(Graphics graphics)
         {
+            Pen cursorPen = new Pen(Color.Black, 1);
+            
             if (Background != null)
             {
                 Background.DrawOn(graphics);
             }
+
+            if (DrawGrid)
+            {
+                for (int i = 0; i <= 600; i += 5)
+                {
+                    for (int j = 0; j <= 500; j += 5)
+                    {
+                        graphics.DrawLine(cursorPen, i, j, i+1, j);
+                    }
+                }
+            }
+
             foreach (IDrawAction drawAction in _drawActionSource.Actions)
             {
                 drawAction.DrawOn(graphics);

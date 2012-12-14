@@ -81,5 +81,10 @@ namespace ActionSources
             }
             if (ActionsChanged != null) { ActionsChanged(); }
         }
+
+        public void ActionsHaveChanged()
+        {
+            if (ActionsChanged != null) { ActionsChanged(); }
+        }
     }
 }

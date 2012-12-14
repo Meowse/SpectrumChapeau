@@ -42,14 +42,15 @@ namespace DrawIt
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.ColorButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.checkBoxSnapToGrid = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // CanvasPanel
             // 
-            this.CanvasPanel.Location = new System.Drawing.Point(12, 69);
+            this.CanvasPanel.Location = new System.Drawing.Point(10, 70);
             this.CanvasPanel.Name = "CanvasPanel";
-            this.CanvasPanel.Size = new System.Drawing.Size(571, 533);
+            this.CanvasPanel.Size = new System.Drawing.Size(600, 500);
             this.CanvasPanel.TabIndex = 0;
             // 
             // ClearButton
@@ -161,11 +162,23 @@ namespace DrawIt
             this.label1.TabIndex = 8;
             this.label1.Text = "Choose Color:";
             // 
+            // checkBoxSnapToGrid
+            // 
+            this.checkBoxSnapToGrid.AutoSize = true;
+            this.checkBoxSnapToGrid.Location = new System.Drawing.Point(498, 41);
+            this.checkBoxSnapToGrid.Name = "checkBoxSnapToGrid";
+            this.checkBoxSnapToGrid.Size = new System.Drawing.Size(85, 17);
+            this.checkBoxSnapToGrid.TabIndex = 11;
+            this.checkBoxSnapToGrid.Text = "Snap to Grid";
+            this.checkBoxSnapToGrid.UseVisualStyleBackColor = true;
+            this.checkBoxSnapToGrid.CheckedChanged += new System.EventHandler(this.CheckBoxSnapToGridCheckedChanged);
+            // 
             // DrawIt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(591, 574);
+            this.ClientSize = new System.Drawing.Size(623, 580);
+            this.Controls.Add(this.checkBoxSnapToGrid);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ColorButton);
             this.Controls.Add(this.RedoButton);
@@ -197,6 +210,7 @@ namespace DrawIt
         private ColorDialog colorDialog1;
         private Button ColorButton;
         private Label label1;
+        private CheckBox checkBoxSnapToGrid;
     }
 }
 
