@@ -244,13 +244,46 @@ namespace DrawIt
             {
                 int height = MathHelpers.GetHeight(_startPoint, new Point(e.Location.X, e.Location.Y));
                 int width = MathHelpers.GetWidth(_startPoint, new Point(e.Location.X, e.Location.Y));
+                int startPointX = _startPoint.X;
+                int startPointY = _startPoint.Y;
+                int endPointX = e.Location.X;
+                int endPointY = e.Location.Y;
 
                 if (_isShift)
                 {
-                    width = height;
+                    if ((width > 0) && (height > 0))
+                    {
+                        width = height;
+                    }
+                    else if ((height < 0) && (width > 0))
+                    {
+                        height = Math.Abs(height);
+                        width = height; 
+                        startPointY = startPointY - height;                        
+                    }
+                    else if ((height > 0) && (width < 0))
+                    {
+                        width = Math.Abs(width);
+                        height = width;
+                        startPointX = startPointX - width;
+                    }
+                    else if ((height < 0) && (width < 0))
+                    {
+                        height = Math.Abs(height);
+                        width = height;
+                        startPointX = startPointX - width;
+                        startPointY = startPointY - height;
+                    }
+                }
+                else
+                {
+                    height = Math.Abs(height);
+                    width = Math.Abs(width);
+                    startPointX = Math.Min(startPointX, endPointX);
+                    startPointY = Math.Min(startPointY, endPointY);
                 }
 
-                return new DrawRectangleAction(pen, Math.Min(_startPoint.X, e.Location.X), Math.Min(_startPoint.Y, e.Location.Y), width, height);
+                return new DrawRectangleAction(pen, startPointX, startPointY, width, height);
             }
 
             return null;
@@ -307,7 +340,7 @@ namespace DrawIt
                                            AllowFullOpen = true,
                                            AnyColor = true,
                                            SolidColorOnly = false,
-                                           Color = Color.Red
+                                           Color = ColorButton.BackColor
                                        };
 
             if (colorDlg.ShowDialog() == DialogResult.OK)

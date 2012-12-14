@@ -21,14 +21,14 @@ namespace DrawIt
         {
             int height = (endingPoint.Y - startingPoint.Y);
 
-            return (Math.Abs(height));
+            return (height);
         }
 
         public static int GetWidth(Point startingPoint, Point endingPoint)
         {
             int width = (endingPoint.X - startingPoint.X);
 
-            return (Math.Abs(width));
+            return (width);
         }
     }
 }
