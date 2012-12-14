@@ -46,6 +46,7 @@ namespace DrawIt
             this.label2 = new System.Windows.Forms.Label();
             this.textBoxPixels = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.checkBoxFill = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -179,7 +180,7 @@ namespace DrawIt
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(395, 48);
+            this.label2.Location = new System.Drawing.Point(391, 45);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 13);
             this.label2.TabIndex = 12;
@@ -187,7 +188,7 @@ namespace DrawIt
             // 
             // textBoxPixels
             // 
-            this.textBoxPixels.Location = new System.Drawing.Point(462, 45);
+            this.textBoxPixels.Location = new System.Drawing.Point(457, 42);
             this.textBoxPixels.Name = "textBoxPixels";
             this.textBoxPixels.Size = new System.Drawing.Size(31, 20);
             this.textBoxPixels.TabIndex = 13;
@@ -198,17 +199,28 @@ namespace DrawIt
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(494, 48);
+            this.label3.Location = new System.Drawing.Point(494, 45);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(34, 13);
             this.label3.TabIndex = 14;
             this.label3.Text = "Pixels";
             // 
+            // checkBoxFill
+            // 
+            this.checkBoxFill.AutoSize = true;
+            this.checkBoxFill.Location = new System.Drawing.Point(554, 41);
+            this.checkBoxFill.Name = "checkBoxFill";
+            this.checkBoxFill.Size = new System.Drawing.Size(38, 17);
+            this.checkBoxFill.TabIndex = 15;
+            this.checkBoxFill.Text = "Fill";
+            this.checkBoxFill.UseVisualStyleBackColor = true;
+            // 
             // DrawIt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(695, 580);
+            this.ClientSize = new System.Drawing.Size(622, 580);
+            this.Controls.Add(this.checkBoxFill);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBoxPixels);
             this.Controls.Add(this.label2);
@@ -248,6 +260,7 @@ namespace DrawIt
         private Label label2;
         private TextBox textBoxPixels;
         private Label label3;
+        private CheckBox checkBoxFill;
     }
 }
 

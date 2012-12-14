@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Globalization;
 using System.Windows.Forms;
 using ActionSources;
@@ -52,6 +53,7 @@ namespace DrawIt
         // A Pen is used by the drawing libraries to actually draw on the screen.  It controls things
         // like color, line width, etc.  We'll create a pen in the DrawIt constructor as well.
         private Pen _drawingPen;
+        private Brush _drawingBrush;
 
         // A Pen of a different color to draw the cursor with.
         private Pen _cursorPen;
@@ -132,6 +134,8 @@ namespace DrawIt
 
             // This creates the Pen intance that draws lines on the canvas.
             _drawingPen = new Pen(_COLOR, _LINE_WIDTH);
+            _drawingBrush = new SolidBrush(_COLOR);
+
             ColorButton.BackColor = _COLOR;
 
             // This creates the Pen instance that draws the cursor.
@@ -298,6 +302,10 @@ namespace DrawIt
                     startPointY = Math.Min(startPointY, endpointY);
                 }
 
+                if (checkBoxFill.Checked)
+                {
+                    return new DrawRectangleAction(_drawingBrush, startPointX, startPointY, width, height, true);
+                }
                 return new DrawRectangleAction(pen, startPointX, startPointY, width, height);
             }
 
@@ -375,6 +383,7 @@ namespace DrawIt
             if (colorDlg.ShowDialog() == DialogResult.OK)
             {
                 _drawingPen = new Pen(colorDlg.Color, _LINE_WIDTH);
+                _drawingBrush = new SolidBrush(colorDlg.Color);
                 ColorButton.BackColor = colorDlg.Color;
             } 
         }
