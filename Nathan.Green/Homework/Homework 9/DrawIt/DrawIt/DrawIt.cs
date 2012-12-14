@@ -256,6 +256,22 @@ namespace DrawIt
                 int height = MathHelpers.GetHeight(_startPoint, new Point(endpointX, endpointY));
                 int width = MathHelpers.GetWidth(_startPoint, new Point(endpointX, endpointY));
 
+                if (_isShift)
+                {
+                    if ((width < 0) && (height > 0))
+                    {
+                        width = -height;
+                    }
+                    else if ((height < 0) && (width > 0))
+                    {
+                        height = -width;
+                    }
+                    else
+                    {
+                        width = height;
+                    }
+                }
+
                 if (checkBoxFill.Checked)
                 {
                     return new DrawCircleAction(_drawingBrush, _startPoint.X, _startPoint.Y, width, height, true);
