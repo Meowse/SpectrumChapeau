@@ -214,7 +214,7 @@ namespace DrawIt
             {
                 return new DrawLineAction(pen, _startPoint.X, _startPoint.Y, e.Location.X, e.Location.Y);
             }
-            
+
             if (DrawCirclesButton.Checked)
             {
                 int radius = MathHelpers.GetRadius(_startPoint, new Point(e.Location.X, e.Location.Y));

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace SimplifiedDrawingModel
 {
@@ -18,6 +19,11 @@ namespace SimplifiedDrawingModel
             _endPoint = new Point(x2, y2);
             _width = (int) Math.Abs(_startPoint.X - _endPoint.X);
             _height = (int) Math.Abs(_startPoint.Y - _endPoint.Y);
+            if (Control.ModifierKeys == Keys.Shift)
+            {
+                //MessageBox.Show("shift key down");
+                _height = _width;
+            }
         }
 
         public void DrawOn(Graphics graphics)
