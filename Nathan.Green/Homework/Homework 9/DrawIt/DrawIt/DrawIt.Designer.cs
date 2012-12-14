@@ -41,6 +41,7 @@ namespace DrawIt
             this.RedoButton = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.ColorButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -144,19 +145,28 @@ namespace DrawIt
             // 
             // ColorButton
             // 
-            this.ColorButton.Location = new System.Drawing.Point(280, 43);
+            this.ColorButton.Location = new System.Drawing.Point(362, 40);
             this.ColorButton.Name = "ColorButton";
-            this.ColorButton.Size = new System.Drawing.Size(75, 23);
+            this.ColorButton.Size = new System.Drawing.Size(23, 23);
             this.ColorButton.TabIndex = 7;
-            this.ColorButton.Text = "Pen Color";
             this.ColorButton.UseVisualStyleBackColor = true;
             this.ColorButton.Click += new System.EventHandler(this.ColorButtonClicked);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(283, 45);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(73, 13);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Choose Color:";
             // 
             // DrawIt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(591, 574);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.ColorButton);
             this.Controls.Add(this.RedoButton);
             this.Controls.Add(this.UndoButton);
@@ -169,6 +179,7 @@ namespace DrawIt
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -185,6 +196,7 @@ namespace DrawIt
         private System.Windows.Forms.Button RedoButton;
         private ColorDialog colorDialog1;
         private Button ColorButton;
+        private Label label1;
     }
 }
 
