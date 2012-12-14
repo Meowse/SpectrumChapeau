@@ -50,7 +50,7 @@ namespace DrawIt
 
         // A Pen is used by the drawing libraries to actually draw on the screen.  It controls things
         // like color, line width, etc.  We'll create a pen in the DrawIt constructor as well.
-        private readonly Pen _drawingPen;
+        private Pen _drawingPen;
 
         // A Pen of a different color to draw the cursor with.
         private readonly Pen _cursorPen;
@@ -60,6 +60,7 @@ namespace DrawIt
         private static readonly Color _CURSOR_COLOR = Color.AliceBlue;
         private Point _startPoint;
         private bool _isDrawing;
+        private bool _isShift;
 
         // This is a constructor method for the DrawIt class.  Notice that it has the same name ("DrawIt") as the class,
         // and does not have a return type.  That's how we know it's a constructor method.
@@ -149,6 +150,13 @@ namespace DrawIt
             CanvasPanel.MouseLeave += HandleMouseLeave;
 
             KeyDown += HandleKeyDown;
+            KeyUp += HandleKeyUp;
+
+        }
+
+        private void HandleKeyUp(object sender, KeyEventArgs e)
+        {
+            _isShift = false;
         }
 
         private void HandleKeyDown(object sender, KeyEventArgs e)
@@ -157,6 +165,11 @@ namespace DrawIt
             {
                 _canvasModel.Cursor = null;
                 _isDrawing = false;
+            }
+            
+            if (e.KeyCode == Keys.ShiftKey)
+            {
+                _isShift = true;
             }
         }
 
@@ -232,11 +245,16 @@ namespace DrawIt
 
                 if ((height > 0) && (width > 0))
                 {
+                    if (_isShift)
+                    {
+                        width = height;
+                        return new DrawRectangleAction(pen, _startPoint.X, _startPoint.Y, width, height);
+                    }
                     return new DrawRectangleAction(pen, _startPoint.X, _startPoint.Y, width, height);
                 }
                 else if ((height < 0) && (width < 0))
                 {
-                    return new DrawRectangleAction(pen, e.X, e.Y, Math.Abs(width), Math.Abs(height));
+                   return new DrawRectangleAction(pen, e.X, e.Y, Math.Abs(width), Math.Abs(height));
                 }
                 else if (height < 0)
                 {
@@ -293,6 +311,22 @@ namespace DrawIt
         private void UpdateClearButton()
         {
             ClearButton.Enabled = _actions.CanClear;
+        }
+
+        private void ColorButtonClicked(object sender, EventArgs e)
+        {
+            ColorDialog colorDlg = new ColorDialog
+                                       {
+                                           AllowFullOpen = false,
+                                           AnyColor = true,
+                                           SolidColorOnly = false,
+                                           Color = Color.Red
+                                       };
+
+            if (colorDlg.ShowDialog() == DialogResult.OK)
+            {
+                _drawingPen = new Pen(colorDlg.Color, _LINE_WIDTH);
+            } 
         }
     }
 }

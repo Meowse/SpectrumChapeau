@@ -39,6 +39,8 @@ namespace DrawIt
             this.DrawRectanglesButton = new System.Windows.Forms.RadioButton();
             this.UndoButton = new System.Windows.Forms.Button();
             this.RedoButton = new System.Windows.Forms.Button();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.ColorButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -140,11 +142,22 @@ namespace DrawIt
             this.RedoButton.UseVisualStyleBackColor = true;
             this.RedoButton.Click += new System.EventHandler(this.RedoButtonClicked);
             // 
+            // ColorButton
+            // 
+            this.ColorButton.Location = new System.Drawing.Point(280, 43);
+            this.ColorButton.Name = "ColorButton";
+            this.ColorButton.Size = new System.Drawing.Size(75, 23);
+            this.ColorButton.TabIndex = 7;
+            this.ColorButton.Text = "Pen Color";
+            this.ColorButton.UseVisualStyleBackColor = true;
+            this.ColorButton.Click += new System.EventHandler(this.ColorButtonClicked);
+            // 
             // DrawIt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(591, 574);
+            this.Controls.Add(this.ColorButton);
             this.Controls.Add(this.RedoButton);
             this.Controls.Add(this.UndoButton);
             this.Controls.Add(this.groupBox1);
@@ -170,6 +183,8 @@ namespace DrawIt
         private System.Windows.Forms.Panel CanvasPanel;
         private System.Windows.Forms.Button UndoButton;
         private System.Windows.Forms.Button RedoButton;
+        private ColorDialog colorDialog1;
+        private Button ColorButton;
     }
 }
 
