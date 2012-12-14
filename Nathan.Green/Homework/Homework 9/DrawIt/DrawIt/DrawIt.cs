@@ -304,7 +304,7 @@ namespace DrawIt
         {
             ColorDialog colorDlg = new ColorDialog
                                        {
-                                           AllowFullOpen = false,
+                                           AllowFullOpen = true,
                                            AnyColor = true,
                                            SolidColorOnly = false,
                                            Color = Color.Red
