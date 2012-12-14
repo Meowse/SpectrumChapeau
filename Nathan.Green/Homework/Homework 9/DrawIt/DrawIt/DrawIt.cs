@@ -137,6 +137,7 @@ namespace DrawIt
             _drawingBrush = new SolidBrush(_COLOR);
 
             ColorButton.BackColor = _COLOR;
+            BrushColorButton.BackColor = _COLOR;
 
             // This creates the Pen instance that draws the cursor.
             _cursorPen = new Pen(_CURSOR_COLOR, _LINE_WIDTH);
@@ -401,7 +402,6 @@ namespace DrawIt
             if (colorDlg.ShowDialog() == DialogResult.OK)
             {
                 _drawingPen = new Pen(colorDlg.Color, _lastPixelWidth);
-                _drawingBrush = new SolidBrush(colorDlg.Color);
                 ColorButton.BackColor = colorDlg.Color;
             } 
         }
@@ -437,6 +437,23 @@ namespace DrawIt
             {
                 textBoxPixels.Text = _lastPixelWidth.ToString(CultureInfo.InvariantCulture);
             }
+        }
+
+        private void BrushColorButtonClick(object sender, EventArgs e)
+        {
+            ColorDialog colorDlg = new ColorDialog
+            {
+                AllowFullOpen = true,
+                AnyColor = true,
+                SolidColorOnly = false,
+                Color = BrushColorButton.BackColor
+            };
+
+            if (colorDlg.ShowDialog() == DialogResult.OK)
+            {
+                _drawingBrush = new SolidBrush(colorDlg.Color);
+                BrushColorButton.BackColor = colorDlg.Color;
+            } 
         }
     }
 }

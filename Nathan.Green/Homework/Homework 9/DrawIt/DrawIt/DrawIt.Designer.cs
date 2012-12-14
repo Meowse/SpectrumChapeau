@@ -47,12 +47,14 @@ namespace DrawIt
             this.textBoxPixels = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.checkBoxFill = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.BrushColorButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // CanvasPanel
             // 
-            this.CanvasPanel.Location = new System.Drawing.Point(10, 70);
+            this.CanvasPanel.Location = new System.Drawing.Point(10, 90);
             this.CanvasPanel.Name = "CanvasPanel";
             this.CanvasPanel.Size = new System.Drawing.Size(600, 500);
             this.CanvasPanel.TabIndex = 0;
@@ -150,7 +152,7 @@ namespace DrawIt
             // 
             // ColorButton
             // 
-            this.ColorButton.Location = new System.Drawing.Point(362, 40);
+            this.ColorButton.Location = new System.Drawing.Point(356, 39);
             this.ColorButton.Name = "ColorButton";
             this.ColorButton.Size = new System.Drawing.Size(23, 23);
             this.ColorButton.TabIndex = 7;
@@ -160,11 +162,12 @@ namespace DrawIt
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(283, 45);
+            this.label1.Location = new System.Drawing.Point(294, 44);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 13);
+            this.label1.Size = new System.Drawing.Size(56, 13);
             this.label1.TabIndex = 8;
-            this.label1.Text = "Choose Color:";
+            this.label1.Text = "Pen Color:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // checkBoxSnapToGrid
             // 
@@ -215,11 +218,32 @@ namespace DrawIt
             this.checkBoxFill.Text = "Fill";
             this.checkBoxFill.UseVisualStyleBackColor = true;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(286, 62);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(64, 13);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "Brush Color:";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // BrushColorButton
+            // 
+            this.BrushColorButton.Location = new System.Drawing.Point(356, 62);
+            this.BrushColorButton.Name = "BrushColorButton";
+            this.BrushColorButton.Size = new System.Drawing.Size(23, 23);
+            this.BrushColorButton.TabIndex = 17;
+            this.BrushColorButton.UseVisualStyleBackColor = true;
+            this.BrushColorButton.Click += new System.EventHandler(this.BrushColorButtonClick);
+            // 
             // DrawIt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(622, 580);
+            this.Controls.Add(this.BrushColorButton);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.checkBoxFill);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBoxPixels);
@@ -261,6 +285,8 @@ namespace DrawIt
         private TextBox textBoxPixels;
         private Label label3;
         private CheckBox checkBoxFill;
+        private Label label4;
+        private Button BrushColorButton;
     }
 }
 
