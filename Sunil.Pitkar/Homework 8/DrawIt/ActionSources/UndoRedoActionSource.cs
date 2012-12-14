@@ -55,7 +55,11 @@ namespace ActionSources
 
         public bool CanClear
         {
-            get { throw new NotImplementedException(); }
+            get
+            {
+                //throw new NotImplementedException();
+                return CanClear;
+            }
         }
 
         public void Add(TAction action)

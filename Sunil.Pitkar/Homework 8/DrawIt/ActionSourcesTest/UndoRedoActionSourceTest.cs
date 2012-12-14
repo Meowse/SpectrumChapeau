@@ -22,6 +22,22 @@ namespace ActionSourcesTest
         }
 
         [Test]
+        public void CannotRedoEmptyList()
+        {
+            Assert.That(_actionSource.CanRedo, Is.False);
+        }
+
+        [Test]
+        public void CantRedoAfterOnlyDoneAction()
+        {
+            _actionSource.Add(22);
+            //_actionSource.Add(20);
+            //_actionSource.Undo();
+            Assert.That(_actionSource.CanRedo, Is.False);
+        }
+        
+
+        [Test]
         public void CanRedoAnUndoneList()
         {
             _actionSource.Add(22);
@@ -29,6 +45,7 @@ namespace ActionSourcesTest
             _actionSource.Undo();
             Assert.That(_actionSource.CanRedo, Is.True);
         }
+
         [Test]
         public void CanAddOneItemToList()
         {
