@@ -49,7 +49,7 @@ namespace ActionSources
         {
             get
             {
-                throw new NotImplementedException();
+                return _redoActions.Count > 0;
             }
         }
 

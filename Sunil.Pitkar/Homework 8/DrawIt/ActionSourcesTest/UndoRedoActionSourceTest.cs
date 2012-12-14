@@ -22,6 +22,14 @@ namespace ActionSourcesTest
         }
 
         [Test]
+        public void CanRedoAnUndoneList()
+        {
+            _actionSource.Add(22);
+            _actionSource.Add(20);
+            _actionSource.Undo();
+            Assert.That(_actionSource.CanRedo, Is.True);
+        }
+        [Test]
         public void CanAddOneItemToList()
         {
             _actionSource.Add(3);
