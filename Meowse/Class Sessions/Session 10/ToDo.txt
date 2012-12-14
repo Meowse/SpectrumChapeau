@@ -1,0 +1,6 @@
+
+To Do:
+-- resource packet for further learning
+	-- NUnit and testing patterns books/websites
+	-- ATDD
+-- ask administrators how online students are supposed to do course evaluations

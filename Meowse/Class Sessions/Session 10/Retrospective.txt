@@ -71,8 +71,3 @@ Sunil Pitkar: i got an email from them mostly because i was online student
 -- Mickey - suggestion- based on the range of expereine of people in the class, head foirst bookis good if you like doing things practically and one for my types who like The Java primer which focuses on theory -- i.e. having a separate theory-focused book for people who prefer to learn "top-down"
 
 
-
-To Do:
--- resource packet for further learning
-	-- NUnit and testing patterns books/websites
-	-- ATDD
