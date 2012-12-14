@@ -132,9 +132,11 @@ namespace DrawIt
 
             // This creates the Pen intance that draws lines on the canvas.
             _drawingPen = new Pen(_COLOR, _LINE_WIDTH);
+            ColorButton.BackColor = _COLOR;
 
             // This creates the Pen instance that draws the cursor.
             _cursorPen = new Pen(_CURSOR_COLOR, _LINE_WIDTH);
+           
 
             // This starts us out with a dark gray background on the canvas (so the user can see
             // where to draw).
@@ -311,6 +313,7 @@ namespace DrawIt
             if (colorDlg.ShowDialog() == DialogResult.OK)
             {
                 _drawingPen = new Pen(colorDlg.Color, _LINE_WIDTH);
+                ColorButton.BackColor = colorDlg.Color;
             } 
         }
     }
