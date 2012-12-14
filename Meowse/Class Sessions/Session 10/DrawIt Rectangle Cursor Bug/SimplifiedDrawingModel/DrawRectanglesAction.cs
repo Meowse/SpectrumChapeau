@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
 namespace SimplifiedDrawingModel
 {
@@ -23,7 +24,7 @@ namespace SimplifiedDrawingModel
 
         public void DrawOn(Graphics graphics)
         {
-            graphics.DrawRectangle(_pen, _startPoint.X, _startPoint.Y, _width, _height);
+            graphics.DrawRectangle(_pen, Math.Min(_startPoint.X, _endPoint.X), Math.Min(_startPoint.Y, _endPoint.Y), _width, _height);
         }
     }
 }
