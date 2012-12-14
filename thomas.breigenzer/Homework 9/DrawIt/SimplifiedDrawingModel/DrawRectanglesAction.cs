@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
 namespace SimplifiedDrawingModel
 {
@@ -15,15 +16,13 @@ namespace SimplifiedDrawingModel
             _pen = pen;
             _startPoint = new Point(x1, y1);
             _endPoint = new Point(x2, y2);
-            //_width = new int();
-            //_height = new int();
-            _width = (int)System.Math.Sqrt(System.Math.Pow(_startPoint.X - _endPoint.X, 2));
-            _height = (int) System.Math.Sqrt(System.Math.Pow(_startPoint.Y - _endPoint.Y, 2));
+            _width = (int) Math.Abs(_startPoint.X - _endPoint.X);
+            _height = (int) Math.Abs(_startPoint.Y - _endPoint.Y);
         }
 
         public void DrawOn(Graphics graphics)
         {
-            graphics.DrawRectangle(_pen, _startPoint.X, _startPoint.Y, _width, _height);
+            graphics.DrawRectangle(_pen, Math.Min(_startPoint.X, _endPoint.X), Math.Min(_startPoint.Y, _endPoint.Y), _width, _height);
         }
     }
 }
