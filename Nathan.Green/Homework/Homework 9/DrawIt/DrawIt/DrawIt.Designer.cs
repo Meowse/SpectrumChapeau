@@ -241,7 +241,7 @@ namespace DrawIt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(622, 580);
+            this.ClientSize = new System.Drawing.Size(622, 601);
             this.Controls.Add(this.BrushColorButton);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.checkBoxFill);
@@ -256,6 +256,7 @@ namespace DrawIt
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.ClearButton);
             this.Controls.Add(this.CanvasPanel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.KeyPreview = true;
             this.Name = "DrawIt";
             this.Text = "DrawIt!";
