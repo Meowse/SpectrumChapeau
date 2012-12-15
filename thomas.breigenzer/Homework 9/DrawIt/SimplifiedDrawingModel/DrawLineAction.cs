@@ -19,5 +19,6 @@ namespace SimplifiedDrawingModel
         {
             graphics.DrawLine(_pen, _startPoint, _endPoint);
         }
+
     }
 }

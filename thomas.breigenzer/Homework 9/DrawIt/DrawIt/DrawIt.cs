@@ -229,6 +229,12 @@ namespace DrawIt
             {
                 return new DrawRectangleAction(pen, _startPoint.X, e.Location.X, _startPoint.Y, e.Location.Y);
             }
+            
+            if (DrawXesButton.Checked)
+            {
+                return new DrawXesAction(pen, _startPoint.X, e.Location.X, _startPoint.Y, e.Location.Y);
+            }
+
             return null;
         }
 

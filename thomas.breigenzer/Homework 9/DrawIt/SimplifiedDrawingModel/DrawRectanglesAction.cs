@@ -21,7 +21,6 @@ namespace SimplifiedDrawingModel
             _height = (int) Math.Abs(_startPoint.Y - _endPoint.Y);
             if (Control.ModifierKeys == Keys.Shift)
             {
-                //MessageBox.Show("shift key down");
                 _height = _width;
             }
         }
