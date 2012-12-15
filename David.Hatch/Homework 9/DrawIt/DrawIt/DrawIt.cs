@@ -234,6 +234,13 @@ namespace DrawIt
             }
             if (DrawRectanglesButton.Checked)
             {
+                if (Control.ModifierKeys == Keys.Shift)
+                {
+                    //MessageBox.Show("shift key");
+                    int diffx = Math.Abs(_startPoint.X - e.Location.X);
+                    int samexy = _startPoint.Y + diffx;
+                    return new DrawRectangleAction(pen, _startPoint.X, _startPoint.Y, e.Location.X, samexy);
+                }
                 return new DrawRectangleAction(pen, _startPoint.X, _startPoint.Y, e.Location.X, e.Location.Y);
             }
 
