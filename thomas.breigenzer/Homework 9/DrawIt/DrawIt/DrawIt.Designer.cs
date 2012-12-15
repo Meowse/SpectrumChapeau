@@ -39,20 +39,22 @@ namespace DrawIt
             this.DrawRectanglesButton = new System.Windows.Forms.RadioButton();
             this.UndoButton = new System.Windows.Forms.Button();
             this.RedoButton = new System.Windows.Forms.Button();
+            this.FillShapeCheckBox = new System.Windows.Forms.CheckBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // CanvasPanel
             // 
-            this.CanvasPanel.Location = new System.Drawing.Point(12, 69);
+            this.CanvasPanel.Location = new System.Drawing.Point(12, 101);
             this.CanvasPanel.Name = "CanvasPanel";
-            this.CanvasPanel.Size = new System.Drawing.Size(571, 533);
+            this.CanvasPanel.Size = new System.Drawing.Size(639, 501);
             this.CanvasPanel.TabIndex = 0;
             // 
             // ClearButton
             // 
             this.ClearButton.Enabled = false;
-            this.ClearButton.Location = new System.Drawing.Point(508, 12);
+            this.ClearButton.Location = new System.Drawing.Point(576, 19);
             this.ClearButton.Name = "ClearButton";
             this.ClearButton.Size = new System.Drawing.Size(75, 23);
             this.ClearButton.TabIndex = 1;
@@ -85,13 +87,15 @@ namespace DrawIt
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.FillShapeCheckBox);
             this.groupBox1.Controls.Add(this.DrawXesButton);
             this.groupBox1.Controls.Add(this.DrawRectanglesButton);
             this.groupBox1.Controls.Add(this.DrawCirclesButton);
             this.groupBox1.Controls.Add(this.DrawLinesButton);
+            this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Location = new System.Drawing.Point(12, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(261, 57);
+            this.groupBox1.Size = new System.Drawing.Size(265, 75);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Draw:";
@@ -99,7 +103,7 @@ namespace DrawIt
             // DrawXesButton
             // 
             this.DrawXesButton.AutoSize = true;
-            this.DrawXesButton.Location = new System.Drawing.Point(210, 20);
+            this.DrawXesButton.Location = new System.Drawing.Point(214, 20);
             this.DrawXesButton.Name = "DrawXesButton";
             this.DrawXesButton.Size = new System.Drawing.Size(46, 17);
             this.DrawXesButton.TabIndex = 5;
@@ -121,9 +125,9 @@ namespace DrawIt
             // UndoButton
             // 
             this.UndoButton.Enabled = false;
-            this.UndoButton.Location = new System.Drawing.Point(280, 13);
+            this.UndoButton.Location = new System.Drawing.Point(407, 19);
             this.UndoButton.Name = "UndoButton";
-            this.UndoButton.Size = new System.Drawing.Size(75, 23);
+            this.UndoButton.Size = new System.Drawing.Size(54, 23);
             this.UndoButton.TabIndex = 5;
             this.UndoButton.Text = "Undo";
             this.UndoButton.UseVisualStyleBackColor = true;
@@ -132,19 +136,36 @@ namespace DrawIt
             // RedoButton
             // 
             this.RedoButton.Enabled = false;
-            this.RedoButton.Location = new System.Drawing.Point(362, 12);
+            this.RedoButton.Location = new System.Drawing.Point(469, 19);
             this.RedoButton.Name = "RedoButton";
-            this.RedoButton.Size = new System.Drawing.Size(75, 23);
+            this.RedoButton.Size = new System.Drawing.Size(57, 23);
             this.RedoButton.TabIndex = 6;
             this.RedoButton.Text = "Redo";
             this.RedoButton.UseVisualStyleBackColor = true;
             this.RedoButton.Click += new System.EventHandler(this.RedoButtonClicked);
             // 
+            // FillShapeCheckBox
+            // 
+            this.FillShapeCheckBox.AutoSize = true;
+            this.FillShapeCheckBox.Location = new System.Drawing.Point(62, 52);
+            this.FillShapeCheckBox.Name = "FillShapeCheckBox";
+            this.FillShapeCheckBox.Size = new System.Drawing.Size(102, 17);
+            this.FillShapeCheckBox.TabIndex = 8;
+            this.FillShapeCheckBox.Text = "Fill Shape Mode";
+            this.FillShapeCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(6, 13);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(202, 56);
+            this.panel1.TabIndex = 7;
+            // 
             // DrawIt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(591, 574);
+            this.ClientSize = new System.Drawing.Size(663, 574);
             this.Controls.Add(this.RedoButton);
             this.Controls.Add(this.UndoButton);
             this.Controls.Add(this.groupBox1);
@@ -170,6 +191,8 @@ namespace DrawIt
         private System.Windows.Forms.Panel CanvasPanel;
         private System.Windows.Forms.Button UndoButton;
         private System.Windows.Forms.Button RedoButton;
+        private CheckBox FillShapeCheckBox;
+        private Panel panel1;
     }
 }
 

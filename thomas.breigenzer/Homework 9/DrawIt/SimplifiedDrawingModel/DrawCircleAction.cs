@@ -8,10 +8,12 @@ namespace SimplifiedDrawingModel
         private readonly Point _center;
         private readonly int _radius;
         private readonly int _diameter;
+        private readonly Brush _brush;
 
         public DrawCircleAction(Pen pen, int x, int y, int radius)
         {
             _pen = pen;
+            _brush = pen.Brush;
             _center = new Point(x, y);
             _radius = radius;
             _diameter = _radius*2;
