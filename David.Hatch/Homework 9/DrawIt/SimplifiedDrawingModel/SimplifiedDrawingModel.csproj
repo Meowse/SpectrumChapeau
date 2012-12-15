@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DrawRectangleAction.cs" />
     <Compile Include="DrawBackgroundAction.cs" />
     <Compile Include="DrawCircleAction.cs" />
     <Compile Include="DrawingModel.cs" />

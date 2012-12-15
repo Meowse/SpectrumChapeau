@@ -39,6 +39,8 @@ namespace DrawIt
             this.DrawRectanglesButton = new System.Windows.Forms.RadioButton();
             this.UndoButton = new System.Windows.Forms.Button();
             this.RedoButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.ColorSelectButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -121,7 +123,7 @@ namespace DrawIt
             // UndoButton
             // 
             this.UndoButton.Enabled = false;
-            this.UndoButton.Location = new System.Drawing.Point(280, 13);
+            this.UndoButton.Location = new System.Drawing.Point(310, 12);
             this.UndoButton.Name = "UndoButton";
             this.UndoButton.Size = new System.Drawing.Size(75, 23);
             this.UndoButton.TabIndex = 5;
@@ -132,7 +134,7 @@ namespace DrawIt
             // RedoButton
             // 
             this.RedoButton.Enabled = false;
-            this.RedoButton.Location = new System.Drawing.Point(362, 12);
+            this.RedoButton.Location = new System.Drawing.Point(391, 12);
             this.RedoButton.Name = "RedoButton";
             this.RedoButton.Size = new System.Drawing.Size(75, 23);
             this.RedoButton.TabIndex = 6;
@@ -140,11 +142,31 @@ namespace DrawIt
             this.RedoButton.UseVisualStyleBackColor = true;
             this.RedoButton.Click += new System.EventHandler(this.RedoButtonClicked);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(279, 43);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(76, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Select Color ->";
+            // 
+            // ColorSelectButton
+            // 
+            this.ColorSelectButton.Location = new System.Drawing.Point(354, 39);
+            this.ColorSelectButton.Name = "ColorSelectButton";
+            this.ColorSelectButton.Size = new System.Drawing.Size(75, 23);
+            this.ColorSelectButton.TabIndex = 8;
+            this.ColorSelectButton.UseVisualStyleBackColor = true;
+            this.ColorSelectButton.Click += new System.EventHandler(this.ColorSelectButton_Click);
+            // 
             // DrawIt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(591, 574);
+            this.Controls.Add(this.ColorSelectButton);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.RedoButton);
             this.Controls.Add(this.UndoButton);
             this.Controls.Add(this.groupBox1);
@@ -156,6 +178,7 @@ namespace DrawIt
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -170,6 +193,8 @@ namespace DrawIt
         private System.Windows.Forms.Panel CanvasPanel;
         private System.Windows.Forms.Button UndoButton;
         private System.Windows.Forms.Button RedoButton;
+        private Label label1;
+        private Button ColorSelectButton;
     }
 }
 

@@ -50,13 +50,18 @@ namespace DrawIt
 
         // A Pen is used by the drawing libraries to actually draw on the screen.  It controls things
         // like color, line width, etc.  We'll create a pen in the DrawIt constructor as well.
-        private readonly Pen _drawingPen;
+        //private readonly Pen _drawingPen;
+        //dsh using pat's solution for changing color - change from readonly 
+        //static readonly makes it a constant for sure - not sure of readonly advantage if not static
+        private Pen _drawingPen;
 
         // A Pen of a different color to draw the cursor with.
         private readonly Pen _cursorPen;
 
         private static readonly Color _BACKGROUND_COLOR = Color.DarkGray;
-        private static readonly Color _COLOR = Color.Red;
+        //private static readonly Color _COLOR = Color.Red;
+        //dsh change color variable from readonly static to regular loacal variable
+        private Color _color = Color.Red;
         private static readonly Color _CURSOR_COLOR = Color.AliceBlue;
         private Point _startPoint;
         private bool _isDrawing;
@@ -129,8 +134,11 @@ namespace DrawIt
                 Background = new DrawBackgroundAction(_BACKGROUND_COLOR)
             };
 
+            //dsh set background of button to color
+            ColorSelectButton.BackColor = _color;
+
             // This creates the Pen intance that draws lines on the canvas.
-            _drawingPen = new Pen(_COLOR, _LINE_WIDTH);
+            _drawingPen = new Pen(_color, _LINE_WIDTH);
 
             // This creates the Pen instance that draws the cursor.
             _cursorPen = new Pen(_CURSOR_COLOR, _LINE_WIDTH);
@@ -224,6 +232,11 @@ namespace DrawIt
                 }
                 return new DrawCircleAction(pen, _startPoint.X, _startPoint.Y, radius);
             }
+            if (DrawRectanglesButton.Checked)
+            {
+                return new DrawRectangleAction(pen, _startPoint.X, _startPoint.Y, e.Location.X, e.Location.Y);
+            }
+
 
             return null;
         }
@@ -270,6 +283,23 @@ namespace DrawIt
         private void UpdateClearButton()
         {
             ClearButton.Enabled = _actions.CanClear;
+        }
+
+        private void ColorSelectButton_Click(object sender, EventArgs e)
+        {
+           ColorDialog ColorDialog1 = new ColorDialog();
+           DialogResult result = ColorDialog1.ShowDialog();
+           if (result == DialogResult.OK)
+
+           {
+               _color = ColorDialog1.Color;
+               ColorSelectButton.BackColor = _color;
+              _drawingPen=new Pen(_color, _LINE_WIDTH);
+              
+                
+           }
+
+
         }
     }
 }
