@@ -11,12 +11,14 @@ namespace SimplifiedDrawingModel
         private readonly Point _endPoint;
         private readonly int _width;
         private readonly int _height;
-        //private readonly Brush _brush;
+        private readonly Brush _brush;
+        private readonly bool _fillShape;
 
-        public DrawCircleAction(Pen pen, int x1, int x2, int y1, int y2)
+        public DrawCircleAction(Pen pen, int x1, int x2, int y1, int y2, bool fillShape)
         {
             _pen = pen;
-            //_brush = pen.Brush;
+            _brush = pen.Brush;
+            _fillShape = fillShape;
             _startPoint = new Point(x1, y1);
             _endPoint = new Point(x2, y2);
             _width = Math.Abs(_startPoint.X - _endPoint.X);
@@ -29,7 +31,11 @@ namespace SimplifiedDrawingModel
 
         public void DrawOn(Graphics graphics)
         {
-            graphics.DrawEllipse(_pen, Math.Min(_startPoint.X , _endPoint.X), Math.Min(_startPoint.Y, _endPoint.Y), _width, _height);
+            if (_fillShape)
+            {
+                graphics.FillEllipse(_brush, Math.Min(_startPoint.X, _endPoint.X), Math.Min(_startPoint.Y, _endPoint.Y), _width, _height);
+            }
+            graphics.DrawEllipse(_pen, Math.Min(_startPoint.X, _endPoint.X), Math.Min(_startPoint.Y, _endPoint.Y), _width, _height);
         }
     }
 }

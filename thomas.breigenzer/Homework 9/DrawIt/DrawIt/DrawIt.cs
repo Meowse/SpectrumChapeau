@@ -166,13 +166,11 @@ namespace DrawIt
 
             if (DrawCirclesButton.Checked)
             {
-                //int radius = MathHelpers.GetRadius(_startPoint, new Point(e.Location.X, e.Location.Y));
-                //if (radius == 0)
-                //{
-                //    return null;
-                //}
-                //return new DrawCircleAction(pen, _startPoint.X, _startPoint.Y, radius);
-                return new DrawCircleAction(pen, _startPoint.X, e.Location.X, _startPoint.Y, e.Location.Y);
+                if (FillShapeCheckBox.Checked)
+                {
+                    return new DrawCircleAction(pen, _startPoint.X, e.Location.X, _startPoint.Y, e.Location.Y, true);
+                }
+                return new DrawCircleAction(pen, _startPoint.X, e.Location.X, _startPoint.Y, e.Location.Y, false);
             }
 
             if (DrawRectanglesButton.Checked)

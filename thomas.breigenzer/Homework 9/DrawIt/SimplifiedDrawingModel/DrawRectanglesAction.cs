@@ -35,10 +35,7 @@ namespace SimplifiedDrawingModel
             {
                 graphics.FillRectangle(_brush, Math.Min(_startPoint.X, _endPoint.X), Math.Min(_startPoint.Y, _endPoint.Y), _width, _height);
             }
-            else
-            {
                 graphics.DrawRectangle(_pen, Math.Min(_startPoint.X, _endPoint.X), Math.Min(_startPoint.Y, _endPoint.Y), _width, _height);
-            }
         }
     }
 } 
