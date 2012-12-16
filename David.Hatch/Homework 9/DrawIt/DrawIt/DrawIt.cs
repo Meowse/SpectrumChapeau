@@ -65,6 +65,8 @@ namespace DrawIt
         private static readonly Color _CURSOR_COLOR = Color.AliceBlue;
         private Point _startPoint;
         private bool _isDrawing;
+        //dsh added end point to get snap2grid to work
+        private Point _endPoint;
 
         // This is a constructor method for the DrawIt class.  Notice that it has the same name ("DrawIt") as the class,
         // and does not have a return type.  That's how we know it's a constructor method.
@@ -185,7 +187,8 @@ namespace DrawIt
         {
             if (_isDrawing)
             {
-                // Here's where we actually draw the shape.  
+
+                // Here's where we actually draw the shape. 
                 var drawAction = GetAction(e, _drawingPen);
 
                 if (drawAction != null)
@@ -218,14 +221,18 @@ namespace DrawIt
 
         private IDrawAction GetAction(MouseEventArgs e, Pen pen)
         {
+            //takes mouse arg e and converts to point / adjusts all points to next 5
+            Sanp2Grid(e);   
+
+
             if (DrawLinesButton.Checked)
             {
-                return new DrawLineAction(pen, _startPoint.X, _startPoint.Y, e.Location.X, e.Location.Y);
+                return new DrawLineAction(pen, _startPoint.X, _startPoint.Y, _endPoint.X, _endPoint.Y);
             }
             
             if (DrawCirclesButton.Checked)
             {
-                int radius = MathHelpers.GetRadius(_startPoint, new Point(e.Location.X, e.Location.Y));
+                int radius = MathHelpers.GetRadius(_startPoint, new Point(_endPoint.X, _endPoint.Y));
                 if (radius == 0)
                 {
                     return null;
@@ -237,15 +244,47 @@ namespace DrawIt
                 if (Control.ModifierKeys == Keys.Shift)
                 {
                     //MessageBox.Show("shift key");
-                    int diffx = Math.Abs(_startPoint.X - e.Location.X);
+                    int diffx = Math.Abs(_startPoint.X - _endPoint.X);
                     int samexy = _startPoint.Y + diffx;
-                    return new DrawRectangleAction(pen, _startPoint.X, _startPoint.Y, e.Location.X, samexy);
+                    return new DrawRectangleAction(pen, _startPoint.X, _startPoint.Y, _endPoint.X, samexy);
                 }
-                return new DrawRectangleAction(pen, _startPoint.X, _startPoint.Y, e.Location.X, e.Location.Y);
+                return new DrawRectangleAction(pen, _startPoint.X, _startPoint.Y, _endPoint.X, _endPoint.Y);
             }
 
 
             return null;
+        }
+
+        private void Sanp2Grid(MouseEventArgs e)
+        {
+            //Snap2Grid written at top of getaction and extracted to method / could extract furthe
+            // found up to nearest 5
+            //rounds start locations 
+            int tempnum = _startPoint.X%5;
+            int newStart = _startPoint.X + (5 - tempnum);
+            if (tempnum > 0)
+            {
+                _startPoint.X = newStart;
+            }
+            tempnum = _startPoint.Y%5;
+            newStart = _startPoint.Y + (5 - tempnum);
+            if (tempnum > 0)
+            {
+                _startPoint.Y = newStart;
+            }
+            ////round ending locations 
+            tempnum = e.Location.X%5;
+            newStart = e.Location.X + (5 - tempnum);
+            if (tempnum > 0)
+            {
+                _endPoint.X = newStart;
+            }
+            tempnum = e.Location.Y%5;
+            newStart = e.Location.Y + (5 - tempnum);
+            if (tempnum > 0)
+            {
+                _endPoint.Y = newStart;
+            }
         }
 
         private void ClearButtonClicked(object sender, EventArgs e)
