@@ -257,34 +257,23 @@ namespace DrawIt
 
         private void Sanp2Grid(MouseEventArgs e)
         {
-            //Snap2Grid written at top of getaction and extracted to method / could extract furthe
-            // found up to nearest 5
-            //rounds start locations 
-            int tempnum = _startPoint.X%5;
-            int newStart = _startPoint.X + (5 - tempnum);
+            //dsh Snap2Grid written at top of getaction and extracted to method / extracted further to AdjustPointUp5
+            // round up to nearest 5
+            _startPoint.X=AdjustPointUp5(_startPoint.X);
+            _startPoint.Y = AdjustPointUp5(_startPoint.Y);
+            _endPoint.X = AdjustPointUp5(e.Location.X);
+            _endPoint.Y = AdjustPointUp5(e.Location.Y);
+        }
+
+        private int AdjustPointUp5(int number)
+        {
+            int tempnum = number%5;
+            int newStart = number;
             if (tempnum > 0)
             {
-                _startPoint.X = newStart;
+                newStart = number + (5 - tempnum);
             }
-            tempnum = _startPoint.Y%5;
-            newStart = _startPoint.Y + (5 - tempnum);
-            if (tempnum > 0)
-            {
-                _startPoint.Y = newStart;
-            }
-            ////round ending locations 
-            tempnum = e.Location.X%5;
-            newStart = e.Location.X + (5 - tempnum);
-            if (tempnum > 0)
-            {
-                _endPoint.X = newStart;
-            }
-            tempnum = e.Location.Y%5;
-            newStart = e.Location.Y + (5 - tempnum);
-            if (tempnum > 0)
-            {
-                _endPoint.Y = newStart;
-            }
+            return newStart;
         }
 
         private void ClearButtonClicked(object sender, EventArgs e)
