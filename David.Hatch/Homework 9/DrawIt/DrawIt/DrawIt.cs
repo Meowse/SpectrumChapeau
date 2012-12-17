@@ -250,6 +250,10 @@ namespace DrawIt
                 }
                 return new DrawRectangleAction(pen, _startPoint.X, _startPoint.Y, _endPoint.X, _endPoint.Y);
             }
+            if (DrawXesButton.Checked)
+            {
+                return new DrawXAction(pen, _startPoint.X, _startPoint.Y, _endPoint.X, _endPoint.Y);
+            }
 
 
             return null;
