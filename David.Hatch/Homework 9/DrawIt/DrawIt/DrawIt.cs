@@ -40,7 +40,9 @@ namespace DrawIt
 
     public partial class DrawIt : Form
     {
-        private const int _LINE_WIDTH = 3;
+        //private const int _LINE_WIDTH = 3;
+        //dsh make it not constant 
+        private int _line_width = 3;
 
         // This DrawingModel wraps around the CanvasPanel and gives you a simple interface for drawing
         // lines and circles onto it.  This line doesn't actually create a DrawingModel -- we'll do
@@ -56,7 +58,9 @@ namespace DrawIt
         private Pen _drawingPen;
 
         // A Pen of a different color to draw the cursor with.
-        private readonly Pen _cursorPen;
+        //private readonly Pen _cursorPen;
+        //dsh change from readonly
+        private Pen _cursorPen;
 
         private static readonly Color _BACKGROUND_COLOR = Color.DarkGray;
         //private static readonly Color _COLOR = Color.Red;
@@ -140,10 +144,10 @@ namespace DrawIt
             ColorSelectButton.BackColor = _color;
 
             // This creates the Pen intance that draws lines on the canvas.
-            _drawingPen = new Pen(_color, _LINE_WIDTH);
+            _drawingPen = new Pen(_color, _line_width);
 
             // This creates the Pen instance that draws the cursor.
-            _cursorPen = new Pen(_CURSOR_COLOR, _LINE_WIDTH);
+            _cursorPen = new Pen(_CURSOR_COLOR, _line_width);
 
             // This starts us out with a dark gray background on the canvas (so the user can see
             // where to draw).
@@ -159,6 +163,13 @@ namespace DrawIt
             CanvasPanel.MouseLeave += HandleMouseLeave;
 
             KeyDown += HandleKeyDown;
+            //dsh add method listen to event on trackbar
+            trackBar1.MouseUp += AdjustLineWidth;
+        }
+
+        private void AdjustLineWidth(object sender,EventArgs e)
+        {
+            GetPenWidth(trackBar1.Value);
         }
 
         private void HandleKeyDown(object sender, KeyEventArgs e)
@@ -329,16 +340,84 @@ namespace DrawIt
            ColorDialog ColorDialog1 = new ColorDialog();
            DialogResult result = ColorDialog1.ShowDialog();
            if (result == DialogResult.OK)
-
            {
                _color = ColorDialog1.Color;
                ColorSelectButton.BackColor = _color;
-              _drawingPen=new Pen(_color, _LINE_WIDTH);
-              
-                
+              _drawingPen=new Pen(_color, _line_width);
            }
-
-
         }
+
+        private void CreateNewPens(int number)
+        {
+            _line_width = number;
+            _drawingPen = new Pen(_color, _line_width);
+            _cursorPen = new Pen(_CURSOR_COLOR, _line_width);
+        }
+
+        private void GetPenWidth(int number)
+        {
+            switch (number)
+            {
+                case 0:
+                    {
+                        CreateNewPens(1);
+                        return;
+                    }
+                case 1:
+                    {
+                        CreateNewPens(2);
+                        return;
+                    }
+                case 2:
+                    {
+                        CreateNewPens(3);
+                        return;
+                    }
+                case 3:
+                    {
+                        CreateNewPens(5);
+                        return;
+                    }
+                case 4:
+                    {
+                        CreateNewPens(7);
+                        return;
+                    }
+                case 5:
+                    {
+                        CreateNewPens(9);
+                        return;
+                    }
+                case 6:
+                    {
+                        CreateNewPens(11);
+                        return;
+                    }
+                case 7:
+                    {
+                        CreateNewPens(13);
+                        return;
+                    }
+                case 8:
+                    {
+                        CreateNewPens(15);
+                        return;
+                    }
+                case 9:
+                    {
+                        CreateNewPens(17);
+                        return;
+                    }
+                case 10:
+                    {
+                        CreateNewPens(20);
+                        return;
+                    }
+                default:
+                    return;
+            }
+        }
+
+
     }
 }

@@ -41,14 +41,17 @@ namespace DrawIt
             this.RedoButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.ColorSelectButton = new System.Windows.Forms.Button();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
             // CanvasPanel
             // 
-            this.CanvasPanel.Location = new System.Drawing.Point(12, 69);
+            this.CanvasPanel.Location = new System.Drawing.Point(12, 92);
             this.CanvasPanel.Name = "CanvasPanel";
-            this.CanvasPanel.Size = new System.Drawing.Size(571, 533);
+            this.CanvasPanel.Size = new System.Drawing.Size(571, 510);
             this.CanvasPanel.TabIndex = 0;
             // 
             // ClearButton
@@ -155,16 +158,36 @@ namespace DrawIt
             // 
             this.ColorSelectButton.Location = new System.Drawing.Point(354, 39);
             this.ColorSelectButton.Name = "ColorSelectButton";
-            this.ColorSelectButton.Size = new System.Drawing.Size(75, 23);
+            this.ColorSelectButton.Size = new System.Drawing.Size(44, 23);
             this.ColorSelectButton.TabIndex = 8;
             this.ColorSelectButton.UseVisualStyleBackColor = true;
             this.ColorSelectButton.Click += new System.EventHandler(this.ColorSelectButton_Click);
+            // 
+            // trackBar1
+            // 
+            this.trackBar1.Location = new System.Drawing.Point(475, 40);
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(104, 45);
+            this.trackBar1.TabIndex = 9;
+            this.trackBar1.Value = 2;
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(400, 44);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(80, 13);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Select Width ->";
             // 
             // DrawIt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(591, 574);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.ColorSelectButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.RedoButton);
@@ -177,6 +200,7 @@ namespace DrawIt
             this.Text = "DrawIt!";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -195,6 +219,8 @@ namespace DrawIt
         private System.Windows.Forms.Button RedoButton;
         private Label label1;
         private Button ColorSelectButton;
+        private TrackBar trackBar1;
+        private Label label2;
     }
 }
 
