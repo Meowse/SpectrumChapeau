@@ -43,6 +43,7 @@ namespace DrawIt
             this.ColorSelectButton = new System.Windows.Forms.Button();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.label2 = new System.Windows.Forms.Label();
+            this.FillcheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
@@ -170,7 +171,6 @@ namespace DrawIt
             this.trackBar1.Size = new System.Drawing.Size(104, 45);
             this.trackBar1.TabIndex = 9;
             this.trackBar1.Value = 2;
-            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
             // label2
             // 
@@ -181,11 +181,22 @@ namespace DrawIt
             this.label2.TabIndex = 10;
             this.label2.Text = "Select Width ->";
             // 
+            // FillcheckBox
+            // 
+            this.FillcheckBox.AutoSize = true;
+            this.FillcheckBox.Location = new System.Drawing.Point(308, 68);
+            this.FillcheckBox.Name = "FillcheckBox";
+            this.FillcheckBox.Size = new System.Drawing.Size(77, 17);
+            this.FillcheckBox.TabIndex = 11;
+            this.FillcheckBox.Text = "Fill Shapes";
+            this.FillcheckBox.UseVisualStyleBackColor = true;
+            // 
             // DrawIt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(591, 574);
+            this.Controls.Add(this.FillcheckBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.ColorSelectButton);
@@ -221,6 +232,7 @@ namespace DrawIt
         private Button ColorSelectButton;
         private TrackBar trackBar1;
         private Label label2;
+        private CheckBox FillcheckBox;
     }
 }
 

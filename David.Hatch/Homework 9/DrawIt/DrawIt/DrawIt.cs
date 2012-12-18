@@ -56,6 +56,8 @@ namespace DrawIt
         //dsh using pat's solution for changing color - change from readonly 
         //static readonly makes it a constant for sure - not sure of readonly advantage if not static
         private Pen _drawingPen;
+        //dsh add brush
+        private Brush _drawingBrush;
 
         // A Pen of a different color to draw the cursor with.
         //private readonly Pen _cursorPen;
@@ -149,6 +151,9 @@ namespace DrawIt
             // This creates the Pen instance that draws the cursor.
             _cursorPen = new Pen(_CURSOR_COLOR, _line_width);
 
+            //dsh create brush instance for fill
+            _drawingBrush = new SolidBrush(_color);
+            
             // This starts us out with a dark gray background on the canvas (so the user can see
             // where to draw).
             Clear();
@@ -252,14 +257,33 @@ namespace DrawIt
             }
             if (DrawRectanglesButton.Checked)
             {
-                if (Control.ModifierKeys == Keys.Shift)
+                if (FillcheckBox.Checked)
                 {
-                    //MessageBox.Show("shift key");
-                    int diffx = Math.Abs(_startPoint.X - _endPoint.X);
-                    int samexy = _startPoint.Y + diffx;
-                    return new DrawRectangleAction(pen, _startPoint.X, _startPoint.Y, _endPoint.X, samexy);
+                    if (Control.ModifierKeys == Keys.Shift)
+                    {
+                        //MessageBox.Show("shift key");
+                        int diffx = Math.Abs(_startPoint.X - _endPoint.X);
+                        int samexy = _startPoint.Y + diffx;
+                        return new DrawRectangleAction(_drawingBrush, _startPoint.X, _startPoint.Y, _endPoint.X, samexy,true);
+                    }
+                    bool trueflag = true;
+
+                    return new DrawRectangleAction(_drawingBrush, _startPoint.X, _startPoint.Y, _endPoint.X, _endPoint.Y,
+                                                   true);
                 }
-                return new DrawRectangleAction(pen, _startPoint.X, _startPoint.Y, _endPoint.X, _endPoint.Y);
+                else
+                {
+                    if (Control.ModifierKeys == Keys.Shift)
+                    {
+                        //MessageBox.Show("shift key");
+                        int diffx = Math.Abs(_startPoint.X - _endPoint.X);
+                        int samexy = _startPoint.Y + diffx;
+                        return new DrawRectangleAction(pen, _startPoint.X, _startPoint.Y, _endPoint.X, samexy);
+                    }
+                    bool trueflag = true;
+
+                    return new DrawRectangleAction(pen, _startPoint.X, _startPoint.Y, _endPoint.X, _endPoint.Y);
+                    }
             }
             if (DrawXesButton.Checked)
             {
@@ -344,6 +368,7 @@ namespace DrawIt
                _color = ColorDialog1.Color;
                ColorSelectButton.BackColor = _color;
               _drawingPen=new Pen(_color, _line_width);
+              _drawingBrush = new SolidBrush(_color);
            }
         }
 

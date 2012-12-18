@@ -18,7 +18,7 @@ xSnap-to-Grid (M)
 x probably not exactly right ----- Draw X's (M)
 -- same as rectangles, but draw the diagonals rather than the outside lines
 
-Varying Line Widths (M)
+xVarying Line Widths (M)
 -- any UI is fine
 -- must support at least 1-7 pixels
 
