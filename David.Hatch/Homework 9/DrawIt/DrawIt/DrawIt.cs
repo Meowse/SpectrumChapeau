@@ -248,12 +248,38 @@ namespace DrawIt
             
             if (DrawCirclesButton.Checked)
             {
-                int radius = MathHelpers.GetRadius(_startPoint, new Point(_endPoint.X, _endPoint.Y));
-                if (radius == 0)
+                if (Control.ModifierKeys == Keys.Shift)
                 {
-                    return null;
+                    if (FillcheckBox.Checked)
+                    {
+                        return new DrawOvalAction(_drawingBrush, _startPoint.X, _startPoint.Y, _endPoint.X, _endPoint.Y, true);
+                    }
+                    else
+                    {
+                        return new DrawOvalAction(pen, _startPoint.X, _startPoint.Y, _endPoint.X, _endPoint.Y);
+                    }
                 }
-                return new DrawCircleAction(pen, _startPoint.X, _startPoint.Y, radius);
+                else
+                {
+                    if (FillcheckBox.Checked)
+                    {
+                        int radius = MathHelpers.GetRadius(_startPoint, new Point(_endPoint.X, _endPoint.Y));
+                        if (radius == 0)
+                        {
+                            return null;
+                        }
+                        return new DrawCircleAction(_drawingBrush, _startPoint.X, _startPoint.Y, radius, true);
+                    }
+                    else
+                    {
+                        int radius = MathHelpers.GetRadius(_startPoint, new Point(_endPoint.X, _endPoint.Y));
+                        if (radius == 0)
+                        {
+                            return null;
+                        }
+                        return new DrawCircleAction(pen, _startPoint.X, _startPoint.Y, radius);
+                    }
+                }
             }
             if (DrawRectanglesButton.Checked)
             {
@@ -266,7 +292,6 @@ namespace DrawIt
                         int samexy = _startPoint.Y + diffx;
                         return new DrawRectangleAction(_drawingBrush, _startPoint.X, _startPoint.Y, _endPoint.X, samexy,true);
                     }
-                    bool trueflag = true;
 
                     return new DrawRectangleAction(_drawingBrush, _startPoint.X, _startPoint.Y, _endPoint.X, _endPoint.Y,
                                                    true);
@@ -280,7 +305,6 @@ namespace DrawIt
                         int samexy = _startPoint.Y + diffx;
                         return new DrawRectangleAction(pen, _startPoint.X, _startPoint.Y, _endPoint.X, samexy);
                     }
-                    bool trueflag = true;
 
                     return new DrawRectangleAction(pen, _startPoint.X, _startPoint.Y, _endPoint.X, _endPoint.Y);
                     }
