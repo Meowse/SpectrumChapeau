@@ -35,12 +35,13 @@ namespace DrawIt
             this.DrawLinesButton = new System.Windows.Forms.RadioButton();
             this.DrawCirclesButton = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.FillShapeCheckBox = new System.Windows.Forms.CheckBox();
             this.DrawXesButton = new System.Windows.Forms.RadioButton();
             this.DrawRectanglesButton = new System.Windows.Forms.RadioButton();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.UndoButton = new System.Windows.Forms.Button();
             this.RedoButton = new System.Windows.Forms.Button();
-            this.FillShapeCheckBox = new System.Windows.Forms.CheckBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.ColorSelectionButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -100,6 +101,16 @@ namespace DrawIt
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Draw:";
             // 
+            // FillShapeCheckBox
+            // 
+            this.FillShapeCheckBox.AutoSize = true;
+            this.FillShapeCheckBox.Location = new System.Drawing.Point(62, 52);
+            this.FillShapeCheckBox.Name = "FillShapeCheckBox";
+            this.FillShapeCheckBox.Size = new System.Drawing.Size(102, 17);
+            this.FillShapeCheckBox.TabIndex = 8;
+            this.FillShapeCheckBox.Text = "Fill Shape Mode";
+            this.FillShapeCheckBox.UseVisualStyleBackColor = true;
+            // 
             // DrawXesButton
             // 
             this.DrawXesButton.AutoSize = true;
@@ -121,6 +132,13 @@ namespace DrawIt
             this.DrawRectanglesButton.TabStop = true;
             this.DrawRectanglesButton.Text = "Rectangles";
             this.DrawRectanglesButton.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(6, 13);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(202, 56);
+            this.panel1.TabIndex = 7;
             // 
             // UndoButton
             // 
@@ -144,28 +162,22 @@ namespace DrawIt
             this.RedoButton.UseVisualStyleBackColor = true;
             this.RedoButton.Click += new System.EventHandler(this.RedoButtonClicked);
             // 
-            // FillShapeCheckBox
+            // ColorSelectionButton
             // 
-            this.FillShapeCheckBox.AutoSize = true;
-            this.FillShapeCheckBox.Location = new System.Drawing.Point(62, 52);
-            this.FillShapeCheckBox.Name = "FillShapeCheckBox";
-            this.FillShapeCheckBox.Size = new System.Drawing.Size(102, 17);
-            this.FillShapeCheckBox.TabIndex = 8;
-            this.FillShapeCheckBox.Text = "Fill Shape Mode";
-            this.FillShapeCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // panel1
-            // 
-            this.panel1.Location = new System.Drawing.Point(6, 13);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(202, 56);
-            this.panel1.TabIndex = 7;
+            this.ColorSelectionButton.Location = new System.Drawing.Point(308, 25);
+            this.ColorSelectionButton.Name = "ColorSelectionButton";
+            this.ColorSelectionButton.Size = new System.Drawing.Size(49, 49);
+            this.ColorSelectionButton.TabIndex = 7;
+            this.ColorSelectionButton.Text = "Select Object Color";
+            this.ColorSelectionButton.UseVisualStyleBackColor = true;
+            this.ColorSelectionButton.Click += new System.EventHandler(this.ColorSelectionButton_Click);
             // 
             // DrawIt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(663, 574);
+            this.Controls.Add(this.ColorSelectionButton);
             this.Controls.Add(this.RedoButton);
             this.Controls.Add(this.UndoButton);
             this.Controls.Add(this.groupBox1);
@@ -193,6 +205,7 @@ namespace DrawIt
         private System.Windows.Forms.Button RedoButton;
         private CheckBox FillShapeCheckBox;
         private Panel panel1;
+        private Button ColorSelectionButton;
     }
 }
 
