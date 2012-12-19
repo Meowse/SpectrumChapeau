@@ -22,11 +22,11 @@ xVarying Line Widths (M)
 -- any UI is fine
 -- must support at least 1-7 pixels
 
-Filled Shapes (M)
+xFilled Shapes (M)
 -- can only fill "solid" shapes (rectangle, circle, oval)
 -- fill with the same color as the outline
 
-Draw Ovals (M)
+xDraw Ovals (M)
 -- draw inside an invisible bounding box (rectangle or X, but drawing the inscribed oval instead)
 -- snap bounding box to grid (unlike circles, above)
 
@@ -34,6 +34,6 @@ Draw Circles "from edge to edge" instead of center-to-radius
 -- Circle is drawn inside a "square box", one of whose corners is the starting point, the other of which is the mouse point.
 -- is "draw ovals" plus the shift-key modifier
 
-Fill With Second Color (M)
+xFill With Second Color (M)x
 -- specify a secondary "fill color"
 -- use that color when drawing filled shapes

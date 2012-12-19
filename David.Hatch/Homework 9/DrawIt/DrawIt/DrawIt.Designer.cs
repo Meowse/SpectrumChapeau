@@ -44,6 +44,7 @@ namespace DrawIt
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.label2 = new System.Windows.Forms.Label();
             this.FillcheckBox = new System.Windows.Forms.CheckBox();
+            this.FillColorSelectButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
@@ -186,16 +187,26 @@ namespace DrawIt
             this.FillcheckBox.AutoSize = true;
             this.FillcheckBox.Location = new System.Drawing.Point(308, 68);
             this.FillcheckBox.Name = "FillcheckBox";
-            this.FillcheckBox.Size = new System.Drawing.Size(77, 17);
+            this.FillcheckBox.Size = new System.Drawing.Size(124, 17);
             this.FillcheckBox.TabIndex = 11;
-            this.FillcheckBox.Text = "Fill Shapes";
+            this.FillcheckBox.Text = "Fill Shapes / Color ->";
             this.FillcheckBox.UseVisualStyleBackColor = true;
+            // 
+            // FillColorSelectButton
+            // 
+            this.FillColorSelectButton.Location = new System.Drawing.Point(438, 64);
+            this.FillColorSelectButton.Name = "FillColorSelectButton";
+            this.FillColorSelectButton.Size = new System.Drawing.Size(28, 23);
+            this.FillColorSelectButton.TabIndex = 12;
+            this.FillColorSelectButton.UseVisualStyleBackColor = true;
+            this.FillColorSelectButton.Click += new System.EventHandler(this.FillColorSelectButton_Click);
             // 
             // DrawIt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(591, 574);
+            this.Controls.Add(this.FillColorSelectButton);
             this.Controls.Add(this.FillcheckBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.trackBar1);
@@ -233,6 +244,7 @@ namespace DrawIt
         private TrackBar trackBar1;
         private Label label2;
         private CheckBox FillcheckBox;
+        private Button FillColorSelectButton;
     }
 }
 

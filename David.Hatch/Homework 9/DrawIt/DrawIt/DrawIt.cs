@@ -73,6 +73,8 @@ namespace DrawIt
         private bool _isDrawing;
         //dsh added end point to get snap2grid to work
         private Point _endPoint;
+        //dsh separate color for fill
+        private Color _fillcolor = Color.Red;
 
         // This is a constructor method for the DrawIt class.  Notice that it has the same name ("DrawIt") as the class,
         // and does not have a return type.  That's how we know it's a constructor method.
@@ -143,7 +145,10 @@ namespace DrawIt
             };
 
             //dsh set background of button to color
+            //keep colors in sync until first time changed
             ColorSelectButton.BackColor = _color;
+            FillColorSelectButton.BackColor = _fillcolor;
+            FillColorSelectButton.Tag = "KeepFillInSync"; 
 
             // This creates the Pen intance that draws lines on the canvas.
             _drawingPen = new Pen(_color, _line_width);
@@ -152,7 +157,7 @@ namespace DrawIt
             _cursorPen = new Pen(_CURSOR_COLOR, _line_width);
 
             //dsh create brush instance for fill
-            _drawingBrush = new SolidBrush(_color);
+            _drawingBrush = new SolidBrush(_fillcolor);
             
             // This starts us out with a dark gray background on the canvas (so the user can see
             // where to draw).
@@ -392,7 +397,14 @@ namespace DrawIt
                _color = ColorDialog1.Color;
                ColorSelectButton.BackColor = _color;
               _drawingPen=new Pen(_color, _line_width);
-              _drawingBrush = new SolidBrush(_color);
+              if (FillColorSelectButton.Tag.ToString() == "KeepFillInSync")
+              {
+                  _fillcolor = ColorDialog1.Color;
+                  FillColorSelectButton.BackColor = _fillcolor;
+                  _drawingBrush = new SolidBrush(_fillcolor);
+              }
+
+
            }
         }
 
@@ -467,6 +479,27 @@ namespace DrawIt
             }
         }
 
+        private void FillColorSelectButton_Click(object sender, EventArgs e)
+        {
+            if (FillColorSelectButton.Tag.ToString() == "KeepFillInSync")
+            {
+                if(MessageBox.Show("Do you want to separate Fill from regular color","Choose a different Fill Color",MessageBoxButtons.YesNo)==DialogResult.No)
+                {
+                    return;
+                }
+            }
+            ColorDialog ColorDialog1 = new ColorDialog();
+            DialogResult result = ColorDialog1.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+               _fillcolor = ColorDialog1.Color;
+               FillColorSelectButton.BackColor = _fillcolor;
+               _drawingBrush = new SolidBrush(_fillcolor);
+               FillColorSelectButton.Tag = "";
+            }
+        }
+
+       
 
     }
 }
