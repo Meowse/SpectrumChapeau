@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DrawRectangleAction.cs" />
     <Compile Include="DrawBackgroundAction.cs" />
     <Compile Include="DrawCircleAction.cs" />
     <Compile Include="DrawingModel.cs" />
@@ -54,6 +55,9 @@
       <Project>{4392BF85-B5B9-43C2-8C60-4FF388EBEE4D}</Project>
       <Name>ActionSources</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

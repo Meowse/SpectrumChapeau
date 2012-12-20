@@ -59,6 +59,7 @@ namespace DrawIt
         private static readonly Color _COLOR = Color.Red;
         private static readonly Color _CURSOR_COLOR = Color.AliceBlue;
         private Point _startPoint;
+        
         private bool _isDrawing;
 
         // This is a constructor method for the DrawIt class.  Notice that it has the same name ("DrawIt") as the class,
@@ -224,8 +225,13 @@ namespace DrawIt
                 }
                 return new DrawCircleAction(pen, _startPoint.X, _startPoint.Y, radius);
             }
+            if (DrawRectanglesButton.Checked)
+            {
+                return new DrawRectangleAction(pen, _startPoint.X, _startPoint.Y, e.Location.X, e.Location.Y);
+            }
 
             return null;
+            
         }
 
         private void ClearButtonClicked(object sender, EventArgs e)
