@@ -274,10 +274,8 @@ namespace DrawIt
 
         private void ChangeColor_Click(object sender, EventArgs e, object colorDialog1)
         {
-            // when button is clicked bring up color dialog 
             Type result = colorDialog1.GetType();
 
-            // set _COLOR to color selected
             if (result == DialogResult.OK)
             {
                 _COLOR = colorDialog1.Color;
