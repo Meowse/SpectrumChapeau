@@ -225,11 +225,16 @@ namespace DrawIt
                 }
                 return new DrawCircleAction(pen, _startPoint.X, _startPoint.Y, radius);
             }
+
             if (DrawRectanglesButton.Checked)
             {
                 return new DrawRectangleAction(pen, _startPoint.X, _startPoint.Y, e.Location.X, e.Location.Y);
             }
 
+            if (DrawXesButton.Checked)
+            {
+                return new DrawXesAction(pen, _startPoint.X, e.Location.X, _startPoint.Y, e.Location.Y);
+            }
             return null;
             
         }

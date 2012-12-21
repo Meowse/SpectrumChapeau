@@ -47,6 +47,7 @@
     <Compile Include="DrawCircleAction.cs" />
     <Compile Include="DrawingModel.cs" />
     <Compile Include="DrawLineAction.cs" />
+    <Compile Include="DrawXesAction.cs" />
     <Compile Include="IDrawAction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
