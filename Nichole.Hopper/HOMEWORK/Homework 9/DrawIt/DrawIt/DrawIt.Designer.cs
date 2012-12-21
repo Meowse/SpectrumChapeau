@@ -39,7 +39,7 @@ namespace DrawIt
             this.DrawRectanglesButton = new System.Windows.Forms.RadioButton();
             this.UndoButton = new System.Windows.Forms.Button();
             this.RedoButton = new System.Windows.Forms.Button();
-            this.ChangeColor = new System.Windows.Forms.Button();
+            this.ColorSelectionButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,13 +47,13 @@ namespace DrawIt
             // 
             this.CanvasPanel.Location = new System.Drawing.Point(12, 69);
             this.CanvasPanel.Name = "CanvasPanel";
-            this.CanvasPanel.Size = new System.Drawing.Size(587, 533);
+            this.CanvasPanel.Size = new System.Drawing.Size(571, 533);
             this.CanvasPanel.TabIndex = 0;
             // 
             // ClearButton
             // 
             this.ClearButton.Enabled = false;
-            this.ClearButton.Location = new System.Drawing.Point(443, 12);
+            this.ClearButton.Location = new System.Drawing.Point(508, 12);
             this.ClearButton.Name = "ClearButton";
             this.ClearButton.Size = new System.Drawing.Size(75, 23);
             this.ClearButton.TabIndex = 1;
@@ -141,22 +141,21 @@ namespace DrawIt
             this.RedoButton.UseVisualStyleBackColor = true;
             this.RedoButton.Click += new System.EventHandler(this.RedoButtonClicked);
             // 
-            // ChangeColor
+            // ColorSelectionButton
             // 
-            this.ChangeColor.Location = new System.Drawing.Point(524, 12);
-            this.ChangeColor.Name = "ChangeColor";
-            this.ChangeColor.Size = new System.Drawing.Size(75, 23);
-            this.ChangeColor.TabIndex = 7;
-            this.ChangeColor.Text = "Color";
-            this.ChangeColor.UseVisualStyleBackColor = true;
-            this.ChangeColor.Click += new System.EventHandler(this.ChangeColor_Click);
+            this.ColorSelectionButton.Location = new System.Drawing.Point(443, 12);
+            this.ColorSelectionButton.Name = "ColorSelectionButton";
+            this.ColorSelectionButton.Size = new System.Drawing.Size(59, 51);
+            this.ColorSelectionButton.TabIndex = 7;
+            this.ColorSelectionButton.Text = "Change Color";
+            this.ColorSelectionButton.UseVisualStyleBackColor = true;
             // 
             // DrawIt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(612, 574);
-            this.Controls.Add(this.ChangeColor);
+            this.ClientSize = new System.Drawing.Size(591, 574);
+            this.Controls.Add(this.ColorSelectionButton);
             this.Controls.Add(this.RedoButton);
             this.Controls.Add(this.UndoButton);
             this.Controls.Add(this.groupBox1);
@@ -182,7 +181,7 @@ namespace DrawIt
         private System.Windows.Forms.Panel CanvasPanel;
         private System.Windows.Forms.Button UndoButton;
         private System.Windows.Forms.Button RedoButton;
-        private Button ChangeColor;
+        private Button ColorSelectionButton;
     }
 }
 

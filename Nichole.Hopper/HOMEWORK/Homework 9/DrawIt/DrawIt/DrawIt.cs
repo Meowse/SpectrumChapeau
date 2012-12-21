@@ -272,18 +272,16 @@ namespace DrawIt
             ClearButton.Enabled = _actions.CanClear;
         }
 
-        private void ChangeColor_Click(object sender, EventArgs e, object colorDialog1)
+        private void ColorSelectionButton_Click(object sender, EventArgs e)
         {
-            Type result = colorDialog1.GetType();
-
-            if (result == DialogResult.OK)
+            ColorDialog currentColorDialog = new ColorDialog();
+            DialogResult colorPalettePopup = currentColorDialog.ShowDialog();
+            if (colorPalettePopup == DialogResult.OK)
             {
-                _COLOR = colorDialog1.Color;
+                _COLOR = currentColorDialog.Color;
                 _drawingPen = new Pen(_COLOR, _LINE_WIDTH);
-                ChangeColor.BackColor = _COLOR;
-
+                ColorSelectionButton.BackColor = currentColorDialog.Color;
             }
-
         }
     }
 }
