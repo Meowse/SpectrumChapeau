@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
+using System.Text;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 using ActionSources;
 using SimplifiedDrawingModel;
 
@@ -48,7 +52,7 @@ namespace DrawIt
         // lines and circles onto it.  This line doesn't actually create a DrawingModel -- we'll do
         // that in the DrawIt constructor below!
         private readonly DrawingModel _canvasModel;
-        private readonly IUndoRedoActionSource<IDrawAction> _actions; 
+        private readonly IUndoRedoActionSource<IDrawAction> _actions;
 
         // A Pen is used by the drawing libraries to actually draw on the screen.  It controls things
         // like color, line width, etc.  We'll create a pen in the DrawIt constructor as well.
@@ -75,6 +79,11 @@ namespace DrawIt
         private Point _endPoint;
         //dsh separate color for fill
         private Color _fillcolor = Color.Red;
+       
+        //create list to hold drawing object data needed to recreate objects when session restored
+        private List<SessionData> DrawingData = new List<SessionData>();
+        //dsh added to report state when saving session
+        private bool _shiftKeyFlag;
 
         // This is a constructor method for the DrawIt class.  Notice that it has the same name ("DrawIt") as the class,
         // and does not have a return type.  That's how we know it's a constructor method.
@@ -97,7 +106,7 @@ namespace DrawIt
             // start drawing more circles, it redraws the undone actions 
             // before it starts drawing the new circles.
             // _actions = new BrokenActionSource<IDrawAction>();
-            
+
             // Homework: Create an actual UndoRedoDrawActionSource() and make sure
             // that it has the proper Undo() and Redo() semantics.
             _actions = new UndoRedoActionSource<IDrawAction>();
@@ -140,15 +149,15 @@ namespace DrawIt
             // that draw simple circles on the canvas, and a circular cursor to show where
             // the next circle will be drawn, to illustrate how to use the DrawingModel.
             _canvasModel = new DrawingModel(CanvasPanel, _actions)
-            {
-                Background = new DrawBackgroundAction(_BACKGROUND_COLOR)
-            };
+                               {
+                                   Background = new DrawBackgroundAction(_BACKGROUND_COLOR)
+                               };
 
             //dsh set background of button to color
             //keep colors in sync until first time changed
             ColorSelectButton.BackColor = _color;
             FillColorSelectButton.BackColor = _fillcolor;
-            FillColorSelectButton.Tag = "KeepFillInSync"; 
+            FillColorSelectButton.Tag = "KeepFillInSync";
 
             // This creates the Pen intance that draws lines on the canvas.
             _drawingPen = new Pen(_color, _line_width);
@@ -158,7 +167,7 @@ namespace DrawIt
 
             //dsh create brush instance for fill
             _drawingBrush = new SolidBrush(_fillcolor);
-            
+
             // This starts us out with a dark gray background on the canvas (so the user can see
             // where to draw).
             Clear();
@@ -177,7 +186,7 @@ namespace DrawIt
             trackBar1.MouseUp += AdjustLineWidth;
         }
 
-        private void AdjustLineWidth(object sender,EventArgs e)
+        private void AdjustLineWidth(object sender, EventArgs e)
         {
             GetPenWidth(trackBar1.Value);
         }
@@ -212,9 +221,15 @@ namespace DrawIt
                 // Here's where we actually draw the shape. 
                 var drawAction = GetAction(e, _drawingPen);
 
+                // dsh capture all possible values needed to recreate objects
+                //how to sync with redo and undo - possibly add an ID to both list
+                // don't need to pass everthing if it's already defined like color etc
+                //StoreValuesInObjectforPersistance(drawAction);
+
                 if (drawAction != null)
                 {
                     _actions.Add(drawAction);
+                    StoreValuesInObjectforPersistance(drawAction);
                 }
             }
 
@@ -243,21 +258,24 @@ namespace DrawIt
         private IDrawAction GetAction(MouseEventArgs e, Pen pen)
         {
             //takes mouse arg e and converts to point / adjusts all points to next 5
-            Sanp2Grid(e);   
+            Sanp2Grid(e);
 
 
             if (DrawLinesButton.Checked)
             {
                 return new DrawLineAction(pen, _startPoint.X, _startPoint.Y, _endPoint.X, _endPoint.Y);
             }
-            
+
             if (DrawCirclesButton.Checked)
             {
                 if (Control.ModifierKeys == Keys.Shift)
                 {
+                    _shiftKeyFlag=true;
+
                     if (FillcheckBox.Checked)
                     {
-                        return new DrawOvalAction(_drawingBrush, _startPoint.X, _startPoint.Y, _endPoint.X, _endPoint.Y, true);
+                        return new DrawOvalAction(_drawingBrush, _startPoint.X, _startPoint.Y, _endPoint.X, _endPoint.Y,
+                                                  true);
                     }
                     else
                     {
@@ -292,10 +310,12 @@ namespace DrawIt
                 {
                     if (Control.ModifierKeys == Keys.Shift)
                     {
+                        _shiftKeyFlag = true;
                         //MessageBox.Show("shift key");
                         int diffx = Math.Abs(_startPoint.X - _endPoint.X);
                         int samexy = _startPoint.Y + diffx;
-                        return new DrawRectangleAction(_drawingBrush, _startPoint.X, _startPoint.Y, _endPoint.X, samexy,true);
+                        return new DrawRectangleAction(_drawingBrush, _startPoint.X, _startPoint.Y, _endPoint.X, samexy,
+                                                       true);
                     }
 
                     return new DrawRectangleAction(_drawingBrush, _startPoint.X, _startPoint.Y, _endPoint.X, _endPoint.Y,
@@ -305,6 +325,7 @@ namespace DrawIt
                 {
                     if (Control.ModifierKeys == Keys.Shift)
                     {
+                        _shiftKeyFlag = true;
                         //MessageBox.Show("shift key");
                         int diffx = Math.Abs(_startPoint.X - _endPoint.X);
                         int samexy = _startPoint.Y + diffx;
@@ -312,7 +333,7 @@ namespace DrawIt
                     }
 
                     return new DrawRectangleAction(pen, _startPoint.X, _startPoint.Y, _endPoint.X, _endPoint.Y);
-                    }
+                }
             }
             if (DrawXesButton.Checked)
             {
@@ -323,11 +344,119 @@ namespace DrawIt
             return null;
         }
 
+        //should be able to pass the entire object created from xml file
+        private IDrawAction GetActionFromSavedSession(SessionData drawObject)
+        {
+
+            // ARBG in a 32 bit integer representing the ARBG values
+            // unable to capture the name for all the colors - use arbg values
+            _color = Color.FromArgb(drawObject.PenColor_ARBG);
+            _fillcolor = Color.FromArgb(drawObject.BrushColor_ARBG);
+
+            //get line width
+            _line_width = drawObject.LineWidth;
+
+            //get type pen
+            if (drawObject.IsFill)
+            {
+                _drawingBrush = new SolidBrush(_fillcolor);
+            }
+            else
+            {
+                _drawingPen = new Pen(_color, _line_width);
+            }
+
+            //get start and end points
+            _startPoint.X = drawObject.StartX;
+            _startPoint.Y = drawObject.StartY;
+            _endPoint.X = drawObject.EndX;
+            _endPoint.Y = drawObject.EndY;
+
+            if (drawObject.NameofDrawingAction.Contains("DrawLineAction"))
+            {
+                return new DrawLineAction(_drawingPen, _startPoint.X, _startPoint.Y, _endPoint.X, _endPoint.Y);
+            }
+
+
+            if (drawObject.NameofDrawingAction.Contains("DrawCircle") || drawObject.NameofDrawingAction.Contains("Oval"))
+            {
+                //shift key not saved state - no long depressed when action completed so it's not saved as true
+                if (drawObject.IsShift)
+                {
+                    if (drawObject.IsFill)
+                    {
+                        return new DrawOvalAction(_drawingBrush, _startPoint.X, _startPoint.Y, _endPoint.X, _endPoint.Y,
+                                                  true);
+                    }
+                    else
+                    {
+                        return new DrawOvalAction(_drawingPen, _startPoint.X, _startPoint.Y, _endPoint.X, _endPoint.Y);
+                    }
+                }
+                else
+                {
+                        if (drawObject.IsFill)
+                    {
+                        int radius = MathHelpers.GetRadius(_startPoint, new Point(_endPoint.X, _endPoint.Y));
+                        if (radius == 0)
+                        {
+                            return null;
+                        }
+                        return new DrawCircleAction(_drawingBrush, _startPoint.X, _startPoint.Y, radius, true);
+                    }
+                    else
+                    {
+                        int radius = MathHelpers.GetRadius(_startPoint, new Point(_endPoint.X, _endPoint.Y));
+                        if (radius == 0)
+                        {
+                            return null;
+                        }
+                        return new DrawCircleAction(_drawingPen, _startPoint.X, _startPoint.Y, radius);
+                    }
+                }
+            }
+            if (drawObject.NameofDrawingAction.Contains("Rectangle"))
+            {
+                if (drawObject.IsFill)
+                {
+                    if (drawObject.IsShift)
+                    {
+                        //MessageBox.Show("shift key");
+                        int diffx = Math.Abs(_startPoint.X - _endPoint.X);
+                        int samexy = _startPoint.Y + diffx;
+                        return new DrawRectangleAction(_drawingBrush, _startPoint.X, _startPoint.Y, _endPoint.X, samexy,
+                                                       true);
+                    }
+                            return new DrawRectangleAction(_drawingBrush, _startPoint.X, _startPoint.Y, _endPoint.X, _endPoint.Y,
+                                                   true);
+                }
+                else
+                {
+                    if (drawObject.IsShift)
+                    {
+                        //MessageBox.Show("shift key");
+                        int diffx = Math.Abs(_startPoint.X - _endPoint.X);
+                        int samexy = _startPoint.Y + diffx;
+                        return new DrawRectangleAction(_drawingPen, _startPoint.X, _startPoint.Y, _endPoint.X, samexy);
+                    }
+
+                    return new DrawRectangleAction(_drawingPen, _startPoint.X, _startPoint.Y, _endPoint.X, _endPoint.Y);
+                }
+            }
+            if (drawObject.NameofDrawingAction.Contains("DrawX"))
+            {
+                return new DrawXAction(_drawingPen, _startPoint.X, _startPoint.Y, _endPoint.X, _endPoint.Y);
+            }
+
+
+            return null;
+        }
+
         private void Sanp2Grid(MouseEventArgs e)
         {
             //dsh Snap2Grid written at top of getaction and extracted to method / extracted further to AdjustPointUp5
             // round up to nearest 5
-            _startPoint.X=AdjustPointUp5(_startPoint.X);
+            _startPoint.X = AdjustPointUp5(_startPoint.X);
             _startPoint.Y = AdjustPointUp5(_startPoint.Y);
             _endPoint.X = AdjustPointUp5(e.Location.X);
             _endPoint.Y = AdjustPointUp5(e.Location.Y);
@@ -390,22 +519,22 @@ namespace DrawIt
 
         private void ColorSelectButton_Click(object sender, EventArgs e)
         {
-           ColorDialog ColorDialog1 = new ColorDialog();
-           DialogResult result = ColorDialog1.ShowDialog();
-           if (result == DialogResult.OK)
-           {
-               _color = ColorDialog1.Color;
-               ColorSelectButton.BackColor = _color;
-              _drawingPen=new Pen(_color, _line_width);
-              if (FillColorSelectButton.Tag.ToString() == "KeepFillInSync")
-              {
-                  _fillcolor = ColorDialog1.Color;
-                  FillColorSelectButton.BackColor = _fillcolor;
-                  _drawingBrush = new SolidBrush(_fillcolor);
-              }
+            ColorDialog ColorDialog1 = new ColorDialog();
+            DialogResult result = ColorDialog1.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                _color = ColorDialog1.Color;
+                ColorSelectButton.BackColor = _color;
+                _drawingPen = new Pen(_color, _line_width);
+                if (FillColorSelectButton.Tag.ToString() == "KeepFillInSync")
+                {
+                    _fillcolor = ColorDialog1.Color;
+                    FillColorSelectButton.BackColor = _fillcolor;
+                    _drawingBrush = new SolidBrush(_fillcolor);
+                }
 
 
-           }
+            }
         }
 
         private void CreateNewPens(int number)
@@ -483,7 +612,9 @@ namespace DrawIt
         {
             if (FillColorSelectButton.Tag.ToString() == "KeepFillInSync")
             {
-                if(MessageBox.Show("Do you want to separate Fill from regular color","Choose a different Fill Color",MessageBoxButtons.YesNo)==DialogResult.No)
+                if (
+                    MessageBox.Show("Do you want to separate Fill from regular color", "Choose a different Fill Color",
+                                    MessageBoxButtons.YesNo) == DialogResult.No)
                 {
                     return;
                 }
@@ -492,14 +623,145 @@ namespace DrawIt
             DialogResult result = ColorDialog1.ShowDialog();
             if (result == DialogResult.OK)
             {
-               _fillcolor = ColorDialog1.Color;
-               FillColorSelectButton.BackColor = _fillcolor;
-               _drawingBrush = new SolidBrush(_fillcolor);
-               FillColorSelectButton.Tag = "";
+                _fillcolor = ColorDialog1.Color;
+                FillColorSelectButton.BackColor = _fillcolor;
+                _drawingBrush = new SolidBrush(_fillcolor);
+                FillColorSelectButton.Tag = "";
             }
         }
 
-       
+        public class SessionData
+        {
+            // class for storing values for persistence - store in xml file
 
+            public String NameofDrawingAction
+            { get; set; }
+
+            // gets the 32 bit integer value for the color 
+            public int PenColor_ARBG
+            { get; set; }
+
+            public int BrushColor_ARBG
+            { get; set; }
+
+            //logic
+            public bool IsShift
+            { get; set; }
+
+            public bool IsFill
+            { get; set; }
+
+            //line width
+            public int LineWidth
+            {get; set; }
+
+            //get start and end points
+            public int  StartX
+            {get; set; }
+            public int  StartY
+            {get; set; }
+            public int EndX
+            {get; set; }
+            public int EndY
+            { get; set; }
+
+        }
+
+        private void StoreValuesInObjectforPersistance(IDrawAction drawAction)
+        {
+
+            //get all the values together and add to an ojbect that can be written to xml
+            //on return we will have a method that recreates the list and objects (and list of actions as well)
+            SessionData drawObject = new SessionData();
+            //get name
+            drawObject.NameofDrawingAction = drawAction.ToString();
+            //get logic 
+            if (_shiftKeyFlag == true)
+            {
+                drawObject.IsShift = true;
+                _shiftKeyFlag = false;
+            }
+            //if fill use brush
+            if (FillcheckBox.Checked)
+            {
+                drawObject.IsFill = true;
+            }
+
+            //get pen and brush color brush
+            drawObject.PenColor_ARBG = _color.ToArgb();
+            drawObject.BrushColor_ARBG = _fillcolor.ToArgb();
+
+            // get line width
+            drawObject.LineWidth = _line_width;
+
+            //get start and end points
+            drawObject.StartX = _startPoint.X;
+            drawObject.StartY = _startPoint.Y;
+            drawObject.EndX = _endPoint.X;
+            drawObject.EndY = _endPoint.Y;
+
+            //add object to list of objects
+            DrawingData.Add(drawObject);
+
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            // Save to xml the list containing info needed to recreate drawing objects
+
+            SerializeToXML(DrawingData);
+
+        }
+
+        private void SerializeToXML(List<SessionData> data)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(List<SessionData>));
+            TextWriter textWriter = new StreamWriter(@"C:\temp\test1.xml");
+            serializer.Serialize(textWriter, data);
+            textWriter.Close();
+        }
+
+
+        private void RestoreButton_Click(object sender, EventArgs e)
+        {
+            LoadXMLData();
+        }
+
+        private void LoadXMLData()
+        {
+            ////load data back it works
+            
+            List<SessionData> newList = new List<SessionData>();
+            newList = RecreateObjectsFromSavedList();
+
+            foreach (SessionData drawObject in newList)
+            {
+                GetActionFromSavedSession(drawObject);
+
+               // this is where we draw the shape and add to list as we restore
+               var drawAction = GetActionFromSavedSession(drawObject);
+
+               if (drawAction != null)
+               {
+                    _actions.Add(drawAction);
+               }
+                
+            }
+        }
+
+        private List<SessionData> RecreateObjectsFromSavedList()
+        {
+
+            XmlSerializer deserializer = new XmlSerializer(typeof(List<SessionData>));
+            TextReader textReader = new StreamReader(@"C:\temp\test1.xml");
+            List<SessionData> TextList;
+            TextList = (List<SessionData>)deserializer.Deserialize(textReader);
+            textReader.Close();
+
+            return TextList;
+
+        }
+
+        
     }
 }

@@ -45,6 +45,8 @@ namespace DrawIt
             this.label2 = new System.Windows.Forms.Label();
             this.FillcheckBox = new System.Windows.Forms.CheckBox();
             this.FillColorSelectButton = new System.Windows.Forms.Button();
+            this.SaveButton = new System.Windows.Forms.Button();
+            this.RestoreButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
@@ -201,11 +203,33 @@ namespace DrawIt
             this.FillColorSelectButton.UseVisualStyleBackColor = true;
             this.FillColorSelectButton.Click += new System.EventHandler(this.FillColorSelectButton_Click);
             // 
+            // SaveButton
+            // 
+            this.SaveButton.Location = new System.Drawing.Point(18, 64);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(115, 23);
+            this.SaveButton.TabIndex = 13;
+            this.SaveButton.Text = "Save Session";
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
+            // 
+            // RestoreButton
+            // 
+            this.RestoreButton.Location = new System.Drawing.Point(146, 63);
+            this.RestoreButton.Name = "RestoreButton";
+            this.RestoreButton.Size = new System.Drawing.Size(122, 23);
+            this.RestoreButton.TabIndex = 14;
+            this.RestoreButton.Text = "Restore Last Session";
+            this.RestoreButton.UseVisualStyleBackColor = true;
+            this.RestoreButton.Click += new System.EventHandler(this.RestoreButton_Click);
+            // 
             // DrawIt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(591, 574);
+            this.Controls.Add(this.RestoreButton);
+            this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.FillColorSelectButton);
             this.Controls.Add(this.FillcheckBox);
             this.Controls.Add(this.label2);
@@ -245,6 +269,8 @@ namespace DrawIt
         private Label label2;
         private CheckBox FillcheckBox;
         private Button FillColorSelectButton;
+        private Button SaveButton;
+        private Button RestoreButton;
     }
 }
 
