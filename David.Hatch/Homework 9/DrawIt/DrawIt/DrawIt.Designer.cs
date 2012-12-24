@@ -205,9 +205,9 @@ namespace DrawIt
             // 
             // SaveButton
             // 
-            this.SaveButton.Location = new System.Drawing.Point(18, 64);
+            this.SaveButton.Location = new System.Drawing.Point(18, 63);
             this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(115, 23);
+            this.SaveButton.Size = new System.Drawing.Size(122, 23);
             this.SaveButton.TabIndex = 13;
             this.SaveButton.Text = "Save Session";
             this.SaveButton.UseVisualStyleBackColor = true;
@@ -215,7 +215,7 @@ namespace DrawIt
             // 
             // RestoreButton
             // 
-            this.RestoreButton.Location = new System.Drawing.Point(146, 63);
+            this.RestoreButton.Location = new System.Drawing.Point(146, 62);
             this.RestoreButton.Name = "RestoreButton";
             this.RestoreButton.Size = new System.Drawing.Size(122, 23);
             this.RestoreButton.TabIndex = 14;

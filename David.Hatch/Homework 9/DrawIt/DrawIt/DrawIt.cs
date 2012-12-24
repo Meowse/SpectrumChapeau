@@ -707,7 +707,15 @@ namespace DrawIt
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            // Save to xml the list containing info needed to recreate drawing objects
+             //Save to xml the list containing info needed to recreate drawing objects
+            
+            //TODO cant get this to work - permissions - if dir does not exist it will bomb
+            //if (!Directory.Exists("C:\\temp3"))
+            //{
+            //    MessageBox.Show("Dir needs to be created".ToString());
+            //    //won't Create dir
+            //    Directory.CreateDirectory(@"C\\temp3");
+            //}
 
             SerializeToXML(DrawingData);
 
