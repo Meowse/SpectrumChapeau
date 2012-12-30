@@ -48,9 +48,11 @@ namespace DrawIt
             this.CanvasPanel.Name = "CanvasPanel";
             this.CanvasPanel.Size = new System.Drawing.Size(571, 533);
             this.CanvasPanel.TabIndex = 0;
+            this.CanvasPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.CanvasPanel_Paint);
             // 
             // ClearButton
             // 
+            this.ClearButton.Enabled = false;
             this.ClearButton.Location = new System.Drawing.Point(508, 12);
             this.ClearButton.Name = "ClearButton";
             this.ClearButton.Size = new System.Drawing.Size(75, 23);
@@ -119,6 +121,7 @@ namespace DrawIt
             // 
             // UndoButton
             // 
+            this.UndoButton.Enabled = false;
             this.UndoButton.Location = new System.Drawing.Point(280, 13);
             this.UndoButton.Name = "UndoButton";
             this.UndoButton.Size = new System.Drawing.Size(75, 23);
@@ -129,6 +132,7 @@ namespace DrawIt
             // 
             // RedoButton
             // 
+            this.RedoButton.Enabled = false;
             this.RedoButton.Location = new System.Drawing.Point(362, 12);
             this.RedoButton.Name = "RedoButton";
             this.RedoButton.Size = new System.Drawing.Size(75, 23);

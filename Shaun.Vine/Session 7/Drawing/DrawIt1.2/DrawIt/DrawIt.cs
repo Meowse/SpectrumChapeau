@@ -206,5 +206,10 @@ namespace DrawIt
             UndoButton.Enabled = _actions.CanUndo;
             RedoButton.Enabled = _actions.CanRedo;
         }
+
+        private void CanvasPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
